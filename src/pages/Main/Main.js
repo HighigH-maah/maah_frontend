@@ -1,6 +1,6 @@
 import React from "react";
 import "./main.css";
-
+import "../../assets/css/style.css";
 function Main(props) {
   return (
     <div class="main-tF7">
@@ -97,10 +97,7 @@ function Main(props) {
                     class="dot-indictaor-4-fhf"
                     src="REPLACE_IMAGE:13:1767"
                   />
-                  <img
-                    class="dot-indictaor-5-p4m"
-                    src="REPLACE_IMAGE:13:1768"
-                  />
+                  <img class="dot-indictaor-5-p4m" src="./images/google.png" />
                 </div>
                 <img class="click-area-v7o" src="REPLACE_IMAGE:13:1769" />
               </div>
@@ -116,16 +113,22 @@ function Main(props) {
                   <div class="group-1000003040-AZs">
                     <img
                       class="mingcute-kakao-talk-fill-H8h"
-                      src="REPLACE_IMAGE:191:744"
+                      src="assets/images/google.png"
                     />
                   </div>
                   <div class="group-1000003042-PSd">
-                    <div class="n-4-Hnu"></div>
+                    <img
+                      class="mingcute-kakao-talk-fill-H8h"
+                      src="../../assets/images/google.png"
+                    />
                   </div>
                   <p class="or-continue-with-Yyj">Or continue with</p>
                   <div class="group-1000003048-F7T">
-                    <div class="group-1000003046-a9j">ID</div>
-                    <div class="group-1000003047-EEH">Password</div>
+                    <input className="group-1000003046-a9j" placeholder="ID" />
+                    <input
+                      className="group-1000003047-EEH"
+                      placeholder="Password"
+                    />
                   </div>
                 </div>
                 <div class="group-1000003045-JE9">
