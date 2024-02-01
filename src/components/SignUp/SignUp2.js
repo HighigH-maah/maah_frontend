@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const SignUp = styled.div`
@@ -133,6 +133,16 @@ const Notice = styled.div`
   flex-shrink: 0;
 `;
 
+const SuccessMessage = styled.div`
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.2125;
+  color: #006400;
+  font-family: M PLUS 1, "Source Sans Pro";
+  white-space: nowrap;
+  flex-shrink: 0;
+`;
+
 const SignUpBtn = styled.button`
   width: 52.5rem;
   height: 6.3rem;
@@ -196,6 +206,31 @@ const TermCheckBtn = styled.button`
 `;
 
 function SignUp2(props) {
+  const [isDuplicateChecked, setDuplicateChecked] = useState(false);
+  const [isAuthChecked, setAuthChecked] = useState(false);
+
+  const handleDuplicateCheck = () => {
+    // 중복 확인에 대한 로직을 여기에 추가합니다
+    // 예를 들어, API 호출 또는 일부 유효성 검사를 수행할 수 있습니다
+    // 확인이 완료되면 setDuplicateChecked(true)로 설정합니다
+    console.log("중복확인 버튼 클릭");
+    setDuplicateChecked(true);
+  };
+
+  const handleAuthCheck = () => {
+    // 본인 인증에 대한 로직을 여기에 추가합니다
+    // 본인 인증이 완료되면 setAuthChecked(true)로 설정합니다
+    setAuthChecked(true);
+    console.log("본인인증 버튼 클릭");
+  };
+
+  const handleSignUp = () => {
+    // 가입 프로세스에 대한 로직을 여기에 추가합니다
+    // 중복 확인 및 본인 인증이 성공한 후 필요한 작업을 수행할 수 있습니다
+    // 가입이 성공하면 다른 페이지로 이동하거나 성공 메시지를 표시할 수 있습니다
+    console.log("가입 로직이 여기에 들어갑니다!");
+  };
+
   return (
     <SignUp>
       <MainTitle>회원가입</MainTitle>
@@ -207,9 +242,17 @@ function SignUp2(props) {
         </Box1>
         <Box2>
           <InputBox></InputBox>
-          <DoubleCheckBtn>중복확인</DoubleCheckBtn>
+          <DoubleCheckBtn onClick={handleDuplicateCheck}>
+            중복확인
+          </DoubleCheckBtn>
         </Box2>
-        <Notice>중복확인을 해주세요.</Notice>
+        <Notice>
+          {isDuplicateChecked ? (
+            <SuccessMessage>중복확인 완료!</SuccessMessage>
+          ) : (
+            <Notice>중복확인을 해주세요.</Notice>
+          )}
+        </Notice>
       </EleBox>
 
       <EleBox>
@@ -240,9 +283,15 @@ function SignUp2(props) {
         </Box1>
         <Box2>
           <InputBox></InputBox>
-          <AuthCheckBtn>본인인증</AuthCheckBtn>
+          <AuthCheckBtn onClick={handleAuthCheck}>본인인증</AuthCheckBtn>
         </Box2>
-        <Notice>본명을 기입해주세요.</Notice>
+        <Notice>
+          {isAuthChecked ? (
+            <SuccessMessage>본인인증 완료!</SuccessMessage>
+          ) : (
+            <Notice>본명을 기입해주세요.</Notice>
+          )}
+        </Notice>
       </EleBox>
 
       <EleBox>
@@ -303,7 +352,7 @@ function SignUp2(props) {
         </Box2>
       </EleBox>
 
-      <SignUpBtn>가입하기</SignUpBtn>
+      <SignUpBtn onClick={handleSignUp}>가입하기</SignUpBtn>
     </SignUp>
   );
 }
