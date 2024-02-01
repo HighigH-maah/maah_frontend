@@ -2,10 +2,11 @@ import styled from 'styled-components';
 import './hicarddesignselect.css';
 import blackVelvet from '../../assets/images/Black_velvet.png';
 import whiteVelvet from '../../assets/images/White_velvet.png';
+import reverse from '../../assets/images/reverse.png';
 
 const SelectDesign = styled.div`
   background: linear-gradient(180deg, #fffdfd 37.44%, #d7d7d7 100%);
-  padding: 200px 0px 200px 0px;
+  padding: 150px 0px 50px 0px;
   font-family: 'M PLUS 1', sans-serif;
   text-align: center;
 `;
@@ -21,7 +22,7 @@ const SubTitle = styled.div`
 `;
 
 const CardList = styled.div`
-  margin-top: 30px;
+  margin-top: 50px;
 `;
 
 const CardDesign = styled.div`
@@ -36,15 +37,31 @@ const CardImageDiv = styled.div`
 const CardImage = styled.img`
   width: 200px;
   height: 300px;
+  transition: all 0.15s linear;
   &:hover {
     transform: scale(1.12);
-    transition: all 0.2s linear;
+    transform-origin: bottom;
   }
 `;
 
 const CardName = styled.div`
   font-size: 25px;
   font-family: 'Iceland', sans-serif;
+`;
+
+const ReverseButton = styled.button`
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 21px;
+  border: 0;
+  cursor: pointer;
+  background: linear-gradient(0deg, rgba(128, 128, 128, 0.5), rgba(200, 200, 200, 0.5) 45%, rgba(128, 128, 128, 0.5));
+  bottom: 70px;
+`;
+
+const ReverseIcon = styled.img`
+  margin-top: 5px;
 `;
 
 function HiCardDesignSelect() {
@@ -58,12 +75,14 @@ function HiCardDesignSelect() {
             <CardImage src={blackVelvet}></CardImage>
           </CardImageDiv>
           <CardName>Black Velvet</CardName>
+          <ReverseButton><ReverseIcon src={reverse}></ReverseIcon></ReverseButton>  
         </CardDesign>
         <CardDesign>
         <CardImageDiv>
           <CardImage src={whiteVelvet}></CardImage>
         </CardImageDiv>
           <CardName>White Velvet</CardName>
+          <ReverseButton><ReverseIcon src={reverse}></ReverseIcon></ReverseButton>
         </CardDesign>
       </CardList>
     </SelectDesign>
