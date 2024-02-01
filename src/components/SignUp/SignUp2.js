@@ -97,6 +97,7 @@ const DoubleCheckBtn = styled.button`
   &:hover {
     background-color: #000000;
     color: #ffffff;
+    cursor: pointer;
   }
 `;
 
@@ -120,6 +121,7 @@ const AuthCheckBtn = styled.button`
   &:hover {
     background-color: #000000;
     color: #ffffff;
+    cursor: pointer;
   }
 `;
 
@@ -144,8 +146,8 @@ const SuccessMessage = styled.div`
 `;
 
 const SignUpBtn = styled.button`
-  width: 52.5rem;
-  height: 6.3rem;
+  width: 50rem;
+  height: 7rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -158,11 +160,12 @@ const SignUpBtn = styled.button`
   background-color: #000000;
   border-radius: 3rem;
   flex-shrink: 0;
+  cursor: pointer;
 `;
 
 const TermBox = styled.div`
   margin-right: 2rem;
-  width: 45rem;
+  width: 50rem;
   height: 7rem;
   box-shadow: inset 0 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
   background-color: #f5f5f5;
@@ -176,18 +179,19 @@ const TermContext = styled.p`
   font-size: 2rem;
   font-weight: 500;
   line-height: 1.2125;
-  color: #808080;
+  color: ${(props) => (props.isChecked ? "#000000" : "#808080")};
   font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 `;
 
-const TermCheckBtn = styled.button`
-  width: 5rem;
-  height: 5rem;
+const TermCheckBtn = styled.label`
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
+  cursor: pointer;
+  width: 50rem;
+  height: 5rem;
   font-size: 2rem;
   font-weight: 600;
   line-height: 1.2;
@@ -195,19 +199,43 @@ const TermCheckBtn = styled.button`
   font-family: Inter, "Source Sans Pro";
   white-space: nowrap;
   background-color: #ffffff;
-  border-width: 5px;
-  border-radius: 5rem;
+  border-radius: 2rem;
   flex-shrink: 0;
 
   &:hover {
     background-color: #000000;
     color: #ffffff;
   }
+
+  input {
+    opacity: 0;
+    position: absolute;
+    cursor: pointer;
+  }
+
+  input:checked + span {
+    background-color: #000000;
+    color: #ffffff;
+  }
+
+  input:checked + span + ${TermContext} {
+    color: #000000;
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50rem;
+    height: 5rem;
+    border-radius: 2rem;
+  }
 `;
 
 function SignUp2(props) {
   const [isDuplicateChecked, setDuplicateChecked] = useState(false);
   const [isAuthChecked, setAuthChecked] = useState(false);
+  const [isTermChecked, setTermChecked] = useState(false);
 
   const handleDuplicateCheck = () => {
     // 중복 확인에 대한 로직을 여기에 추가합니다
@@ -229,6 +257,11 @@ function SignUp2(props) {
     // 중복 확인 및 본인 인증이 성공한 후 필요한 작업을 수행할 수 있습니다
     // 가입이 성공하면 다른 페이지로 이동하거나 성공 메시지를 표시할 수 있습니다
     console.log("가입 로직이 여기에 들어갑니다!");
+  };
+
+  const handleTermCheck = () => {
+    setTermChecked(!isTermChecked);
+    console.log("약관동의 체크");
   };
 
   return (
@@ -340,16 +373,22 @@ function SignUp2(props) {
         </Box1>
         <Box2>
           <TermBox>
-            <TermContext>온라인회원 이용약관(필수)</TermContext>
+            <TermContext isChecked={isTermChecked}>
+              온라인회원 이용약관(필수)
+            </TermContext>
           </TermBox>
-          <TermCheckBtn>체크박스</TermCheckBtn>
         </Box2>
         <Box2>
           <TermBox>
-            <TermContext>개인정보 필수적 수집, 이용 동의서(필수)</TermContext>
+            <TermContext isChecked={isTermChecked}>
+              개인정보 필수적 수집, 이용 동의서(필수)
+            </TermContext>
           </TermBox>
-          <TermCheckBtn>체크박스</TermCheckBtn>
         </Box2>
+        <TermCheckBtn>
+          <input type="checkbox" onChange={handleTermCheck} />
+          <span>모두선택</span>
+        </TermCheckBtn>
       </EleBox>
 
       <SignUpBtn onClick={handleSignUp}>가입하기</SignUpBtn>
