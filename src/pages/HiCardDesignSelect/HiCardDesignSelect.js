@@ -2,7 +2,10 @@ import styled from 'styled-components';
 import './hicarddesignselect.css';
 import blackVelvet from '../../assets/images/Black_velvet.png';
 import whiteVelvet from '../../assets/images/White_velvet.png';
+import blackBack from '../../assets/images/black-back.png';
+import whiteBack from '../../assets/images/white-back.png';
 import reverse from '../../assets/images/reverse.png';
+import { useState } from 'react';
 
 const SelectDesign = styled.div`
   background: linear-gradient(180deg, #fffdfd 37.44%, #d7d7d7 100%);
@@ -38,8 +41,10 @@ const CardImage = styled.img`
   width: 200px;
   height: 300px;
   transition: all 0.15s linear;
+  transform: scale(1);
+  cursor: pointer;
   &:hover {
-    transform: scale(1.12);
+    transform: scale(1.12) !important;
     transform-origin: bottom;
   }
 `;
@@ -65,6 +70,32 @@ const ReverseIcon = styled.img`
 `;
 
 function HiCardDesignSelect() {
+
+  const [black, setBlack] = useState(true);
+  const [white, setWhite] = useState(true);
+
+  const reverseCard = (prop) => {
+    if(prop === "black") {
+      let card = document.getElementById('blackValvet');
+      card.style.transform = 'rotateY(90deg)';
+      setTimeout(function() {
+        card.style.transform = 'rotateY(0deg)';
+        setBlack(!black);
+      }, 100);
+    } else if(prop === 'white') {
+      let card = document.getElementById('whiteValvet');
+      card.style.transform = 'rotateY(90deg)';
+      setTimeout(function() {
+        card.style.transform = 'rotateY(0deg)';
+        setWhite(!white);
+      }, 100);
+    }
+  }
+
+  const applicationTerm = (prop) => {
+    console.log(prop);
+  }
+  
   return (
     <SelectDesign>
       <MainTitle>Hi:Card 신청</MainTitle>
@@ -72,17 +103,17 @@ function HiCardDesignSelect() {
       <CardList>
         <CardDesign>
           <CardImageDiv>
-            <CardImage src={blackVelvet}></CardImage>
+            <CardImage id='blackValvet' onClick={() => {applicationTerm('black')}} src={black ? blackVelvet : blackBack}></CardImage>
           </CardImageDiv>
           <CardName>Black Velvet</CardName>
-          <ReverseButton><ReverseIcon src={reverse}></ReverseIcon></ReverseButton>  
+          <ReverseButton type='button' onClick={() => {reverseCard('black')}}><ReverseIcon src={reverse}></ReverseIcon></ReverseButton>  
         </CardDesign>
         <CardDesign>
-        <CardImageDiv>
-          <CardImage src={whiteVelvet}></CardImage>
-        </CardImageDiv>
+          <CardImageDiv>
+            <CardImage id='whiteValvet' onClick={() => {applicationTerm('white')}} src={white ? whiteVelvet : whiteBack}></CardImage>
+          </CardImageDiv>
           <CardName>White Velvet</CardName>
-          <ReverseButton><ReverseIcon src={reverse}></ReverseIcon></ReverseButton>
+          <ReverseButton type='button' onClick={() => {reverseCard('white')}}><ReverseIcon src={reverse}></ReverseIcon></ReverseButton>
         </CardDesign>
       </CardList>
     </SelectDesign>
