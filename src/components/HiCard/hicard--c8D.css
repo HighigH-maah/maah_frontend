@@ -1,20 +1,18 @@
-
 html {
-	font-size:62.5%;
+  font-size: 62.5%;
 }
 * {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
-ul, li {
-	list-style: none;
+ul,
+li {
+  list-style: none;
 }
 input {
-	border: none;
+  border: none;
 }
-body {
-  width: 128rem;
-}.hicard--ujB {
+.hicard--ujB {
   width: 100%;
   height: 480rem;
   position: relative;
@@ -68,14 +66,19 @@ body {
   vertical-align: top;
   flex-shrink: 0;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-eKP .frame-ngV .discover-the-power-of-our-secure-and-rewarding-credit-cards-fEV {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-eKP
+  .frame-ngV
+  .discover-the-power-of-our-secure-and-rewarding-credit-cards-fEV {
   max-width: 26.7rem;
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.5;
   letter-spacing: -0.048rem;
   color: #adb2b1;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   flex-shrink: 0;
 }
 .hicard--ujB .footer-A9K .frame-Ufo .frame-eKP .frame-jk9 {
@@ -91,54 +94,94 @@ body {
   height: 100%;
   flex-shrink: 0;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-eKP .frame-jk9 .frame-Gzy .about-us-1hf {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-eKP
+  .frame-jk9
+  .frame-Gzy
+  .about-us-1hf {
   margin-bottom: 1.6rem;
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 1.5;
   color: #ffffff;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-eKP .frame-jk9 .frame-Gzy .frame-MFj {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-eKP
+  .frame-jk9
+  .frame-Gzy
+  .frame-MFj {
   width: 100%;
   row-gap: 0.8rem;
   display: flex;
   flex-direction: column;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-eKP .frame-jk9 .frame-Gzy .frame-MFj .investors-hqP {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-eKP
+  .frame-jk9
+  .frame-Gzy
+  .frame-MFj
+  .investors-hqP {
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.5;
   color: #adb2b1;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-eKP .frame-jk9 .frame-Gzy .frame-MFj .features-2Ms {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-eKP
+  .frame-jk9
+  .frame-Gzy
+  .frame-MFj
+  .features-2Ms {
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.5;
   color: #adb2b1;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-eKP .frame-jk9 .frame-Gzy .frame-MFj .book-a-demo-YLD {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-eKP
+  .frame-jk9
+  .frame-Gzy
+  .frame-MFj
+  .book-a-demo-YLD {
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.5;
   color: #adb2b1;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-eKP .frame-jk9 .frame-Gzy .frame-MFj .security-5qw {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-eKP
+  .frame-jk9
+  .frame-Gzy
+  .frame-MFj
+  .security-5qw {
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.5;
   color: #adb2b1;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -148,54 +191,94 @@ body {
   height: 100%;
   flex-shrink: 0;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-eKP .frame-jk9 .frame-dsT .products-bJV {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-eKP
+  .frame-jk9
+  .frame-dsT
+  .products-bJV {
   margin-bottom: 1.6rem;
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 1.5;
   color: #ffffff;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-eKP .frame-jk9 .frame-dsT .frame-jvV {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-eKP
+  .frame-jk9
+  .frame-dsT
+  .frame-jvV {
   width: 100%;
   row-gap: 0.8rem;
   display: flex;
   flex-direction: column;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-eKP .frame-jk9 .frame-dsT .frame-jvV .credits-cards-JTo {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-eKP
+  .frame-jk9
+  .frame-dsT
+  .frame-jvV
+  .credits-cards-JTo {
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.5;
   color: #adb2b1;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-eKP .frame-jk9 .frame-dsT .frame-jvV .gift-cards-E6Z {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-eKP
+  .frame-jk9
+  .frame-dsT
+  .frame-jvV
+  .gift-cards-E6Z {
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.5;
   color: #adb2b1;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-eKP .frame-jk9 .frame-dsT .frame-jvV .savings-accounts-YN9 {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-eKP
+  .frame-jk9
+  .frame-dsT
+  .frame-jvV
+  .savings-accounts-YN9 {
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.5;
   color: #adb2b1;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-eKP .frame-jk9 .frame-dsT .frame-jvV .nft-68m {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-eKP
+  .frame-jk9
+  .frame-dsT
+  .frame-jvV
+  .nft-68m {
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.5;
   color: #adb2b1;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -204,45 +287,78 @@ body {
   width: 11.6rem;
   flex-shrink: 0;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-eKP .frame-jk9 .frame-3Ju .useful-links-MqP {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-eKP
+  .frame-jk9
+  .frame-3Ju
+  .useful-links-MqP {
   margin-bottom: 1.6rem;
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 1.5;
   color: #ffffff;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-eKP .frame-jk9 .frame-3Ju .frame-WCV {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-eKP
+  .frame-jk9
+  .frame-3Ju
+  .frame-WCV {
   width: 100%;
   row-gap: 0.8rem;
   display: flex;
   flex-direction: column;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-eKP .frame-jk9 .frame-3Ju .frame-WCV .free-rewards-3y7 {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-eKP
+  .frame-jk9
+  .frame-3Ju
+  .frame-WCV
+  .free-rewards-3y7 {
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.5;
   color: #adb2b1;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-eKP .frame-jk9 .frame-3Ju .frame-WCV .documentation-bDw {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-eKP
+  .frame-jk9
+  .frame-3Ju
+  .frame-WCV
+  .documentation-bDw {
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.5;
   color: #adb2b1;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-eKP .frame-jk9 .frame-3Ju .frame-WCV .affiliate-program-7xy {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-eKP
+  .frame-jk9
+  .frame-3Ju
+  .frame-WCV
+  .affiliate-program-7xy {
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.5;
   color: #adb2b1;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -251,54 +367,94 @@ body {
   height: 100%;
   flex-shrink: 0;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-eKP .frame-jk9 .frame-4dK .social-dRX {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-eKP
+  .frame-jk9
+  .frame-4dK
+  .social-dRX {
   margin-bottom: 1.6rem;
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 1.5;
   color: #ffffff;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-eKP .frame-jk9 .frame-4dK .frame-abf {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-eKP
+  .frame-jk9
+  .frame-4dK
+  .frame-abf {
   width: 100%;
   row-gap: 0.8rem;
   display: flex;
   flex-direction: column;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-eKP .frame-jk9 .frame-4dK .frame-abf .changelog-8dB {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-eKP
+  .frame-jk9
+  .frame-4dK
+  .frame-abf
+  .changelog-8dB {
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.5;
   color: #adb2b1;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-eKP .frame-jk9 .frame-4dK .frame-abf .license-64D {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-eKP
+  .frame-jk9
+  .frame-4dK
+  .frame-abf
+  .license-64D {
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.5;
   color: #adb2b1;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-eKP .frame-jk9 .frame-4dK .frame-abf .site-maps-Ded {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-eKP
+  .frame-jk9
+  .frame-4dK
+  .frame-abf
+  .site-maps-Ded {
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.5;
   color: #adb2b1;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-eKP .frame-jk9 .frame-4dK .frame-abf .news-kPf {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-eKP
+  .frame-jk9
+  .frame-4dK
+  .frame-abf
+  .news-kPf {
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.5;
   color: #adb2b1;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -309,13 +465,17 @@ body {
   align-items: center;
   flex-shrink: 0;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-3tZ .copyright-2023-doradesign-all-rights-reserved-PhX {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-3tZ
+  .copyright-2023-doradesign-all-rights-reserved-PhX {
   margin-right: 68.2rem;
   font-size: 1.2rem;
   font-weight: 400;
   line-height: 1.6666666667;
   color: #adb2b1;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -325,7 +485,12 @@ body {
   position: relative;
   flex-shrink: 0;
 }
-.hicard--ujB .footer-A9K .frame-Ufo .frame-3tZ .group-11-6bw .this-page-uses-cookies-see-cookies-details-here-2kV {
+.hicard--ujB
+  .footer-A9K
+  .frame-Ufo
+  .frame-3tZ
+  .group-11-6bw
+  .this-page-uses-cookies-see-cookies-details-here-2kV {
   width: 29.2rem;
   height: 2rem;
   position: absolute;
@@ -335,7 +500,7 @@ body {
   font-weight: 400;
   line-height: 1.6666666667;
   color: #adb2b1;
-  font-family: Poppins, 'Source Sans Pro';
+  font-family: Poppins, "Source Sans Pro";
   white-space: nowrap;
 }
 .hicard--ujB .footer-A9K .frame-Ufo .frame-3tZ .group-11-6bw .vector-5-hrd {
@@ -373,7 +538,11 @@ body {
   align-items: center;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003117-efP .frame-1000005731-Ykm .group-1000003141-tpd {
+.hicard--ujB
+  .main-x1s
+  .group-1000003117-efP
+  .frame-1000005731-Ykm
+  .group-1000003141-tpd {
   margin: 2.1rem 20rem 2.1rem 0rem;
   box-sizing: border-box;
   padding: 0rem 5.09rem 0rem 5rem;
@@ -382,51 +551,88 @@ body {
   border-radius: 14rem;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003117-efP .frame-1000005731-Ykm .group-1000003141-tpd .image-334-1eM {
+.hicard--ujB
+  .main-x1s
+  .group-1000003117-efP
+  .frame-1000005731-Ykm
+  .group-1000003141-tpd
+  .image-334-1eM {
   width: 17.9099rem;
   height: 28rem;
   object-fit: cover;
   vertical-align: top;
 }
-.hicard--ujB .main-x1s .group-1000003117-efP .frame-1000005731-Ykm .frame-1000005730-Xsb {
+.hicard--ujB
+  .main-x1s
+  .group-1000003117-efP
+  .frame-1000005731-Ykm
+  .frame-1000005730-Xsb {
   width: 36.5rem;
   height: 100%;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003117-efP .frame-1000005731-Ykm .frame-1000005730-Xsb .frame-1000003142-r9B {
+.hicard--ujB
+  .main-x1s
+  .group-1000003117-efP
+  .frame-1000005731-Ykm
+  .frame-1000005730-Xsb
+  .frame-1000003142-r9B {
   margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
 }
-.hicard--ujB .main-x1s .group-1000003117-efP .frame-1000005731-Ykm .frame-1000005730-Xsb .frame-1000003142-r9B .hi-card-1Xs {
+.hicard--ujB
+  .main-x1s
+  .group-1000003117-efP
+  .frame-1000005731-Ykm
+  .frame-1000005730-Xsb
+  .frame-1000003142-r9B
+  .hi-card-1Xs {
   margin-bottom: 1rem;
   font-size: 5rem;
   font-weight: 400;
   line-height: 0.97;
   letter-spacing: -0.2rem;
   color: #000000;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003117-efP .frame-1000005731-Ykm .frame-1000005730-Xsb .frame-1000003142-r9B .item--L4M {
+.hicard--ujB
+  .main-x1s
+  .group-1000003117-efP
+  .frame-1000005731-Ykm
+  .frame-1000005730-Xsb
+  .frame-1000003142-r9B
+  .item--L4M {
   display: flex;
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.375;
   letter-spacing: -0.018rem;
   color: #000000;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003117-efP .frame-1000005731-Ykm .frame-1000005730-Xsb .frame-1000005729-2Sy {
+.hicard--ujB
+  .main-x1s
+  .group-1000003117-efP
+  .frame-1000005731-Ykm
+  .frame-1000005730-Xsb
+  .frame-1000005729-2Sy {
   width: 100%;
   align-items: center;
   display: flex;
   flex-direction: column;
 }
-.hicard--ujB .main-x1s .group-1000003117-efP .frame-1000005731-Ykm .frame-1000005730-Xsb .frame-1000005729-2Sy .auto-group-3twy-PYR {
+.hicard--ujB
+  .main-x1s
+  .group-1000003117-efP
+  .frame-1000005731-Ykm
+  .frame-1000005730-Xsb
+  .frame-1000005729-2Sy
+  .auto-group-3twy-PYR {
   box-sizing: border-box;
   padding-bottom: 2rem;
   width: 100%;
@@ -434,14 +640,29 @@ body {
   flex-direction: column;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003117-efP .frame-1000005731-Ykm .frame-1000005730-Xsb .frame-1000005729-2Sy .auto-group-3twy-PYR .frame-1000005727-5AM {
+.hicard--ujB
+  .main-x1s
+  .group-1000003117-efP
+  .frame-1000005731-Ykm
+  .frame-1000005730-Xsb
+  .frame-1000005729-2Sy
+  .auto-group-3twy-PYR
+  .frame-1000005727-5AM {
   margin: 0rem 1.6rem 2rem 0rem;
   width: calc(100% - 1.6rem);
   display: flex;
   align-items: center;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003117-efP .frame-1000005731-Ykm .frame-1000005730-Xsb .frame-1000005729-2Sy .auto-group-3twy-PYR .frame-1000005727-5AM .hi-mileage-naZ {
+.hicard--ujB
+  .main-x1s
+  .group-1000003117-efP
+  .frame-1000005731-Ykm
+  .frame-1000005730-Xsb
+  .frame-1000005729-2Sy
+  .auto-group-3twy-PYR
+  .frame-1000005727-5AM
+  .hi-mileage-naZ {
   margin-right: 10.6rem;
   display: flex;
   font-size: 3.6rem;
@@ -449,29 +670,52 @@ body {
   line-height: 0.6111111111;
   letter-spacing: -0.018rem;
   color: #000000;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003117-efP .frame-1000005731-Ykm .frame-1000005730-Xsb .frame-1000005729-2Sy .auto-group-3twy-PYR .frame-1000005727-5AM .m-53s {
+.hicard--ujB
+  .main-x1s
+  .group-1000003117-efP
+  .frame-1000005731-Ykm
+  .frame-1000005730-Xsb
+  .frame-1000005729-2Sy
+  .auto-group-3twy-PYR
+  .frame-1000005727-5AM
+  .m-53s {
   display: flex;
   font-size: 3.6rem;
   font-weight: 400;
   line-height: 0.6111111111;
   letter-spacing: -0.018rem;
   color: #000000;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003117-efP .frame-1000005731-Ykm .frame-1000005730-Xsb .frame-1000005729-2Sy .auto-group-3twy-PYR .frame-1000005728-c3o {
+.hicard--ujB
+  .main-x1s
+  .group-1000003117-efP
+  .frame-1000005731-Ykm
+  .frame-1000005730-Xsb
+  .frame-1000005729-2Sy
+  .auto-group-3twy-PYR
+  .frame-1000005728-c3o {
   margin-right: 0.8rem;
   width: calc(100% - 0.8rem);
   display: flex;
   align-items: center;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003117-efP .frame-1000005731-Ykm .frame-1000005730-Xsb .frame-1000005729-2Sy .auto-group-3twy-PYR .frame-1000005728-c3o .hi-credit-grade-kfo {
+.hicard--ujB
+  .main-x1s
+  .group-1000003117-efP
+  .frame-1000005731-Ykm
+  .frame-1000005730-Xsb
+  .frame-1000005729-2Sy
+  .auto-group-3twy-PYR
+  .frame-1000005728-c3o
+  .hi-credit-grade-kfo {
   margin-right: 3rem;
   display: flex;
   font-size: 3.6rem;
@@ -479,25 +723,46 @@ body {
   line-height: 0.6111111111;
   letter-spacing: -0.018rem;
   color: #000000;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003117-efP .frame-1000005731-Ykm .frame-1000005730-Xsb .frame-1000005729-2Sy .auto-group-3twy-PYR .frame-1000005728-c3o .maahlogobronze-HQq {
+.hicard--ujB
+  .main-x1s
+  .group-1000003117-efP
+  .frame-1000005731-Ykm
+  .frame-1000005730-Xsb
+  .frame-1000005729-2Sy
+  .auto-group-3twy-PYR
+  .frame-1000005728-c3o
+  .maahlogobronze-HQq {
   width: 11rem;
   height: 8rem;
   object-fit: cover;
   vertical-align: top;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003117-efP .frame-1000005731-Ykm .frame-1000005730-Xsb .frame-1000005729-2Sy .frame-1000005709-DJV {
+.hicard--ujB
+  .main-x1s
+  .group-1000003117-efP
+  .frame-1000005731-Ykm
+  .frame-1000005730-Xsb
+  .frame-1000005729-2Sy
+  .frame-1000005709-DJV {
   width: 100%;
   align-items: flex-end;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003117-efP .frame-1000005731-Ykm .frame-1000005730-Xsb .frame-1000005729-2Sy .frame-1000005709-DJV .frame-3-kZK {
+.hicard--ujB
+  .main-x1s
+  .group-1000003117-efP
+  .frame-1000005731-Ykm
+  .frame-1000005730-Xsb
+  .frame-1000005729-2Sy
+  .frame-1000005709-DJV
+  .frame-3-kZK {
   margin-bottom: 1rem;
   width: 100%;
   height: 5.6rem;
@@ -507,23 +772,43 @@ body {
   line-height: 0.97;
   letter-spacing: -0.036rem;
   color: #ffffff;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, rgba(188, 185, 179, 0.8539999723) -0%, rgba(177, 172, 148, 0.9720500112) 34%, rgba(130, 127, 116, 0.8700000048) 98%);
+  background: linear-gradient(
+    180deg,
+    rgba(188, 185, 179, 0.8539999723) -0%,
+    rgba(177, 172, 148, 0.9720500112) 34%,
+    rgba(130, 127, 116, 0.8700000048) 98%
+  );
   border-radius: 0.5rem;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003117-efP .frame-1000005731-Ykm .frame-1000005730-Xsb .frame-1000005729-2Sy .frame-1000005709-DJV .frame-1000005732-9rM {
+.hicard--ujB
+  .main-x1s
+  .group-1000003117-efP
+  .frame-1000005731-Ykm
+  .frame-1000005730-Xsb
+  .frame-1000005729-2Sy
+  .frame-1000005709-DJV
+  .frame-1000005732-9rM {
   margin: 0rem 1.95rem 0rem 18.75rem;
   width: calc(100% - 20.7rem);
   display: flex;
   align-items: center;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003117-efP .frame-1000005731-Ykm .frame-1000005730-Xsb .frame-1000005729-2Sy .frame-1000005709-DJV .frame-1000005732-9rM .item--grH {
+.hicard--ujB
+  .main-x1s
+  .group-1000003117-efP
+  .frame-1000005731-Ykm
+  .frame-1000005730-Xsb
+  .frame-1000005729-2Sy
+  .frame-1000005709-DJV
+  .frame-1000005732-9rM
+  .item--grH {
   margin-right: 5.2rem;
   text-align: center;
   font-size: 1.3rem;
@@ -531,18 +816,26 @@ body {
   line-height: 0.97;
   letter-spacing: -0.026rem;
   color: #000000;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003117-efP .frame-1000005731-Ykm .frame-1000005730-Xsb .frame-1000005729-2Sy .frame-1000005709-DJV .frame-1000005732-9rM .item--CJq {
+.hicard--ujB
+  .main-x1s
+  .group-1000003117-efP
+  .frame-1000005731-Ykm
+  .frame-1000005730-Xsb
+  .frame-1000005729-2Sy
+  .frame-1000005709-DJV
+  .frame-1000005732-9rM
+  .item--CJq {
   text-align: center;
   font-size: 1.3rem;
   font-weight: 400;
   line-height: 0.97;
   letter-spacing: -0.026rem;
   color: #000000;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -553,7 +846,11 @@ body {
   align-items: center;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003117-efP .frame-1000005691-thT .item-100-df3 {
+.hicard--ujB
+  .main-x1s
+  .group-1000003117-efP
+  .frame-1000005691-thT
+  .item-100-df3 {
   margin-right: 13.2rem;
   display: flex;
   font-size: 1.6rem;
@@ -561,18 +858,22 @@ body {
   line-height: 1.375;
   letter-spacing: -0.018rem;
   color: #000000;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003117-efP .frame-1000005691-thT .mastercard-vu3 {
+.hicard--ujB
+  .main-x1s
+  .group-1000003117-efP
+  .frame-1000005691-thT
+  .mastercard-vu3 {
   display: flex;
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.375;
   letter-spacing: -0.018rem;
   color: #000000;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -595,7 +896,11 @@ body {
   align-items: center;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003166-ZSD .frame-1000005697-cvH .ph-phone-Z4q {
+.hicard--ujB
+  .main-x1s
+  .group-1000003166-ZSD
+  .frame-1000005697-cvH
+  .ph-phone-Z4q {
   margin-right: 8.6563rem;
   width: 5.4687rem;
   height: 5.4687rem;
@@ -609,7 +914,7 @@ body {
   font-weight: 400;
   line-height: 0.97;
   color: #2d2d2d;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -619,7 +924,7 @@ body {
   font-weight: 400;
   line-height: 0.97;
   color: #6d6d6d;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -650,7 +955,11 @@ body {
   align-items: center;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003164-9BT .frame-1000005696-RPs .la-subway-MYR {
+.hicard--ujB
+  .main-x1s
+  .group-1000003164-9BT
+  .frame-1000005696-RPs
+  .la-subway-MYR {
   margin-right: 9.0938rem;
   width: 4.8125rem;
   height: 5.4688rem;
@@ -664,7 +973,7 @@ body {
   font-weight: 400;
   line-height: 0.97;
   color: #2d2d2d;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -674,7 +983,7 @@ body {
   font-weight: 400;
   line-height: 0.97;
   color: #6d6d6d;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -704,14 +1013,23 @@ body {
   align-items: center;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003163-Dyw .auto-group-i1rf-8b7 .frame-1000005697-qVX {
+.hicard--ujB
+  .main-x1s
+  .group-1000003163-Dyw
+  .auto-group-i1rf-8b7
+  .frame-1000005697-qVX {
   margin-right: 13.6rem;
   height: 100%;
   display: flex;
   align-items: center;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003163-Dyw .auto-group-i1rf-8b7 .frame-1000005697-qVX .cutlery-3-CL5 {
+.hicard--ujB
+  .main-x1s
+  .group-1000003163-Dyw
+  .auto-group-i1rf-8b7
+  .frame-1000005697-qVX
+  .cutlery-3-CL5 {
   margin-right: 8.9844rem;
   width: 4.9219rem;
   height: 6.213rem;
@@ -719,27 +1037,40 @@ body {
   vertical-align: top;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003163-Dyw .auto-group-i1rf-8b7 .frame-1000005697-qVX .item--vG5 {
+.hicard--ujB
+  .main-x1s
+  .group-1000003163-Dyw
+  .auto-group-i1rf-8b7
+  .frame-1000005697-qVX
+  .item--vG5 {
   margin-top: 0.012rem;
   font-size: 3.2rem;
   font-weight: 400;
   line-height: 0.97;
   color: #2d2d2d;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003163-Dyw .auto-group-i1rf-8b7 .item-10--q89 {
+.hicard--ujB
+  .main-x1s
+  .group-1000003163-Dyw
+  .auto-group-i1rf-8b7
+  .item-10--q89 {
   margin: 0.112rem 60.2rem 0rem 0rem;
   font-size: 2.4rem;
   font-weight: 400;
   line-height: 0.97;
   color: #6d6d6d;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003163-Dyw .auto-group-i1rf-8b7 .chevron-up-Lah {
+.hicard--ujB
+  .main-x1s
+  .group-1000003163-Dyw
+  .auto-group-i1rf-8b7
+  .chevron-up-Lah {
   margin-top: 0.9704rem;
   width: 1rem;
   height: 0.4583rem;
@@ -779,7 +1110,11 @@ body {
   align-items: center;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003164-tkd .frame-1000005696-PBb .solar-dollar-outline-6rh {
+.hicard--ujB
+  .main-x1s
+  .group-1000003164-tkd
+  .frame-1000005696-PBb
+  .solar-dollar-outline-6rh {
   margin-right: 8.3646rem;
   width: 6.2708rem;
   height: 6.2708rem;
@@ -793,7 +1128,7 @@ body {
   font-weight: 400;
   line-height: 0.97;
   color: #2d2d2d;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -803,7 +1138,7 @@ body {
   font-weight: 400;
   line-height: 0.97;
   color: #6d6d6d;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -834,7 +1169,11 @@ body {
   align-items: center;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003167-8B7 .frame-1000005696-Xj3 .mdi-hospital-box-outline-faM {
+.hicard--ujB
+  .main-x1s
+  .group-1000003167-8B7
+  .frame-1000005696-Xj3
+  .mdi-hospital-box-outline-faM {
   margin-right: 8.5834rem;
   width: 5.8333rem;
   height: 5.8333rem;
@@ -848,7 +1187,7 @@ body {
   font-weight: 400;
   line-height: 0.97;
   color: #2d2d2d;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -858,7 +1197,7 @@ body {
   font-weight: 400;
   line-height: 0.97;
   color: #6d6d6d;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -889,7 +1228,11 @@ body {
   align-items: center;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003169-UgD .frame-1000005696-z8m .uil-tennis-ball-iqT {
+.hicard--ujB
+  .main-x1s
+  .group-1000003169-UgD
+  .frame-1000005696-z8m
+  .uil-tennis-ball-iqT {
   margin-right: 8.5889rem;
   width: 5.8223rem;
   height: 5.8284rem;
@@ -903,7 +1246,7 @@ body {
   font-weight: 400;
   line-height: 0.97;
   color: #2d2d2d;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -913,7 +1256,7 @@ body {
   font-weight: 400;
   line-height: 0.97;
   color: #6d6d6d;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -944,7 +1287,11 @@ body {
   align-items: center;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003168-9JV .frame-1000005696-T4H .tdesign-shop-ADb {
+.hicard--ujB
+  .main-x1s
+  .group-1000003168-9JV
+  .frame-1000005696-T4H
+  .tdesign-shop-ADb {
   margin-right: 8.875rem;
   width: 5.25rem;
   height: 6.4167rem;
@@ -958,7 +1305,7 @@ body {
   font-weight: 400;
   line-height: 0.97;
   color: #2d2d2d;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -968,7 +1315,7 @@ body {
   font-weight: 400;
   line-height: 0.97;
   color: #6d6d6d;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -997,7 +1344,11 @@ body {
   align-items: center;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003170-1tR .frame-1000005696-6ey .simple-line-icons-note-eRb {
+.hicard--ujB
+  .main-x1s
+  .group-1000003170-1tR
+  .frame-1000005696-6ey
+  .simple-line-icons-note-eRb {
   margin-right: 7.9956rem;
   width: 7.0089rem;
   height: 7.0038rem;
@@ -1011,7 +1362,7 @@ body {
   font-weight: 400;
   line-height: 0.97;
   color: #2d2d2d;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -1021,7 +1372,7 @@ body {
   font-weight: 400;
   line-height: 0.97;
   color: #6d6d6d;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -1050,7 +1401,11 @@ body {
   align-items: center;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003171-cQM .frame-1000005696-KZf .mingcute-oil-line-g9K {
+.hicard--ujB
+  .main-x1s
+  .group-1000003171-cQM
+  .frame-1000005696-KZf
+  .mingcute-oil-line-g9K {
   margin-right: 8rem;
   width: 7rem;
   height: 7rem;
@@ -1064,7 +1419,7 @@ body {
   font-weight: 400;
   line-height: 0.97;
   color: #2d2d2d;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -1074,7 +1429,7 @@ body {
   font-weight: 400;
   line-height: 0.97;
   color: #6d6d6d;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -1103,7 +1458,11 @@ body {
   align-items: center;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003172-7dw .frame-1000005696-pYM .mingcute-music-fill-BNu {
+.hicard--ujB
+  .main-x1s
+  .group-1000003172-7dw
+  .frame-1000005696-pYM
+  .mingcute-music-fill-BNu {
   margin-right: 8rem;
   width: 7rem;
   height: 7rem;
@@ -1117,7 +1476,7 @@ body {
   font-weight: 400;
   line-height: 0.97;
   color: #2d2d2d;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -1127,7 +1486,7 @@ body {
   font-weight: 400;
   line-height: 0.97;
   color: #6d6d6d;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -1167,14 +1526,23 @@ body {
   background: linear-gradient(180deg, #ffffff -0%, #f0f0f0 100%);
   border-radius: 1rem;
 }
-.hicard--ujB .main-x1s .auto-group-rsjh-DD7 .group-1000003173-TNM .frame-1000005696-xpu {
+.hicard--ujB
+  .main-x1s
+  .auto-group-rsjh-DD7
+  .group-1000003173-TNM
+  .frame-1000005696-xpu {
   margin-right: 16.4rem;
   height: 100%;
   display: flex;
   align-items: center;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .auto-group-rsjh-DD7 .group-1000003173-TNM .frame-1000005696-xpu .mingcute-airplane-line-X7K {
+.hicard--ujB
+  .main-x1s
+  .auto-group-rsjh-DD7
+  .group-1000003173-TNM
+  .frame-1000005696-xpu
+  .mingcute-airplane-line-X7K {
   margin-right: 8rem;
   width: 7rem;
   height: 7rem;
@@ -1182,27 +1550,40 @@ body {
   vertical-align: top;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .auto-group-rsjh-DD7 .group-1000003173-TNM .frame-1000005696-xpu .item--U2Z {
+.hicard--ujB
+  .main-x1s
+  .auto-group-rsjh-DD7
+  .group-1000003173-TNM
+  .frame-1000005696-xpu
+  .item--U2Z {
   margin-top: 0.1rem;
   font-size: 3.2rem;
   font-weight: 400;
   line-height: 0.97;
   color: #2d2d2d;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .auto-group-rsjh-DD7 .group-1000003173-TNM .item-10--CjF {
+.hicard--ujB
+  .main-x1s
+  .auto-group-rsjh-DD7
+  .group-1000003173-TNM
+  .item-10--CjF {
   margin: 0.2rem 52.4rem 0rem 0rem;
   font-size: 2.4rem;
   font-weight: 400;
   line-height: 0.97;
   color: #6d6d6d;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .auto-group-rsjh-DD7 .group-1000003173-TNM .chevron-down-tMB {
+.hicard--ujB
+  .main-x1s
+  .auto-group-rsjh-DD7
+  .group-1000003173-TNM
+  .chevron-down-tMB {
   margin-top: 0.3417rem;
   width: 1rem;
   height: 0.4583rem;
@@ -1229,7 +1610,11 @@ body {
   align-items: center;
   flex-shrink: 0;
 }
-.hicard--ujB .main-x1s .group-1000003174-nBf .frame-1000005696-tVb .material-symbols-luggage-outline-rounded-1aD {
+.hicard--ujB
+  .main-x1s
+  .group-1000003174-nBf
+  .frame-1000005696-tVb
+  .material-symbols-luggage-outline-rounded-1aD {
   margin-right: 9.4584rem;
   width: 4.0833rem;
   height: 5.8333rem;
@@ -1243,7 +1628,7 @@ body {
   font-weight: 400;
   line-height: 0.97;
   color: #2d2d2d;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -1253,7 +1638,7 @@ body {
   font-weight: 400;
   line-height: 0.97;
   color: #6d6d6d;
-  font-family: Iceland, 'Source Sans Pro';
+  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -1301,7 +1686,7 @@ body {
   font-weight: 500;
   line-height: 1.2775;
   color: #000000;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -1311,7 +1696,7 @@ body {
   font-weight: 500;
   line-height: 1.5;
   color: #000000;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -1321,7 +1706,7 @@ body {
   font-weight: 500;
   line-height: 1.2125;
   color: #000000;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -1331,7 +1716,7 @@ body {
   font-weight: 500;
   line-height: 1.2125;
   color: #000000;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -1340,7 +1725,7 @@ body {
   font-weight: 500;
   line-height: 0.97;
   color: #000000;
-  font-family: M PLUS 1, 'Source Sans Pro';
+  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
