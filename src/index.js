@@ -11,8 +11,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Main />}></Route>
-      <Route path="/2" element={<Main2 />}></Route>
+      <Route path="/" element={<Main2 />}></Route>
       <Route path="/hicard" element={<HiCardDesignSelect />}></Route>
     </Routes>
   </BrowserRouter>

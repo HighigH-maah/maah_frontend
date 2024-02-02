@@ -7,7 +7,8 @@ import google from "../../assets/images/google.png";
 import kakao from "../../assets/images/kakao.png";
 import naver from "../../assets/images/naver.png";
 import banner from "../../assets/images/banner.png";
-
+import blackvelvet from "../../assets/images/Black_velvet.png";
+import whitevelvet from "../../assets/images/White_velvet.png";
 const Mainback = styled.div`
   background: linear-gradient(180deg, #fffdfd 37.44%, #c7c7c7 100%);
 `;
@@ -26,6 +27,16 @@ const MainPage1 = styled.div`
   height: 90vh;
   & > div {
     display: inline-block;
+    vertical-align: top;
+  }
+`;
+
+const HiCardSection = styled.div`
+  box-sizing: border-box;
+  padding: 13vh 3% 0 3%;
+  width: 100%;
+  height: 90vh;
+  & > div {
     vertical-align: top;
   }
 `;
@@ -116,6 +127,28 @@ const SocialButton = styled.button`
   }
 `;
 
+const CreateButton = styled.div`
+  height: 2rem;
+  width: 80%;
+  text-align: right;
+  & > button {
+    cursor: pointer;
+    padding: 1.5%;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    display: flex;
+    border: 0;
+    margin: 0 auto;
+    border-radius: 3rem;
+    background: linear-gradient(180deg, #7d796c 0%, #b4ad98 80%);
+  }
+
+  & > div > span {
+    cursor: pointer;
+    color: #999;
+  }
+`;
 const LoginButton = styled.div`
   height: 10rem;
   width: 80%;
@@ -139,6 +172,65 @@ const LoginButton = styled.div`
   }
 `;
 
+const HiCardTitle = styled.p`
+  font-size: 3rem;
+  font-weight: bolder;
+`;
+
+const HiCardTitleSection = styled.div`
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const HiCardViewSection = styled.div`
+  margin: 0 auto;
+  width: 80%;
+  height: 20%;
+  gap: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  position: relative;
+  top: 12rem;
+`;
+const HiCardSubTitle = styled.p`
+  font-size: 1rem;
+  font-weight: bolder;
+`;
+const CardImage = styled.img`
+  width: 200px;
+  height: 341px;
+`;
+const HiCard = ({ image }) => {
+  return <CardImage src={image} alt="Card Image" />;
+};
+
+const MaahSection = styled.div`
+  border: 1px solid black;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+`;
+
+const MaahTitle = styled.div`
+  font-size: 3rem;
+  font-weight: bolder;
+  width: 40%;
+`;
+
+const MaahSubTitle = styled.p`
+  font-size: 1rem;
+`;
+
+const MaahSub = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
 function Main2(props) {
   return (
     <Mainback>
@@ -187,6 +279,38 @@ function Main2(props) {
             </div>
           </div>
         </MainPage1>
+        <HiCardSection>
+          <HiCardTitleSection>
+            <HiCardTitle>Master Hi:Card</HiCardTitle>
+            <HiCardSubTitle>
+              마하의 오리지널리티를 담은 단 하나의 하이카드
+            </HiCardSubTitle>
+            <CreateButton>
+              <button>Create New Card</button>
+            </CreateButton>
+          </HiCardTitleSection>
+          <HiCardViewSection>
+            <HiCard image={blackvelvet}></HiCard>
+            <HiCard image={whitevelvet}></HiCard>
+            <HiCard image={blackvelvet}></HiCard>
+            <HiCard image={blackvelvet}></HiCard>
+            <HiCard image={blackvelvet}></HiCard>
+          </HiCardViewSection>
+        </HiCardSection>
+        <MaahSection>
+          <MaahTitle>하나의 카드, 그 이상 Hi:Card와 함께</MaahTitle>
+          <MaahSub>
+            <MaahSubTitle>
+              복잡한 카드 고민은 그만, Hi:Card로 결제하세요
+            </MaahSubTitle>
+            <MaahSubTitle>
+              디자인 커스텀부터 Share까지, Ma:ah에서 모든건 내 마음대로
+            </MaahSubTitle>
+            <CreateButton>
+              <button>Ma:ah F&Q</button>
+            </CreateButton>
+          </MaahSub>
+        </MaahSection>
       </BackImage>
     </Mainback>
   );
