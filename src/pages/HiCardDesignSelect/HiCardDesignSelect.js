@@ -1,16 +1,15 @@
 import styled from 'styled-components';
-import './hicarddesignselect.css';
 import blackVelvet from '../../assets/images/Black_velvet.png';
 import whiteVelvet from '../../assets/images/White_velvet.png';
 import blackBack from '../../assets/images/black-back.png';
 import whiteBack from '../../assets/images/white-back.png';
 import reverse from '../../assets/images/reverse.png';
 import { useState } from 'react';
+import CardApplicationTerms from '../CardApplicationTerms/CardApplicationTerms';
 
 const SelectDesign = styled.div`
   background: linear-gradient(180deg, #fffdfd 37.44%, #d7d7d7 100%);
   padding: 150px 0px 50px 0px;
-  font-family: 'M PLUS 1', sans-serif;
   text-align: center;
 `;
 
@@ -51,7 +50,6 @@ const CardImage = styled.img`
 
 const CardName = styled.div`
   font-size: 25px;
-  font-family: 'Iceland', sans-serif;
 `;
 
 const ReverseButton = styled.button`
@@ -97,6 +95,7 @@ function HiCardDesignSelect() {
   }
   
   return (
+    <>
     <SelectDesign>
       <MainTitle>Hi:Card 신청</MainTitle>
       <SubTitle>마음에 드는 디자인을 골라주세요</SubTitle>
@@ -117,6 +116,8 @@ function HiCardDesignSelect() {
         </CardDesign>
       </CardList>
     </SelectDesign>
+    <CardApplicationTerms></CardApplicationTerms>
+    </>
   );
 }
 
