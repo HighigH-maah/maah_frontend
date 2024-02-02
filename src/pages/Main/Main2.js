@@ -10,6 +10,7 @@ import banner from "../../assets/images/banner.png";
 import blackvelvet from "../../assets/images/Black_velvet.png";
 import whitevelvet from "../../assets/images/White_velvet.png";
 import abouthi from "../../assets/images/aboutHi.png";
+import byCardGroup from "../../assets/images/ByCardGroup.png";
 
 const Mainback = styled.div`
   background: linear-gradient(180deg, #fffdfd 37.44%, #c7c7c7 100%);
@@ -27,6 +28,7 @@ const MainPage1 = styled.div`
   padding: 13vh 3% 0 3%;
   width: 100%;
   height: 90vh;
+  display: flex;
   & > div {
     display: inline-block;
     vertical-align: top;
@@ -143,6 +145,11 @@ const CreateButton = styled.div`
     border: 0;
     margin: 0 auto;
     border-radius: 3rem;
+
+ 
+padding: 16px 32px;
+align-items: center;
+gap: 16px;
     
 
     border-radius: 64px;
@@ -227,10 +234,17 @@ const CardImage = styled.img`
   width: 200px;
   height: 341px;
 `;
+
+const ByCardImage = styled.img`
+width:150px;
+height:250px;`;
 const HiCard = ({ image }) => {
   return <CardImage src={image} alt="Card Image" />;
 };
 
+const ByCard = ({image}) => {
+  return <ByCardImage src={image} alt="Card Image" />;
+}
 
 const MaahSection = styled.div`
   border: 1px solid black;
@@ -248,7 +262,7 @@ const MaahTitle = styled.div`
 background-clip: text;
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
-font-family: Iceland;
+
 font-size: 56px;
 font-style: normal;
 font-weight: 400;
@@ -257,6 +271,11 @@ letter-spacing: -1.4px;
   }
 `;
 
+const ByCardTitle = styled.div`
+font-size: 3rem;
+  font-weight: bolder;
+  width: 40%;
+`;
 const MaahSubTitle = styled.p`
   font-size: 1rem;
 `;
@@ -269,9 +288,79 @@ const MaahSub = styled.div`
 
 const AboutMaah = styled.div`
 display: flex;
+position: relative;
+top: 15rem;
 `;
 
+const ByCardSection = styled.div`
+display: flex;
+position: relative;
 
+border:1px solid red;
+gap: 1rem;
+    display: flex;
+    flex-direction: column;
+`;
+
+const ByCardSubTitle = styled.p`
+font-size: 1rem;
+font-weight: bolder;
+width: 20%;
+& > span {
+  background: linear-gradient(180deg, #CBCBCB 0%, rgba(209, 209, 209, 0.99) 19.5%, rgba(243, 243, 243, 0.99) 38.5%, rgba(0, 0, 0, 0.95) 100%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: 25px;
+}
+`;
+
+const ByCardSectionDiv = styled.div`
+display:flex;
+position:relative;
+top:26rem;
+`;
+
+const ByCardWrapper = styled.div`
+display:flex;
+gap: 2rem;
+margin-right: 1rem;
+flex-wrap: wrap;
+`;
+
+const WhySection = styled.div`
+display:flex;
+position: relative;
+font-size:10rem;
+    top: 40rem;
+  background: linear-gradient(122deg, #B4AD98 43.17%, #FDFCFC 51.44%, #FFF 58.1%, #B1A990 71.42%, #6D6D6D 89.11%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+    `;
+
+
+    const WhyBox = styled.div`
+    position: relative;
+    top: 50rem;
+    color:white;
+    display: flex;
+width: 380px;
+height: 346px;
+padding: 32px 24px;
+flex-direction: column;
+align-items: center;
+gap: 32px;
+flex-shrink: 0;
+border-radius: 25px;
+background: linear-gradient(180deg, #000 0%, #503277 51.5%, #34204E 100%);
+
+box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    `;
 function Main2(props) {
   return (
     <Mainback>
@@ -358,6 +447,26 @@ function Main2(props) {
     <img src={abouthi} width="400"></img>
         
         </AboutMaah>
+      
+      <ByCardSectionDiv>
+        <ByCardSection>
+<img src={byCardGroup} width="300"/>
+          <ByCardTitle>Best by Ma:ah By:Card</ByCardTitle>
+        <ByCardSubTitle>바이카드에 대한 설명<span>By:Card</span></ByCardSubTitle><CreateButton>
+              <button style={{margin:0}}>Create New By:Card</button>
+            </CreateButton>
+        </ByCardSection>
+        <ByCardWrapper> <ByCard image={blackvelvet}></ByCard>
+        <ByCard image={blackvelvet}></ByCard>
+        <ByCard image={blackvelvet}></ByCard>
+        <ByCard image={blackvelvet}></ByCard>
+        <ByCard image={blackvelvet}></ByCard>
+            <ByCard image={whitevelvet}></ByCard></ByCardWrapper>
+            
+        </ByCardSectionDiv>
+
+        <WhySection>Why Ma:ah?</WhySection>
+        <WhyBox>Create</WhyBox>
       </BackImage>
     </Mainback>
   );
