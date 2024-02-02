@@ -1,7 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 import maahbiglogo from "../../assets/images/Logo/MaahBigLogo.png";
-import "./header.css";
+
+const HeaderDiv = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  left: 7.5rem;
+  top: 3rem;
+`;
+
+const HeaderLogoMenuDiv = styled.div`
+  box-sizing: border-box;
+  padding: 0rem 25.9rem 1.1rem 0rem;
+  height: 4.8rem;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+`;
 
 const HeaderLoginButton = styled.button`
   width: 10rem;
@@ -18,6 +35,7 @@ const HeaderLoginButton = styled.button`
   box-sizing: border-box;
   border-radius: 6.4rem;
   flex-shrink: 0;
+  background: transparent;
 `;
 
 const HeaderLogoImage = styled.img`
@@ -33,8 +51,8 @@ const HeaderMenuBar = styled.div`
   margin: 0.15rem 0rem 0.45rem 0rem;
   height: calc(100% - 0.6rem);
   display: flex;
-  align-items: flex-start;
   flex-shrink: 0;
+  align-items: center;
 `;
 
 const HeaderMenuMy = styled.p`
@@ -76,10 +94,10 @@ const HeaderMenuFaqs = styled.p`
   flex-shrink: 0;
 `;
 
-function Header(props) {
+function HeaderLoginBtn(props) {
   return (
-    <div class="navbar-PeV">
-      <div class="auto-group-k2pp-9tZ">
+    <HeaderDiv>
+      <HeaderLogoMenuDiv>
         <HeaderLogoImage src={maahbiglogo}></HeaderLogoImage>
         <HeaderMenuBar>
           <HeaderMenuMy>My</HeaderMenuMy>
@@ -87,10 +105,10 @@ function Header(props) {
           <HeaderMenuCard>Card</HeaderMenuCard>
           <HeaderMenuFaqs>FAQs</HeaderMenuFaqs>
         </HeaderMenuBar>
-      </div>
+      </HeaderLogoMenuDiv>
       <HeaderLoginButton>LOGIN</HeaderLoginButton>
-    </div>
+    </HeaderDiv>
   );
 }
 
-export default Header;
+export default HeaderLoginBtn;
