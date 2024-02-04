@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import maahbiglogo from "../../assets/images/Logo/MaahBigLogo.png";
+import { Link } from 'react-router-dom'
 
 const HeaderDiv = styled.div`
-  width: 100%;
+  width: 0%;
   display: flex;
   align-items: center;
   position: relative;
-  left: 7.5rem;
+  left: 6.5rem;
   top: 3rem;
 `;
 
@@ -36,10 +37,11 @@ const HeaderLogoutButton = styled.button`
   border-radius: 6.4rem;
   flex-shrink: 0;
   background: transparent;
+  position: relative;
+    left: 25rem;
 `;
 
 const HeaderLogoImage = styled.img`
-  margin-right: 25.8rem;
   width: 16.3rem;
   height: 2.6rem;
   object-fit: cover;
@@ -53,6 +55,8 @@ const HeaderMenuBar = styled.div`
   display: flex;
   flex-shrink: 0;
   align-items: center;
+  position: relative;
+  left: 50%;
 `;
 
 const HeaderMenuMy = styled.p`
@@ -60,9 +64,13 @@ const HeaderMenuMy = styled.p`
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 0.97;
-  color: #000000;
+  color: ${({ clicked }) => (clicked ? '#808080' : '#000000')};
   white-space: nowrap;
   flex-shrink: 0;
+
+  &:hover {
+    color: #808080;
+  }
 `;
 
 const HeaderMenuShare = styled.p`
@@ -70,9 +78,13 @@ const HeaderMenuShare = styled.p`
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 1.2125;
-  color: #000000;
+  color: ${({ clicked }) => (clicked ? '#808080' : '#000000')};
   white-space: nowrap;
   flex-shrink: 0;
+
+  &:hover {
+    color: #808080;
+  }
 `;
 
 const HeaderMenuCard = styled.p`
@@ -80,18 +92,26 @@ const HeaderMenuCard = styled.p`
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 0.97;
-  color: #000000;
+  color: ${({ clicked }) => (clicked ? '#808080' : '#000000')};
   white-space: nowrap;
   flex-shrink: 0;
+
+  &:hover {
+    color: #808080;
+  }
 `;
 
-const HeaderMenuFaqs = styled.p`
+const HeaderMenuAbout = styled.p`
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 1.2125;
-  color: #000000;
+  color: ${({ clicked }) => (clicked ? '#808080' : '#000000')};
   white-space: nowrap;
   flex-shrink: 0;
+
+  &:hover {
+    color: #808080;
+  }
 `;
 
 function HeaderLogoutBtn(props) {
@@ -105,15 +125,39 @@ function HeaderLogoutBtn(props) {
     setButtonText("한마음 님");
   };
 
+  const [menuState, setMenuState] = useState({
+    my: false,
+    share: false,
+    card: false,
+    faqs: false,
+  });
+
+  const handleMenuClick = (menu) => {
+    setMenuState({
+      ...menuState,
+      [menu]: !menuState[menu],
+    });
+  };
+
   return (
     <HeaderDiv>
       <HeaderLogoMenuDiv>
+      <Link to="../" style={{ textDecoration: "none" }}>
         <HeaderLogoImage src={maahbiglogo}></HeaderLogoImage>
+        </Link>
         <HeaderMenuBar>
-          <HeaderMenuMy>My</HeaderMenuMy>
-          <HeaderMenuShare>Share</HeaderMenuShare>
-          <HeaderMenuCard>Card</HeaderMenuCard>
-          <HeaderMenuFaqs>FAQs</HeaderMenuFaqs>
+          <Link to="" style={{ textDecoration: "none" }}>
+          <HeaderMenuMy clicked={menuState.my} onClick={() => handleMenuClick('my')}>My</HeaderMenuMy>
+          </Link>
+          <Link to="" style={{ textDecoration: "none" }}>
+          <HeaderMenuShare clicked={menuState.share} onClick={() => handleMenuClick('share')}>Share</HeaderMenuShare>
+          </Link>
+          <Link to="" style={{ textDecoration: "none" }}>
+          <HeaderMenuCard clicked={menuState.card} onClick={() => handleMenuClick('card')}>Card</HeaderMenuCard>
+          </Link>
+          <Link to="" style={{ textDecoration: "none" }}>
+          <HeaderMenuAbout clicked={menuState.about} onClick={() => handleMenuClick('about')}>About us</HeaderMenuAbout>
+          </Link>
         </HeaderMenuBar>
       </HeaderLogoMenuDiv>
       <HeaderLogoutButton
