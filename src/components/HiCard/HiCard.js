@@ -17,6 +17,7 @@ import travelImg from "./icon/travel.png";
 
 import chevronDown from "./icon/chevronDown.png";
 import chevronUp from "./icon/chevronUp.png";
+import VirtualCardApply from "./VirtualCardApply";
 
 const HiCardDiv = styled.div`
   display: flex;
@@ -203,6 +204,7 @@ const HiCardBtn = styled.div`
     font-family: Iceland, "Source Sans Pro";
     white-space: nowrap;
     flex-shrink: 0;
+    cursor: pointer;
   }
 `;
 
@@ -305,8 +307,20 @@ const Category = styled.div`
   }
 `;
 
+const HiCardModal = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+  background: #fff;
+  border-radius: 0.5rem;
+  z-index: 1000;
+`;
+
 function HiCard(props) {
   const [openAccordions, setOpenAccordions] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleAccordion = (index) => {
     if (openAccordions.includes(index)) {
@@ -382,6 +396,14 @@ function HiCard(props) {
     // Add more accordions as needed
   ];
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <HiCardDiv>
       <HiCardDetailOuterDiv>
@@ -407,9 +429,21 @@ function HiCard(props) {
               <button>나의 결제 이력</button>
               <div>
                 <p className="accountChange">연결계좌변경</p>
-                <p className="virtualCardApply">가상 카드 발급신청</p>
+                <p className="virtualCardApply" onClick={openModal}>
+                  가상 카드 발급신청
+                </p>
               </div>
             </HiCardBtn>
+
+            {/* Modal */}
+            {isModalOpen && (
+              <HiCardModal>
+                {/* Add the content for your modal here */}
+                <p>Modal Content</p>
+                <button onClick={closeModal}>Close Modal</button>
+                <VirtualCardApply></VirtualCardApply>
+              </HiCardModal>
+            )}
           </HiCardDetailRight>
         </HiCardDetailInnerDiv>
         <HiCardLimit>
