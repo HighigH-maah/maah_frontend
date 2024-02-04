@@ -152,12 +152,16 @@ const CreateButton = styled.div`
     padding: 16px 32px;
     align-items: center;
     gap: 16px;
+    transition: box-shadow 0.3s ease;
 
     border-radius: 64px;
     background: linear-gradient(92deg, #9b988f 7.01%, #d8d3c5 72.28%);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   }
 
+  & > button:hover {
+    box-shadow: 4px 6px 7px 0px gray;
+  }
   & > div > span {
     cursor: pointer;
     color: #999;
@@ -196,7 +200,6 @@ const HiCardTitle = styled.p`
 
 const HiCardTitleSection = styled.div`
   display: flex;
-  gap: 1rem;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -331,10 +334,8 @@ const MaahTitle = styled.div`
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-
     font-size: 56px;
-    font-style: normal;
-    font-weight: 400;
+    font-weight: bolder;
     line-height: 64px;
     letter-spacing: -1.4px;
   }
@@ -431,7 +432,7 @@ const WhyBox = styled.div`
   border-radius: 25px;
   background: linear-gradient(180deg, #000 0%, #503277 51.5%, #34204e 100%);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
+  transition: background 0.3s ease;
   & > p {
     height: 100px;
     width: 100%;
@@ -468,17 +469,6 @@ const SocialBtnDiv = styled.div`
 `;
 
 const fadeInRight = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
-
-const fadeInRightAnimation = keyframes`
   from {
     opacity: 0;
     transform: translateX(100%);
@@ -657,9 +647,7 @@ function Main2(props) {
             <HiCard image={blackvelvet} name={"the Black"}></HiCard>
           </HiCardViewSection>
         </HiCardSection>
-
         <AboutMaahContent></AboutMaahContent>
-
         <ByCardSectionDiv>
           <ByCardSection>
             <img src={byCardGroup} width="300" />
