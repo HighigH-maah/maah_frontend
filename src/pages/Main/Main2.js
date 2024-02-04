@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./main.css";
 import "../../assets/css/style.css";
-import styled from "styled-components";
+import { Element, animateScroll } from "react-scroll";
+import styled, { keyframes, css } from "styled-components";
 import mainBackground from "../../assets/images/main_bg.png";
-import google from "../../assets/images/google.png";
-import kakao from "../../assets/images/kakao.png";
-import naver from "../../assets/images/naver.png";
 import banner from "../../assets/images/banner.png";
 import blackvelvet from "../../assets/images/Black_velvet.png";
 import whitevelvet from "../../assets/images/White_velvet.png";
@@ -16,6 +14,12 @@ import benefit from "../../assets/images/benefit.png";
 import share from "../../assets/images/share.png";
 import whymaah from "../../assets/images/Whymaah.png";
 import reverse from "../../assets/images/reverse.png";
+import cardcheck from "../../assets/images/card-check.png";
+import history from "../../assets/images/history.png";
+import limit from "../../assets/images/limit.png";
+import coupon from "../../assets/images/coupon.png";
+import diamond from "../../assets/images/diamond.png";
+import annotation from "../../assets/images/annotation-alert.png";
 
 const Mainback = styled.div`
   background: linear-gradient(180deg, #fffdfd 37.44%, #c7c7c7 100%);
@@ -86,7 +90,7 @@ const UnselectBanner = styled.span`
 `;
 
 const LoginTitle = styled.div`
-  font-size: 4rem;
+  font-size: 2.5rem;
   background: linear-gradient(180deg, #000000 37.44%, #8c8a83 100%);
   background-clip: text;
   -webkit-background-clip: text;
@@ -102,28 +106,21 @@ const LoginWelcome = styled.div`
   margin-bottom: 10%;
 `;
 
-const LoginInput = styled.input`
-  width: 69%;
-  padding: 5%;
-  font-size: 1.5rem;
-  border: 3px solid #ccc;
-  border-radius: 30px;
-  margin-bottom: 5%;
-`;
-
 const SocialLogin = styled.div`
   margin-top: 5%;
   font-size: 2rem;
 `;
 
 const SocialButtonBlock = styled.div`
-  width: 75%;
+  display: flex;
+  width: 50%;
   text-align: center;
+  flex-wrap: wrap;
 `;
 
 const SocialButton = styled.button`
-  width: 7rem;
-  height: 5rem;
+  width: 76px;
+  height: 70px;
   margin: 0.5rem;
   border: 0;
   border-radius: 20px;
@@ -183,7 +180,10 @@ const LoginButton = styled.div`
     background: linear-gradient(180deg, #7d796c 0%, #b4ad98 80%);
   }
 
-  & > div > span {
+  & > span {
+    margin-left: 8rem;
+    position: relative;
+    display: flex;
     cursor: pointer;
     color: #999;
   }
@@ -268,18 +268,25 @@ const WhyTitleImage = styled.img`
 
 const ReverseIcon = styled.img`
   margin-top: 5px;
+  transform: translate(-50%, -50%);
+  display: none; /* 초기에는 숨겨진 상태 */
 `;
 
 const CardDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  &:hover ${ReverseIcon} {
+    display: flex;
+  }
 `;
 
 const CardName = styled.p`
   font-weight: bolder;
   margin-top: 1rem;
 `;
+
 const HiCard = ({ image, name }) => {
   return (
     <CardDiv>
@@ -451,6 +458,117 @@ const WhyBoxSection = styled.div`
   justify-content: center;
 `;
 
+const SocialBtnDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  & > p {
+    font-size: 1rem;
+  }
+`;
+
+const fadeInRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const fadeInRightAnimation = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const ImageContainer = styled.div`
+  width: 700px;
+  margin: 50px auto;
+  opacity: 0;
+  animation: ${({ visible }) =>
+    visible
+      ? css`
+          ${fadeInRight} 1s ease-out forwards
+        `
+      : "none"};
+`;
+
+const ImageFadeInRight = styled.img`
+  width: 700px;
+  opacity: 0;
+  animation: ${({ visible }) =>
+    visible
+      ? css`
+          ${fadeInRight} 1s ease-out forwards
+        `
+      : "none"};
+`;
+
+const AboutMaahContent = () => {
+  const [visible, setVisible] = useState(false);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const handleIntersection = (entries) => {
+      const entry = entries[0];
+      if (entry.isIntersecting) {
+        setVisible(true);
+      }
+    };
+
+    const options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.5,
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, options);
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <AboutMaah>
+      <Element name="aboutSection" />
+      <MaahSection ref={containerRef}>
+        <MaahTitle>
+          하나의 카드, 그 이상 <span>Hi:Card</span>와 함께
+        </MaahTitle>
+        <MaahSub>
+          <MaahSubTitle>
+            복잡한 카드 고민은 그만, Hi:Card로 결제하세요
+          </MaahSubTitle>
+          <MaahSubTitle>
+            디자인 커스텀부터 Share까지, Ma:ah에서 모든건 내 마음대로
+          </MaahSubTitle>
+          <CreateButton>
+            <button style={{ margin: 0 }}>Ma:ah F&Q</button>
+          </CreateButton>
+        </MaahSub>
+      </MaahSection>
+      <ImageContainer visible={visible}>
+        <ImageFadeInRight visible={visible} src={abouthi} alt="AboutHi" />
+      </ImageContainer>
+    </AboutMaah>
+  );
+};
+
 function Main2(props) {
   return (
     <Mainback>
@@ -468,33 +586,55 @@ function Main2(props) {
           </Banner>
           <div>
             <div>
-              <LoginTitle>Login</LoginTitle>
+              <LoginTitle>한마음 님</LoginTitle>
               <LoginWelcome>Welcome to ma:ah Card</LoginWelcome>
             </div>
             <div>
-              <LoginInput type="text" placeholder="ID"></LoginInput>
-              <LoginInput type="password" placeholder="Password"></LoginInput>
               <SocialLogin>
-                <div>Or continue with</div>
                 <SocialButtonBlock>
-                  <SocialButton>
-                    <img src={google}></img>
-                  </SocialButton>
-                  <SocialButton>
-                    <img src={naver}></img>
-                  </SocialButton>
-                  <SocialButton>
-                    <img src={kakao}></img>
-                  </SocialButton>
+                  <SocialBtnDiv>
+                    <SocialButton>
+                      <img src={cardcheck}></img>
+                    </SocialButton>
+                    <p>보유카드</p>
+                  </SocialBtnDiv>
+                  <SocialBtnDiv>
+                    <SocialButton>
+                      <img src={history}></img>
+                    </SocialButton>
+                    <p>이용내역</p>
+                  </SocialBtnDiv>
+
+                  <SocialBtnDiv>
+                    <SocialButton>
+                      <img src={limit}></img>
+                    </SocialButton>
+                    <p>이용한도</p>
+                  </SocialBtnDiv>
+
+                  <SocialBtnDiv>
+                    <SocialButton>
+                      <img src={diamond}></img>
+                    </SocialButton>
+                    <p>포인트조회</p>
+                  </SocialBtnDiv>
+
+                  <SocialBtnDiv>
+                    <SocialButton>
+                      <img src={coupon}></img>
+                    </SocialButton>
+                    <p>적립쿠폰</p>
+                  </SocialBtnDiv>
+                  <SocialBtnDiv>
+                    <SocialButton>
+                      <img src={annotation}></img>
+                    </SocialButton>
+                    <p>분실신고</p>
+                  </SocialBtnDiv>
                 </SocialButtonBlock>
               </SocialLogin>
               <LoginButton>
-                <button>Log in</button>
-                <div>
-                  <span>아이디 찾기</span>
-                  &nbsp;|&nbsp;
-                  <span>비밀번호 찾기</span>
-                </div>
+                <span>비밀번호 변경</span>
               </LoginButton>
             </div>
           </div>
@@ -511,33 +651,14 @@ function Main2(props) {
           </HiCardTitleSection>
           <HiCardViewSection>
             <HiCard image={blackvelvet} name={"the Black"}></HiCard>
-
             <HiCard image={whitevelvet} name={"the Black"}></HiCard>
             <HiCard image={blackvelvet} name={"the Black"}></HiCard>
             <HiCard image={blackvelvet} name={"the Black"}></HiCard>
             <HiCard image={blackvelvet} name={"the Black"}></HiCard>
           </HiCardViewSection>
         </HiCardSection>
-        <AboutMaah>
-          <MaahSection>
-            <MaahTitle>
-              하나의 카드, 그 이상 <span>Hi:Card</span>와 함께
-            </MaahTitle>
-            <MaahSub>
-              <MaahSubTitle>
-                복잡한 카드 고민은 그만, Hi:Card로 결제하세요
-              </MaahSubTitle>
-              <MaahSubTitle>
-                디자인 커스텀부터 Share까지, Ma:ah에서 모든건 내 마음대로
-              </MaahSubTitle>
-              <CreateButton>
-                <button style={{ margin: 0 }}>Ma:ah F&Q</button>
-              </CreateButton>
-            </MaahSub>
-          </MaahSection>
 
-          <img src={abouthi} width="700"></img>
-        </AboutMaah>
+        <AboutMaahContent></AboutMaahContent>
 
         <ByCardSectionDiv>
           <ByCardSection>
@@ -562,9 +683,6 @@ function Main2(props) {
 
         <WhySection>
           <WhyImage image={whymaah} />
-
-          {/* <WhyTitle>Why Ma:ah?</WhyTitle> */}
-
           <WhyBoxSection>
             <WhyBox>
               <img src={create} />
