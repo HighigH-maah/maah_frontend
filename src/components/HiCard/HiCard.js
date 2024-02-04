@@ -438,7 +438,6 @@ function HiCard(props) {
             {/* Modal */}
             {isModalOpen && (
               <HiCardModal>
-                {/* Add the content for your modal here */}
                 <p>Modal Content</p>
                 <button onClick={closeModal}>Close Modal</button>
                 <VirtualCardApply></VirtualCardApply>
