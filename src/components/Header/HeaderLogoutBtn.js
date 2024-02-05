@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import maahbiglogo from "../../assets/images/Logo/MaahBigLogo.png";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const HeaderDiv = styled.div`
-  width: 0%;
+  width: 100%;
   display: flex;
   align-items: center;
   position: relative;
@@ -38,7 +38,7 @@ const HeaderLogoutButton = styled.button`
   flex-shrink: 0;
   background: transparent;
   position: relative;
-    left: 25rem;
+  left: 20rem;
 `;
 
 const HeaderLogoImage = styled.img`
@@ -64,7 +64,7 @@ const HeaderMenuMy = styled.p`
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 0.97;
-  color: ${({ clicked }) => (clicked ? '#808080' : '#000000')};
+  color: ${({ clicked }) => (clicked ? "#808080" : "#000000")};
   white-space: nowrap;
   flex-shrink: 0;
 
@@ -78,7 +78,7 @@ const HeaderMenuShare = styled.p`
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 1.2125;
-  color: ${({ clicked }) => (clicked ? '#808080' : '#000000')};
+  color: ${({ clicked }) => (clicked ? "#808080" : "#000000")};
   white-space: nowrap;
   flex-shrink: 0;
 
@@ -92,7 +92,7 @@ const HeaderMenuCard = styled.p`
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 0.97;
-  color: ${({ clicked }) => (clicked ? '#808080' : '#000000')};
+  color: ${({ clicked }) => (clicked ? "#808080" : "#000000")};
   white-space: nowrap;
   flex-shrink: 0;
 
@@ -105,7 +105,7 @@ const HeaderMenuAbout = styled.p`
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 1.2125;
-  color: ${({ clicked }) => (clicked ? '#808080' : '#000000')};
+  color: ${({ clicked }) => (clicked ? "#808080" : "#000000")};
   white-space: nowrap;
   flex-shrink: 0;
 
@@ -142,21 +142,41 @@ function HeaderLogoutBtn(props) {
   return (
     <HeaderDiv>
       <HeaderLogoMenuDiv>
-      <Link to="../" style={{ textDecoration: "none" }}>
-        <HeaderLogoImage src={maahbiglogo}></HeaderLogoImage>
+        <Link to="../" style={{ textDecoration: "none" }}>
+          <HeaderLogoImage src={maahbiglogo}></HeaderLogoImage>
         </Link>
         <HeaderMenuBar>
           <Link to="" style={{ textDecoration: "none" }}>
-          <HeaderMenuMy clicked={menuState.my} onClick={() => handleMenuClick('my')}>My</HeaderMenuMy>
+            <HeaderMenuMy
+              clicked={menuState.my}
+              onClick={() => handleMenuClick("my")}
+            >
+              My
+            </HeaderMenuMy>
           </Link>
           <Link to="" style={{ textDecoration: "none" }}>
-          <HeaderMenuShare clicked={menuState.share} onClick={() => handleMenuClick('share')}>Share</HeaderMenuShare>
+            <HeaderMenuShare
+              clicked={menuState.share}
+              onClick={() => handleMenuClick("share")}
+            >
+              Share
+            </HeaderMenuShare>
           </Link>
           <Link to="" style={{ textDecoration: "none" }}>
-          <HeaderMenuCard clicked={menuState.card} onClick={() => handleMenuClick('card')}>Card</HeaderMenuCard>
+            <HeaderMenuCard
+              clicked={menuState.card}
+              onClick={() => handleMenuClick("card")}
+            >
+              Card
+            </HeaderMenuCard>
           </Link>
           <Link to="" style={{ textDecoration: "none" }}>
-          <HeaderMenuAbout clicked={menuState.about} onClick={() => handleMenuClick('about')}>About us</HeaderMenuAbout>
+            <HeaderMenuAbout
+              clicked={menuState.about}
+              onClick={() => handleMenuClick("about")}
+            >
+              About us
+            </HeaderMenuAbout>
           </Link>
         </HeaderMenuBar>
       </HeaderLogoMenuDiv>
