@@ -126,6 +126,10 @@ const SocialButton = styled.button`
   border-radius: 20px;
   background-color: #fff;
   cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  &:hover {
+    box-shadow: 4px 4px 1px 0px gray;
+  }
 
   & > img {
     width: 2em;
@@ -190,6 +194,11 @@ const LoginButton = styled.div`
     display: flex;
     cursor: pointer;
     color: #999;
+    transition: text-shadow 0.3s ease;
+  }
+
+  & > span:hover {
+    text-shadow: 0px 1px 9px #0000004f;
   }
 `;
 
@@ -682,6 +691,8 @@ function Main2(props) {
             <ByCard image={blackvelvet} name={"the Black"}></ByCard>
             <ByCard image={blackvelvet} name={"the Black"}></ByCard>
             <ByCard image={blackvelvet} name={"the Black"}></ByCard>
+            <ByCard image={whitevelvet} name={"the Black"}></ByCard>
+            <ByCard image={whitevelvet} name={"the Black"}></ByCard>
             <ByCard image={whitevelvet} name={"the Black"}></ByCard>
           </ByCardWrapper>
         </ByCardSectionDiv>
