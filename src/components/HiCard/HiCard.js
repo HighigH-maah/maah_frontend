@@ -18,6 +18,9 @@ import travelImg from "./icon/travel.png";
 import chevronDown from "./icon/chevronDown.png";
 import chevronUp from "./icon/chevronUp.png";
 import VirtualCardApply from "./VirtualCardApply";
+import close from "../../assets/images/close.png";
+import MyPaymentHistory from "./MyPaymentHistory";
+import VirtualCardNumView from "./VirtualCardNumView";
 
 const HiCardDiv = styled.div`
   display: flex;
@@ -176,6 +179,7 @@ const HiCardBtn = styled.div`
     );
     border-radius: 0.5rem;
     flex-shrink: 0;
+    cursor: pointer;
   }
 
   div {
@@ -194,6 +198,7 @@ const HiCardBtn = styled.div`
     font-family: Iceland, "Source Sans Pro";
     white-space: nowrap;
     flex-shrink: 0;
+    cursor: pointer;
   }
 
   .virtualCardApply {
@@ -318,9 +323,21 @@ const HiCardModal = styled.div`
   z-index: 1000;
 `;
 
+const ModalClose = styled.img`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+`;
+
 function HiCard(props) {
   const [openAccordions, setOpenAccordions] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isVirtualCardApplyModalOpen, setIsVirtualCardApplyModalOpen] =
+    useState(false);
+  const [isVirtualCardNumViewModalOpen, setIsVirtualCardNumViewModalOpen] =
+    useState(false);
+  const [isMyPaymentHistoryModalOpen, setIsMyPaymentHistoryModalOpen] =
+    useState(false);
 
   const toggleAccordion = (index) => {
     if (openAccordions.includes(index)) {
@@ -330,6 +347,24 @@ function HiCard(props) {
       // If accordion is closed, open it
       setOpenAccordions([...openAccordions, index]);
     }
+  };
+
+  const openMyPaymentHistoryModal = () => {
+    setIsMyPaymentHistoryModalOpen(true);
+  };
+
+  const openVirtualCardApplyModal = () => {
+    setIsVirtualCardApplyModalOpen(true);
+  };
+
+  const openVirtualCardNumViewModal = () => {
+    setIsVirtualCardNumViewModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsMyPaymentHistoryModalOpen(false);
+    setIsVirtualCardApplyModalOpen(false);
+    setIsVirtualCardNumViewModalOpen(false);
   };
 
   const accordions = [
@@ -396,14 +431,6 @@ function HiCard(props) {
     // Add more accordions as needed
   ];
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <HiCardDiv>
       <HiCardDetailOuterDiv>
@@ -426,21 +453,44 @@ function HiCard(props) {
             </HiCardGrade>
 
             <HiCardBtn>
-              <button>나의 결제 이력</button>
+              <button onClick={openMyPaymentHistoryModal}>
+                나의 결제 이력
+              </button>
               <div>
                 <p className="accountChange">연결계좌변경</p>
-                <p className="virtualCardApply" onClick={openModal}>
+                <p
+                  className="virtualCardApply"
+                  onClick={openVirtualCardApplyModal}
+                >
                   가상 카드 발급신청
                 </p>
               </div>
+              <p onClick={openVirtualCardNumViewModal}>가상 카드 번호조회</p>
             </HiCardBtn>
 
-            {/* Modal */}
-            {isModalOpen && (
+            {/* VirtualCardApply 모달 */}
+            {isVirtualCardApplyModalOpen && (
               <HiCardModal>
-                <p>Modal Content</p>
-                <button onClick={closeModal}>Close Modal</button>
+                {/* <button onClick={closeModal}>Close Modal</button> */}
+                <ModalClose src={close} onClick={closeModal}></ModalClose>
                 <VirtualCardApply></VirtualCardApply>
+              </HiCardModal>
+            )}
+
+            {/* MyPaymentHistory 모달 */}
+            {isMyPaymentHistoryModalOpen && (
+              <HiCardModal>
+                {/* <button onClick={closeModal}>Close Modal</button> */}
+                <ModalClose src={close} onClick={closeModal}></ModalClose>
+                <MyPaymentHistory></MyPaymentHistory>
+              </HiCardModal>
+            )}
+            {/* VirtualCardNumView 모달 */}
+            {isVirtualCardNumViewModalOpen && (
+              <HiCardModal>
+                {/* <button onClick={closeModal}>Close Modal</button> */}
+                <ModalClose src={close} onClick={closeModal}></ModalClose>
+                <VirtualCardNumView></VirtualCardNumView>
               </HiCardModal>
             )}
           </HiCardDetailRight>
