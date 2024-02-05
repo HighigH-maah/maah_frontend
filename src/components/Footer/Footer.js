@@ -27,7 +27,7 @@ const FooterTopMenu = styled.div`
 `;
 
 const LogoBox = styled.div`
-  margin-right: 14.6rem;
+  margin-right: 5%;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;

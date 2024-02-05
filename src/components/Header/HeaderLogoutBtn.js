@@ -8,7 +8,8 @@ const HeaderDiv = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  left: 6.5rem;
+  box-sizing: border-box;
+  padding-left: 8%;
   top: 3rem;
 `;
 
@@ -19,6 +20,7 @@ const HeaderLogoMenuDiv = styled.div`
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  margin-right: 10%;
 `;
 
 const HeaderLogoutButton = styled.button`
@@ -38,7 +40,6 @@ const HeaderLogoutButton = styled.button`
   flex-shrink: 0;
   background: transparent;
   position: relative;
-  left: 20rem;
 `;
 
 const HeaderLogoImage = styled.img`
