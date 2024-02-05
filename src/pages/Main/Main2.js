@@ -1,12 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./main.css";
 import "../../assets/css/style.css";
-import { Element, animateScroll } from "react-scroll";
+import { Element } from "react-scroll";
 import styled, { keyframes, css } from "styled-components";
 import mainBackground from "../../assets/images/main_bg.png";
 import banner from "../../assets/images/banner.png";
 import blackvelvet from "../../assets/images/Black_velvet.png";
+import blackBack from "../../assets/images/black-back.png";
 import whitevelvet from "../../assets/images/White_velvet.png";
+import whiteBack from "../../assets/images/white-back.png";
+import pinkholoBack from "../../assets/images/pinkholo-back.png";
+import blueholoBack from "../../assets/images/blueholo-back.png";
+import midnightashBack from "../../assets/images/midnightash-back.png";
 import abouthi from "../../assets/images/aboutHi.png";
 import byCardGroup from "../../assets/images/ByCardGroup.png";
 import create from "../../assets/images/create.png";
@@ -20,7 +25,17 @@ import limit from "../../assets/images/limit.png";
 import coupon from "../../assets/images/coupon.png";
 import diamond from "../../assets/images/diamond.png";
 import annotation from "../../assets/images/annotation-alert.png";
-
+import nasa from "../../assets/images/Nasa.png";
+import star from "../../assets/images/Star.png";
+import universe from "../../assets/images/Universe.png";
+import eco from "../../assets/images/에코카드.png";
+import union from "../../assets/images/Union.png";
+import stone from "../../assets/images/Stone.png";
+import shoot from "../../assets/images/Shoot.png";
+import dolls from "../../assets/images/Dolls.png";
+import midnightash from "../../assets/images/midnightash.png";
+import blueholo from "../../assets/images/blueholo.png";
+import pinkholo from "../../assets/images/pinkholo.png";
 const Mainback = styled.div`
   background: linear-gradient(180deg, #fffdfd 37.44%, #c7c7c7 100%);
 `;
@@ -281,17 +296,12 @@ const WhyTitleImage = styled.img`
 const ReverseIcon = styled.img`
   margin-top: 5px;
   margin: 0 auto;
-  display: none; /* 초기에는 숨겨진 상태 */
 `;
 
 const CardDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  &:hover ${ReverseIcon} {
-    display: flex;
-  }
 `;
 
 const CardName = styled.p`
@@ -315,17 +325,40 @@ const ReverseButton = styled.button`
   bottom: 1rem;
 `;
 const HiCard = ({ image, name }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  const handleReverseClick = () => {
+    setIsFlipped(!isFlipped);
+  };
+
+  // 이름에 따른 이미지 및 뒷면 이미지 매핑
+  const cardImages = {
+    "Black Velvet": { front: blackvelvet, back: blackBack },
+    "White Velvet": { front: whitevelvet, back: whiteBack },
+    "Midnight Ash": { front: midnightash, back: midnightashBack },
+    "Blue holo": { front: blueholo, back: blueholoBack },
+    "Pink holo": { front: pinkholo, back: pinkholoBack },
+  };
+
+  const { front: frontImage, back: backImage } = cardImages[name] || {
+    front: image,
+    back: reverse,
+  };
+
   return (
     <CardDiv>
-      <CardImage src={image} alt="Card Image" />
-      <ReverseButton>
-        <ReverseIcon src={reverse}></ReverseIcon>
+      <CardImage
+        src={isFlipped ? backImage : frontImage}
+        alt={isFlipped ? "Reverse Card Image" : "Card Image"}
+        style={{ transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)" }}
+      />
+      <ReverseButton type="button" onClick={handleReverseClick}>
+        <ReverseIcon src={reverse} alt="Reverse Icon" />
       </ReverseButton>
       <CardName>{name}</CardName>
     </CardDiv>
   );
 };
-
 const ByCard = ({ image, name }) => {
   return (
     <CardDiv>
@@ -666,11 +699,11 @@ function Main2(props) {
             </CreateButton>
           </HiCardTitleSection>
           <HiCardViewSection>
-            <HiCard image={blackvelvet} name={"the Black"}></HiCard>
-            <HiCard image={whitevelvet} name={"the Black"}></HiCard>
-            <HiCard image={blackvelvet} name={"the Black"}></HiCard>
-            <HiCard image={blackvelvet} name={"the Black"}></HiCard>
-            <HiCard image={blackvelvet} name={"the Black"}></HiCard>
+            <HiCard image={blackvelvet} name={"Black Velvet"}></HiCard>
+            <HiCard image={whitevelvet} name={"White Velvet"}></HiCard>
+            <HiCard image={midnightash} name={"Midnight Ash"}></HiCard>
+            <HiCard image={blueholo} name={"Blue holo"}></HiCard>
+            <HiCard image={pinkholo} name={"Pink holo"}></HiCard>
           </HiCardViewSection>
         </HiCardSection>
         <AboutMaahContent></AboutMaahContent>
@@ -686,14 +719,14 @@ function Main2(props) {
             </CreateButton>
           </ByCardSection>
           <ByCardWrapper>
-            <ByCard image={blackvelvet} name={"the Black"}></ByCard>
-            <ByCard image={blackvelvet} name={"the Black"}></ByCard>
-            <ByCard image={blackvelvet} name={"the Black"}></ByCard>
-            <ByCard image={blackvelvet} name={"the Black"}></ByCard>
-            <ByCard image={blackvelvet} name={"the Black"}></ByCard>
-            <ByCard image={whitevelvet} name={"the Black"}></ByCard>
-            <ByCard image={whitevelvet} name={"the Black"}></ByCard>
-            <ByCard image={whitevelvet} name={"the Black"}></ByCard>
+            <ByCard image={nasa} name={"Nasa"}></ByCard>
+            <ByCard image={star} name={"Star"}></ByCard>
+            <ByCard image={universe} name={"Universe"}></ByCard>
+            <ByCard image={eco} name={"Eco"}></ByCard>
+            <ByCard image={union} name={"Union"}></ByCard>
+            <ByCard image={stone} name={"Stone"}></ByCard>
+            <ByCard image={shoot} name={"Shoot"}></ByCard>
+            <ByCard image={dolls} name={"Dolls"}></ByCard>
           </ByCardWrapper>
         </ByCardSectionDiv>
 
