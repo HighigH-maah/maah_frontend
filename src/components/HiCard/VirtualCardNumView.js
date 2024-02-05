@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import logo from "../../assets/images/Maah_Half_big_logo.png";
 
 const VirtualCardNumViewDiv = styled.div`
     box-sizing: border-box;
@@ -10,6 +11,11 @@ const VirtualCardNumViewDiv = styled.div`
     box-shadow: inset 0 0.4rem 0.4rem rgba(0, 0, 0, 0.25));
     background: linear-gradient(148.33deg, #f8f8f8 39.98%, #dedede 83.01%);
     border-radius: 2rem;
+
+    img{
+      position: relative;
+      right: 30px;
+    }
 
     .box1{
         display: flex;
@@ -36,10 +42,11 @@ const VirtualCardNumViewDiv = styled.div`
     }
 
     .cardInfo{
-        width: 100%;
-        display: flex;
-        align-items: flex-start;
-        flex-shrink: 0;
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      flex-shrink: 0;
+      justify-content: space-between;
     }
 
     .title{
@@ -67,6 +74,7 @@ const VirtualCardNumViewDiv = styled.div`
 function VirtualCardNumView(props) {
   return (
     <VirtualCardNumViewDiv>
+      <img src={logo} alt="마하로고"></img>
       <div className="box1">
         <p>가상 카드 번호조회</p>
         <div className="box2">

@@ -21,6 +21,7 @@ import VirtualCardApply from "./VirtualCardApply";
 import close from "../../assets/images/close.png";
 import MyPaymentHistory from "./MyPaymentHistory";
 import VirtualCardNumView from "./VirtualCardNumView";
+import MyAccountChange from "./MyAccountChange";
 
 const HiCardDiv = styled.div`
   display: flex;
@@ -317,8 +318,6 @@ const HiCardModal = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 2rem;
-  background: #fff;
   border-radius: 0.5rem;
   z-index: 1000;
 `;
@@ -332,11 +331,13 @@ const ModalClose = styled.img`
 
 function HiCard(props) {
   const [openAccordions, setOpenAccordions] = useState([]);
+  const [isMyPaymentHistoryModalOpen, setIsMyPaymentHistoryModalOpen] =
+    useState(false);
+  const [isMyAccountChangeModalOpen, setIsMyAccountChangeModalOpen] =
+    useState(false);
   const [isVirtualCardApplyModalOpen, setIsVirtualCardApplyModalOpen] =
     useState(false);
   const [isVirtualCardNumViewModalOpen, setIsVirtualCardNumViewModalOpen] =
-    useState(false);
-  const [isMyPaymentHistoryModalOpen, setIsMyPaymentHistoryModalOpen] =
     useState(false);
 
   const toggleAccordion = (index) => {
@@ -353,6 +354,10 @@ function HiCard(props) {
     setIsMyPaymentHistoryModalOpen(true);
   };
 
+  const openMyAccountChangeModal = () => {
+    setIsMyAccountChangeModalOpen(true);
+  };
+
   const openVirtualCardApplyModal = () => {
     setIsVirtualCardApplyModalOpen(true);
   };
@@ -363,6 +368,7 @@ function HiCard(props) {
 
   const closeModal = () => {
     setIsMyPaymentHistoryModalOpen(false);
+    setIsMyAccountChangeModalOpen(false);
     setIsVirtualCardApplyModalOpen(false);
     setIsVirtualCardNumViewModalOpen(false);
   };
@@ -457,7 +463,9 @@ function HiCard(props) {
                 나의 결제 이력
               </button>
               <div>
-                <p className="accountChange">연결계좌변경</p>
+                <p className="accountChange" onClick={openMyAccountChangeModal}>
+                  연결계좌변경
+                </p>
                 <p
                   className="virtualCardApply"
                   onClick={openVirtualCardApplyModal}
@@ -468,6 +476,24 @@ function HiCard(props) {
               <p onClick={openVirtualCardNumViewModal}>가상 카드 번호조회</p>
             </HiCardBtn>
 
+            {/* MyPaymentHistory 모달 */}
+            {isMyPaymentHistoryModalOpen && (
+              <HiCardModal>
+                {/* <button onClick={closeModal}>Close Modal</button> */}
+                <ModalClose src={close} onClick={closeModal}></ModalClose>
+                <MyPaymentHistory></MyPaymentHistory>
+              </HiCardModal>
+            )}
+
+            {/* MyAccountChange 모달 */}
+            {isMyAccountChangeModalOpen && (
+              <HiCardModal>
+                {/* <button onClick={closeModal}>Close Modal</button> */}
+                <ModalClose src={close} onClick={closeModal}></ModalClose>
+                <MyAccountChange></MyAccountChange>
+              </HiCardModal>
+            )}
+
             {/* VirtualCardApply 모달 */}
             {isVirtualCardApplyModalOpen && (
               <HiCardModal>
@@ -477,14 +503,6 @@ function HiCard(props) {
               </HiCardModal>
             )}
 
-            {/* MyPaymentHistory 모달 */}
-            {isMyPaymentHistoryModalOpen && (
-              <HiCardModal>
-                {/* <button onClick={closeModal}>Close Modal</button> */}
-                <ModalClose src={close} onClick={closeModal}></ModalClose>
-                <MyPaymentHistory></MyPaymentHistory>
-              </HiCardModal>
-            )}
             {/* VirtualCardNumView 모달 */}
             {isVirtualCardNumViewModalOpen && (
               <HiCardModal>
