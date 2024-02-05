@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+ul,
+li {
+  list-style: none;
+}
+input {
+  border: none;
+}
+body {
+  width: 100%;
+}
+.navbar-PeV {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.navbar-PeV .auto-group-k2pp-9tZ {
+  box-sizing: border-box;
+  padding: 1.1rem 25.9rem 1.1rem 0rem;
+  height: 4.8rem;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.navbar-PeV .auto-group-k2pp-9tZ .maahbiglogo-GTP {
+  margin-right: 25.8rem;
+  width: 16.3rem;
+  height: 2.6rem;
+  object-fit: cover;
+  vertical-align: top;
+  flex-shrink: 0;
+}
+.navbar-PeV .auto-group-k2pp-9tZ .menu-oiD {
+  margin: 0.15rem 0rem 0.45rem 0rem;
+  height: calc(100% - 0.6rem);
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+.navbar-PeV .auto-group-k2pp-9tZ .menu-oiD .my-tUm {
+  margin-right: 4.4rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 0.97;
+  color: #000000;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.navbar-PeV .auto-group-k2pp-9tZ .menu-oiD .share-ptD {
+  margin-right: 4rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 1.2125;
+  color: #000000;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.navbar-PeV .auto-group-k2pp-9tZ .menu-oiD .card-Z57 {
+  margin-right: 4.6rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 0.97;
+  color: #000000;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.navbar-PeV .auto-group-k2pp-9tZ .menu-oiD .faqs-hh7 {
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 1.2125;
+  color: #000000;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.navbar-PeV .frame-7-pWq {
+  width: 10rem;
+  height: 4.8rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.200000003);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 0.2rem rgba(0, 0, 0, 0.200000003);
+  box-sizing: border-box;
+  border-radius: 6.4rem;
+  flex-shrink: 0;
+}
