@@ -9,16 +9,20 @@ import {
   FourthSection,
   TopSection,
 } from "../../components/Main/MainComponent";
+import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
+import Footer from "../../components/Footer/Footer";
 
 function Main(props) {
   return (
     <Mainback>
       <BackImage>
+        <HeaderLogoutBtn></HeaderLogoutBtn>
         <TopSection></TopSection>
         <FirstSection></FirstSection>
         <AboutMaahContent></AboutMaahContent>
         <ThirdSection></ThirdSection>
         <FourthSection></FourthSection>
+        <Footer position="relative" top="66.2rem"></Footer>
       </BackImage>
     </Mainback>
   );
