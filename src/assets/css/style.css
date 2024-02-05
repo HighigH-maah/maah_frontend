@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "youandi";
+  src: url("../fonts/fontYouandiModernTR.ttf") format("truetype");
+}
+
+* {
+  font-family: "youandi";
+}
