@@ -5,13 +5,13 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HiCardDesignSelect from "./pages/HiCardDesignSelect/HiCardDesignSelect";
 
-import Main2 from "./pages/Main/Main2";
+import Main from "./pages/Main/Main";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Main2 />}></Route>
+      <Route path="/" element={<Main />}></Route>
       <Route path="/hicard" element={<HiCardDesignSelect />}></Route>
     </Routes>
   </BrowserRouter>

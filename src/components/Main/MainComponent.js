@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import "./main.css";
+
 import "../../assets/css/style.css";
 import { Element } from "react-scroll";
 import styled, { keyframes, css } from "styled-components";
@@ -36,18 +36,171 @@ import dolls from "../../assets/images/Dolls.png";
 import midnightash from "../../assets/images/midnightash.png";
 import blueholo from "../../assets/images/blueholo.png";
 import pinkholo from "../../assets/images/pinkholo.png";
-const Mainback = styled.div`
+export const TopSection = () => {
+  return (
+    <MainPage1>
+      <Banner>
+        <EventBanner src={banner}></EventBanner>
+        <BannerPage>
+          <SelectBanner></SelectBanner>
+          <UnselectBanner></UnselectBanner>
+          <UnselectBanner></UnselectBanner>
+          <UnselectBanner></UnselectBanner>
+          <UnselectBanner></UnselectBanner>
+        </BannerPage>
+      </Banner>
+      <div>
+        <div>
+          <LoginTitle>한마음 님</LoginTitle>
+          <LoginWelcome>Welcome to ma:ah Card</LoginWelcome>
+        </div>
+        <div>
+          <SocialLogin>
+            <SocialButtonBlock>
+              <SocialBtnDiv>
+                <SocialButton>
+                  <img src={cardcheck}></img>
+                </SocialButton>
+                <p>보유카드</p>
+              </SocialBtnDiv>
+              <SocialBtnDiv>
+                <SocialButton>
+                  <img src={history}></img>
+                </SocialButton>
+                <p>이용내역</p>
+              </SocialBtnDiv>
+
+              <SocialBtnDiv>
+                <SocialButton>
+                  <img src={limit}></img>
+                </SocialButton>
+                <p>이용한도</p>
+              </SocialBtnDiv>
+
+              <SocialBtnDiv>
+                <SocialButton>
+                  <img src={diamond}></img>
+                </SocialButton>
+                <p>포인트조회</p>
+              </SocialBtnDiv>
+
+              <SocialBtnDiv>
+                <SocialButton>
+                  <img src={coupon}></img>
+                </SocialButton>
+                <p>적립쿠폰</p>
+              </SocialBtnDiv>
+              <SocialBtnDiv>
+                <SocialButton>
+                  <img src={annotation}></img>
+                </SocialButton>
+                <p>분실신고</p>
+              </SocialBtnDiv>
+            </SocialButtonBlock>
+          </SocialLogin>
+          <LoginButton>
+            <span>비밀번호 변경</span>
+          </LoginButton>
+        </div>
+      </div>
+    </MainPage1>
+  );
+};
+export const FirstSection = () => {
+  return (
+    <HiCardSection>
+      <HiCardTitleSection>
+        <HiCardTitle>Master Hi:Card</HiCardTitle>
+        <HiCardSubTitle>
+          마하의 오리지널리티를 담은 단 하나의 <span>하이카드</span>
+        </HiCardSubTitle>
+        <CreateButton>
+          <button>Create New Card</button>
+        </CreateButton>
+      </HiCardTitleSection>
+      <HiCardViewSection>
+        <HiCard image={blackvelvet} name={"Black Velvet"}></HiCard>
+        <HiCard image={whitevelvet} name={"White Velvet"}></HiCard>
+        <HiCard image={midnightash} name={"Midnight Ash"}></HiCard>
+        <HiCard image={blueholo} name={"Blue holo"}></HiCard>
+        <HiCard image={pinkholo} name={"Pink holo"}></HiCard>
+      </HiCardViewSection>
+    </HiCardSection>
+  );
+};
+
+export const ThirdSection = () => {
+  return (
+    <ByCardSectionDiv>
+      <ByCardSection>
+        <img src={byCardGroup} width="300" />
+        <ByCardTitle>Best by Ma:ah By:Card</ByCardTitle>
+        <ByCardSubTitle>
+          바이카드에 대한 설명<span>By:Card</span>
+        </ByCardSubTitle>
+        <CreateButton>
+          <button style={{ margin: 0 }}>Create New By:Card</button>
+        </CreateButton>
+      </ByCardSection>
+      <ByCardWrapper>
+        <ByCard image={nasa} name={"Nasa"}></ByCard>
+        <ByCard image={star} name={"Star"}></ByCard>
+        <ByCard image={universe} name={"Universe"}></ByCard>
+        <ByCard image={eco} name={"Eco"}></ByCard>
+        <ByCard image={union} name={"Union"}></ByCard>
+        <ByCard image={stone} name={"Stone"}></ByCard>
+        <ByCard image={shoot} name={"Shoot"}></ByCard>
+        <ByCard image={dolls} name={"Dolls"}></ByCard>
+      </ByCardWrapper>
+    </ByCardSectionDiv>
+  );
+};
+
+export const FourthSection = () => {
+  return (
+    <WhySection>
+      <WhyImage image={whymaah} />
+      <WhyBoxSection>
+        <WhyBox>
+          <img src={create} />
+          Create
+          <p>
+            Ma:ah에서 Hi:Card를 발급 받고, 커스텀하세요 타 회사 카드를 Ma:ah
+            카드와 비교하고 더 좋은 카드가 무엇인지 고민하세요
+          </p>
+          <span>Get Started</span>
+        </WhyBox>
+        <WhyBox>
+          <img src={share} />
+          Share
+          <p>
+            Hi:Card 를 당신만의 By:Card로 그룹화하세요 Hi:Card의 결제 이력을
+            바탕으로 원하는 카드에 원하는 만큼 혜택을 공유하세요
+          </p>
+          <span>Ma:ah Share</span>
+        </WhyBox>
+        <WhyBox>
+          <img src={benefit} />
+          Benefit<p>Ma:ah Share를 통해 늘어난 혜택을 만끽하세요</p>
+          <span>My:Data</span>
+        </WhyBox>
+      </WhyBoxSection>
+    </WhySection>
+  );
+};
+
+export const Mainback = styled.div`
   background: linear-gradient(180deg, #fffdfd 37.44%, #c7c7c7 100%);
 `;
 
-const BackImage = styled.div`
+export const BackImage = styled.div`
   background-image: url(${mainBackground});
   background-size: cover;
   background-repeat: no-repeat;
   height: 5000px;
 `;
 
-const MainPage1 = styled.div`
+export const MainPage1 = styled.div`
   box-sizing: border-box;
   padding: 13vh 3% 0 3%;
   width: 100%;
@@ -59,7 +212,7 @@ const MainPage1 = styled.div`
   }
 `;
 
-const HiCardSection = styled.div`
+export const HiCardSection = styled.div`
   box-sizing: border-box;
   padding: 13vh 3% 0 3%;
   width: 100%;
@@ -69,20 +222,20 @@ const HiCardSection = styled.div`
   }
 `;
 
-const Banner = styled.div`
+export const Banner = styled.div`
   margin-right: 2%;
   height: 100%;
   max-width: 80%;
 `;
 
-const EventBanner = styled.img`
+export const EventBanner = styled.img`
   height: 75%;
   width: 100%;
   aspect-ratio: 16 / 9;
   border-radius: 1%;
 `;
 
-const BannerPage = styled.div`
+export const BannerPage = styled.div`
   text-align: center;
   & > span {
     display: inline-block;
@@ -92,19 +245,19 @@ const BannerPage = styled.div`
   }
 `;
 
-const SelectBanner = styled.span`
+export const SelectBanner = styled.span`
   width: 16px;
   height: 16px;
   background-color: black;
 `;
 
-const UnselectBanner = styled.span`
+export const UnselectBanner = styled.span`
   width: 12px;
   height: 12px;
   background-color: gray;
 `;
 
-const LoginTitle = styled.div`
+export const LoginTitle = styled.div`
   font-size: 2.5rem;
   background: linear-gradient(180deg, #000000 37.44%, #8c8a83 100%);
   background-clip: text;
@@ -112,7 +265,7 @@ const LoginTitle = styled.div`
   color: transparent;
 `;
 
-const LoginWelcome = styled.div`
+export const LoginWelcome = styled.div`
   font-size: 2rem;
   background: linear-gradient(180deg, #000000 37.44%, #8c8a83 100%);
   background-clip: text;
@@ -121,19 +274,19 @@ const LoginWelcome = styled.div`
   margin-bottom: 10%;
 `;
 
-const SocialLogin = styled.div`
+export const SocialLogin = styled.div`
   margin-top: 5%;
   font-size: 2rem;
 `;
 
-const SocialButtonBlock = styled.div`
+export const SocialButtonBlock = styled.div`
   display: flex;
   width: 50%;
   text-align: center;
   flex-wrap: wrap;
 `;
 
-const SocialButton = styled.button`
+export const SocialButton = styled.button`
   width: 76px;
   height: 70px;
   margin: 0.5rem;
@@ -152,7 +305,7 @@ const SocialButton = styled.button`
   }
 `;
 
-const CreateButton = styled.div`
+export const CreateButton = styled.div`
   margin-top: 1rem;
   height: 2rem;
   width: 80%;
@@ -186,7 +339,7 @@ const CreateButton = styled.div`
     color: #999;
   }
 `;
-const LoginButton = styled.div`
+export const LoginButton = styled.div`
   height: 10rem;
   width: 80%;
   text-align: right;
@@ -217,19 +370,19 @@ const LoginButton = styled.div`
   }
 `;
 
-const HiCardTitle = styled.p`
+export const HiCardTitle = styled.p`
   font-size: 3rem;
   font-weight: bolder;
 `;
 
-const HiCardTitleSection = styled.div`
+export const HiCardTitleSection = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 `;
 
-const HiCardViewSection = styled.div`
+export const HiCardViewSection = styled.div`
   margin: 0 auto;
   width: 80%;
   height: 20%;
@@ -241,7 +394,7 @@ const HiCardViewSection = styled.div`
   position: relative;
   top: 12rem;
 `;
-const HiCardSubTitle = styled.p`
+export const HiCardSubTitle = styled.p`
   font-size: 1rem;
   font-weight: bolder;
   background: linear-gradient(
@@ -271,7 +424,7 @@ const HiCardSubTitle = styled.p`
     line-height: 25px;
   }
 `;
-const CardImage = styled.img`
+export const CardImage = styled.img`
   width: 200px;
   height: 341px;
   transition: all 0.15s linear;
@@ -283,33 +436,33 @@ const CardImage = styled.img`
   }
 `;
 
-const ByCardImage = styled.img`
+export const ByCardImage = styled.img`
   width: 186px;
   height: 282px;
 `;
-const WhyTitleImage = styled.img`
+export const WhyTitleImage = styled.img`
   margin: 0 auto;
   width: 697px;
   height: 386px;
 `;
 
-const ReverseIcon = styled.img`
+export const ReverseIcon = styled.img`
   margin-top: 5px;
   margin: 0 auto;
 `;
 
-const CardDiv = styled.div`
+export const CardDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const CardName = styled.p`
+export const CardName = styled.p`
   font-weight: bolder;
   margin-top: 1rem;
 `;
 
-const ReverseButton = styled.button`
+export const ReverseButton = styled.button`
   position: relative;
   width: 42px;
   height: 42px;
@@ -324,14 +477,13 @@ const ReverseButton = styled.button`
   );
   bottom: 1rem;
 `;
-const HiCard = ({ image, name }) => {
+export const HiCard = ({ image, name }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   const handleReverseClick = () => {
     setIsFlipped(!isFlipped);
   };
 
-  // 이름에 따른 이미지 및 뒷면 이미지 매핑
   const cardImages = {
     "Black Velvet": { front: blackvelvet, back: blackBack },
     "White Velvet": { front: whitevelvet, back: whiteBack },
@@ -359,7 +511,7 @@ const HiCard = ({ image, name }) => {
     </CardDiv>
   );
 };
-const ByCard = ({ image, name }) => {
+export const ByCard = ({ image, name }) => {
   return (
     <CardDiv>
       <ByCardImage src={image} alt="Card Image" />
@@ -368,17 +520,18 @@ const ByCard = ({ image, name }) => {
   );
 };
 
-const WhyImage = ({ image }) => {
+export const WhyImage = ({ image }) => {
   return <WhyTitleImage src={image} alt="Why Maah" />;
 };
-const MaahSection = styled.div`
+
+export const MaahSection = styled.div`
   display: flex;
   gap: 1rem;
   margin-left: 5rem;
   flex-direction: column;
 `;
 
-const MaahTitle = styled.div`
+export const MaahTitle = styled.div`
   font-size: 3rem;
   font-weight: bolder;
   width: 60%;
@@ -400,29 +553,29 @@ const MaahTitle = styled.div`
   }
 `;
 
-const ByCardTitle = styled.div`
+export const ByCardTitle = styled.div`
   font-size: 3rem;
   font-weight: bolder;
   width: 40%;
 `;
-const MaahSubTitle = styled.p`
+export const MaahSubTitle = styled.p`
   font-size: 1rem;
   font-weight: bolder;
 `;
 
-const MaahSub = styled.div`
+export const MaahSub = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 `;
 
-const AboutMaah = styled.div`
+export const AboutMaah = styled.div`
   display: flex;
   position: relative;
   top: 15rem;
 `;
 
-const ByCardSection = styled.div`
+export const ByCardSection = styled.div`
   display: flex;
   position: relative;
   gap: 1rem;
@@ -431,7 +584,7 @@ const ByCardSection = styled.div`
   flex-direction: column;
 `;
 
-const ByCardSubTitle = styled.p`
+export const ByCardSubTitle = styled.p`
   font-size: 1rem;
   font-weight: bolder;
   width: 20%;
@@ -454,13 +607,13 @@ const ByCardSubTitle = styled.p`
   }
 `;
 
-const ByCardSectionDiv = styled.div`
+export const ByCardSectionDiv = styled.div`
   display: flex;
   position: relative;
   top: 26rem;
 `;
 
-const ByCardWrapper = styled.div`
+export const ByCardWrapper = styled.div`
   display: flex;
   gap: 2rem;
   width: 50%;
@@ -469,14 +622,14 @@ const ByCardWrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-const WhySection = styled.div`
+export const WhySection = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
   top: 40rem;
 `;
 
-const WhyBox = styled.div`
+export const WhyBox = styled.div`
   position: relative;
   font-size: 2rem;
   color: white;
@@ -509,7 +662,7 @@ const WhyBox = styled.div`
   }
 `;
 
-const WhyBoxSection = styled.div`
+export const WhyBoxSection = styled.div`
   display: flex;
 
   gap: 5rem;
@@ -518,7 +671,7 @@ const WhyBoxSection = styled.div`
   justify-content: center;
 `;
 
-const SocialBtnDiv = styled.div`
+export const SocialBtnDiv = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -527,7 +680,7 @@ const SocialBtnDiv = styled.div`
   }
 `;
 
-const fadeInRight = keyframes`
+export const fadeInRight = keyframes`
   from {
     opacity: 0;
     transform: translateX(100%);
@@ -538,7 +691,7 @@ const fadeInRight = keyframes`
   }
 `;
 
-const ImageContainer = styled.div`
+export const ImageContainer = styled.div`
   width: 700px;
   margin: 50px auto;
   opacity: 0;
@@ -550,7 +703,7 @@ const ImageContainer = styled.div`
       : "none"};
 `;
 
-const ImageFadeInRight = styled.img`
+export const ImageFadeInRight = styled.img`
   width: 700px;
   opacity: 0;
   animation: ${({ visible }) =>
@@ -561,7 +714,7 @@ const ImageFadeInRight = styled.img`
       : "none"};
 `;
 
-const AboutMaahContent = () => {
+export const AboutMaahContent = () => {
   const [visible, setVisible] = useState(false);
   const containerRef = useRef(null);
 
@@ -617,150 +770,3 @@ const AboutMaahContent = () => {
     </AboutMaah>
   );
 };
-
-function Main2(props) {
-  return (
-    <Mainback>
-      <BackImage>
-        <MainPage1>
-          <Banner>
-            <EventBanner src={banner}></EventBanner>
-            <BannerPage>
-              <SelectBanner></SelectBanner>
-              <UnselectBanner></UnselectBanner>
-              <UnselectBanner></UnselectBanner>
-              <UnselectBanner></UnselectBanner>
-              <UnselectBanner></UnselectBanner>
-            </BannerPage>
-          </Banner>
-          <div>
-            <div>
-              <LoginTitle>한마음 님</LoginTitle>
-              <LoginWelcome>Welcome to ma:ah Card</LoginWelcome>
-            </div>
-            <div>
-              <SocialLogin>
-                <SocialButtonBlock>
-                  <SocialBtnDiv>
-                    <SocialButton>
-                      <img src={cardcheck}></img>
-                    </SocialButton>
-                    <p>보유카드</p>
-                  </SocialBtnDiv>
-                  <SocialBtnDiv>
-                    <SocialButton>
-                      <img src={history}></img>
-                    </SocialButton>
-                    <p>이용내역</p>
-                  </SocialBtnDiv>
-
-                  <SocialBtnDiv>
-                    <SocialButton>
-                      <img src={limit}></img>
-                    </SocialButton>
-                    <p>이용한도</p>
-                  </SocialBtnDiv>
-
-                  <SocialBtnDiv>
-                    <SocialButton>
-                      <img src={diamond}></img>
-                    </SocialButton>
-                    <p>포인트조회</p>
-                  </SocialBtnDiv>
-
-                  <SocialBtnDiv>
-                    <SocialButton>
-                      <img src={coupon}></img>
-                    </SocialButton>
-                    <p>적립쿠폰</p>
-                  </SocialBtnDiv>
-                  <SocialBtnDiv>
-                    <SocialButton>
-                      <img src={annotation}></img>
-                    </SocialButton>
-                    <p>분실신고</p>
-                  </SocialBtnDiv>
-                </SocialButtonBlock>
-              </SocialLogin>
-              <LoginButton>
-                <span>비밀번호 변경</span>
-              </LoginButton>
-            </div>
-          </div>
-        </MainPage1>
-        <HiCardSection>
-          <HiCardTitleSection>
-            <HiCardTitle>Master Hi:Card</HiCardTitle>
-            <HiCardSubTitle>
-              마하의 오리지널리티를 담은 단 하나의 <span>하이카드</span>
-            </HiCardSubTitle>
-            <CreateButton>
-              <button>Create New Card</button>
-            </CreateButton>
-          </HiCardTitleSection>
-          <HiCardViewSection>
-            <HiCard image={blackvelvet} name={"Black Velvet"}></HiCard>
-            <HiCard image={whitevelvet} name={"White Velvet"}></HiCard>
-            <HiCard image={midnightash} name={"Midnight Ash"}></HiCard>
-            <HiCard image={blueholo} name={"Blue holo"}></HiCard>
-            <HiCard image={pinkholo} name={"Pink holo"}></HiCard>
-          </HiCardViewSection>
-        </HiCardSection>
-        <AboutMaahContent></AboutMaahContent>
-        <ByCardSectionDiv>
-          <ByCardSection>
-            <img src={byCardGroup} width="300" />
-            <ByCardTitle>Best by Ma:ah By:Card</ByCardTitle>
-            <ByCardSubTitle>
-              바이카드에 대한 설명<span>By:Card</span>
-            </ByCardSubTitle>
-            <CreateButton>
-              <button style={{ margin: 0 }}>Create New By:Card</button>
-            </CreateButton>
-          </ByCardSection>
-          <ByCardWrapper>
-            <ByCard image={nasa} name={"Nasa"}></ByCard>
-            <ByCard image={star} name={"Star"}></ByCard>
-            <ByCard image={universe} name={"Universe"}></ByCard>
-            <ByCard image={eco} name={"Eco"}></ByCard>
-            <ByCard image={union} name={"Union"}></ByCard>
-            <ByCard image={stone} name={"Stone"}></ByCard>
-            <ByCard image={shoot} name={"Shoot"}></ByCard>
-            <ByCard image={dolls} name={"Dolls"}></ByCard>
-          </ByCardWrapper>
-        </ByCardSectionDiv>
-
-        <WhySection>
-          <WhyImage image={whymaah} />
-          <WhyBoxSection>
-            <WhyBox>
-              <img src={create} />
-              Create
-              <p>
-                Ma:ah에서 Hi:Card를 발급 받고, 커스텀하세요 타 회사 카드를 Ma:ah
-                카드와 비교하고 더 좋은 카드가 무엇인지 고민하세요
-              </p>
-              <span>Get Started</span>
-            </WhyBox>
-            <WhyBox>
-              <img src={share} />
-              Share
-              <p>
-                Hi:Card 를 당신만의 By:Card로 그룹화하세요 Hi:Card의 결제 이력을
-                바탕으로 원하는 카드에 원하는 만큼 혜택을 공유하세요
-              </p>
-              <span>Ma:ah Share</span>
-            </WhyBox>
-            <WhyBox>
-              <img src={benefit} />
-              Benefit<p>Ma:ah Share를 통해 늘어난 혜택을 만끽하세요</p>
-              <span>My:Data</span>
-            </WhyBox>
-          </WhyBoxSection>
-        </WhySection>
-      </BackImage>
-    </Mainback>
-  );
-}
-
-export default Main2;
