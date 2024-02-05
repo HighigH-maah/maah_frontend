@@ -31,6 +31,18 @@ import {
 } from "../../components/CardCompare/CompareComponent";
 import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
 import Footer from "../../components/Footer/Footer";
+import axios from "axios";
+
+axios
+  .post("/compare.do", {
+    other_code: 1,
+  })
+  .then(function (res) {
+    console.log(res.data);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 
 function CardCompare(props) {
   return (
