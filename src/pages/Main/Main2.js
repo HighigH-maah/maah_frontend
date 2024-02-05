@@ -271,7 +271,7 @@ const WhyTitleImage = styled.img`
 
 const ReverseIcon = styled.img`
   margin-top: 5px;
-  transform: translate(-50%, -50%);
+  margin: 0 auto;
   display: none; /* 초기에는 숨겨진 상태 */
 `;
 
@@ -290,11 +290,28 @@ const CardName = styled.p`
   margin-top: 1rem;
 `;
 
+const ReverseButton = styled.button`
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 21px;
+  border: 0;
+  cursor: pointer;
+  background: linear-gradient(
+    0deg,
+    rgba(128, 128, 128, 0.5),
+    rgba(200, 200, 200, 0.5) 45%,
+    rgba(128, 128, 128, 0.5)
+  );
+  bottom: 1rem;
+`;
 const HiCard = ({ image, name }) => {
   return (
     <CardDiv>
       <CardImage src={image} alt="Card Image" />
-      <ReverseIcon src={reverse}></ReverseIcon>
+      <ReverseButton>
+        <ReverseIcon src={reverse}></ReverseIcon>
+      </ReverseButton>
       <CardName>{name}</CardName>
     </CardDiv>
   );

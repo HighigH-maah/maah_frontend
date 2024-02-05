@@ -4,7 +4,7 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HiCardDesignSelect from "./pages/HiCardDesignSelect/HiCardDesignSelect";
-import Main from "./pages/Main/Main";
+
 import Main2 from "./pages/Main/Main2";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
