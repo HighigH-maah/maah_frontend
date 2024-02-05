@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HiCardDesignSelect from "./pages/HiCardDesignSelect/HiCardDesignSelect";
 import Main from "./pages/Main/Main";
 import Main2 from "./pages/Main/Main2";
+import Share from "./pages/Share/Share";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,6 +15,7 @@ root.render(
       <Route path="/" element={<Main />}></Route>
       <Route path="/2" element={<Main2 />}></Route>
       <Route path="/hicard" element={<HiCardDesignSelect />}></Route>
+      <Route path="/share" element={<Share />}></Route>
     </Routes>
   </BrowserRouter>
 );
