@@ -24,9 +24,9 @@ root.render(
       <Route path="/" element={<Main />}></Route>
       <Route path="/header" element={<HeaderLogoutBtn />}></Route>
       <Route path="/footer" element={<Footer />}></Route>
-      <Route path="/hicard" element={<HiCardDesignSelect />}></Route>
+      <Route path="/hiCard" element={<HiCardDesignSelect />}></Route>
       <Route path="/share" element={<Share />}></Route>
-      <Route path="/cardcompare" element={<CardCompare />}></Route>
+      <Route path="/cardCompare" element={<CardCompare />}></Route>
       <Route path="/signUp" element={<SignUp />}></Route>
       <Route path="/hiCardDetail" element={<HiCard />}></Route>
       <Route path="/myPaymentHistory" element={<MyPaymentHistory />}></Route>

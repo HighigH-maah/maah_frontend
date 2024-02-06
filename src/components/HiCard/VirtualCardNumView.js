@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import logo from "../../assets/images/Maah_Half_big_logo.png";
+import logo from "../../assets/images/maah_half_big_logo.png";
 
 const VirtualCardNumViewDiv = styled.div`
     box-sizing: border-box;

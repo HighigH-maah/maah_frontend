@@ -4,7 +4,7 @@ import shinhan from "../../assets/images/shinhan.png";
 import hyundai from "../../assets/images/hyundai.png";
 import samsung from "../../assets/images/samsung.png";
 import lotte from "../../assets/images/lotte.png";
-import maahSmall from "../../assets/images/Maah_small.png";
+import maahSmall from "../../assets/images/maah_small.png";
 import { BackImage, Mainback } from "../../components/Main/MainComponent";
 
 import {
@@ -193,13 +193,10 @@ function CardCompare(props) {
             byCard.map((card, index) => (
               <CardList key={index}>
                 <CardImageDiv>
-                  <ExampleImage
-                    image={card.by_image_path}
-                    name={card.by_name}
-                  ></ExampleImage>
+                  <ExampleImage></ExampleImage>
                 </CardImageDiv>
                 <CardDetailDiv>
-                  <CardTitle>{card.by_name}</CardTitle>
+                  <CardTitle>{card.byName}</CardTitle>
                   <CardEvent>{card.event}</CardEvent>
                   {/* Add other dynamic data rendering here */}
                 </CardDetailDiv>

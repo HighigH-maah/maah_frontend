@@ -88,6 +88,9 @@ const HiCardTypeName = styled.div`
   flex-shrink: 0;
 `;
 
+const HiCardImg = styled.div`
+  box-sizing: border-box;
+`;
 function Share(props) {
   return (
     <ShareBack>
@@ -99,6 +102,7 @@ function Share(props) {
           </HiTopper>
           <HiBottom>
             <HiCardTypeName>X BOOST</HiCardTypeName>
+            <HiCardImg></HiCardImg>
           </HiBottom>
         </HiSection>
       </ShareMain>
