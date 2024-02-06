@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useState } from "react";
 import CardApplicationTerms from "../CardApplicationTerms/CardApplicationTerms";
 import SimpleSlider from "./SimpleSlider";
 
@@ -32,26 +31,6 @@ const ModalWrap = styled.div`
   visibility: hidden;
 `;
 function HiCardDesignSelect() {
-  const [black, setBlack] = useState(true);
-  const [white, setWhite] = useState(true);
-
-  const reverseCard = (prop) => {
-    if (prop === "black") {
-      let card = document.getElementById("blackValvet");
-      card.style.transform = "rotateY(90deg)";
-      setTimeout(function () {
-        card.style.transform = "rotateY(0deg)";
-        setBlack(!black);
-      }, 100);
-    } else if (prop === "white") {
-      let card = document.getElementById("whiteValvet");
-      card.style.transform = "rotateY(90deg)";
-      setTimeout(function () {
-        card.style.transform = "rotateY(0deg)";
-        setWhite(!white);
-      }, 100);
-    }
-  };
 
   return (
     <>
