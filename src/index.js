@@ -16,6 +16,7 @@ import VirtualCardApply from "./components/HiCard/VirtualCardApply";
 import MyPaymentHistory from "./components/HiCard/MyPaymentHistory";
 import VirtualCardNumView from "./components/HiCard/VirtualCardNumView";
 import MyAccountChange from "./components/HiCard/MyAccountChange";
+import MyCardList from "./pages/My/MyCardList";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -36,6 +37,7 @@ root.render(
         path="/virtualCardNumView"
         element={<VirtualCardNumView />}
       ></Route>
+      <Route path="/mycardlist" element={<MyCardList />}></Route>
     </Routes>
   </BrowserRouter>
 );
