@@ -27,7 +27,7 @@ body {
   top: 15rem;
 }
 .my--m5o .main-FLy .hi-card-Ayj {
-  margin: 0rem 0rem 16.8rem 0rem;
+  margin: 0rem 0rem 12rem 5rem;
   box-sizing: border-box;
   padding: 3.9rem 5.5rem 7.5rem 4.8rem;
   height: 38.8rem;
@@ -40,9 +40,11 @@ body {
     rgba(255, 255, 255, 0) 78.54%
   );
   border-radius: 3rem;
+  width: 90%;
 }
 .my--m5o .main-FLy .hi-card-Ayj .auto-group-nwqu-5L1 {
-  margin-right: 3rem;
+  margin-right: 2rem;
+  margin-top: 2rem;
   width: 22.8rem;
   height: 100%;
   flex-shrink: 0;
@@ -159,14 +161,14 @@ body {
   white-space: nowrap;
 }
 .my--m5o .main-FLy .hi-card-Ayj .hi-card-info-F3T {
-  margin: 7rem 3.4rem 4.8rem 0rem;
-  width: 29.2rem;
-  height: calc(100% - 11.8rem);
+  margin: 7rem 2rem 4.8rem 0rem;
+  width: 28.5rem;
   flex-shrink: 0;
+  border-right: solid 0.1rem #000000;
 }
 .my--m5o .main-FLy .hi-card-Ayj .hi-card-info-F3T .hi-card-YYM {
   margin-bottom: 2rem;
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 400;
   line-height: 0.97;
   letter-spacing: -0.2rem;
@@ -185,7 +187,7 @@ body {
   .hi-card-info-F3T
   .auto-group-98ud-fN5
   .item--cYD {
-  margin-right: 2.2rem;
+  margin-right: 2rem;
   display: flex;
   font-size: 1.8rem;
   font-weight: 600;
@@ -203,7 +205,7 @@ body {
   .item-2500000--WtV {
   text-align: right;
   display: flex;
-  font-size: 2.4rem;
+  font-size: 2rem;
   font-weight: 600;
   line-height: 1.2125;
   color: #000000;
@@ -222,7 +224,7 @@ body {
   .hi-card-info-F3T
   .auto-group-1uhb-269
   .item--Y4V {
-  margin-right: 2.7rem;
+  margin-right: 2rem;
   display: flex;
   font-size: 1.8rem;
   font-weight: 600;
@@ -240,7 +242,7 @@ body {
   .item-1234000--uZF {
   text-align: right;
   display: flex;
-  font-size: 2.4rem;
+  font-size: 2rem;
   font-weight: 600;
   line-height: 1.2125;
   color: #000000;
@@ -292,7 +294,7 @@ body {
   .hi-card-point-y5F {
   margin-right: 6rem;
   display: flex;
-  font-size: 3rem;
+  font-size: 2.3rem;
   font-weight: 400;
   line-height: 0.6111111111;
   letter-spacing: -0.018rem;
@@ -309,7 +311,7 @@ body {
   .point-EV3
   .p-5ty {
   display: flex;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 400;
   line-height: 0.6111111111;
   letter-spacing: -0.018rem;
@@ -339,7 +341,7 @@ body {
   .hi-credit-grade-NNH {
   margin-right: 3rem;
   display: flex;
-  font-size: 3rem;
+  font-size: 2.3rem;
   font-weight: 400;
   line-height: 0.6111111111;
   letter-spacing: -0.018rem;
@@ -363,7 +365,7 @@ body {
 }
 .my--m5o .main-FLy .hi-card-Ayj .hi-card-point-jYH .frame-1000005709-DNu {
   width: 100%;
-  align-items: flex-end;
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
@@ -375,10 +377,10 @@ body {
   .frame-1000005709-DNu
   .frame-3-B4q {
   margin-bottom: 1rem;
-  width: 100%;
-  height: 5.6rem;
+  width: 28rem;
+  height: 5rem;
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 400;
   line-height: 0.97;
   letter-spacing: -0.036rem;
@@ -403,7 +405,7 @@ body {
   .hi-card-point-jYH
   .frame-1000005709-DNu
   .frame-1000005732-E37 {
-  margin: 0rem 1.95rem 0rem 18.75rem;
+  margin: 0rem 0rem 0rem 8rem;
   width: calc(100% - 13rem);
   display: flex;
   align-items: center;
@@ -416,7 +418,7 @@ body {
   .frame-1000005709-DNu
   .frame-1000005732-E37
   .item--kn9 {
-  margin-right: 5.2rem;
+  margin-right: 3rem;
   text-align: center;
   font-size: 1.3rem;
   font-weight: 400;
@@ -455,7 +457,7 @@ body {
 .my--m5o .main-FLy .by-card-group-eW9 .group-1000003124-YrR {
   box-sizing: border-box;
   padding: 3.3rem 9.6rem 5.6rem 5.2rem;
-  width: 100%;
+  width: 90%;
   height: 32.4rem;
   background: linear-gradient(
     280.43deg,
@@ -488,6 +490,7 @@ body {
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
+  margin-top: 2rem;
 }
 .my--m5o
   .main-FLy
@@ -674,7 +677,7 @@ body {
   .group-1000003117-HJD
   .auto-group-p6hk-Czq
   .auto-group-w9tz-XGR {
-  margin-right: 11rem;
+  margin-right: 3rem;
   width: 29.2rem;
   height: 100%;
   position: relative;
@@ -690,12 +693,12 @@ body {
   .group-1000003122-ftR {
   box-sizing: border-box;
   padding-top: 6.5rem;
-  width: 29.2rem;
+  width: 29.5rem;
   height: 19.2rem;
   position: absolute;
   left: 0;
-  top: 0.9rem;
-  row-gap: 1.3rem;
+  /* top: 0.9rem; */
+  row-gap: 1rem;
   display: flex;
   flex-direction: column;
   border-right: solid 0.1rem #000000;
@@ -779,13 +782,12 @@ body {
   .auto-group-p6hk-Czq
   .auto-group-w9tz-XGR
   .my-by-card-oWm {
-  width: 21rem;
-  height: 4.9rem;
-  position: absolute;
-  left: 0.75rem;
-  top: 0;
-  text-align: center;
-  font-size: 5rem;
+  width: 100%;
+  position: relative;
+  /* left: 0.75rem; */
+  /* top: 0; */
+  /* text-align: center; */
+  font-size: 3rem;
   font-weight: 400;
   line-height: 0.97;
   letter-spacing: -0.2rem;
@@ -826,9 +828,9 @@ body {
   .auto-group-mekx-HRw
   .frame-1000005727-cUD
   .by-card-point-in9 {
-  margin-right: 7rem;
+  margin-right: 6rem;
   display: flex;
-  font-size: 3.6rem;
+  font-size: 2.3rem;
   font-weight: 400;
   line-height: 0.6111111111;
   letter-spacing: -0.018rem;
@@ -847,7 +849,7 @@ body {
   .frame-1000005727-cUD
   .p-2Xw {
   display: flex;
-  font-size: 3.6rem;
+  font-size: 2.5rem;
   font-weight: 400;
   line-height: 0.6111111111;
   letter-spacing: -0.018rem;
@@ -865,7 +867,7 @@ body {
   .auto-group-mekx-HRw
   .frame-1000005709-N61 {
   width: 100%;
-  align-items: flex-end;
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
 }
@@ -879,10 +881,10 @@ body {
   .frame-1000005709-N61
   .frame-3-6Xo {
   margin-bottom: 1rem;
-  width: 100%;
-  height: 5.6rem;
+  width: 28rem;
+  height: 5rem;
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 400;
   line-height: 0.97;
   letter-spacing: -0.036rem;
@@ -910,8 +912,8 @@ body {
   .auto-group-mekx-HRw
   .frame-1000005709-N61
   .frame-1000005732-iZB {
-  margin: 0rem 1.4rem 0rem 21.15rem;
-  width: calc(100% - 22.55rem);
+  margin: 0rem 0rem 0rem 9rem;
+  width: calc(100% - 13rem);
   display: flex;
   align-items: center;
   flex-shrink: 0;

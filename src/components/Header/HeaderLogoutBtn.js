@@ -9,7 +9,7 @@ const HeaderDiv = styled.div`
   align-items: center;
   position: relative;
   box-sizing: border-box;
-  left: 5.5rem;
+  left: 8%;
   top: 3rem;
 `;
 
