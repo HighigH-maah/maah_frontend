@@ -5,37 +5,37 @@ import { Element } from "react-scroll";
 import styled, { keyframes, css } from "styled-components";
 import mainBackground from "../../assets/images/main_bg.png";
 import banner from "../../assets/images/banner.png";
-import blackvelvet from "../../assets/images/Black_velvet.png";
-import blackBack from "../../assets/images/black-back.png";
-import whitevelvet from "../../assets/images/White_velvet.png";
-import whiteBack from "../../assets/images/white-back.png";
-import pinkholoBack from "../../assets/images/pinkholo-back.png";
-import blueholoBack from "../../assets/images/blueholo-back.png";
-import midnightashBack from "../../assets/images/midnightash-back.png";
-import abouthi from "../../assets/images/aboutHi.png";
-import byCardGroup from "../../assets/images/ByCardGroup.png";
+import blackvelvet from "../../assets/images/black_velvet.png";
+import blackBack from "../../assets/images/black_back.png";
+import whitevelvet from "../../assets/images/white_velvet.png";
+import whiteBack from "../../assets/images/white_velvet_back.png";
+import pinkholoBack from "../../assets/images/pink_holo_back.png";
+import blueholoBack from "../../assets/images/blue_holo_back.png";
+import midnightashBack from "../../assets/images/midnight_ash_back.png";
+import abouthi from "../../assets/images/about_hi.png";
+import byCardGroup from "../../assets/images/by_card_group.png";
 import create from "../../assets/images/create.png";
 import benefit from "../../assets/images/benefit.png";
 import share from "../../assets/images/share.png";
-import whymaah from "../../assets/images/Whymaah.png";
+import whymaah from "../../assets/images/why_maah.png";
 import reverse from "../../assets/images/reverse.png";
-import cardcheck from "../../assets/images/card-check.png";
+import cardcheck from "../../assets/images/card_check.png";
 import history from "../../assets/images/history.png";
 import limit from "../../assets/images/limit.png";
 import coupon from "../../assets/images/coupon.png";
 import diamond from "../../assets/images/diamond.png";
-import annotation from "../../assets/images/annotation-alert.png";
-import nasa from "../../assets/images/NASA.png";
-import star from "../../assets/images/Star.png";
-import universe from "../../assets/images/Universe.png";
+import annotation from "../../assets/images/annotation_alert.png";
+import nasa from "../../assets/images/nasa.png";
+import star from "../../assets/images/star.png";
+import universe from "../../assets/images/universe.png";
 import eco from "../../assets/images/에코카드.png";
-import union from "../../assets/images/Union.png";
-import stone from "../../assets/images/STONE.png";
-import shoot from "../../assets/images/Shoot.png";
-import dolls from "../../assets/images/DOLLS.png";
-import midnightash from "../../assets/images/midnightash.png";
-import blueholo from "../../assets/images/blueholo.png";
-import pinkholo from "../../assets/images/pinkholo.png";
+import union from "../../assets/images/union.png";
+import stone from "../../assets/images/stone.png";
+import shoot from "../../assets/images/shoot.png";
+import dolls from "../../assets/images/dolls.png";
+import midnightash from "../../assets/images/midnight_ash.png";
+import blueholo from "../../assets/images/blue_holo.png";
+import pinkholo from "../../assets/images/pink_holo.png";
 export const TopSection = () => {
   return (
     <MainPage1>
@@ -573,6 +573,7 @@ export const AboutMaah = styled.div`
   display: flex;
   position: relative;
   top: 15rem;
+  justify-content: space-between;
 `;
 
 export const ByCardSection = styled.div`
@@ -693,7 +694,7 @@ export const fadeInRight = keyframes`
 
 export const ImageContainer = styled.div`
   width: 700px;
-  margin: 50px auto;
+  margin: 50px 0;
   opacity: 0;
   animation: ${({ visible }) =>
     visible

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import maahbiglogo from "../../assets/images/Logo/MaahBigLogo.png";
+import maahbiglogo from "../../assets/images/Logo/maah_big_logo.png";
 import { Link } from "react-router-dom";
 
 const HeaderDiv = styled.div`
@@ -9,7 +9,7 @@ const HeaderDiv = styled.div`
   align-items: center;
   position: relative;
   box-sizing: border-box;
-  padding-left: 8%;
+  left: 5.5rem;
   top: 3rem;
 `;
 
@@ -57,7 +57,7 @@ const HeaderMenuBar = styled.div`
   flex-shrink: 0;
   align-items: center;
   position: relative;
-  left: 50%;
+  left: 40%;
 `;
 
 const HeaderMenuMy = styled.p`

@@ -16,6 +16,7 @@ import VirtualCardApply from "./components/HiCard/VirtualCardApply";
 import MyPaymentHistory from "./components/HiCard/MyPaymentHistory";
 import VirtualCardNumView from "./components/HiCard/VirtualCardNumView";
 import MyAccountChange from "./components/HiCard/MyAccountChange";
+import MyCardList from "./pages/My/MyCardList";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -24,9 +25,9 @@ root.render(
       <Route path="/" element={<Main />}></Route>
       <Route path="/header" element={<HeaderLogoutBtn />}></Route>
       <Route path="/footer" element={<Footer />}></Route>
-      <Route path="/hicard" element={<HiCardDesignSelect />}></Route>
+      <Route path="/hiCard" element={<HiCardDesignSelect />}></Route>
       <Route path="/share" element={<Share />}></Route>
-      <Route path="/cardcompare" element={<CardCompare />}></Route>
+      <Route path="/cardCompare" element={<CardCompare />}></Route>
       <Route path="/signUp" element={<SignUp />}></Route>
       <Route path="/hiCardDetail" element={<HiCard />}></Route>
       <Route path="/myPaymentHistory" element={<MyPaymentHistory />}></Route>
@@ -36,6 +37,7 @@ root.render(
         path="/virtualCardNumView"
         element={<VirtualCardNumView />}
       ></Route>
+      <Route path="/mycardlist" element={<MyCardList />}></Route>
     </Routes>
   </BrowserRouter>
 );
