@@ -9,8 +9,8 @@ const HeaderDiv = styled.div`
   align-items: center;
   position: relative;
   box-sizing: border-box;
-  left: 5.5rem;
   top: 3rem;
+  justify-content: center;
 `;
 
 const HeaderLogoMenuDiv = styled.div`

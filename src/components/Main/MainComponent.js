@@ -197,7 +197,7 @@ export const BackImage = styled.div`
   background-image: url(${mainBackground});
   background-size: cover;
   background-repeat: no-repeat;
-  height: 5000px;
+  height: 520vh;
 `;
 
 export const MainPage1 = styled.div`
@@ -206,6 +206,7 @@ export const MainPage1 = styled.div`
   width: 100%;
   height: 90vh;
   display: flex;
+  justify-content: flex-end;
   & > div {
     display: inline-block;
     vertical-align: top;
