@@ -47,7 +47,7 @@ function CardCompare(props) {
 
   const handleMaahClick = async () => {
     axios
-      .post("/allbycards.do", {})
+      .get("/allbycards.do", {})
       .then(function (res) {
         console.log(res.data);
         setByCard(res.data);
