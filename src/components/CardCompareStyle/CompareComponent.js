@@ -2,7 +2,7 @@ import styled from "styled-components";
 import circle from "../../assets/images/circle.png";
 import blackVelvet from "../../assets/images/Black_velvet.png";
 export const SelectDiv = styled.div`
-  background-color: lightgray;
+  background: linear-gradient(180deg, #fff 0%, #f0f0f0 100%);
   position: relative;
   height: 380px;
   margin: 0 auto;
@@ -29,6 +29,7 @@ export const CardExample = styled.button`
   border: none;
   color: black;
   height: 40px;
+  background: white;
   border-radius: 50px;
   box-shadow: 0px 4px 4px #0000004d;
   font-weight: bolder;
@@ -99,12 +100,12 @@ export const CompanyBtn = styled.button`
   height: 80px;
   color: ${(props) => (props.isSelected ? "#fff" : "black")};
   border-radius: 20px;
-  background-color: ${(props) =>
+  background: ${(props) =>
     props.isSelected
       ? props.isCardCompany
-        ? "white"
+        ? "gray"
         : props.isOnlyMaah
-        ? "#707070"
+        ? "gray"
         : props.isCategory
         ? "#000000"
         : "black"
@@ -180,7 +181,7 @@ export const CardList = styled.div`
   gap: 2rem;
   display: flex;
   flex-direction: row;
-  background-color: white;
+  background: linear-gradient(180deg, #fff 0%, #f0f0f0 100%);
   position: relative;
   margin: 0 auto;
   border-radius: 10px;
@@ -268,8 +269,15 @@ export const DetailBtnDiv = styled.div`
   & > button {
     font-weight: bolder;
     border: none;
+    color: white;
     border-radius: 5px;
     margin-right: 2rem;
+    background: linear-gradient(
+      180deg,
+      rgba(188, 186, 179, 0.85) 0%,
+      rgba(177, 173, 149, 0.97) 34%,
+      rgba(130, 128, 117, 0.87) 98%
+    );
     margin-top: 2rem;
     width: 199px;
     height: 56px;

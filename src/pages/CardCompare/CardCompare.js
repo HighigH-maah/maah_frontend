@@ -5,7 +5,7 @@ import hyundai from "../../assets/images/hyundai.png";
 import samsung from "../../assets/images/samsung.png";
 import lotte from "../../assets/images/lotte.png";
 import maahSmall from "../../assets/images/Maah_small.png";
-import { BackImage, Mainback } from "../../components/Main/MainComponent";
+import { BackImage, Mainback } from "../../components/MainStyle/MainComponent";
 
 import {
   Benefit,
@@ -28,7 +28,7 @@ import {
   ListDiv,
   SecondDiv,
   SelectDiv,
-} from "../../components/CardCompare/CompareComponent";
+} from "../../components/CardCompareStyle/CompareComponent";
 import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
 import Footer from "../../components/Footer/Footer";
 import axios from "axios";
@@ -118,14 +118,16 @@ function CardCompare(props) {
               <span>Only Ma:ah</span>
               <Btn
                 image={maahSmall}
-                color={"#E6E6E6"}
+                color={
+                  "linear-gradient(180deg, #C6C6C6 0%, rgba(207, 198, 170, 0.00) 100%)"
+                }
                 title={"Ma:ah 카드 모아보기"}
                 isOnlyMaah={true}
                 onClick={handleMaahClick}
                 isSelected={selectedMaah}
               />
             </Company>
-            <Company>
+            <Company style={{ marginLeft: "1rem" }}>
               <span>Category</span>
               <CategoryDiv>
                 <CategoryBtn
