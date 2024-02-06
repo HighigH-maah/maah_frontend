@@ -52,7 +52,16 @@ export const BtnWrapper = styled.div`
   }
 `;
 
-export const Btn = ({ image, color, title }) => {
+export const Btn = ({
+  image,
+  color,
+  title,
+  isOnlyMaah,
+  isCardCompany,
+  isSelected,
+  isCategory,
+  onClick,
+}) => {
   let imgWidth = 48;
   let imgHeight = 48;
 
@@ -63,7 +72,14 @@ export const Btn = ({ image, color, title }) => {
 
   return (
     <BtnWrapper>
-      <CompanyBtn color={color}>
+      <CompanyBtn
+        color={color}
+        isOnlyMaah={isOnlyMaah}
+        isSelected={isSelected}
+        onClick={onClick}
+        isCategory={isCategory}
+        isCardCompany={isCardCompany}
+      >
         <img src={image} alt={title} width={imgWidth} height={imgHeight} />
       </CompanyBtn>
       <span>{title}</span>
@@ -81,10 +97,18 @@ export const CompanyBtn = styled.button`
   align-items: center;
   justify-content: center;
   height: 80px;
-  color: black;
+  color: ${(props) => (props.isSelected ? "#fff" : "black")};
   border-radius: 20px;
-  background-color: ${(props) => props.color || "#feffce"};
-
+  background-color: ${(props) =>
+    props.isSelected
+      ? props.isCardCompany
+        ? "white"
+        : props.isOnlyMaah
+        ? "#707070"
+        : props.isCategory
+        ? "#000000"
+        : "black"
+      : props.color || "#feffce"};
   &:hover {
     box-shadow: 0px 4px 4px gray;
   }
@@ -99,22 +123,27 @@ export const CategoryDiv = styled.div`
   gap: 0.5rem;
 `;
 
-export const CategoryBtn = styled.div`
+export const CategoryBtn = styled.button`
   width: 129px;
   background-color: white;
   cursor: pointer;
   border-radius: 50px;
+  border: none;
   display: flex;
   height: 50px;
+  font-weight: bolder;
   font-size: 1rem;
   box-shadow: 0px 4px 4px #0000004d;
   align-items: center;
   justify-content: center;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  color: ${(props) => (props.isSelected ? "#fff" : "#000")};
+  background-color: ${(props) => (props.isSelected ? "#000" : "#fff")};
 
   &:hover {
     background: black;
     color: white;
+    box-shadow: 0px 4px 4px gray;
   }
 `;
 
@@ -170,13 +199,24 @@ const CardImage = styled.img`
   width: 120px;
   height: 180px;
 `;
-export const ExampleImage = () => {
-  return (
-    <ImageOverlay>
-      <img src={circle} alt="Circle" width="200" height="200" />
-      <CardImage src={blackVelvet} alt="Black Velvet" />
-    </ImageOverlay>
-  );
+
+export const ExampleImage = ({ image, name }) => {
+  if (image) {
+    console.log(image);
+    return (
+      <ImageOverlay>
+        <img src={circle} alt="Circle" width="200" height="200" />
+
+        <CardImage
+          src={require(`../../assets/images/${name}.png`).default}
+          alt={name}
+        />
+      </ImageOverlay>
+    );
+  } else {
+    console.error("Image prop is undefined.");
+    return null;
+  }
 };
 
 export const CardImageDiv = styled.div`
