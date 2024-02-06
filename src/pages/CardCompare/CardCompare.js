@@ -146,10 +146,10 @@ function CardCompare(props) {
                 </CategoryBtn>
                 <CategoryBtn
                   isCategory={true}
-                  onClick={() => handleCategoryClick("abroad")}
-                  isSelected={selectedCategory === "abroad"}
+                  onClick={() => handleCategoryClick("airport")}
+                  isSelected={selectedCategory === "airport"}
                 >
-                  🛫 해외여행
+                  🛫 항공
                 </CategoryBtn>
               </CategoryDiv>
               <CategoryDiv>
@@ -165,14 +165,62 @@ function CardCompare(props) {
                   onClick={() => handleCategoryClick("healthandliving")}
                   isSelected={selectedCategory === "healthandliving"}
                 >
-                  🏥 건강 및 생활
+                  🏥 건강/생활
                 </CategoryBtn>
                 <CategoryBtn
                   isCategory={true}
-                  onClick={() => handleCategoryClick("cultureandleisure")}
-                  isSelected={selectedCategory === "cultureandleisure"}
+                  onClick={() => handleCategoryClick("culture")}
+                  isSelected={selectedCategory === "culture"}
                 >
-                  🎈 문화 및 여가
+                  🎈 영화/문화
+                </CategoryBtn>
+              </CategoryDiv>
+
+              <CategoryDiv>
+                <CategoryBtn
+                  isCategory={true}
+                  onClick={() => handleCategoryClick("hospital")}
+                  isSelected={selectedCategory === "hospital"}
+                >
+                  💊 병원/약국
+                </CategoryBtn>
+                <CategoryBtn
+                  isCategory={true}
+                  onClick={() => handleCategoryClick("sports")}
+                  isSelected={selectedCategory === "sports"}
+                >
+                  🤺 레저/스포츠
+                </CategoryBtn>
+                <CategoryBtn
+                  isCategory={true}
+                  onClick={() => handleCategoryClick("shopping")}
+                  isSelected={selectedCategory === "shopping"}
+                >
+                  🛍️ 쇼핑
+                </CategoryBtn>
+              </CategoryDiv>
+
+              <CategoryDiv>
+                <CategoryBtn
+                  isCategory={true}
+                  onClick={() => handleCategoryClick("food")}
+                  isSelected={selectedCategory === "food"}
+                >
+                  🥘 푸드
+                </CategoryBtn>
+                <CategoryBtn
+                  isCategory={true}
+                  onClick={() => handleCategoryClick("travel")}
+                  isSelected={selectedCategory === "travel"}
+                >
+                  🧳 여행
+                </CategoryBtn>
+                <CategoryBtn
+                  isCategory={true}
+                  onClick={() => handleCategoryClick("education")}
+                  isSelected={selectedCategory === "education"}
+                >
+                  👩‍🍼 교육/육아
                 </CategoryBtn>
               </CategoryDiv>
             </Company>
@@ -195,15 +243,20 @@ function CardCompare(props) {
             byCard.map((card, index) => (
               <CardList key={index}>
                 <CardImageDiv>
-                  <ExampleImage
-                    image={card.by_image_path}
-                    name={card.by_name}
-                  ></ExampleImage>
+                  <ExampleImage></ExampleImage>
                 </CardImageDiv>
                 <CardDetailDiv>
-                  <CardTitle>{card.by_name}</CardTitle>
-                  <CardEvent>{card.event}</CardEvent>
-                  {/* Add other dynamic data rendering here */}
+                  <CardTitle>{card.byName}</CardTitle>
+                  <CardEvent>신규회원 연회비 캐쉬백 이벤트</CardEvent>
+                  <BenefitDiv>
+                    <Benefit>업종별 0.5~3% 적립</Benefit>|
+                    <Benefit>업종별 0.5~3% 적립</Benefit>|
+                    <Benefit>업종별 0.5~3% 적립</Benefit>
+                  </BenefitDiv>
+                  <ConditionDiv>
+                    <p>국내 전용 30,000원/해외겸용 30,000원</p>
+                    <p>전월 실적 50만원 이상</p>
+                  </ConditionDiv>
                 </CardDetailDiv>
                 <DetailBtnDiv>
                   <button>자세히 보기</button>
@@ -217,9 +270,17 @@ function CardCompare(props) {
                 <ExampleImage></ExampleImage>
               </CardImageDiv>
               <CardDetailDiv>
-                <CardTitle>Default Card Title</CardTitle>
-                <CardEvent>Default Card Event</CardEvent>
-                {/* Add other default state rendering here */}
+                <CardTitle>마하카드</CardTitle>
+                <CardEvent>신규회원 연회비 캐쉬백 이벤트</CardEvent>
+                <BenefitDiv>
+                  <Benefit>업종별 0.5~3% 적립</Benefit>|
+                  <Benefit>업종별 0.5~3% 적립</Benefit>|
+                  <Benefit>업종별 0.5~3% 적립</Benefit>
+                </BenefitDiv>
+                <ConditionDiv>
+                  <p>국내 전용 30,000원/해외겸용 30,000원</p>
+                  <p>전월 실적 50만원 이상</p>
+                </ConditionDiv>
               </CardDetailDiv>
               <DetailBtnDiv>
                 <button>자세히 보기</button>

@@ -153,7 +153,7 @@ export const FirstDiv = styled.div`
   flex-direction: row;
   width: 69rem;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
   margin-top: 1rem;
 `;
@@ -207,11 +207,12 @@ export const ExampleImage = ({ image, name }) => {
     return (
       <ImageOverlay>
         <img src={circle} alt="Circle" width="200" height="200" />
+        <CardImage src={blackVelvet} alt={"The Velvet"} />
 
-        <CardImage
+        {/* <CardImage
           src={require(`../../assets/images/${name}.png`).default}
           alt={name}
-        />
+        /> */}
       </ImageOverlay>
     );
   } else {
