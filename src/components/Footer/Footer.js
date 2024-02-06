@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import MaahSmallLogo from "../../assets/images/Logo/MaahSmallLogoWhite.png";
+import MaahSmallLogo from "../../assets/images/Logo/maah_small_logo_white.png";
 
 const FooterDiv = styled.div`
   box-sizing: border-box;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import maahbiglogo from "../../assets/images/Logo/MaahBigLogo.png";
+import maahbiglogo from "../../assets/images/Logo/maah_big_logo.png";
 import { Link } from "react-router-dom";
 
 const HeaderDiv = styled.div`
