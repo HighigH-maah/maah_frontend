@@ -114,9 +114,9 @@ const FooterMenuDown = styled.div`
   flex-direction: column;
 `;
 
-function Footer(props) {
+function Footer({ position, top }) {
   return (
-    <FooterDiv>
+    <FooterDiv style={{ position, top }}>
       <FooterAllDiv>
         <FooterTopMenu>
           <LogoBox>
