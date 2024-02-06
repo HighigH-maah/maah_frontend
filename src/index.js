@@ -8,7 +8,7 @@ import HeaderLogoutBtn from "./components/Header/HeaderLogoutBtn";
 import HiCardDesignSelect from "./pages/HiCardDesignSelect/HiCardDesignSelect";
 import Main from "./pages/Main/Main";
 import Main2 from "./pages/Main/Main2";
-
+import MyCardList from "./pages/My/MyCardList";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -19,6 +19,7 @@ root.render(
       <Route path="/footer" element={<Footer />}></Route>
       <Route path="/2" element={<Main2 />}></Route>
       <Route path="/hicard" element={<HiCardDesignSelect />}></Route>
+      <Route path="/mycardlist" element={<MyCardList />}></Route>
     </Routes>
   </BrowserRouter>
 );
