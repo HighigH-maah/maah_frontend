@@ -1,18 +1,18 @@
 import React from "react";
 import "./share.css";
 import styled from "styled-components";
-import axios from "axios";
+//import axios from "axios";
 
-axios
-  .post("/member.do", {
-    member_id: "user3",
-  })
-  .then(function (res) {
-    console.log(res.data);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+// axios
+//   .post("/member.do", {
+//     member_id: "user3",
+//   })
+//   .then(function (res) {
+//     console.log(res.data);
+//   })
+//   .catch(function (error) {
+//     console.log(error);
+//   });
 
 const ShareBack = styled.div`
   width: auto;

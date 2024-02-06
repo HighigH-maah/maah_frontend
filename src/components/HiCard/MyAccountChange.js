@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import axios from "axios";
+//import axios from "axios";
 
 const MyAccountChangeDiv = styled.div`
     box-sizing: border-box;
@@ -156,16 +156,16 @@ const InputBox = styled.input`
   font-size: 20px;
 `;
 
-axios
-  .post("/member.do", {
-    member_id: "user3",
-  })
-  .then(function (res) {
-    console.log(res.data);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+// axios
+//   .post("/member.do", {
+//     member_id: "user3",
+//   })
+//   .then(function (res) {
+//     console.log(res.data);
+//   })
+//   .catch(function (error) {
+//     console.log(error);
+//   });
 
 function MyAccountChange(props) {
   return (
