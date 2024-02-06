@@ -573,6 +573,7 @@ export const AboutMaah = styled.div`
   display: flex;
   position: relative;
   top: 15rem;
+  justify-content: space-between;
 `;
 
 export const ByCardSection = styled.div`
@@ -693,7 +694,7 @@ export const fadeInRight = keyframes`
 
 export const ImageContainer = styled.div`
   width: 700px;
-  margin: 50px auto;
+  margin: 50px 0;
   opacity: 0;
   animation: ${({ visible }) =>
     visible
