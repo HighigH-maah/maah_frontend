@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 //import axios from "axios";
 
@@ -168,8 +169,27 @@ const InputBox = styled.input`
 //   });
 
 function MyAccountChange(props) {
+  const [hiCardAccountInfo, setHiCardAccountInfo] = useState([]);
+
+  useEffect(() => {
+    axios({
+      method: "post",
+      url: "/getAccountInfo.do",
+      data: { memberId: "user3" },
+    })
+      .then((res) => {
+        console.log(res.data);
+        console.log("성공 성공 성공 성공 성공 성공");
+        setHiCardAccountInfo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("실패 실패 실패 실패 실패 실패");
+      });
+  }, []); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
+
   return (
-    <MyAccountChangeDiv>
+    <MyAccountChangeDiv hiCardAccountInfo={hiCardAccountInfo}>
       <div className="modalTitle">Hi:Card 연결 계좌 변경</div>
 
       <CurrentInfo>
@@ -177,15 +197,15 @@ function MyAccountChange(props) {
         <div className="currentCardInfoDiv">
           <div className="currentCardInfo">
             <p className="title">현재 결제은행</p>
-            <p className="value">우리은행</p>
+            <p className="value">{hiCardAccountInfo.bankName}</p>
           </div>
           <div className="currentCardInfo">
             <p className="title">현재 계좌번호</p>
-            <p className="value">10022551*****</p>
+            <p className="value">{hiCardAccountInfo.memberHiAccountNumber}</p>
           </div>
           <div className="currentCardInfo">
             <p className="title">카드번호</p>
-            <p className="value">1234-****-****-5678</p>
+            <p className="value">{hiCardAccountInfo.memberHiNumber}</p>
           </div>
         </div>
       </CurrentInfo>

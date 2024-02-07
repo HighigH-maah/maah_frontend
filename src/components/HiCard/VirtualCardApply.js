@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-<<<<<<< Updated upstream
 //import close from "../../assets/images/close.png";
-=======
-import close from "../../assets/images/close.png";
->>>>>>> Stashed changes
 
 const VirtualCardApplyDiv = styled.div`
   //position: absolute;
@@ -31,7 +27,6 @@ const VirtualCardApplyDiv = styled.div`
   }
 `;
 
-<<<<<<< Updated upstream
 // const ModalClose = styled.img`
 //   position: absolute;
 //   top: 20px;
@@ -185,23 +180,10 @@ function VirtualCardApply(props) {
     // 본인 인증이 완료되면 setAuthChecked(true)로 설정합니다
     setAuthChecked(true);
     console.log("본인인증 버튼 클릭");
-=======
-const ModalClose = styled.img`
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  cursor: pointer;
-`;
-
-function VirtualCardApply(props) {
-  const closeModal = () => {
-    props.onClose();
->>>>>>> Stashed changes
   };
 
   return (
     <VirtualCardApplyDiv>
-<<<<<<< Updated upstream
       {/* <ModalClose src={close}></ModalClose> */}
       <p className="ModalTitle">가상 카드 발급신청</p>
 
@@ -242,11 +224,6 @@ function VirtualCardApply(props) {
           <AuthCheckBtn onClick={handleAuthCheck}>본인인증</AuthCheckBtn>
         )}
       </EleBox>
-=======
-      <ModalClose src={close} onClick={closeModal}></ModalClose>
-      <p>가상 카드 발급신청</p>
-      <p>서비스 이용약관</p>
->>>>>>> Stashed changes
     </VirtualCardApplyDiv>
   );
 }
