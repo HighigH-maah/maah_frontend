@@ -22,6 +22,7 @@ import {
   CategoryDiv,
   Company,
   ConditionDiv,
+  DefaultCardDiv,
   DetailBtnDiv,
   ExampleImage,
   FirstDiv,
@@ -43,9 +44,27 @@ function CardCompare(props) {
   const [byCard, setByCard] = useState([]);
   const [otherCard, setOtherCard] = useState([]);
 
+  const [selectedOther, setselectedOther] = useState(null);
+
   const handleCompanyClick = (company) => {
     setSelectedCompany(company);
     console.log(company);
+  };
+
+  const handleselectedOtherClick = (otherClicked) => {
+    setselectedOther(otherClicked);
+    console.log("selectedOther:", otherClicked);
+    axios
+      .post("/byCardsByOther.do", {
+        otherName: otherClicked,
+      })
+      .then(function (res) {
+        console.log(res.data);
+        setByCard(res.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   const handleMaahClick = async () => {
@@ -246,17 +265,21 @@ function CardCompare(props) {
           <SecondDiv>
             <Company>
               <span>Card </span>
-              <BtnDiv>
+              <BtnDiv style={{ width: "69rem", flexWrap: "wrap" }}>
                 {otherCard.map((other, index) => (
-                  <CardExample key={index}>{other.otherName}</CardExample>
+                  <CardExample
+                    key={index}
+                    onClick={() => handleselectedOtherClick(other.otherName)}
+                  >
+                    {other.otherName}
+                  </CardExample>
                 ))}
               </BtnDiv>
             </Company>
           </SecondDiv>
         </SelectDiv>
-
         <ListDiv>
-          {selectedMaah ? (
+          {selectedMaah || selectedOther ? (
             byCard.map((card, index) => (
               <CardList key={index}>
                 <CardImageDiv>
@@ -297,96 +320,9 @@ function CardCompare(props) {
               </CardList>
             ))
           ) : (
-            // Render a default state when "Ma:ah 카드 모아보기" is not selected
-            <CardList>
-              <CardImageDiv>
-                <ExampleImage></ExampleImage>
-              </CardImageDiv>
-              <CardDetailDiv>
-                <CardTitle>마하카드</CardTitle>
-                <CardEvent>신규회원 연회비 캐쉬백 이벤트</CardEvent>
-                <BenefitDiv>
-                  <Benefit>업종별 0.5~3% 적립</Benefit>|
-                  <Benefit>업종별 0.5~3% 적립</Benefit>|
-                  <Benefit>업종별 0.5~3% 적립</Benefit>
-                </BenefitDiv>
-                <ConditionDiv>
-                  <p>국내 전용 30,000원/해외겸용 30,000원</p>
-                  <p>전월 실적 50만원 이상</p>
-                </ConditionDiv>
-              </CardDetailDiv>
-              <DetailBtnDiv>
-                <button>자세히 보기</button>
-              </DetailBtnDiv>
-            </CardList>
+            <DefaultCardDiv />
           )}
         </ListDiv>
-        {/* <CardList data={selectedMaah ? byCard : []}>
-            <CardImageDiv>
-              <ExampleImage></ExampleImage>
-            </CardImageDiv>
-            <CardDetailDiv>
-              <CardTitle>마하카드</CardTitle>
-              <CardEvent>신규회원 연회비 캐쉬백 이벤트</CardEvent>
-              <BenefitDiv>
-                <Benefit>업종별 0.5~3% 적립</Benefit>|
-                <Benefit>업종별 0.5~3% 적립</Benefit>|
-                <Benefit>업종별 0.5~3% 적립</Benefit>
-              </BenefitDiv>
-              <ConditionDiv>
-                <p>국내 전용 30,000원/해외겸용 30,000원</p>
-                <p>전월 실적 50만원 이상</p>
-              </ConditionDiv>
-            </CardDetailDiv>
-            <DetailBtnDiv>
-              <button>자세히 보기</button>
-            </DetailBtnDiv>
-          </CardList>
-
-          <CardList>
-            <CardImageDiv>
-              <ExampleImage></ExampleImage>
-            </CardImageDiv>
-            <CardDetailDiv>
-              <CardTitle>마하카드</CardTitle>
-              <CardEvent>신규회원 연회비 캐쉬백 이벤트</CardEvent>
-              <BenefitDiv>
-                <Benefit>업종별 0.5~3% 적립</Benefit>|
-                <Benefit>업종별 0.5~3% 적립</Benefit>|
-                <Benefit>업종별 0.5~3% 적립</Benefit>
-              </BenefitDiv>
-              <ConditionDiv>
-                <p>국내 전용 30,000원/해외겸용 30,000원</p>
-                <p>전월 실적 50만원 이상</p>
-              </ConditionDiv>
-            </CardDetailDiv>
-            <DetailBtnDiv>
-              <button>자세히 보기</button>
-            </DetailBtnDiv>
-          </CardList>
-
-          <CardList>
-            <CardImageDiv>
-              <ExampleImage></ExampleImage>
-            </CardImageDiv>
-            <CardDetailDiv>
-              <CardTitle>마하카드</CardTitle>
-              <CardEvent>신규회원 연회비 캐쉬백 이벤트</CardEvent>
-              <BenefitDiv>
-                <Benefit>업종별 0.5~3% 적립</Benefit>|
-                <Benefit>업종별 0.5~3% 적립</Benefit>|
-                <Benefit>업종별 0.5~3% 적립</Benefit>
-              </BenefitDiv>
-              <ConditionDiv>
-                <p>국내 전용 30,000원/해외겸용 30,000원</p>
-                <p>전월 실적 50만원 이상</p>
-              </ConditionDiv>
-            </CardDetailDiv>
-            <DetailBtnDiv>
-              <button>자세히 보기</button>
-            </DetailBtnDiv>
-          </CardList>
-        </ListDiv> */}
         <Footer position="relative" top="40rem"></Footer>
       </BackImage>
     </Mainback>

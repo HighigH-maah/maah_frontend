@@ -4,7 +4,7 @@ import blackVelvet from "../../assets/images/black_velvet.png";
 export const SelectDiv = styled.div`
   background: linear-gradient(180deg, #fff 0%, #f0f0f0 100%);
   position: relative;
-  height: 471px;
+  height: 522px;
   margin: 0 auto;
   color: black;
   display: flex;
@@ -52,6 +52,32 @@ export const BtnWrapper = styled.div`
     font-size: 1rem;
   }
 `;
+
+export const DefaultCardDiv = () => {
+  return (
+    <CardList>
+      <CardImageDiv>
+        <ExampleImage></ExampleImage>
+      </CardImageDiv>
+      <CardDetailDiv>
+        <CardTitle>마하카드</CardTitle>
+        <CardEvent>신규회원 연회비 캐쉬백 이벤트</CardEvent>
+        <BenefitDiv>
+          <Benefit>업종별 0.5~3% 적립</Benefit>|
+          <Benefit>업종별 0.5~3% 적립</Benefit>|
+          <Benefit>업종별 0.5~3% 적립</Benefit>
+        </BenefitDiv>
+        <ConditionDiv>
+          <p>국내 전용 30,000원/해외겸용 30,000원</p>
+          <p>전월 실적 50만원 이상</p>
+        </ConditionDiv>
+      </CardDetailDiv>
+      <DetailBtnDiv>
+        <button>자세히 보기</button>
+      </DetailBtnDiv>
+    </CardList>
+  );
+};
 
 export const Btn = ({
   image,
@@ -117,6 +143,9 @@ export const CompanyBtn = styled.button`
 export const BtnDiv = styled.div`
   display: flex;
   gap: 1rem;
+
+  // width: 69rem;
+  // flex-wrap: wrap;
 `;
 
 export const CategoryDiv = styled.div`
