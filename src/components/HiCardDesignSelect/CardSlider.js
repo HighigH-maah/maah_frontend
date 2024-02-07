@@ -93,7 +93,7 @@ const NextTo = styled.img`
   transform: rotateY(180deg);
 `;
 
-export default function SimpleSlider() {
+export default function CardSlider() {
   const [blackVelvet, setBlackVelvet] = useState(true);
   const [whiteVelvet, setWhiteVelvet] = useState(true);
   const [midnightAsh, setMidnightAsh] = useState(true);

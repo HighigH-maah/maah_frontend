@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import CardApplicationTerms from "../CardApplicationTerms/CardApplicationTerms";
-import SimpleSlider from "./SimpleSlider";
+import CardSlider from "../../components/HiCardDesignSelect/CardSlider";
 
 const SelectDesign = styled.div`
   background: linear-gradient(180deg, #fffdfd 37.44%, #d7d7d7 100%);
@@ -38,7 +38,7 @@ function HiCardDesignSelect() {
         <MainTitle>Hi:Card 신청</MainTitle>
         <SubTitle>마음에 드는 디자인을 골라주세요</SubTitle>
         <CardList>
-          <SimpleSlider></SimpleSlider>
+          <CardSlider></CardSlider>
         </CardList>
       </SelectDesign>
       <ModalWrap id="cardApplicationTerms">
