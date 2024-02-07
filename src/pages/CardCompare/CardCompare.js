@@ -4,7 +4,7 @@ import shinhan from "../../assets/images/shinhan.png";
 import hyundai from "../../assets/images/hyundai.png";
 import samsung from "../../assets/images/samsung.png";
 import lotte from "../../assets/images/lotte.png";
-import maahSmall from "../../assets/images/Maah_small.png";
+import maahSmall from "../../assets/images/maah_small.png";
 import { BackImage, Mainback } from "../../components/MainStyle/MainComponent";
 
 import {
@@ -38,6 +38,8 @@ function CardCompare(props) {
   const [selectedMaah, setSelectedMaah] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
 
+  const [benefitList, setBenefitList] = useState([]);
+
   const [byCard, setByCard] = useState([]);
 
   const handleCompanyClick = (company) => {
@@ -50,8 +52,10 @@ function CardCompare(props) {
       .get("/allbycards.do", {})
       .then(function (res) {
         console.log(res.data);
+        console.log("bebefirList:", res.data.benefitList);
         setByCard(res.data);
         setSelectedMaah(true);
+        setBenefitList(res.data.benefitList);
       })
       .catch(function (error) {
         console.log(error);
@@ -247,15 +251,31 @@ function CardCompare(props) {
                 </CardImageDiv>
                 <CardDetailDiv>
                   <CardTitle>{card.byName}</CardTitle>
-                  <CardEvent>신규회원 연회비 캐쉬백 이벤트</CardEvent>
+                  {card.byCategoryList && card.byCategoryList.length > 0 ? (
+                    <CardEvent>
+                      {card.byCategoryList.some(
+                        (category) => category.trim() === "전체"
+                      )
+                        ? "All Categories"
+                        : card.byCategoryList.join(" | ")}
+                    </CardEvent>
+                  ) : (
+                    <CardEvent>All Categories</CardEvent>
+                  )}
                   <BenefitDiv>
-                    <Benefit>업종별 0.5~3% 적립</Benefit>|
-                    <Benefit>업종별 0.5~3% 적립</Benefit>|
-                    <Benefit>업종별 0.5~3% 적립</Benefit>
+                    {card.benefitList && card.benefitList.length > 0 ? (
+                      card.benefitList
+                        .slice(0, 3)
+                        .map((benefit, idx) => (
+                          <Benefit key={idx}>{benefit}</Benefit>
+                        ))
+                    ) : (
+                      <Benefit>기본 By:Card</Benefit>
+                    )}
                   </BenefitDiv>
                   <ConditionDiv>
-                    <p>국내 전용 30,000원/해외겸용 30,000원</p>
-                    <p>전월 실적 50만원 이상</p>
+                    <p>최소한도 {card.byMinLimit}원</p>
+                    <p>교통카드 {card.byIsTransport ? "가능" : "불가능"}</p>
                   </ConditionDiv>
                 </CardDetailDiv>
                 <DetailBtnDiv>

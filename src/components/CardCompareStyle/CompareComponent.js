@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import circle from "../../assets/images/circle.png";
-import blackVelvet from "../../assets/images/Black_velvet.png";
+import blackVelvet from "../../assets/images/black_velvet.png";
 export const SelectDiv = styled.div`
   background: linear-gradient(180deg, #fff 0%, #f0f0f0 100%);
   position: relative;
@@ -200,26 +200,38 @@ const CardImage = styled.img`
   width: 120px;
   height: 180px;
 `;
+export const ExampleImage = () => {
+  return (
+    <ImageOverlay>
+      <img src={circle} alt="Circle" width="200" height="200" />
+      <CardImage src={blackVelvet} alt={"The Velvet"} />
 
-export const ExampleImage = ({ image, name }) => {
-  if (image) {
-    console.log(image);
-    return (
-      <ImageOverlay>
-        <img src={circle} alt="Circle" width="200" height="200" />
-        <CardImage src={blackVelvet} alt={"The Velvet"} />
-
-        {/* <CardImage
+      {/* <CardImage
           src={require(`../../assets/images/${name}.png`).default}
           alt={name}
         /> */}
-      </ImageOverlay>
-    );
-  } else {
-    console.error("Image prop is undefined.");
-    return null;
-  }
+    </ImageOverlay>
+  );
 };
+// export const ExampleImage = ({ image, name }) => {
+//   if (image) {
+//     console.log(image);
+//     return (
+//       <ImageOverlay>
+//         <img src={circle} alt="Circle" width="200" height="200" />
+//         <CardImage src={blackVelvet} alt={"The Velvet"} />
+
+//         {/* <CardImage
+//           src={require(`../../assets/images/${name}.png`).default}
+//           alt={name}
+//         /> */}
+//       </ImageOverlay>
+//     );
+//   } else {
+//     console.error("Image prop is undefined.");
+//     return null;
+//   }
+// };
 
 export const CardImageDiv = styled.div`
   display: flex;
