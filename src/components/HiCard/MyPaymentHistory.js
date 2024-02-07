@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactDatePicker from "react-datepicker";
 import styled from "styled-components";
 
 import "react-datepicker/dist/react-datepicker.css";
+import axios from "axios";
 
 const MyPaymentHistoryDiv = styled.div`
   box-sizing: border-box;
@@ -93,6 +94,7 @@ const Days = styled.div`
 `;
 
 const HistoryListBox = styled.div`
+  margin-bottom: 2rem;
   box-sizing: border-box;
   padding: 1rem 4rem;
   width: 100%;
@@ -167,8 +169,32 @@ const HistoryListBox = styled.div`
 `;
 
 function MyPaymentHistory(props) {
+  const [hiCardHistory, setHiCardHistory] = useState([]);
+
+  useEffect(() => {
+    axios({
+      method: "post",
+      url: "/getHicardHistory.do",
+      data: { memberId: "user3" },
+    })
+      .then((res) => {
+        console.log(res.data);
+        console.log("성공 성공 성공 성공 성공 성공");
+        setHiCardHistory(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("실패 실패 실패 실패 실패 실패");
+      });
+  }, []); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
+
+  return <HiCardHistory hiCardHistory={hiCardHistory}></HiCardHistory>;
+}
+
+function HiCardHistory({ hiCardHistory }) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+
   return (
     <MyPaymentHistoryDiv>
       <p>나의 결제 이력</p>
@@ -202,18 +228,21 @@ function MyPaymentHistory(props) {
           />
         </Days>
       </Fillter>
-      <HistoryListBox>
-        <div className="box1">
-          <div className="box2">
-            <p className="contentName">스타벅스코리아</p>
-            <p className="contentPrice">13500원</p>
-          </div>
 
-          <p className="contentDate">2024.01.29</p>
-        </div>
-      </HistoryListBox>
+      {hiCardHistory &&
+        hiCardHistory.map((board, index) => (
+          <HistoryListBox key={index}>
+            <div className="box1">
+              <div className="box2">
+                <p className="contentName">{board.cardHistoryStore}</p>
+                <p className="contentPrice">{board.cardHistoryAmount}원</p>
+              </div>
+
+              <p className="contentDate">{board.cardHistoryDate}</p>
+            </div>
+          </HistoryListBox>
+        ))}
     </MyPaymentHistoryDiv>
   );
 }
-
 export default MyPaymentHistory;

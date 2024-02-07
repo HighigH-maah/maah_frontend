@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import cardImg from "../../assets/icon/HICard.png";
 import cardGradeImg from "../../assets/icon/bronze.png";
@@ -21,6 +21,7 @@ import close from "../../assets/images/close.png";
 import MyPaymentHistory from "./MyPaymentHistory";
 import VirtualCardNumView from "./VirtualCardNumView";
 import MyAccountChange from "./MyAccountChange";
+import axios from "axios";
 
 const HiCardDiv = styled.div`
   display: flex;
@@ -73,7 +74,7 @@ const HiCardDetailRight = styled.div`
   flex-direction: column;
 
   .name1 {
-    margin-bottom: 0rem;
+    margin-bottom: 1.5rem;
     font-size: 3rem;
     font-weight: 400;
     line-height: 0.5;
@@ -84,6 +85,7 @@ const HiCardDetailRight = styled.div`
   }
 
   .name2 {
+    margin-bottom: 1.5rem;
     display: flex;
     font-size: 1.5rem;
     font-weight: 400;
@@ -329,6 +331,29 @@ const ModalClose = styled.img`
 `;
 
 function HiCard(props) {
+  const [hicardInfo, setHiCardInfo] = useState([]);
+
+  useEffect(() => {
+    axios({
+      method: "post",
+      url: "/getHiCardInfo.do",
+      data: { memberId: "user3" },
+    })
+      .then((res) => {
+        console.log(res.data);
+        console.log("성공 성공 성공 성공 성공 성공");
+        setHiCardInfo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("실패 실패 실패 실패 실패 실패");
+      });
+  }, []); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
+
+  return <HiCardDetail hicardInfo={hicardInfo}></HiCardDetail>;
+}
+
+function HiCardDetail({ hicardInfo }) {
   const [openAccordions, setOpenAccordions] = useState([]);
   const [isMyPaymentHistoryModalOpen, setIsMyPaymentHistoryModalOpen] =
     useState(false);
@@ -445,16 +470,17 @@ function HiCard(props) {
           </HiCardDetailLeft>
           <HiCardDetailRight>
             <p className="name1">Hi:Card</p>
-            <p className="name2">하이카드</p>
+            <p className="name2">{hicardInfo.memberHiNickname}</p>
 
             <HiCardMileage>
               <div className="title">Hi:Mileage</div>
-              <div className="mileage">4500M</div>
+              <div className="mileage">{hicardInfo.memberMileage}M</div>
             </HiCardMileage>
 
             <HiCardGrade>
               <div>Hi:Credit Grade</div>
               <img src={cardGradeImg} alt="하이카드 등급 이미지"></img>
+              <p>{hicardInfo.classBenefitName}</p>
             </HiCardGrade>
 
             <HiCardBtn>
@@ -513,7 +539,9 @@ function HiCard(props) {
           </HiCardDetailRight>
         </HiCardDetailInnerDiv>
         <HiCardLimit>
-          <div className="cardLimit">최대한도 100만원</div>
+          <div className="cardLimit">
+            최대한도 {hicardInfo.cardApplyLimitAmount}만원
+          </div>
           <div className="cardType">mastercard</div>
         </HiCardLimit>
       </HiCardDetailOuterDiv>

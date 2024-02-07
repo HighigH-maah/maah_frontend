@@ -189,7 +189,15 @@ function MyAccountChange(props) {
   }, []); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
 
   return (
-    <MyAccountChangeDiv hiCardAccountInfo={hiCardAccountInfo}>
+    <HiCardAccountChnage
+      hiCardAccountInfo={hiCardAccountInfo}
+    ></HiCardAccountChnage>
+  );
+}
+
+function HiCardAccountChnage({ hiCardAccountInfo }) {
+  return (
+    <MyAccountChangeDiv>
       <div className="modalTitle">Hi:Card 연결 계좌 변경</div>
 
       <CurrentInfo>
