@@ -52,7 +52,7 @@ function CardCompare(props) {
       .get("/allbycards.do", {})
       .then(function (res) {
         console.log(res.data);
-        console.log("bebefirList:", res.data.benefitList);
+
         setByCard(res.data);
         setSelectedMaah(true);
         setBenefitList(res.data.benefitList);
@@ -65,6 +65,19 @@ function CardCompare(props) {
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
     console.log(category);
+
+    axios
+      .get("/selectByCondition.do", {
+        params: {
+          otherCompany: "c41",
+        },
+      })
+      .then(function (res) {
+        console.log(res.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (
