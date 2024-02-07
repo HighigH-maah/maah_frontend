@@ -62,15 +62,14 @@ function CardCompare(props) {
       });
   };
 
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
-    console.log(category);
+  const handleCategoryClick = (category2) => {
+    setSelectedCategory(category2);
+    console.log(category2);
 
     axios
-      .get("/selectByCondition.do", {
-        params: {
-          otherCompany: "c41",
-        },
+      .post("/selectByCondition.do", {
+        bankName: "신한카드",
+        category: "transport",
       })
       .then(function (res) {
         console.log(res.data);
