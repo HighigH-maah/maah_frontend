@@ -38,12 +38,9 @@ function CardCompare(props) {
   const [selectedCompany, setSelectedCompany] = useState(null);
   const [selectedMaah, setSelectedMaah] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
-
   const [benefitList, setBenefitList] = useState([]);
-
   const [byCard, setByCard] = useState([]);
   const [otherCard, setOtherCard] = useState([]);
-
   const [selectedOther, setselectedOther] = useState(null);
 
   const handleCompanyClick = (company) => {

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import circle from "../../assets/images/circle.png";
 import blackVelvet from "../../assets/images/black_velvet.png";
 export const SelectDiv = styled.div`
@@ -205,6 +205,14 @@ export const ListDiv = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 
 export const CardList = styled.div`
   width: 1144px;
@@ -216,6 +224,7 @@ export const CardList = styled.div`
   position: relative;
   margin: 0 auto;
   border-radius: 10px;
+  animation: ${fadeIn} 0.5s ease-in-out;
 `;
 
 const ImageOverlay = styled.div`
@@ -298,7 +307,7 @@ export const BenefitDiv = styled.div`
 
 export const ConditionDiv = styled.div`
   display: flex;
-  color: lightgray;
+  color: #696161;
   gap: 12.5rem;
 `;
 
