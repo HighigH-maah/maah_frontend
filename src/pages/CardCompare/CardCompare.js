@@ -41,6 +41,7 @@ function CardCompare(props) {
   const [benefitList, setBenefitList] = useState([]);
 
   const [byCard, setByCard] = useState([]);
+  const [otherCard, setOtherCard] = useState([]);
 
   const handleCompanyClick = (company) => {
     setSelectedCompany(company);
@@ -62,17 +63,18 @@ function CardCompare(props) {
       });
   };
 
-  const handleCategoryClick = (category2) => {
-    setSelectedCategory(category2);
-    console.log(category2);
+  const handleCategoryClick = (categoryClicked) => {
+    setSelectedCategory(categoryClicked);
+    console.log(categoryClicked);
 
     axios
       .post("/selectByCondition.do", {
-        bankName: "신한카드",
-        category: "transport",
+        bankName: selectedCompany,
+        category: categoryClicked,
       })
       .then(function (res) {
         console.log(res.data);
+        setOtherCard(res.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -93,40 +95,40 @@ function CardCompare(props) {
                   color={"#D6EBFF"}
                   title={"신한카드"}
                   isCardCompany={true}
-                  onClick={() => handleCompanyClick("shinhan")}
-                  isSelected={selectedCompany === "shinhan"}
+                  onClick={() => handleCompanyClick("신한카드")}
+                  isSelected={selectedCompany === "신한카드"}
                 />
                 <Btn
                   image={kookmin}
                   color={"#FEFFCE"}
                   title={"국민카드"}
                   isCardCompany={true}
-                  onClick={() => handleCompanyClick("kookmin")}
-                  isSelected={selectedCompany === "kookmin"}
+                  onClick={() => handleCompanyClick("KB국민카드")}
+                  isSelected={selectedCompany === "KB국민카드"}
                 />
                 <Btn
                   image={hyundai}
                   color={"#E6E6E6"}
                   title={"현대카드"}
                   isCardCompany={true}
-                  onClick={() => handleCompanyClick("hyundai")}
-                  isSelected={selectedCompany === "hyundai"}
+                  onClick={() => handleCompanyClick("현대카드")}
+                  isSelected={selectedCompany === "현대카드"}
                 />
                 <Btn
                   image={samsung}
                   color={"#c8efff"}
                   title={"삼성카드"}
                   isCardCompany={true}
-                  onClick={() => handleCompanyClick("samsung")}
-                  isSelected={selectedCompany === "samsung"}
+                  onClick={() => handleCompanyClick("삼성카드")}
+                  isSelected={selectedCompany === "삼성카드"}
                 />
                 <Btn
                   image={lotte}
                   color={"#ffecec"}
                   title={"롯데카드"}
                   isCardCompany={true}
-                  onClick={() => handleCompanyClick("lotte")}
-                  isSelected={selectedCompany === "lotte"}
+                  onClick={() => handleCompanyClick("롯데카드")}
+                  isSelected={selectedCompany === "롯데카드"}
                 />
               </BtnDiv>
             </Company>
@@ -148,22 +150,22 @@ function CardCompare(props) {
               <CategoryDiv>
                 <CategoryBtn
                   isCategory={true}
-                  onClick={() => handleCategoryClick("transport")}
-                  isSelected={selectedCategory === "transport"}
+                  onClick={() => handleCategoryClick(13)}
+                  isSelected={selectedCategory === 13}
                 >
                   🚗 교통
                 </CategoryBtn>
                 <CategoryBtn
                   isCategory={true}
-                  onClick={() => handleCategoryClick("communication")}
-                  isSelected={selectedCategory === "communication"}
+                  onClick={() => handleCategoryClick(2)}
+                  isSelected={selectedCategory === 2}
                 >
                   🛰️ 통신
                 </CategoryBtn>
                 <CategoryBtn
                   isCategory={true}
-                  onClick={() => handleCategoryClick("airport")}
-                  isSelected={selectedCategory === "airport"}
+                  onClick={() => handleCategoryClick(11)}
+                  isSelected={selectedCategory === 11}
                 >
                   🛫 항공
                 </CategoryBtn>
@@ -171,22 +173,22 @@ function CardCompare(props) {
               <CategoryDiv>
                 <CategoryBtn
                   isCategory={true}
-                  onClick={() => handleCategoryClick("utilities")}
-                  isSelected={selectedCategory === "utilities"}
+                  onClick={() => handleCategoryClick(5)}
+                  isSelected={selectedCategory === 5}
                 >
                   💵 공과금
                 </CategoryBtn>
                 <CategoryBtn
                   isCategory={true}
-                  onClick={() => handleCategoryClick("healthandliving")}
-                  isSelected={selectedCategory === "healthandliving"}
+                  onClick={() => handleCategoryClick(3)}
+                  isSelected={selectedCategory === 3}
                 >
-                  🏥 건강/생활
+                  🚏 대중교통
                 </CategoryBtn>
                 <CategoryBtn
                   isCategory={true}
-                  onClick={() => handleCategoryClick("culture")}
-                  isSelected={selectedCategory === "culture"}
+                  onClick={() => handleCategoryClick(10)}
+                  isSelected={selectedCategory === 10}
                 >
                   🎈 영화/문화
                 </CategoryBtn>
@@ -195,22 +197,22 @@ function CardCompare(props) {
               <CategoryDiv>
                 <CategoryBtn
                   isCategory={true}
-                  onClick={() => handleCategoryClick("hospital")}
-                  isSelected={selectedCategory === "hospital"}
+                  onClick={() => handleCategoryClick(6)}
+                  isSelected={selectedCategory === 6}
                 >
                   💊 병원/약국
                 </CategoryBtn>
                 <CategoryBtn
                   isCategory={true}
-                  onClick={() => handleCategoryClick("sports")}
-                  isSelected={selectedCategory === "sports"}
+                  onClick={() => handleCategoryClick(8)}
+                  isSelected={selectedCategory === 8}
                 >
                   🤺 레저/스포츠
                 </CategoryBtn>
                 <CategoryBtn
                   isCategory={true}
-                  onClick={() => handleCategoryClick("shopping")}
-                  isSelected={selectedCategory === "shopping"}
+                  onClick={() => handleCategoryClick(9)}
+                  isSelected={selectedCategory === 9}
                 >
                   🛍️ 쇼핑
                 </CategoryBtn>
@@ -219,22 +221,22 @@ function CardCompare(props) {
               <CategoryDiv>
                 <CategoryBtn
                   isCategory={true}
-                  onClick={() => handleCategoryClick("food")}
-                  isSelected={selectedCategory === "food"}
+                  onClick={() => handleCategoryClick(4)}
+                  isSelected={selectedCategory === 4}
                 >
                   🥘 푸드
                 </CategoryBtn>
                 <CategoryBtn
                   isCategory={true}
-                  onClick={() => handleCategoryClick("travel")}
-                  isSelected={selectedCategory === "travel"}
+                  onClick={() => handleCategoryClick(12)}
+                  isSelected={selectedCategory === 12}
                 >
                   🧳 여행
                 </CategoryBtn>
                 <CategoryBtn
                   isCategory={true}
-                  onClick={() => handleCategoryClick("education")}
-                  isSelected={selectedCategory === "education"}
+                  onClick={() => handleCategoryClick(7)}
+                  isSelected={selectedCategory === 7}
                 >
                   👩‍🍼 교육/육아
                 </CategoryBtn>
@@ -245,10 +247,9 @@ function CardCompare(props) {
             <Company>
               <span>Card </span>
               <BtnDiv>
-                <CardExample>하나은행</CardExample>
-                <CardExample>하나은행</CardExample>
-                <CardExample>하나은행</CardExample>
-                <CardExample>하나은행</CardExample>
+                {otherCard.map((other, index) => (
+                  <CardExample key={index}>{other.otherName}</CardExample>
+                ))}
               </BtnDiv>
             </Company>
           </SecondDiv>

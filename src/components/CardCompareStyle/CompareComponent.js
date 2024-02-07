@@ -4,7 +4,7 @@ import blackVelvet from "../../assets/images/black_velvet.png";
 export const SelectDiv = styled.div`
   background: linear-gradient(180deg, #fff 0%, #f0f0f0 100%);
   position: relative;
-  height: 380px;
+  height: 471px;
   margin: 0 auto;
   color: black;
   display: flex;
@@ -149,6 +149,7 @@ export const CategoryBtn = styled.button`
 `;
 
 export const FirstDiv = styled.div`
+  margin-left: 1rem;
   display: flex;
   flex-direction: row;
   width: 69rem;
@@ -159,11 +160,12 @@ export const FirstDiv = styled.div`
 `;
 
 export const SecondDiv = styled.div`
+  margin-left: 1rem;
   display: flex;
   flex-direction: row;
   width: 69rem;
-  justify-content: center;
   align-items: center;
+  justify-content: flex-start;
 `;
 
 export const ListDiv = styled.div`
