@@ -16,7 +16,6 @@ import pinkHoloBack from "../../assets/images/pink_holo_back.png";
 import reverse from "../../assets/images/reverse.png";
 import prevArrow from "../../assets/images/prev_arrow.png";
 import card1 from "../../assets/images/card1.png";
-import card2 from "../../assets/images/card2.png";
 import card3 from "../../assets/images/card3.png";
 import card4 from "../../assets/images/card4.png";
 import card5 from "../../assets/images/card5.png";
@@ -291,7 +290,7 @@ export default function CardSlider() {
         <CardImageDiv>
           <CardImage
             className="card2"
-            src={card2}
+            src='https://maah-s3.s3.ap-northeast-2.amazonaws.com/card2.png'
             onClick={() => {
               applicationTerm("card2");
             }}

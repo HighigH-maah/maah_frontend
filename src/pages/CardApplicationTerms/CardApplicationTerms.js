@@ -2,6 +2,7 @@ import styled from "styled-components";
 import close from "../../assets/images/close.png";
 import CardApplicationTerm from "../../components/CardApplicationTerms/CardApplicationTerm";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const ModalBody = styled.div`
   background-color: white;
@@ -109,7 +110,7 @@ function CardApplicationTerms() {
           }}></input>
         </ApplicationTerm>
         <ApplicationButton>
-          <button>확인</button>
+          <button><Link to="/cardApplication">확인</Link></button>
         </ApplicationButton>
       </div>
     </ModalBody>
