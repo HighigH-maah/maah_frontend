@@ -1,6 +1,6 @@
 import React from "react";
 import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
-import { BackImage, Mainback } from "../../components/Main/MainComponent";
+import { BackImage, Mainback } from "../../components/MainStyle/MainComponent";
 import {
   Main,
   MyCardListBySection,
