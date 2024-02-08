@@ -1,6 +1,7 @@
-import React from "react";
-import styled from "styled-components";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+//import axios from "axios";
 
 const MyAccountChangeDiv = styled.div`
     box-sizing: border-box;
@@ -156,18 +157,63 @@ const InputBox = styled.input`
   font-size: 20px;
 `;
 
-axios
-  .post("/member.do", {
-    member_id: "user3",
-  })
-  .then(function (res) {
-    console.log(res.data);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+// axios
+//   .post("/member.do", {
+//     member_id: "user3",
+//   })
+//   .then(function (res) {
+//     console.log(res.data);
+//   })
+//   .catch(function (error) {
+//     console.log(error);
+//   });
 
 function MyAccountChange(props) {
+  const [hiCardAccountInfo, setHiCardAccountInfo] = useState([]);
+  const [bankInfo, setBankInfo] = useState([]);
+
+  useEffect(() => {
+    axios({
+      method: "post",
+      url: "/getAccountInfo.do",
+      data: { memberId: "user3" },
+    })
+      .then((res) => {
+        console.log(res.data);
+        console.log("성공 성공 성공 성공 성공 성공");
+        setHiCardAccountInfo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("실패 실패 실패 실패 실패 실패");
+      });
+  }, []); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
+
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: "/getBankName.do",
+    })
+      .then((res) => {
+        console.log(res.data);
+        console.log("성공 성공 성공 성공 성공 성공");
+        setBankInfo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("실패 실패 실패 실패 실패 실패");
+      });
+  }, []); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
+
+  return (
+    <HiCardAccountChnage
+      hiCardAccountInfo={hiCardAccountInfo}
+      bankInfo={bankInfo}
+    ></HiCardAccountChnage>
+  );
+}
+
+function HiCardAccountChnage({ hiCardAccountInfo, bankInfo }) {
   return (
     <MyAccountChangeDiv>
       <div className="modalTitle">Hi:Card 연결 계좌 변경</div>
@@ -177,15 +223,15 @@ function MyAccountChange(props) {
         <div className="currentCardInfoDiv">
           <div className="currentCardInfo">
             <p className="title">현재 결제은행</p>
-            <p className="value">우리은행</p>
+            <p className="value">{hiCardAccountInfo.bankName}</p>
           </div>
           <div className="currentCardInfo">
             <p className="title">현재 계좌번호</p>
-            <p className="value">10022551*****</p>
+            <p className="value">{hiCardAccountInfo.memberHiAccountNumber}</p>
           </div>
           <div className="currentCardInfo">
             <p className="title">카드번호</p>
-            <p className="value">1234-****-****-5678</p>
+            <p className="value">{hiCardAccountInfo.memberHiNumber}</p>
           </div>
         </div>
       </CurrentInfo>
@@ -197,11 +243,10 @@ function MyAccountChange(props) {
             <p className="title">은행명</p>
             <label>
               <select className="selectbox">
-                <option>신한은행</option>
-                <option>우리은행</option>
-                <option>농협은행</option>
-                <option>국민은행</option>
-                <option>토스뱅크</option>
+                {bankInfo &&
+                  bankInfo.map((board, index) => (
+                    <option key={index}>{board.bankName}</option>
+                  ))}
               </select>
             </label>
           </div>

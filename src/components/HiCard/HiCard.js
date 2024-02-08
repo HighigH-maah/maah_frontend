@@ -1,27 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import cardImg from "./icon/HICard.png";
-import cardGradeImg from "./icon/bronze.png";
-import phoneImg from "./icon/phone.png";
-import trafficImg from "./icon/traffic.png";
-import foodImg from "./icon/food.png";
-import utilitiesImg from "./icon/utilities.png";
-import hospitalImg from "./icon/hospital.png";
-import leisureImg from "./icon/leisure.png";
-import shoppingImg from "./icon/shopping.png";
-import studyImg from "./icon/study.png";
-import oilingImg from "./icon/oiling.png";
-import cultureImg from "./icon/culture.png";
-import airlineImg from "./icon/airline.png";
-import travelImg from "./icon/travel.png";
-
-import chevronDown from "./icon/chevronDown.png";
-import chevronUp from "./icon/chevronUp.png";
+import phoneImg from "../../assets/icon/phone.png";
+import trafficImg from "../../assets/icon/traffic.png";
+import foodImg from "../../assets/icon/food.png";
+import utilitiesImg from "../../assets/icon/utilities.png";
+import hospitalImg from "../../assets/icon/hospital.png";
+import leisureImg from "../../assets/icon/leisure.png";
+import shoppingImg from "../../assets/icon/shopping.png";
+import studyImg from "../../assets/icon/study.png";
+import oilingImg from "../../assets/icon/oiling.png";
+import cultureImg from "../../assets/icon/culture.png";
+import airlineImg from "../../assets/icon/airline.png";
+import travelImg from "../../assets/icon/travel.png";
+import chevronDown from "../../assets/icon/chevronDown.png";
+import chevronUp from "../../assets/icon/chevronUp.png";
 import VirtualCardApply from "./VirtualCardApply";
 import close from "../../assets/images/close.png";
 import MyPaymentHistory from "./MyPaymentHistory";
 import VirtualCardNumView from "./VirtualCardNumView";
 import MyAccountChange from "./MyAccountChange";
+import axios from "axios";
+import HeaderLogoutBtn from "../Header/HeaderLogoutBtn";
+import Footer from "../Footer/Footer";
+import "../../assets/css/style.css";
+import bronzeImg from "../../assets/images/Grade/bronze.png";
+import silverImg from "../../assets/images/Grade/silver.png";
+import goldImg from "../../assets/images/Grade/gold.png";
+import platinumImg from "../../assets/images/Grade/platinum.png";
 
 const HiCardDiv = styled.div`
   display: flex;
@@ -29,7 +34,6 @@ const HiCardDiv = styled.div`
   align-items: center;
   background: linear-gradient(180deg, #fffdfd 37.44%, #d7d7d7 100%);
   padding: 100px 0px;
-  font-family: "M PLUS 1", sans-serif;
 `;
 
 const HiCardDetailOuterDiv = styled.div`
@@ -74,22 +78,21 @@ const HiCardDetailRight = styled.div`
   flex-direction: column;
 
   .name1 {
-    margin-bottom: 0rem;
+    margin-bottom: 1.5rem;
     font-size: 3rem;
     font-weight: 400;
     line-height: 0.5;
     color: #000000;
-    font-family: Iceland, "Source Sans Pro";
     white-space: nowrap;
     flex-shrink: 0;
   }
 
   .name2 {
+    margin-bottom: 1.5rem;
     display: flex;
     font-size: 1.5rem;
     font-weight: 400;
     color: #000000;
-    font-family: Iceland, "Source Sans Pro";
     white-space: nowrap;
     flex-shrink: 0;
   }
@@ -109,7 +112,6 @@ const HiCardMileage = styled.div`
     font-weight: 400;
     letter-spacing: -0.018rem;
     color: #000000;
-    font-family: Iceland,"Source Sans Pro";
     white-space: nowrap;
     flex-shrink: 0;
 }
@@ -120,7 +122,6 @@ const HiCardMileage = styled.div`
     font-size: 2.5rem;
     font-weight: 400;
     color: #000000;
-    font-family: Iceland,"Source Sans Pro";
     white-space: nowrap;
     flex-shrink: 0;
 }
@@ -140,7 +141,6 @@ const HiCardGrade = styled.div`
     font-size: 2.5rem;
     font-weight: 400;
     color: #000000;
-    font-family: Iceland, "Source Sans Pro";
     white-space: nowrap;
     flex-shrink: 0;
   }
@@ -167,7 +167,6 @@ const HiCardBtn = styled.div`
     font-size: 1.8rem;
     font-weight: 400;
     color: #ffffff;
-    font-family: Iceland, "Source Sans Pro";
     white-space: nowrap;
     display: flex;
     align-items: center;
@@ -184,7 +183,7 @@ const HiCardBtn = styled.div`
   }
 
   div {
-    margin: 0rem 0rem 0rem 15rem;
+    margin: 1rem 0rem 0rem 15rem;
     display: flex;
     align-items: center;
     flex-shrink: 0;
@@ -196,7 +195,6 @@ const HiCardBtn = styled.div`
     font-size: 1.3rem;
     font-weight: 400;
     color: #000000;
-    font-family: Iceland, "Source Sans Pro";
     white-space: nowrap;
     flex-shrink: 0;
     cursor: pointer;
@@ -207,7 +205,6 @@ const HiCardBtn = styled.div`
     font-size: 1.3rem;
     font-weight: 400;
     color: #000000;
-    font-family: Iceland, "Source Sans Pro";
     white-space: nowrap;
     flex-shrink: 0;
     cursor: pointer;
@@ -226,7 +223,6 @@ const HiCardLimit = styled.div`
     font-size: 1.6rem;
     font-weight: 400;
     color: #000000;
-    font-family: Iceland, "Source Sans Pro";
     white-space: nowrap;
     flex-shrink: 0;
   }
@@ -236,7 +232,6 @@ const HiCardLimit = styled.div`
     font-size: 1.6rem;
     font-weight: 400;
     color: #000000;
-    font-family: Iceland, "Source Sans Pro";
     white-space: nowrap;
     flex-shrink: 0;
   }
@@ -288,7 +283,6 @@ const Category = styled.div`
     font-size: 2.5rem;
     font-weight: 400;
     color: #2d2d2d;
-    font-family: Iceland, "Source Sans Pro";
     white-space: nowrap;
     flex-shrink: 0;
   }
@@ -298,7 +292,6 @@ const Category = styled.div`
     font-size: 2.5rem;
     font-weight: 400;
     color: #6d6d6d;
-    font-family: Iceland, "Source Sans Pro";
     white-space: nowrap;
     flex-shrink: 0;
   }
@@ -330,6 +323,29 @@ const ModalClose = styled.img`
 `;
 
 function HiCard(props) {
+  const [hicardInfo, setHiCardInfo] = useState([]);
+
+  useEffect(() => {
+    axios({
+      method: "post",
+      url: "/getHiCardInfo.do",
+      data: { memberId: "user3" },
+    })
+      .then((res) => {
+        console.log(res.data);
+        console.log("성공 성공 성공 성공 성공 성공");
+        setHiCardInfo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("실패 실패 실패 실패 실패 실패");
+      });
+  }, []); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
+
+  return <HiCardDetail hicardInfo={hicardInfo}></HiCardDetail>;
+}
+
+function HiCardDetail({ hicardInfo }) {
   const [openAccordions, setOpenAccordions] = useState([]);
   const [isMyPaymentHistoryModalOpen, setIsMyPaymentHistoryModalOpen] =
     useState(false);
@@ -438,115 +454,139 @@ function HiCard(props) {
   ];
 
   return (
-    <HiCardDiv>
-      <HiCardDetailOuterDiv>
-        <HiCardDetailInnerDiv>
-          <HiCardDetailLeft>
-            <img src={cardImg} alt="하이카드 이미지"></img>
-          </HiCardDetailLeft>
-          <HiCardDetailRight>
-            <p className="name1">Hi:Card</p>
-            <p className="name2">하이카드</p>
-
-            <HiCardMileage>
-              <div className="title">Hi:Mileage</div>
-              <div className="mileage">4500M</div>
-            </HiCardMileage>
-
-            <HiCardGrade>
-              <div>Hi:Credit Grade</div>
-              <img src={cardGradeImg} alt="하이카드 등급 이미지"></img>
-            </HiCardGrade>
-
-            <HiCardBtn>
-              <button onClick={openMyPaymentHistoryModal}>
-                나의 결제 이력
-              </button>
-              <div>
-                <p className="accountChange" onClick={openMyAccountChangeModal}>
-                  연결계좌변경
-                </p>
-                <p
-                  className="virtualCardApply"
-                  onClick={openVirtualCardApplyModal}
-                >
-                  가상 카드 발급신청
-                </p>
-              </div>
-              <p onClick={openVirtualCardNumViewModal}>가상 카드 번호조회</p>
-            </HiCardBtn>
-
-            {/* MyPaymentHistory 모달 */}
-            {isMyPaymentHistoryModalOpen && (
-              <HiCardModal>
-                {/* <button onClick={closeModal}>Close Modal</button> */}
-                <ModalClose src={close} onClick={closeModal}></ModalClose>
-                <MyPaymentHistory></MyPaymentHistory>
-              </HiCardModal>
-            )}
-
-            {/* MyAccountChange 모달 */}
-            {isMyAccountChangeModalOpen && (
-              <HiCardModal>
-                {/* <button onClick={closeModal}>Close Modal</button> */}
-                <ModalClose src={close} onClick={closeModal}></ModalClose>
-                <MyAccountChange></MyAccountChange>
-              </HiCardModal>
-            )}
-
-            {/* VirtualCardApply 모달 */}
-            {isVirtualCardApplyModalOpen && (
-              <HiCardModal>
-                {/* <button onClick={closeModal}>Close Modal</button> */}
-                <ModalClose src={close} onClick={closeModal}></ModalClose>
-                <VirtualCardApply></VirtualCardApply>
-              </HiCardModal>
-            )}
-
-            {/* VirtualCardNumView 모달 */}
-            {isVirtualCardNumViewModalOpen && (
-              <HiCardModal>
-                {/* <button onClick={closeModal}>Close Modal</button> */}
-                <ModalClose src={close} onClick={closeModal}></ModalClose>
-                <VirtualCardNumView></VirtualCardNumView>
-              </HiCardModal>
-            )}
-          </HiCardDetailRight>
-        </HiCardDetailInnerDiv>
-        <HiCardLimit>
-          <div className="cardLimit">최대한도 100만원</div>
-          <div className="cardType">mastercard</div>
-        </HiCardLimit>
-      </HiCardDetailOuterDiv>
-
-      {accordions.map((accordion, index) => (
-        <div key={index}>
-          <HiCardBenefits onClick={() => toggleAccordion(index)}>
-            <Category>
+    <>
+      <HeaderLogoutBtn></HeaderLogoutBtn>
+      <HiCardDiv>
+        <HiCardDetailOuterDiv>
+          <HiCardDetailInnerDiv>
+            <HiCardDetailLeft>
               <img
-                className="icon"
-                src={accordion.image}
-                alt="카테고리 아이콘 이미지"
+                src={hicardInfo.hiCardImageFrontPath}
+                alt="하이카드 이미지"
               ></img>
-              <p className="catagory">{accordion.category}</p>
-              <p className="catagoryBenefits">{accordion.benefit}</p>
-              <img
-                className="chevronIcon"
-                src={openAccordions.includes(index) ? chevronUp : chevronDown}
-                alt="chevronIcon"
-              ></img>
-            </Category>
-          </HiCardBenefits>
-          {openAccordions.includes(index) && (
-            <HiCardBenefitsContent>
-              {/* Additional Content to show when accordion is open */}
-              <p>{accordion.benefit}</p>
-              {/* ... more content */}
-            </HiCardBenefitsContent>
-          )}
-        </div>
-      ))}
-    </HiCardDiv>
+            </HiCardDetailLeft>
+            <HiCardDetailRight>
+              <p className="name1">{hicardInfo.memberHiNickname}</p>
+              <p className="name2">Hi:Card</p>
+
+              <HiCardMileage>
+                <div className="title">Hi:Mileage</div>
+                <div className="mileage">{hicardInfo.memberMileage}M</div>
+              </HiCardMileage>
+
+              <HiCardGrade>
+                <div>Hi:Credit Grade</div>
+                {/* hicardInfo.classBenefitName에 따라 다른 이미지를 표시 */}
+                {hicardInfo.classBenefitName === "BRONZE" && (
+                  <img src={bronzeImg} alt="하이카드 등급 이미지"></img>
+                )}
+                {hicardInfo.classBenefitName === "SILVER" && (
+                  <img src={silverImg} alt="하이카드 등급 이미지"></img>
+                )}
+                {hicardInfo.classBenefitName === "GOLD" && (
+                  <img src={goldImg} alt="하이카드 등급 이미지"></img>
+                )}
+                {hicardInfo.classBenefitName === "PLATINUM" && (
+                  <img src={platinumImg} alt="하이카드 등급 이미지"></img>
+                )}
+              </HiCardGrade>
+
+              <HiCardBtn>
+                <button onClick={openMyPaymentHistoryModal}>
+                  나의 결제 이력
+                </button>
+                <div>
+                  <p
+                    className="accountChange"
+                    onClick={openMyAccountChangeModal}
+                  >
+                    연결계좌변경
+                  </p>
+                  <p
+                    className="virtualCardApply"
+                    onClick={openVirtualCardApplyModal}
+                  >
+                    가상 카드 발급신청
+                  </p>
+                </div>
+                <p onClick={openVirtualCardNumViewModal}>가상 카드 번호조회</p>
+              </HiCardBtn>
+
+              {/* MyPaymentHistory 모달 */}
+              {isMyPaymentHistoryModalOpen && (
+                <HiCardModal>
+                  {/* <button onClick={closeModal}>Close Modal</button> */}
+                  <ModalClose src={close} onClick={closeModal}></ModalClose>
+                  <MyPaymentHistory></MyPaymentHistory>
+                </HiCardModal>
+              )}
+
+              {/* MyAccountChange 모달 */}
+              {isMyAccountChangeModalOpen && (
+                <HiCardModal>
+                  {/* <button onClick={closeModal}>Close Modal</button> */}
+                  <ModalClose src={close} onClick={closeModal}></ModalClose>
+                  <MyAccountChange></MyAccountChange>
+                </HiCardModal>
+              )}
+
+              {/* VirtualCardApply 모달 */}
+              {isVirtualCardApplyModalOpen && (
+                <HiCardModal>
+                  {/* <button onClick={closeModal}>Close Modal</button> */}
+                  <ModalClose src={close} onClick={closeModal}></ModalClose>
+                  <VirtualCardApply></VirtualCardApply>
+                </HiCardModal>
+              )}
+
+              {/* VirtualCardNumView 모달 */}
+              {isVirtualCardNumViewModalOpen && (
+                <HiCardModal>
+                  {/* <button onClick={closeModal}>Close Modal</button> */}
+                  <ModalClose src={close} onClick={closeModal}></ModalClose>
+                  <VirtualCardNumView></VirtualCardNumView>
+                </HiCardModal>
+              )}
+            </HiCardDetailRight>
+          </HiCardDetailInnerDiv>
+          <HiCardLimit>
+            <div className="cardLimit">
+              최대한도 {hicardInfo.cardApplyLimitAmount}만원
+            </div>
+            <div className="cardType">mastercard</div>
+          </HiCardLimit>
+        </HiCardDetailOuterDiv>
+
+        {accordions.map((accordion, index) => (
+          <div key={index}>
+            <HiCardBenefits onClick={() => toggleAccordion(index)}>
+              <Category>
+                <img
+                  className="icon"
+                  src={accordion.image}
+                  alt="카테고리 아이콘 이미지"
+                ></img>
+                <p className="catagory">{accordion.category}</p>
+                <p className="catagoryBenefits">{accordion.benefit}</p>
+                <img
+                  className="chevronIcon"
+                  src={openAccordions.includes(index) ? chevronUp : chevronDown}
+                  alt="chevronIcon"
+                ></img>
+              </Category>
+            </HiCardBenefits>
+            {openAccordions.includes(index) && (
+              <HiCardBenefitsContent>
+                {/* Additional Content to show when accordion is open */}
+                <p>{accordion.benefit}</p>
+                {/* ... more content */}
+              </HiCardBenefitsContent>
+            )}
+          </div>
+        ))}
+      </HiCardDiv>
+      <Footer position="relative" top="0rem"></Footer>
+    </>
   );
 }
 

@@ -8,16 +8,16 @@ import blackVelvetImg from "../../assets/images/black_velvet.png";
 import blackVelvetBack from "../../assets/images/black_velvet_back.png";
 import reverse from "../../assets/images/reverse.png";
 
-axios
-  .post("/member.do", {
-    member_id: "user3",
-  })
-  .then(function (res) {
-    console.log(res.data);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+// axios
+//   .post("/member.do", {
+//     member_id: "user3",
+//   })
+//   .then(function (res) {
+//     console.log(res.data);
+//   })
+//   .catch(function (error) {
+//     console.log(error);
+//   });
 
 const ShareBack = styled.div`
   width: auto;

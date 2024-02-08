@@ -9,18 +9,16 @@ const HeaderDiv = styled.div`
   align-items: center;
   position: relative;
   box-sizing: border-box;
-  left: 8%;
   top: 3rem;
+  justify-content: center;
 `;
 
 const HeaderLogoMenuDiv = styled.div`
   box-sizing: border-box;
-  padding: 1.1rem 25.9rem 1.1rem 0rem;
   height: 4.8rem;
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  margin-right: 10%;
 `;
 
 const HeaderLogoutButton = styled.button`
@@ -51,13 +49,11 @@ const HeaderLogoImage = styled.img`
 `;
 
 const HeaderMenuBar = styled.div`
-  margin: 0.15rem 0rem 0.45rem 0rem;
-  height: calc(100% - 0.6rem);
+  margin: 0rem 15rem;
   display: flex;
   flex-shrink: 0;
   align-items: center;
   position: relative;
-  left: 40%;
 `;
 
 const HeaderMenuMy = styled.p`
@@ -180,13 +176,13 @@ function HeaderLogoutBtn(props) {
             </HeaderMenuAbout>
           </Link>
         </HeaderMenuBar>
+        <HeaderLogoutButton
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          {buttonText}
+        </HeaderLogoutButton>
       </HeaderLogoMenuDiv>
-      <HeaderLogoutButton
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        {buttonText}
-      </HeaderLogoutButton>
     </HeaderDiv>
   );
 }

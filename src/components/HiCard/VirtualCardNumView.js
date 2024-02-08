@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import logo from "../../assets/images/maah_half_big_logo.png";
+import logo from "../../assets/images/Maah_Half_big_logo.png";
+import axios from "axios";
 
 const VirtualCardNumViewDiv = styled.div`
     box-sizing: border-box;
@@ -14,13 +15,14 @@ const VirtualCardNumViewDiv = styled.div`
 
     img{
       position: relative;
-      right: 30px;
+      right: 50px;
     }
 
     .box1{
         display: flex;
         flex-direction: column;
         flex-shrink: 0;
+        justify-content: space-evenly;
     }
 
     p{
@@ -34,6 +36,7 @@ const VirtualCardNumViewDiv = styled.div`
     }
 
     .box2{
+        margin-top: 2rem;
         width: 100%;
         align-items: center;
         display: flex;
@@ -42,6 +45,7 @@ const VirtualCardNumViewDiv = styled.div`
     }
 
     .cardInfo{
+      margin-bottom: 2rem;
       width: 100%;
       display: flex;
       align-items: flex-start;
@@ -72,27 +76,56 @@ const VirtualCardNumViewDiv = styled.div`
 `;
 
 function VirtualCardNumView(props) {
+  const [virtualCardInfo, setVirtualCardInfo] = useState([]);
+
+  useEffect(() => {
+    axios({
+      method: "post",
+      url: "/getTempCard.do",
+      data: { memberId: "user3" },
+    })
+      .then((res) => {
+        console.log(res.data);
+        console.log("성공 성공 성공 성공 성공 성공");
+        setVirtualCardInfo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("실패 실패 실패 실패 실패 실패");
+      });
+  }, []); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
+
+  return <VirtualCardInfo virtualCardInfo={virtualCardInfo}></VirtualCardInfo>;
+}
+
+function VirtualCardInfo({ virtualCardInfo }) {
   return (
-    <VirtualCardNumViewDiv>
-      <img src={logo} alt="마하로고"></img>
-      <div className="box1">
-        <p>가상 카드 번호조회</p>
-        <div className="box2">
-          <div className="cardInfo">
-            <p className="title">카드번호</p>
-            <p className="num">1234-****-****-5678</p>
+    <>
+      {virtualCardInfo && virtualCardInfo.tempHiExpdate && (
+        <VirtualCardNumViewDiv>
+          <img src={logo} alt="마하로고"></img>
+          <div className="box1">
+            <p>가상 카드 번호조회</p>
+            <div className="box2">
+              <div className="cardInfo">
+                <p className="title">카드번호</p>
+                <p className="num">{virtualCardInfo.tempHiNumber}</p>
+              </div>
+              <div className="cardInfo">
+                <p className="title">cvc</p>
+                <p className="num">{virtualCardInfo.tempHiCvc}</p>
+              </div>
+              <div className="cardInfo">
+                <p className="title">유효기간</p>
+                <p className="num">
+                  {virtualCardInfo.tempHiExpdate.slice(0, 10)}
+                </p>
+              </div>
+            </div>
           </div>
-          <div className="cardInfo">
-            <p className="title">cvc</p>
-            <p className="num">123</p>
-          </div>
-          <div className="cardInfo">
-            <p className="title">유효기간</p>
-            <p className="num">2024.02.07</p>
-          </div>
-        </div>
-      </div>
-    </VirtualCardNumViewDiv>
+        </VirtualCardNumViewDiv>
+      )}
+    </>
   );
 }
 
