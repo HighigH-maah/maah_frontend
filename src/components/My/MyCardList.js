@@ -622,7 +622,7 @@ export const MyCardListHiSection = () => {
     <HiCardBox>
       <MyHiCardLeftSection myCardHi={myCardHi}></MyHiCardLeftSection>
       <MyHiCardCenterSection myCardHi={myCardHi}></MyHiCardCenterSection>
-      <MyHiCardRightSection></MyHiCardRightSection>
+      <MyHiCardRightSection myCardHi={myCardHi}></MyHiCardRightSection>
     </HiCardBox>
   );
 };
@@ -671,13 +671,13 @@ export const MyHiCardCenterSection = ({ myCardHi }) => {
   );
 };
 
-const MyHiCardRightSection = () => {
+const MyHiCardRightSection = ({ myCardHi }) => {
   return (
     <MyHiCardRightDiv>
       <HiCardInfo>
         <CardPoint>
           <CardPointTitle>Hi:Card Point</CardPointTitle>
-          <CardPointScore>4500P</CardPointScore>
+          <CardPointScore>{myCardHi.memberHiPoint}P</CardPointScore>
         </CardPoint>
         <HiCardGrade>
           <HiCardGradeTitle>Hi:Credit Grade</HiCardGradeTitle>
