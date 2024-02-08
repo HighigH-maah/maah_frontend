@@ -15,13 +15,14 @@ const VirtualCardNumViewDiv = styled.div`
 
     img{
       position: relative;
-      right: 30px;
+      right: 50px;
     }
 
     .box1{
         display: flex;
         flex-direction: column;
         flex-shrink: 0;
+        justify-content: space-evenly;
     }
 
     p{
@@ -35,6 +36,7 @@ const VirtualCardNumViewDiv = styled.div`
     }
 
     .box2{
+        margin-top: 2rem;
         width: 100%;
         align-items: center;
         display: flex;
@@ -43,6 +45,7 @@ const VirtualCardNumViewDiv = styled.div`
     }
 
     .cardInfo{
+      margin-bottom: 2rem;
       width: 100%;
       display: flex;
       align-items: flex-start;
@@ -98,7 +101,7 @@ function VirtualCardNumView(props) {
 function VirtualCardInfo({ virtualCardInfo }) {
   return (
     <>
-      {virtualCardInfo && (
+      {virtualCardInfo && virtualCardInfo.tempHiExpdate && (
         <VirtualCardNumViewDiv>
           <img src={logo} alt="마하로고"></img>
           <div className="box1">
@@ -114,7 +117,9 @@ function VirtualCardInfo({ virtualCardInfo }) {
               </div>
               <div className="cardInfo">
                 <p className="title">유효기간</p>
-                <p className="num">{virtualCardInfo.tempHiExpdate}</p>
+                <p className="num">
+                  {virtualCardInfo.tempHiExpdate.slice(0, 10)}
+                </p>
               </div>
             </div>
           </div>

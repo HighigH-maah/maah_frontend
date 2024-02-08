@@ -4,41 +4,41 @@ import MaahSmallLogo from "../../assets/images/Logo/MaahSmallLogoWhite.png";
 
 const FooterDiv = styled.div`
   box-sizing: border-box;
-  padding: 4.8rem 1.7rem 4.7rem 2rem;
+  padding: 5rem;
   width: 100%;
-  height: 37.1rem;
   backdrop-filter: blur(0.8rem);
   background-color: rgba(40, 52, 48, 0.2399999946);
 `;
 
 const FooterAllDiv = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+margin: 5rem 0rem;
+width: 100%;
+height: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
 `;
 
 const FooterTopMenu = styled.div`
-  margin: 0rem 10rem 8.8rem 0rem;
-  width: calc(100% - 10rem);
   display: flex;
   align-items: flex-start;
   flex-shrink: 0;
 `;
 
 const LogoBox = styled.div`
-  margin-right: 5%;
+  margin-right: 5rem;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
 `;
 
 const FooterMenuBar = styled.div`
-  margin-top: 0.8rem;
-  height: 16rem;
-  display: flex;
-  align-items: flex-start;
-  flex-shrink: 0;
+display: flex;
+align-items: flex-start;
+flex-shrink: 0;
+}
 `;
 
 const FooterLogoImage = styled.img`
@@ -161,17 +161,6 @@ function Footer({ position, top }) {
             </FooterMenuSocial>
           </FooterMenuBar>
         </FooterTopMenu>
-        <div class="frame-aaR">
-          <p class="copyright-2023-doradesign-all-rights-reserved-wfs">
-            copyright 2023 DoraDesign All Rights Reserved
-          </p>
-          <div class="group-11-Gi9">
-            <p class="this-page-uses-cookies-see-cookies-details-here-2xD">
-              This page uses cookies. See cookies details here{" "}
-            </p>
-            <img class="vector-5-wZP" src="REPLACE_IMAGE:2:2900" />
-          </div>
-        </div>
       </FooterAllDiv>
     </FooterDiv>
   );

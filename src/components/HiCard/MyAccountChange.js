@@ -170,6 +170,7 @@ const InputBox = styled.input`
 
 function MyAccountChange(props) {
   const [hiCardAccountInfo, setHiCardAccountInfo] = useState([]);
+  const [bankInfo, setBankInfo] = useState([]);
 
   useEffect(() => {
     axios({
@@ -188,14 +189,31 @@ function MyAccountChange(props) {
       });
   }, []); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
 
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: "/getBankName.do",
+    })
+      .then((res) => {
+        console.log(res.data);
+        console.log("성공 성공 성공 성공 성공 성공");
+        setBankInfo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("실패 실패 실패 실패 실패 실패");
+      });
+  }, []); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
+
   return (
     <HiCardAccountChnage
       hiCardAccountInfo={hiCardAccountInfo}
+      bankInfo={bankInfo}
     ></HiCardAccountChnage>
   );
 }
 
-function HiCardAccountChnage({ hiCardAccountInfo }) {
+function HiCardAccountChnage({ hiCardAccountInfo, bankInfo }) {
   return (
     <MyAccountChangeDiv>
       <div className="modalTitle">Hi:Card 연결 계좌 변경</div>
@@ -225,11 +243,10 @@ function HiCardAccountChnage({ hiCardAccountInfo }) {
             <p className="title">은행명</p>
             <label>
               <select className="selectbox">
-                <option>신한은행</option>
-                <option>우리은행</option>
-                <option>농협은행</option>
-                <option>국민은행</option>
-                <option>토스뱅크</option>
+                {bankInfo &&
+                  bankInfo.map((board, index) => (
+                    <option key={index}>{board.bankName}</option>
+                  ))}
               </select>
             </label>
           </div>

@@ -17,7 +17,7 @@ const VirtualCardApplyDiv = styled.div`
   .ModalTitle{
     margin-bottom: 5rem;
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 600;
     line-height: 0;
     color: #000000;
@@ -42,7 +42,7 @@ const EleBox = styled.div`
 
 const Box1 = styled.p`
   margin: 1rem 0rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 600;
   line-height: 1.2125;
   color: #000000;
@@ -51,7 +51,6 @@ const Box1 = styled.p`
 `;
 
 const Box2 = styled.div`
-  margin-bottom: 1rem;
   width: 100%;
   height: 7rem;
   display: flex;
@@ -62,7 +61,7 @@ const Box2 = styled.div`
 const TermBox = styled.div`
   margin-right: 2rem;
   width: 50rem;
-  height: 7rem;
+  height: 5rem;
   box-shadow: inset 0 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
   background-color: #f5f5f5;
   border-radius: 2rem;
@@ -72,23 +71,23 @@ const TermBox = styled.div`
   .checkbox1 {
     position: relative;
     cursor: pointer;
-    transform: scale(3);
+    transform: scale(2);
     left: 45rem;
-    bottom: 5.7rem;
+    bottom: 4.5rem;
   }
 
   .checkbox2 {
     position: relative;
     cursor: pointer;
-    transform: scale(3);
+    transform: scale(2);
     left: 54em;
-    bottom: 5.7rem;
+    bottom: 4.5rem;
   }
 `;
 
 const TermContext = styled.p`
-  margin: 2.3rem;
-  font-size: 2rem;
+  margin: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 550;
   line-height: 1.2125;
   color: ${(props) => (props.isChecked ? "#000000" : "#808080")};
@@ -103,8 +102,8 @@ const TermCheckBtn = styled.label`
   align-items: center;
   cursor: pointer;
   width: 50rem;
-  height: 5rem;
-  font-size: 2rem;
+  height: 4.5rem;
+  font-size: 1.5rem;
   font-weight: 600;
   line-height: 1.2;
 
@@ -139,13 +138,13 @@ const TermCheckBtn = styled.label`
 const AuthCheckBtn = styled.button`
   margin-top: 10px;
   cursor: pointer;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 50rem;
-  height: 5rem;
+  height: 4.5rem;
   border-radius: 2rem;
   background-color: #000000;
   color: #ffffff;
