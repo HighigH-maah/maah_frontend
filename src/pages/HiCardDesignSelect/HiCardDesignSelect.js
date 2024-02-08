@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import CardApplicationTerms from "../CardApplicationTerms/CardApplicationTerms";
-import SimpleSlider from "./SimpleSlider";
+import CardSlider from "../../components/HiCardDesignSelect/CardSlider";
+import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
 
 const SelectDesign = styled.div`
   background: linear-gradient(180deg, #fffdfd 37.44%, #d7d7d7 100%);
-  padding: 150px 0px 50px 0px;
+  padding: 150px 0px 145px 0px;
   text-align: center;
 `;
 
@@ -34,13 +35,15 @@ function HiCardDesignSelect() {
 
   return (
     <>
+      <HeaderLogoutBtn></HeaderLogoutBtn>
       <SelectDesign>
         <MainTitle>Hi:Card 신청</MainTitle>
         <SubTitle>마음에 드는 디자인을 골라주세요</SubTitle>
         <CardList>
-          <SimpleSlider></SimpleSlider>
+          <CardSlider></CardSlider>
         </CardList>
       </SelectDesign>
+
       <ModalWrap id="cardApplicationTerms">
         <CardApplicationTerms></CardApplicationTerms>
       </ModalWrap>

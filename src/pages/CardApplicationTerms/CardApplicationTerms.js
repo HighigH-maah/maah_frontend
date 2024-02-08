@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import close from "../../assets/images/close.png";
+import CardApplicationTerm from "../../components/CardApplicationTerms/CardApplicationTerm";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const ModalBody = styled.div`
   background-color: white;
@@ -32,13 +35,6 @@ const ModalSubTitle = styled.div`
   margin: 30px 0px 10px 0px;
 `;
 
-const ApplicationTermContent = styled.div`
-  font-size: 20px;
-  height: 150px;
-  overflow-y: auto;
-  padding: 10px;
-`;
-
 const ApplicationTerm = styled.div`
   display: flex;
   font-size: 20px;
@@ -67,10 +63,17 @@ const ApplicationButton = styled.div`
   }
 `;
 
-function CardApplicationTerms(props) {
+function CardApplicationTerms() {
+  const [term, setTerm] = useState(1);
+
   const closeModal = () => {
     let modal = document.getElementById("cardApplicationTerms");
+    let terms = document.getElementsByClassName("application-term");
     modal.style.visibility = "hidden";
+    setTerm(1);
+    for(let i = 0; i < terms.length; i++) {
+      terms[i].checked = false;
+    }
   };
 
   return (
@@ -78,48 +81,36 @@ function CardApplicationTerms(props) {
       <ModalClose src={close} onClick={closeModal}></ModalClose>
       <div>
         <ModalTitle>약관 및 주요 안내사항</ModalTitle>
-        <div>
-          <ModalSubTitle>[필수] 약관 및 주요 안내사항 동의</ModalSubTitle>
-          <ApplicationTermContent>
-            주 마하카드 사 / 약관에 관한 내용으로 채울 예정정 주 마하카드 사 /
-            약관에 관한 내용으로 채울 예정정 주 마하카드 사 / 약관에 관한
-            내용으로 채울 예정정 주 마하카드 사 / 약관에 관한 내용으로 채울
-            예정정 주 마하카드 사 / 약관에 관한 내용으로 채울 예정정 주 마하카드
-            사 / 약관에 관한 내용으로 채울 예정정 주 마하카드 사 / 약관에 관한
-            내용으로 채울 예정정 주 마하카드 사 / 약관에 관한 내용으로 채울
-            예정정 주 마하카드 사 / 약관에 관한 내용으로 채울 예정정 주 마하카드
-            사 / 약관에 관한 내용으로 채울 예정정 주 마하카드 사 / 약관에 관한
-            내용으로 채울 예정정 주 마하카드 사 / 약관에 관한 내용으로 채울
-            예정정 주 마하카드 사 / 약관에 관한 내용으로 채울 예정정 주 마하카드
-            사 / 약관에 관한 내용으로 채울 예정정 주 마하카드 사 / 약관에 관한
-            내용으로 채울 예정정 주 마하카드 사 / 약관에 관한 내용으로 채울
-            예정정 주 마하카드 사 / 약관에 관한 내용으로 채울 예정정 주 마하카드
-            사 / 약관에 관한 내용으로 채울 예정정 주 마하카드 사 / 약관에 관한
-            내용으로 채울 예정정 주 마하카드 사 / 약관에 관한 내용으로 채울
-            예정정
-          </ApplicationTermContent>
-        </div>
+        <CardApplicationTerm term={ term } ></CardApplicationTerm>
       </div>
       <div>
         <ModalSubTitle>카드 신청 약관 동의</ModalSubTitle>
         <ApplicationTerm>
           <span>[필수] 약관 및 주요 안내사항 동의</span>
-          <input type="checkbox"></input>
+          <input className="application-term" type="checkbox" onClick={() => {
+            setTerm(1);
+          }}></input>
         </ApplicationTerm>
         <ApplicationTerm>
           <span>[필수] 개인(신용)정보 동의</span>
-          <input type="checkbox"></input>
+          <input className="application-term" type="checkbox" onClick={() => {
+            setTerm(2);
+          }}></input>
         </ApplicationTerm>
         <ApplicationTerm>
           <span>[선택] 개인(신용)정보 동의</span>
-          <input type="checkbox"></input>
+          <input className="application-term" type="checkbox" onClick={() => {
+            setTerm(3);
+          }}></input>
         </ApplicationTerm>
         <ApplicationTerm>
           <span>[선택] 카드 신청/이용을 위한 동의</span>
-          <input type="checkbox"></input>
+          <input className="application-term" type="checkbox" onClick={() => {
+            setTerm(4);
+          }}></input>
         </ApplicationTerm>
         <ApplicationButton>
-          <button>확인</button>
+          <button><Link to="/cardApplication">확인</Link></button>
         </ApplicationButton>
       </div>
     </ModalBody>

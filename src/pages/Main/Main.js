@@ -22,8 +22,8 @@ function Main(props) {
         <AboutMaahContent></AboutMaahContent>
         <ThirdSection></ThirdSection>
         <FourthSection></FourthSection>
-        <Footer position="relative" top="66.2rem"></Footer>
       </BackImage>
+      <Footer position="relative"></Footer>
     </Mainback>
   );
 }
