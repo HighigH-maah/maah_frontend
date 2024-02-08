@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import logo from "../../assets/images/Maah_Half_big_logo.png";
+import logo from "../../assets/images/maah_half_big_logo.png";
 import axios from "axios";
 
 const VirtualCardNumViewDiv = styled.div`
