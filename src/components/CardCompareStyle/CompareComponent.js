@@ -1,10 +1,10 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import circle from "../../assets/images/circle.png";
 import blackVelvet from "../../assets/images/black_velvet.png";
 export const SelectDiv = styled.div`
-  background-color: lightgray;
+  background: linear-gradient(180deg, #fff 0%, #f0f0f0 100%);
   position: relative;
-  height: 380px;
+  height: 522px;
   margin: 0 auto;
   color: black;
   display: flex;
@@ -29,6 +29,7 @@ export const CardExample = styled.button`
   border: none;
   color: black;
   height: 40px;
+  background: white;
   border-radius: 50px;
   box-shadow: 0px 4px 4px #0000004d;
   font-weight: bolder;
@@ -51,6 +52,32 @@ export const BtnWrapper = styled.div`
     font-size: 1rem;
   }
 `;
+
+export const DefaultCardDiv = () => {
+  return (
+    <CardList>
+      <CardImageDiv>
+        <ExampleImage></ExampleImage>
+      </CardImageDiv>
+      <CardDetailDiv>
+        <CardTitle>마하카드</CardTitle>
+        <CardEvent>신규회원 연회비 캐쉬백 이벤트</CardEvent>
+        <BenefitDiv>
+          <Benefit>업종별 0.5~3% 적립</Benefit>|
+          <Benefit>업종별 0.5~3% 적립</Benefit>|
+          <Benefit>업종별 0.5~3% 적립</Benefit>
+        </BenefitDiv>
+        <ConditionDiv>
+          <p>국내 전용 30,000원/해외겸용 30,000원</p>
+          <p>전월 실적 50만원 이상</p>
+        </ConditionDiv>
+      </CardDetailDiv>
+      <DetailBtnDiv>
+        <button>자세히 보기</button>
+      </DetailBtnDiv>
+    </CardList>
+  );
+};
 
 export const Btn = ({
   image,
@@ -99,12 +126,12 @@ export const CompanyBtn = styled.button`
   height: 80px;
   color: ${(props) => (props.isSelected ? "#fff" : "black")};
   border-radius: 20px;
-  background-color: ${(props) =>
+  background: ${(props) =>
     props.isSelected
       ? props.isCardCompany
-        ? "white"
+        ? "gray"
         : props.isOnlyMaah
-        ? "#707070"
+        ? "gray"
         : props.isCategory
         ? "#000000"
         : "black"
@@ -116,6 +143,9 @@ export const CompanyBtn = styled.button`
 export const BtnDiv = styled.div`
   display: flex;
   gap: 1rem;
+
+  // width: 69rem;
+  // flex-wrap: wrap;
 `;
 
 export const CategoryDiv = styled.div`
@@ -148,21 +178,23 @@ export const CategoryBtn = styled.button`
 `;
 
 export const FirstDiv = styled.div`
+  margin-left: 1rem;
   display: flex;
   flex-direction: row;
   width: 69rem;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
   margin-top: 1rem;
 `;
 
 export const SecondDiv = styled.div`
+  margin-left: 1rem;
   display: flex;
   flex-direction: row;
   width: 69rem;
-  justify-content: center;
   align-items: center;
+  justify-content: flex-start;
 `;
 
 export const ListDiv = styled.div`
@@ -173,6 +205,14 @@ export const ListDiv = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 
 export const CardList = styled.div`
   width: 1144px;
@@ -180,10 +220,11 @@ export const CardList = styled.div`
   gap: 2rem;
   display: flex;
   flex-direction: row;
-  background-color: white;
+  background: linear-gradient(180deg, #fff 0%, #f0f0f0 100%);
   position: relative;
   margin: 0 auto;
   border-radius: 10px;
+  animation: ${fadeIn} 0.5s ease-in-out;
 `;
 
 const ImageOverlay = styled.div`
@@ -199,20 +240,38 @@ const CardImage = styled.img`
   width: 120px;
   height: 180px;
 `;
-
-export const ExampleImage = ({}) => {
+export const ExampleImage = () => {
   return (
     <ImageOverlay>
       <img src={circle} alt="Circle" width="200" height="200" />
+      <CardImage src={blackVelvet} alt={"The Velvet"} />
 
       {/* <CardImage
           src={require(`../../assets/images/${name}.png`).default}
           alt={name}
         /> */}
-      <CardImage src={blackVelvet} />
     </ImageOverlay>
   );
 };
+// export const ExampleImage = ({ image, name }) => {
+//   if (image) {
+//     console.log(image);
+//     return (
+//       <ImageOverlay>
+//         <img src={circle} alt="Circle" width="200" height="200" />
+//         <CardImage src={blackVelvet} alt={"The Velvet"} />
+
+//         {/* <CardImage
+//           src={require(`../../assets/images/${name}.png`).default}
+//           alt={name}
+//         /> */}
+//       </ImageOverlay>
+//     );
+//   } else {
+//     console.error("Image prop is undefined.");
+//     return null;
+//   }
+// };
 
 export const CardImageDiv = styled.div`
   display: flex;
@@ -248,7 +307,7 @@ export const BenefitDiv = styled.div`
 
 export const ConditionDiv = styled.div`
   display: flex;
-  color: lightgray;
+  color: #696161;
   gap: 12.5rem;
 `;
 
@@ -263,8 +322,15 @@ export const DetailBtnDiv = styled.div`
   & > button {
     font-weight: bolder;
     border: none;
+    color: white;
     border-radius: 5px;
     margin-right: 2rem;
+    background: linear-gradient(
+      180deg,
+      rgba(188, 186, 179, 0.85) 0%,
+      rgba(177, 173, 149, 0.97) 34%,
+      rgba(130, 128, 117, 0.87) 98%
+    );
     margin-top: 2rem;
     width: 199px;
     height: 56px;

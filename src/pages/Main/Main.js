@@ -8,7 +8,7 @@ import {
   ThirdSection,
   FourthSection,
   TopSection,
-} from "../../components/Main/MainComponent";
+} from "../../components/MainStyle/MainComponent";
 import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
 import Footer from "../../components/Footer/Footer";
 

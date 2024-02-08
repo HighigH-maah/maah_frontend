@@ -8,16 +8,32 @@ import blackVelvetImg from "../../assets/images/black_velvet.png";
 import blackVelvetBack from "../../assets/images/black_velvet_back.png";
 import reverse from "../../assets/images/reverse.png";
 
-// axios
-//   .post("/member.do", {
-//     member_id: "user3",
-//   })
-//   .then(function (res) {
-//     console.log(res.data);
-//   })
-//   .catch(function (error) {
-//     console.log(error);
-//   });
+import shareback from "../../assets/images/share-modal-back.png";
+import blackvelvet from "../../assets/images/black_velvet.png";
+import {
+  HiCardPoint,
+  HiCardRealPoint,
+  HiImageSection,
+  HiModalMid,
+  HiModalTop,
+  HiPointSection,
+  InputWrapper,
+  Modal,
+  ModalCloseButton,
+  PointWrapper,
+  ShareBackImage,
+} from "../../components/ShareStyle/ShareComponent";
+
+axios
+  .post("/member.do", {
+    member_id: "user3",
+  })
+  .then(function (res) {
+    console.log(res.data);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 
 const ShareBack = styled.div`
   width: auto;
@@ -138,6 +154,14 @@ function Share(props) {
     }, 100);
   };
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <ShareBack>
       <ShareMain>
@@ -160,9 +184,45 @@ function Share(props) {
             >
               <ReverseIcon src={reverse}></ReverseIcon>
             </ReverseButton>
+            <button onClick={openModal}>모달창 오픈</button>
           </HiBottom>
         </HiSection>
       </ShareMain>
+      <Modal isOpen={isModalOpen}>
+        <ModalCloseButton onClick={closeModal}>닫기</ModalCloseButton>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="900"
+          height="2"
+          viewBox="0 0 900 2"
+          fill="none"
+        >
+          <path opacity="0.4" d="M0 1L900 1" stroke="white" />
+        </svg>
+        <ShareBackImage />
+        <HiModalTop>
+          <HiCardPoint>HiCard Point</HiCardPoint>
+          <HiCardRealPoint>5000P</HiCardRealPoint>
+        </HiModalTop>
+        <img src={shareback} name={shareback} />
+        <HiModalMid>
+          <HiImageSection>
+            The Blue
+            <img src={blackvelvet} name={blackvelvet} />
+          </HiImageSection>
+          <HiPointSection>
+            <PointWrapper>
+              <p>By:Card Point</p>
+              <span>4500P</span>
+            </PointWrapper>
+            <InputWrapper>
+              <input value="" placeholder="point" />
+              <button>Share</button>
+            </InputWrapper>
+          </HiPointSection>
+        </HiModalMid>
+        <p>This is the modal content.</p>
+      </Modal>
     </ShareBack>
   );
 }
