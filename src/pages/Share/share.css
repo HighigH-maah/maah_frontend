@@ -30,7 +30,6 @@ input {
   font-weight: 400;
   line-height: 0.97;
   color: #ffffff;
-  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -41,7 +40,6 @@ input {
   font-size: 2.5rem;
   font-weight: 400;
   line-height: 1;
-  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -92,7 +90,6 @@ input {
   font-weight: 400;
   line-height: 1.2;
   color: #ffffff;
-  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -128,7 +125,6 @@ input {
   line-height: 0.97;
   letter-spacing: -0.1rem;
   color: #ffffff;
-  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -208,7 +204,6 @@ input {
   line-height: 0.97;
   letter-spacing: -0.076rem;
   color: #ffffff;
-  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
 }
 
@@ -223,7 +218,6 @@ input {
   line-height: 1.2775;
   letter-spacing: -0.068rem;
   color: #ffffff;
-  font-family: Space Grotesk, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -302,7 +296,6 @@ input {
   font-weight: 400;
   line-height: 1.2;
   color: #ffffff;
-  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -344,7 +337,6 @@ input {
   font-weight: 400;
   line-height: 0.97;
   color: #ffffff;
-  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -424,7 +416,6 @@ input {
   line-height: 0.97;
   letter-spacing: -0.12rem;
   color: #ffffff;
-  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -487,7 +478,6 @@ input {
   line-height: 0.97;
   letter-spacing: -0.076rem;
   color: #ffffff;
-  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
 }
 
@@ -513,7 +503,6 @@ input {
   line-height: 1.2775;
   letter-spacing: -0.068rem;
   color: #ffffff;
-  font-family: Space Grotesk, "Source Sans Pro";
   white-space: nowrap;
 }
 
@@ -576,7 +565,6 @@ input {
   font-weight: 500;
   line-height: 1.5;
   color: #ffffff;
-  font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -648,7 +636,6 @@ input {
   line-height: 0.97;
   letter-spacing: -0.12rem;
   color: #ffffff;
-  font-family: Iceland, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -711,7 +698,7 @@ input {
   line-height: 0.97;
   letter-spacing: -0.076rem;
   color: #ffffff;
-  font-family: Iceland, "Source Sans Pro";
+
   white-space: nowrap;
 }
 
@@ -737,7 +724,7 @@ input {
   line-height: 1.2775;
   letter-spacing: -0.068rem;
   color: #ffffff;
-  font-family: Space Grotesk, "Source Sans Pro";
+
   white-space: nowrap;
 }
 
@@ -800,7 +787,7 @@ input {
   font-weight: 500;
   line-height: 1.5;
   color: #ffffff;
-  font-family: M PLUS 1, "Source Sans Pro";
+
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -867,7 +854,7 @@ input {
   line-height: 0.97;
   letter-spacing: -0.12rem;
   color: #ffffff;
-  font-family: Iceland, "Source Sans Pro";
+
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -1001,7 +988,7 @@ input {
   line-height: 1.375;
   letter-spacing: -0.018rem;
   color: #ffffff;
-  font-family: Inter, "Source Sans Pro";
+
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -1064,7 +1051,7 @@ input {
   line-height: 1.375;
   letter-spacing: -0.018rem;
   color: #ffffff;
-  font-family: Inter, "Source Sans Pro";
+
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -1125,7 +1112,7 @@ input {
   line-height: 1.375;
   letter-spacing: -0.018rem;
   color: #ffffff;
-  font-family: Inter, "Source Sans Pro";
+
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -1168,7 +1155,7 @@ input {
   font-weight: 500;
   line-height: 1.5;
   color: #ffffff;
-  font-family: M PLUS 1, "Source Sans Pro";
+
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -1259,7 +1246,7 @@ input {
   font-weight: 500;
   line-height: 1.2125;
   color: #ffffff;
-  font-family: M PLUS 1, "Source Sans Pro";
+
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -1269,7 +1256,7 @@ input {
   font-weight: 500;
   line-height: 1.2125;
   color: #ffffff;
-  font-family: M PLUS 1, "Source Sans Pro";
+
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -1279,7 +1266,7 @@ input {
   font-weight: 500;
   line-height: 1.2125;
   color: #ffffff;
-  font-family: M PLUS 1, "Source Sans Pro";
+
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -1288,7 +1275,7 @@ input {
   font-weight: 500;
   line-height: 0.97;
   color: #ffffff;
-  font-family: M PLUS 1, "Source Sans Pro";
+
   white-space: nowrap;
   flex-shrink: 0;
 }

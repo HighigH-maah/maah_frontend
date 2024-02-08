@@ -1,7 +1,12 @@
+import { useState } from "react";
 import React from "react";
+import "../../assets/css/style.css";
 import "./share.css";
 import styled from "styled-components";
 import axios from "axios";
+import blackVelvetImg from "../../assets/images/black_velvet.png";
+import blackVelvetBack from "../../assets/images/black_velvet_back.png";
+import reverse from "../../assets/images/reverse.png";
 
 axios
   .post("/member.do", {
@@ -55,7 +60,7 @@ const HiTopTitle = styled.p`
   line-height: 0.97;
   color: #ffffff;
   margin-bottom: 3.8rem;
-  font-family: Iceland, "Source Sans Pro";
+
   white-space: nowrap;
   flex-shrink: 0;
 `;
@@ -65,7 +70,7 @@ const HiBotTitle = styled.p`
   font-weight: 400;
   line-height: 1;
   color: #55534e;
-  font-family: Iceland, "Source Sans Pro";
+
   white-space: nowrap;
   flex-shrink: 0;
 `;
@@ -83,15 +88,56 @@ const HiCardTypeName = styled.div`
   line-height: 0.97;
   letter-spacing: -0.1rem;
   color: #ffffff;
-  font-family: Iceland, "Source Sans Pro";
+
   white-space: nowrap;
   flex-shrink: 0;
 `;
 
-const HiCardImg = styled.div`
+const HiCardImg = styled.img`
   box-sizing: border-box;
+  width: 200px;
+  height: 300px;
 `;
+
+const ReverseButton = styled.button`
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 21px;
+  border: 0;
+  cursor: pointer;
+  background: linear-gradient(
+    0deg,
+    rgba(128, 128, 128, 0.5),
+    rgba(200, 200, 200, 0.5) 45%,
+    rgba(128, 128, 128, 0.5)
+  );
+  bottom: 70px;
+`;
+
+const ReverseIcon = styled.img`
+  margin: auto;
+  margin-top: 5px;
+`;
+
 function Share(props) {
+  const [blackVelvet, setBlackVelvet] = useState(true);
+
+  const reverseCard = (prop) => {
+    let cards = document.getElementsByClassName(prop);
+    cards[0].style.transform = "rotateY(90deg)";
+    setTimeout(function () {
+      switch (prop) {
+        case "blackVelvet":
+          setBlackVelvet(!blackVelvet);
+          break;
+        default:
+          break;
+      }
+      cards[0].style.transform = "rotateY(0deg)";
+    }, 100);
+  };
+
   return (
     <ShareBack>
       <ShareMain>
@@ -102,7 +148,18 @@ function Share(props) {
           </HiTopper>
           <HiBottom>
             <HiCardTypeName>X BOOST</HiCardTypeName>
-            <HiCardImg></HiCardImg>
+            <HiCardImg
+              className="blackVelvet"
+              src={blackVelvet ? blackVelvetImg : blackVelvetBack}
+            ></HiCardImg>
+            <ReverseButton
+              type="button"
+              onClick={() => {
+                reverseCard("blackVelvet");
+              }}
+            >
+              <ReverseIcon src={reverse}></ReverseIcon>
+            </ReverseButton>
           </HiBottom>
         </HiSection>
       </ShareMain>
