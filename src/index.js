@@ -17,6 +17,7 @@ import MyPaymentHistory from "./components/HiCard/MyPaymentHistory";
 import VirtualCardNumView from "./components/HiCard/VirtualCardNumView";
 import MyAccountChange from "./components/HiCard/MyAccountChange";
 import MyCardList from "./pages/My/MyCardList";
+import LostCard from "./pages/My/LostCard";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -33,11 +34,13 @@ root.render(
       <Route path="/myPaymentHistory" element={<MyPaymentHistory />}></Route>
       <Route path="/myAccountChange" element={<MyAccountChange />}></Route>
       <Route path="/virtualCardApply" element={<VirtualCardApply />}></Route>
+
       <Route
         path="/virtualCardNumView"
         element={<VirtualCardNumView />}
       ></Route>
-      <Route path="/mycardlist" element={<MyCardList />}></Route>
+      <Route path="/myCardList" element={<MyCardList />}></Route>
+      <Route path="/lostCard" element={<LostCard />}></Route>
     </Routes>
   </BrowserRouter>
 );

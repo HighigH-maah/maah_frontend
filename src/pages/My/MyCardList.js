@@ -8,6 +8,7 @@ import {
   MyCardListHiSection,
 } from "../../components/My/MyCardList";
 import Footer from "../../components/Footer/Footer";
+import "../../assets/css/style.css";
 
 function MyCardList(props) {
   return (
@@ -18,8 +19,8 @@ function MyCardList(props) {
           <Main>
             <MyCardListHiSection></MyCardListHiSection>
             <MyCardListBySection></MyCardListBySection>
+            <Footer position="relative" top="80rem"></Footer>
           </Main>
-          <Footer position="relative" top="66.2rem"></Footer>
         </BackImage>
       </Mainback>
     </MyCardListDiv>
