@@ -331,6 +331,10 @@ export const ButtonUnderLine = styled.div`
   display: flex;
   align-items: center;
   flex-shrink: 0;
+
+  & > p:hover {
+    text-shadow: 0px 1px 9px #0000004f;
+  }
 `;
 
 export const AccountChange = styled.p`
@@ -346,7 +350,7 @@ export const AccountChange = styled.p`
   flex-shrink: 0;
 `;
 
-export const TempCardNumber = styled.div`
+export const TempCardNumber = styled.p`
   text-align: center;
   font-size: 1.3rem;
   font-weight: 400;
@@ -359,7 +363,7 @@ export const TempCardNumber = styled.div`
   left: 65rem;
 `;
 
-export const LostCard = styled.div`
+export const LostCard = styled.p`
   text-align: center;
   font-size: 1.3rem;
   font-weight: 400;
@@ -638,7 +642,6 @@ export const MyHiCardLeftSection = ({ myCardHi }) => {
         <HiCard>
           {/* <img class="shape-3g9" src="REPLACE_IMAGE:I152:2760;19:6230" /> */}
           <HiCardName>{myCardHi.memberHiNickname}</HiCardName>
-          <HiCardDescription>card description</HiCardDescription>
           <HiCardNoise></HiCardNoise>
         </HiCard>
       </MyHiCardShape>
@@ -659,7 +662,10 @@ export const MyHiCardCenterSection = ({ myCardHi }) => {
       </HiCardLimit>
       <HiCardUse>
         <HiCardUseTitle>이번 달 사용금액</HiCardUseTitle>
-        <HiCardAmout>1,234,000 원</HiCardAmout>
+        <HiCardAmout>
+          {myCardHi.thisMonthSum ? myCardHi.thisMonthSum.toLocaleString() : ""}{" "}
+          원
+        </HiCardAmout>
       </HiCardUse>
     </MyHiCardCenterDiv>
   );
