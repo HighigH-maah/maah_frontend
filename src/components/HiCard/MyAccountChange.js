@@ -155,6 +155,7 @@ const InputBox = styled.input`
   background-color: #f5f5f5;
   border-radius: 10px;
   font-size: 20px;
+  padding-left: 10px
 `;
 
 // axios
@@ -214,6 +215,39 @@ function MyAccountChange(props) {
 }
 
 function HiCardAccountChnage({ hiCardAccountInfo, bankInfo }) {
+
+  const [selectedBankCode, setSelectedBankCode] = useState('');
+  const [newAccountNumber, setNewAccountNumber] = useState('');
+
+  const handleAccountCheck = () => {
+    // 유효성 검사 예제: 필드가 비어있는지 확인
+    if (!selectedBankCode || !newAccountNumber) {
+      alert('모두 입력하세요.');
+      return;
+    }
+
+    // 서버로 계좌 인증 및 등록을 수행하기 위한 요청
+    axios({
+      method: 'post',
+      url: '/getAccountName.do',
+      data: {
+        memberId: 'user3',
+        bankCode: selectedBankCode,
+        bankName: newAccountNumber,
+      },
+    })
+      .then((res) => {
+        console.log(res.data);
+        console.log('계좌 인증 및 등록 성공');
+        // 성공 시 처리, 예를 들어 성공 메시지 표시 또는 사용자를 리디렉션할 수 있습니다.
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log('계좌 인증 및 등록 실패');
+        // 오류 시 처리, 예를 들어 사용자에게 오류 메시지를 표시할 수 있습니다.
+      });
+  };
+  
   return (
     <MyAccountChangeDiv>
       <div className="modalTitle">Hi:Card 연결 계좌 변경</div>
@@ -242,19 +276,20 @@ function HiCardAccountChnage({ hiCardAccountInfo, bankInfo }) {
           <div className="currentCardInfo">
             <p className="title">은행명</p>
             <label>
-              <select className="selectbox">
+              <select className="selectbox" onChange={(e) => setSelectedBankCode(e.target.value)}>
                 {bankInfo &&
                   bankInfo.map((board, index) => (
-                    <option key={index}>{board.bankName}</option>
+                    <option key={index} value={board.bankCode}>{board.bankName}</option>
                   ))}
               </select>
             </label>
           </div>
           <div className="currentCardInfo">
             <p className="title">계좌번호</p>
-            <InputBox placeholder="계좌번호를 입력하세요."></InputBox>
+            <InputBox placeholder="계좌번호를 입력하세요." onChange={(e) => setNewAccountNumber(e.target.value)}></InputBox>
           </div>
-          <div className="accountChangeBtn">계좌인증 및 등록</div>
+          <button className="accountChangeBtn" onClick={handleAccountCheck}>계좌인증</button>
+          <button className="accountChangeBtn">등록</button>
         </div>
       </ChangeInfo>
     </MyAccountChangeDiv>

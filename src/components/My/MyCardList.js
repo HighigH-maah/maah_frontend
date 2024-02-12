@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import gradeimg from "../../assets/images/Grade/bronze.png";
+import { HiCardModal } from "../HiCard/HiCard";
 
 export const MyCardListDiv = styled.div`
   width: 100%;
@@ -605,7 +606,7 @@ export const MyCardListHiSection = () => {
     axios({
       url: "/getCardList.do",
       method: "post",
-      data: { memberId: "user3" },
+      data: { memberId: 'user3' },
     })
       .then((res) => {
         console.log(res.data);
@@ -694,6 +695,7 @@ const MyHiCardRightSection = ({ myCardHi }) => {
       </BottomButtonDiv>
     </MyHiCardRightDiv>
   );
+  
 };
 
 export const MyByCard = () => {
