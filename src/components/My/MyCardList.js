@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import gradeimg from "../../assets/images/Grade/bronze.png";
-import { HiCardModal } from "../HiCard/HiCard";
 
 export const MyCardListDiv = styled.div`
   width: 100%;
@@ -604,7 +603,7 @@ export const MyCardListHiSection = () => {
 
   const getMyHiCard = () => {
     axios({
-      url: "/getCardList.do",
+      url: "/getMyCardListHi.do",
       method: "post",
       data: { memberId: 'user3' },
     })
@@ -629,6 +628,26 @@ export const MyCardListHiSection = () => {
 };
 
 export const MyCardListBySection = () => {
+  const [myCardListBy, setMyCardListBy] = useState({});
+
+  const getMyCardListBy = () => {
+    axios({
+      url: "/getMyCardListBy.do",
+      method: "post",
+      data: { memberId: 'user3' },
+    })
+      .then((res) => {
+        console.log(res.data);
+        setMyCardListBy(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  useEffect(() => {
+    getMyCardListBy();
+  }, []);
+
   return (
     <ByCardGroup>
       <MyByCard></MyByCard>
