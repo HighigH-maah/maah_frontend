@@ -37,11 +37,13 @@ import midnightash from "../../assets/images/midnight_ash.png";
 import blueholo from "../../assets/images/blue_holo.png";
 import pinkholo from "../../assets/images/pink_holo.png";
 import unionbanner from "../../assets/images/banner-union.png";
+import nasabanner from "../../assets/images/banner-nasa.png";
+import blackvelvetbanner from "../../assets/images/banner-blackvelvet.png";
 export const TopSection = () => {
   return (
     <MainPage1>
       <Banner>
-        <EventBanner src={unionbanner}></EventBanner>
+        <EventBanner src={blackvelvetbanner}></EventBanner>
         <BannerPage>
           <SelectBanner></SelectBanner>
           <UnselectBanner></UnselectBanner>
