@@ -252,14 +252,27 @@ const HiCardBenefits = styled.div`
 
 const HiCardBenefitsContent = styled.div`
   box-sizing: border-box;
-  padding: 1rem;
+  padding: 3rem 12rem;
   width: 1500px;
   display: flex;
   position: relative;
   bottom: 55px;
-  align-items: center;
   background: linear-gradient(180deg, #f0f0f0 -0%, #ffffff 100%);
   border-radius: 1rem;
+  flex-direction: column;
+
+  .benefitsTitle {
+    font-weight: 600;
+  }
+
+  .benefitsText {
+    text-align: left;
+    margin-top: 1rem;
+  }
+
+  .benefitsText p {
+    margin: 0.5rem 0;
+  }
 `;
 
 const Category = styled.div`
@@ -268,23 +281,29 @@ const Category = styled.div`
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  justify-content: space-between;
 
   .icon {
-    margin: 0rem 5rem;
+    margin-right: 3rem;
     width: 5rem;
     height: 5rem;
     object-fit: contain;
+    display: flex;
+    flex-basis: 100px;
     vertical-align: top;
     flex-shrink: 0;
+    justify-content: flex-start;
   }
 
   .catagory {
-    margin-right: 10rem;
     font-size: 2.5rem;
     font-weight: 400;
     color: #2d2d2d;
     white-space: nowrap;
+    display: flex;
     flex-shrink: 0;
+    flex-basis: 250px;
+    justify-content: flex-start;
   }
 
   .catagoryBenefits {
@@ -294,6 +313,7 @@ const Category = styled.div`
     color: #6d6d6d;
     white-space: nowrap;
     flex-shrink: 0;
+    flex-basis: 500px;
   }
 
   .chevronIcon {
@@ -324,11 +344,12 @@ const ModalClose = styled.img`
 
 function HiCard(props) {
   const [hicardInfo, setHiCardInfo] = useState([]);
+  const [hicardBenefitsInfo, setHiCardBenefitsInfo] = useState([]);
 
   useEffect(() => {
     axios({
       method: "post",
-      url: "/getHiCardInfo.do",
+      url: `/getHiCardInfo.do`,
       data: { memberId: "user3" },
     })
       .then((res) => {
@@ -342,10 +363,32 @@ function HiCard(props) {
       });
   }, []); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
 
-  return <HiCardDetail hicardInfo={hicardInfo}></HiCardDetail>;
+  useEffect(() => {
+    axios({
+      method: "post",
+      url: "/getHiCardBenefits.do",
+      data: { memberId: "user3" },
+    })
+      .then((res) => {
+        console.log(res.data);
+        console.log("성공 성공 성공 성공 성공 성공");
+        setHiCardBenefitsInfo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("실패 실패 실패 실패 실패 실패");
+      });
+  }, []); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
+
+  return (
+    <HiCardDetail
+      hicardInfo={hicardInfo}
+      hicardBenefitsInfo={hicardBenefitsInfo}
+    ></HiCardDetail>
+  );
 }
 
-function HiCardDetail({ hicardInfo }) {
+function HiCardDetail({ hicardInfo, hicardBenefitsInfo }) {
   const [openAccordions, setOpenAccordions] = useState([]);
   const [isMyPaymentHistoryModalOpen, setIsMyPaymentHistoryModalOpen] =
     useState(false);
@@ -389,69 +432,45 @@ function HiCardDetail({ hicardInfo }) {
     setIsVirtualCardNumViewModalOpen(false);
   };
 
-  const accordions = [
-    {
-      image: phoneImg,
-      category: "통신",
-      benefit: "통신요금 10% 할인",
-    },
-    {
-      image: trafficImg,
-      category: "교통",
-      benefit: "대중교통 10% 할인",
-    },
-    {
-      image: foodImg,
-      category: "푸드",
-      benefit: "마켓컬리 10% 할인",
-    },
-    {
-      image: utilitiesImg,
-      category: "공금",
-      benefit: "마켓컬리 10% 할인",
-    },
-    {
-      image: hospitalImg,
-      category: "병원",
-      benefit: "마켓컬리 10% 할인",
-    },
-    {
-      image: leisureImg,
-      category: "레저",
-      benefit: "마켓컬리 10% 할인",
-    },
-    {
-      image: shoppingImg,
-      category: "쇼핑",
-      benefit: "마켓컬리 10% 할인",
-    },
-    {
-      image: studyImg,
-      category: "교육",
-      benefit: "마켓컬리 10% 할인",
-    },
-    {
-      image: oilingImg,
-      category: "주유",
-      benefit: "마켓컬리 10% 할인",
-    },
-    {
-      image: cultureImg,
-      category: "문화",
-      benefit: "마켓컬리 10% 할인",
-    },
-    {
-      image: airlineImg,
-      category: "항공",
-      benefit: "마켓컬리 10% 할인",
-    },
-    {
-      image: travelImg,
-      category: "여행",
-      benefit: "마켓컬리 10% 할인",
-    },
-    // Add more accordions as needed
-  ];
+  function getImageForBenefit(benefitName) {
+    //benefitName = benefitName.replaceAll(" ", "");
+    switch (benefitName) {
+      case "통신":
+        return phoneImg;
+      case "대중교통":
+        return trafficImg;
+      case "푸드":
+        return foodImg;
+      case "공과금":
+        return utilitiesImg;
+      case "병원/약국":
+        return hospitalImg;
+      case "교육/육아":
+        return studyImg;
+      case "레저/스포츠":
+        return leisureImg;
+      case "쇼핑":
+        return shoppingImg;
+      case "영화/문화":
+        return cultureImg;
+      case "항공":
+        return airlineImg;
+      case "여행":
+        return travelImg;
+      case "교통":
+        return oilingImg;
+      // Add more cases for other benefit names and their corresponding images
+      default:
+        return utilitiesImg;
+    }
+  }
+
+  const accordions = hicardBenefitsInfo.map((benefitInfo, index) => ({
+    image: getImageForBenefit(benefitInfo.benefitName),
+    category: benefitInfo.benefitName,
+    benefit: benefitInfo.byBenefitDesc,
+    seeMoreBenefits: benefitInfo.byBenefitBody,
+  }));
 
   return (
     <>
@@ -471,7 +490,12 @@ function HiCardDetail({ hicardInfo }) {
 
               <HiCardMileage>
                 <div className="title">Hi:Mileage</div>
-                <div className="mileage">{hicardInfo.memberMileage}M</div>
+                <div className="mileage">
+                  {hicardInfo.memberMileage
+                    ? hicardInfo.memberMileage.toLocaleString("ko-KR")
+                    : ""}
+                  M
+                </div>
               </HiCardMileage>
 
               <HiCardGrade>
@@ -516,7 +540,11 @@ function HiCardDetail({ hicardInfo }) {
               {isMyPaymentHistoryModalOpen && (
                 <HiCardModal>
                   {/* <button onClick={closeModal}>Close Modal</button> */}
-                  <ModalClose src={close} onClick={closeModal}></ModalClose>
+                  <ModalClose
+                    src={close}
+                    clicked={isMyPaymentHistoryModalOpen.toString()}
+                    onClick={closeModal}
+                  ></ModalClose>
                   <MyPaymentHistory></MyPaymentHistory>
                 </HiCardModal>
               )}
@@ -525,7 +553,11 @@ function HiCardDetail({ hicardInfo }) {
               {isMyAccountChangeModalOpen && (
                 <HiCardModal>
                   {/* <button onClick={closeModal}>Close Modal</button> */}
-                  <ModalClose src={close} onClick={closeModal}></ModalClose>
+                  <ModalClose
+                    src={close}
+                    clicked={isMyAccountChangeModalOpen.toString()}
+                    onClick={closeModal}
+                  ></ModalClose>
                   <MyAccountChange></MyAccountChange>
                 </HiCardModal>
               )}
@@ -534,7 +566,11 @@ function HiCardDetail({ hicardInfo }) {
               {isVirtualCardApplyModalOpen && (
                 <HiCardModal>
                   {/* <button onClick={closeModal}>Close Modal</button> */}
-                  <ModalClose src={close} onClick={closeModal}></ModalClose>
+                  <ModalClose
+                    src={close}
+                    clicked={isVirtualCardApplyModalOpen.toString()}
+                    onClick={closeModal}
+                  ></ModalClose>
                   <VirtualCardApply></VirtualCardApply>
                 </HiCardModal>
               )}
@@ -543,7 +579,11 @@ function HiCardDetail({ hicardInfo }) {
               {isVirtualCardNumViewModalOpen && (
                 <HiCardModal>
                   {/* <button onClick={closeModal}>Close Modal</button> */}
-                  <ModalClose src={close} onClick={closeModal}></ModalClose>
+                  <ModalClose
+                    src={close}
+                    clicked={isVirtualCardNumViewModalOpen.toString()}
+                    onClick={closeModal}
+                  ></ModalClose>
                   <VirtualCardNumView></VirtualCardNumView>
                 </HiCardModal>
               )}
@@ -551,7 +591,11 @@ function HiCardDetail({ hicardInfo }) {
           </HiCardDetailInnerDiv>
           <HiCardLimit>
             <div className="cardLimit">
-              최대한도 {hicardInfo.cardApplyLimitAmount}만원
+              최대한도{" "}
+              {hicardInfo.cardApplyLimitAmount
+                ? hicardInfo.cardApplyLimitAmount.toLocaleString("ko-KR")
+                : ""}
+              원
             </div>
             <div className="cardType">mastercard</div>
           </HiCardLimit>
@@ -563,7 +607,7 @@ function HiCardDetail({ hicardInfo }) {
               <Category>
                 <img
                   className="icon"
-                  src={accordion.image}
+                  src={accordion.image ? accordion.image : null}
                   alt="카테고리 아이콘 이미지"
                 ></img>
                 <p className="catagory">{accordion.category}</p>
@@ -577,9 +621,16 @@ function HiCardDetail({ hicardInfo }) {
             </HiCardBenefits>
             {openAccordions.includes(index) && (
               <HiCardBenefitsContent>
-                {/* Additional Content to show when accordion is open */}
-                <p>{accordion.benefit}</p>
-                {/* ... more content */}
+                <p className="benefitsTitle">{accordion.benefit}</p>
+                {accordion.seeMoreBenefits && (
+                  <div className="benefitsText">
+                    {accordion.seeMoreBenefits
+                      .split("\n")
+                      .map((text, index) => (
+                        <p key={index}>{text}</p>
+                      ))}
+                  </div>
+                )}
               </HiCardBenefitsContent>
             )}
           </div>
