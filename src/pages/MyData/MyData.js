@@ -10,8 +10,15 @@ import {
 } from "../../components/MyDataStyle/MyDataComponent";
 import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
 import Footer from "../../components/Footer/Footer";
+import axios from "axios";
 
 function MyData(props) {
+  axios
+    .get("/getMyLimit.do")
+    .then(function (res) {
+      console.log(res.data);
+    })
+    .catch(function (error) {});
   return (
     <MyDataBack>
       <HeaderLogoutBtn />
