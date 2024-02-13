@@ -36,11 +36,12 @@ import dolls from "../../assets/images/dolls.png";
 import midnightash from "../../assets/images/midnight_ash.png";
 import blueholo from "../../assets/images/blue_holo.png";
 import pinkholo from "../../assets/images/pink_holo.png";
+import unionbanner from "../../assets/images/banner-union.png";
 export const TopSection = () => {
   return (
     <MainPage1>
       <Banner>
-        <EventBanner src={banner}></EventBanner>
+        <EventBanner src={unionbanner}></EventBanner>
         <BannerPage>
           <SelectBanner></SelectBanner>
           <UnselectBanner></UnselectBanner>
