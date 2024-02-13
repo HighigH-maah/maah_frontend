@@ -730,9 +730,14 @@ export const WhyBox = styled.div`
   }
 
   & > span {
+    cursor: pointer;
     font-size: 1.2rem;
     color: #b982ff;
     position: relative;
+    transition: text-shadow 0.3s ease;
+  }
+  & > span:hover {
+    text-shadow: 0px 0px 5px;
   }
 `;
 
