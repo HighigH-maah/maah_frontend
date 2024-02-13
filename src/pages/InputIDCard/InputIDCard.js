@@ -55,18 +55,18 @@ const MainTitle = styled.div`
   font-size: 25px;
   font-weight: bold;
   text-align: center;
-  margin: 20px 0px;
+  margin: 30px 0px;
 `;
 
 const InputWrap = styled.div`
   text-align: center;
   width: 360px;
-  margin: auto;
+  margin: 20px auto;
 
   & > label {
     position: absolute;
     right: calc(50% - 25px);
-    top: 320px;
+    top: 345px;
     font-size: 50px;
     width: 50px;
     height: 50px;
@@ -98,6 +98,7 @@ const InputWrap = styled.div`
     width: 355px;
     height: 205px;
     border-radius: 10px;
+    box-shadow: 2px 2px 2px gray;
   }
   
   & > input {
@@ -107,12 +108,63 @@ const InputWrap = styled.div`
   }
 `;
 
+const InfoWrap = styled.div`
+  text-align: center;
+`;
+
+const InfoName = styled.span`
+  display: inline-block;
+  width: 140px;
+  font-size: 20px;
+  text-align: left;
+  font-weight: bold;
+`;
+
+const InfoInput = styled.span`
+  display: inline-block;
+  width: 200px;
+  padding: 7px;
+  margin: 5px;
+  border-radius: 10px;
+  background-color: #ddd;
+
+  & > input {
+    font-size: 20px;
+    background: none;
+  }
+`;
+
+const Input = styled.input`
+  width: 170px;
+  
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+`;
+
+const InputNum1 = styled.input`
+  width: 75px;
+  appearance: none;
+
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+`;
+
+const InputNum2 = styled.input`
+  width: 90px;
+
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+`;
+
 const Buttons = styled.div`
-  margin: 32px;
+  margin: 40px;
   text-align: center;
 
   & > button {
-    width: 60%;
+    width: 200px;
     height: 70px;
     margin: 5px;
     border-radius: 35px;
@@ -136,7 +188,11 @@ function InputIDCard(props) {
   };
 
   const gotoNext = () => {
-    navigate("/cardApplication3", {})
+    if((name.length > 0 ? 1 : 0) * personalNumber.length * issueDate.length === 112) {
+      navigate("/cardApplication4", {});
+    } else {
+      alert('입력 정보를 다시 확인해주세요.');
+    }
   };
  
   const handleChange = (event) => {
@@ -167,6 +223,35 @@ function InputIDCard(props) {
       })
     }
   }
+
+  const  changeHandler = (event) => {
+    switch(event.target.name) {
+      case 'name':
+        setName(event.target.value);
+        break;
+      case 'personalNum1':
+        if(event.target.value.length > 6) {
+          event.target.value = event.target.value.slice(0, 6);
+        }
+        setPersonalNumber(event.target.value + '-' + personalNumber.split('-')[1]);
+        break;
+      case 'personalNum2':
+        if(event.target.value.length > 7) {
+          event.target.value = event.target.value.slice(0, 7);
+        }
+        setPersonalNumber(personalNumber.split('-')[0] + '-' + event.target.value);
+        break;
+      case 'issueDate':
+        if(event.target.value.length > 8) {
+          event.target.value = event.target.value.slice(0, 8);
+        }
+        setIssuDate(event.target.value);
+        break;
+      default: 
+        break;
+    }
+  }
+
     return (
         <Background>
             <BackLogo src={logo}></BackLogo>
@@ -189,27 +274,34 @@ function InputIDCard(props) {
                 </label>
                 <input type="file" onChange={handleChange} id='idCard'/>
               </InputWrap>
-              <div>
+              <InfoWrap>
                 <div>
-                  <span>이름</span><input type="text" value={name}></input>
+                  <InfoName>이름</InfoName>
+                  <InfoInput>
+                    <Input type="text" value={name} onChange={changeHandler} name='name'></Input>
+                  </InfoInput>
                 </div>
                 <div>
-                  <span>주민등록번호</span>
-                  <input type="text" value={personalNumber === "" ? "" : personalNumber.split("-")[0]}></input>
-                  <span>-</span>
-                  <input type="text" value={personalNumber === "" ? "" : personalNumber.split("-")[1]}></input>
+                  <InfoName>주민등록번호</InfoName>
+                  <InfoInput>
+                    <InputNum1 type="number" disabled={personalNumber === ""} value={personalNumber === "" ? "" : personalNumber.split("-")[0]} onChange={changeHandler} name='personalNum1'></InputNum1>
+                    <span>-</span>
+                    <InputNum2 type="number" disabled={personalNumber === ""} value={personalNumber === "" ? "" : personalNumber.split("-")[1]} onChange={changeHandler} name='personalNum2'></InputNum2>
+                  </InfoInput>
                 </div>
                 <div>
-                  <span>발급일자</span>
-                  <input type="text" placeholder='ex)20240101' value={issueDate}></input>
+                  <InfoName>발급일자</InfoName>
+                  <InfoInput>
+                    <Input type="number" disabled={issueDate === ""} placeholder='ex)20240101' value={issueDate} onChange={changeHandler} name='issueDate'></Input>
+                  </InfoInput>
                 </div>
-              </div>
+              </InfoWrap>
             </div>
             <Buttons>
-                    <button onClick={gotoNext}>본인인증</button>
-                    <button onClick={gotoPrev}>이전으로</button>
-                </Buttons>
-            </MainWrap>
+              <button onClick={gotoPrev}>이전으로</button>
+              <button onClick={gotoNext}>다음으로</button>
+            </Buttons>
+          </MainWrap>
         </Background>
     );
 }

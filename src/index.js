@@ -20,6 +20,7 @@ import LostCard from "./pages/My/LostCard";
 import InputIncome from "./pages/InputIncome/InputIncome";
 import InputIDCard from "./pages/InputIDCard/InputIDCard";
 import PersonalCertification from "./pages/PersonalCertification/PersonalCertification";
+import InputCardApplicationInfo from "./pages/InputCardApplicationInfo/InputCardApplicationInfo";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -30,8 +31,9 @@ root.render(
       <Route path="/footer" element={<Footer />}></Route>
       <Route path="/hiCard" element={<HiCardDesignSelect />}></Route>
       <Route path="/cardApplication" element={<InputIncome />}></Route>
-      <Route path="/cardApplication3" element={<InputIDCard />}></Route>
       <Route path="/cardApplication2" element={<PersonalCertification />}></Route>
+      <Route path="/cardApplication3" element={<InputIDCard />}></Route>
+      <Route path="/cardApplication4" element={<InputCardApplicationInfo />}></Route>
       <Route path="/share" element={<Share />}></Route>
       <Route path="/cardCompare" element={<CardCompare />}></Route>
       <Route path="/signUp" element={<SignUp />}></Route>
