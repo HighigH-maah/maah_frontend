@@ -11,6 +11,10 @@ import reverse from "../../assets/images/reverse.png";
 import shareback from "../../assets/images/share-modal-back.png";
 import blackvelvet from "../../assets/images/black_velvet.png";
 import {
+  Benefit,
+  BenefitDiv,
+  BenefitList,
+  BenefitTitle,
   HiCardPoint,
   HiCardRealPoint,
   HiImageSection,
@@ -22,7 +26,9 @@ import {
   ModalCloseButton,
   PointWrapper,
   ShareBackImage,
+  ShareInput,
 } from "../../components/ShareStyle/ShareComponent";
+import ShareModal from "../../components/ShareStyle/ShareModal";
 
 axios
   .post("/member.do", {
@@ -138,6 +144,7 @@ const ReverseIcon = styled.img`
 
 function Share(props) {
   const [blackVelvet, setBlackVelvet] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const reverseCard = (prop) => {
     let cards = document.getElementsByClassName(prop);
@@ -154,7 +161,6 @@ function Share(props) {
     }, 100);
   };
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -188,41 +194,9 @@ function Share(props) {
           </HiBottom>
         </HiSection>
       </ShareMain>
-      <Modal isOpen={isModalOpen}>
-        <ModalCloseButton onClick={closeModal}>닫기</ModalCloseButton>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="900"
-          height="2"
-          viewBox="0 0 900 2"
-          fill="none"
-        >
-          <path opacity="0.4" d="M0 1L900 1" stroke="white" />
-        </svg>
-        <ShareBackImage />
-        <HiModalTop>
-          <HiCardPoint>HiCard Point</HiCardPoint>
-          <HiCardRealPoint>5000P</HiCardRealPoint>
-        </HiModalTop>
-        <img src={shareback} name={shareback} />
-        <HiModalMid>
-          <HiImageSection>
-            The Blue
-            <img src={blackvelvet} name={blackvelvet} />
-          </HiImageSection>
-          <HiPointSection>
-            <PointWrapper>
-              <p>By:Card Point</p>
-              <span>4500P</span>
-            </PointWrapper>
-            <InputWrapper>
-              <input value="" placeholder="point" />
-              <button>Share</button>
-            </InputWrapper>
-          </HiPointSection>
-        </HiModalMid>
-        <p>This is the modal content.</p>
-      </Modal>
+      {isModalOpen ? (
+        <ShareModal isOpen={isModalOpen} closeModal={closeModal} />
+      ) : null}
     </ShareBack>
   );
 }
