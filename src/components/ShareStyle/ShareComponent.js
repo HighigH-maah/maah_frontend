@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import shareback from "../../assets/images/share-modal-back.png";
 export const Modal = styled.div`
   display: ${(props) => (props.isOpen ? "block" : "none")};
   display: block;
@@ -22,6 +22,21 @@ export const ModalCloseButton = styled.button`
   position: absolute;
   top: 10px;
   right: 10px;
+  font-size: 1rem;
+  width: 120px;
+  height: 56.226px;
+  flex-shrink: 0;
+  color: white;
+  cursor: pointer;
+  background: linear-gradient(
+    180deg,
+    #eee 0%,
+    rgba(80, 80, 80, 0.71) 50%,
+    rgba(255, 255, 255, 0.09) 93.5%,
+    rgba(239, 239, 237, 0) 100%
+  );
+
+  border-radius: 54px;
 `;
 
 export const HiCardPoint = styled.div`
@@ -55,6 +70,7 @@ export const HiModalTop = styled.div`
   font-weight: bolder;
   flex-direction: column;
   align-items: center;
+  margin-top: 2rem;
 `;
 
 export const ShareBackImage = styled.image`
@@ -62,6 +78,12 @@ export const ShareBackImage = styled.image`
   justify-content: center;
   margin: 0 auto;
   position: relative;
+
+  position: relative;
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const HiModalMid = styled.div`
@@ -137,6 +159,7 @@ export const BenefitDiv = styled.div`
   border-radius: 20px;
   width: 900.187px;
   height: 652px;
+  box-shadow: inset 11px 13px 0px 0px lightgrey;
   color: white;
   background: black;
   margin-top: 2rem;
@@ -182,4 +205,29 @@ export const ShareInput = styled.input`
   border-radius: 20px;
   color: #02358b;
   cursor: pointer;
+  outline: none;
 `;
+
+const imageStyle = {
+  maxWidth: "100%",
+  height: "auto",
+  borderRadius: "8px",
+  display: "flex",
+  margin: "0 auto",
+};
+
+export const BackTitle = () => {
+  return <img src={shareback} alt="Share Back" style={imageStyle} />;
+};
+
+export const HiModalTopDiv = ({ realpoint }) => {
+  return (
+    <>
+      <HiModalTop>
+        <HiCardPoint>HiCard Point</HiCardPoint>
+        <HiCardRealPoint>{realpoint}P</HiCardRealPoint>
+      </HiModalTop>
+      <BackTitle></BackTitle>
+    </>
+  );
+};
