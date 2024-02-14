@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 //import close from "../../assets/images/close.png";
 
@@ -153,9 +155,48 @@ const AuthCheckBtn = styled.button`
 const EleName = styled.span``;
 
 function VirtualCardApply(props) {
+  const [modal, setModal] = useState(false);
+
+  useEffect(() => {
+    const jquery = document.createElement("script");
+    jquery.src = "http://code.jquery.com/jquery-1.12.4.min.js";
+    const iamport = document.createElement("script");
+    iamport.src = "http://cdn.iamport.kr/js/iamport.payment-1.1.8.js";
+    document.head.appendChild(jquery);
+    document.head.appendChild(iamport);
+    return () => {
+      document.head.removeChild(jquery);
+      document.head.removeChild(iamport);
+    };
+  }, []);
+
+  if (modal) {
+    return (
+      <VirtualCardApplyDiv>
+        <Modal2></Modal2>
+      </VirtualCardApplyDiv>
+    );
+  } else {
+    return (
+      <VirtualCardApplyDiv>
+        <Modal1 setModal={setModal}></Modal1>
+      </VirtualCardApplyDiv>
+    );
+  }
+}
+
+//만들어진 가상카드번호가 나온당
+function Modal2() {
+  return (
+    <>
+      <div>123</div>
+    </>
+  );
+}
+
+function Modal1({ setModal }) {
   const [isTermChecked1, setTermChecked1] = useState(false);
   const [isTermChecked2, setTermChecked2] = useState(false);
-  const [isAuthChecked, setAuthChecked] = useState(false); //본인인증
 
   const handleTermCheck1 = () => {
     setTermChecked1(!isTermChecked1);
@@ -175,14 +216,40 @@ function VirtualCardApply(props) {
   };
 
   const handleAuthCheck = () => {
-    // 본인 인증에 대한 로직을 여기에 추가합니다
-    // 본인 인증이 완료되면 setAuthChecked(true)로 설정합니다
-    setAuthChecked(true);
-    console.log("본인인증 버튼 클릭");
+    // 본인 인증에
+    const { IMP } = window;
+    IMP.init("imp72857613");
+
+    IMP.certification(
+      {
+        pg: "MIIiasTest",
+        merchant_uid: `mid_${new Date().getTime()}`,
+      },
+      function (rsp) {
+        if (rsp.success) {
+          console.log("success");
+          console.log(rsp);
+
+          axios({
+            method: "post",
+            url: "/getCert.do",
+            data: { imp_uid: rsp.imp_uid, memberId: "user3" },
+          })
+            .then((res) => {
+              console.log(res.data);
+              setModal(true);
+            })
+            .catch((err) => {
+              console.log(err);
+              console.log("실패 실패 실패 실패 실패 실패");
+            });
+        }
+      }
+    );
   };
 
   return (
-    <VirtualCardApplyDiv>
+    <>
       {/* <ModalClose src={close}></ModalClose> */}
       <p className="ModalTitle">가상 카드 발급신청</p>
 
@@ -223,7 +290,7 @@ function VirtualCardApply(props) {
           <AuthCheckBtn onClick={handleAuthCheck}>본인인증</AuthCheckBtn>
         )}
       </EleBox>
-    </VirtualCardApplyDiv>
+    </>
   );
 }
 

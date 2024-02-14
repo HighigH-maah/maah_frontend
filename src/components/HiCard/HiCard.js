@@ -27,6 +27,7 @@ import bronzeImg from "../../assets/images/Grade/bronze.png";
 import silverImg from "../../assets/images/Grade/silver.png";
 import goldImg from "../../assets/images/Grade/gold.png";
 import platinumImg from "../../assets/images/Grade/platinum.png";
+import logoImg from "../../assets/images/Logo/maah_small_logo.png";
 
 const HiCardDiv = styled.div`
   display: flex;
@@ -461,7 +462,7 @@ function HiCardDetail({ hicardInfo, hicardBenefitsInfo }) {
         return oilingImg;
       // Add more cases for other benefit names and their corresponding images
       default:
-        return utilitiesImg;
+        return logoImg;
     }
   }
 
