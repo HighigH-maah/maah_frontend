@@ -7,6 +7,7 @@ import silver from "../../assets/images/Grade/silver.png";
 import bronze from "../../assets/images/Grade/bronze.png";
 import arrow from "../../assets/images/select_arrow.png";
 import { useNavigate } from 'react-router';
+import CardLimit from '../../components/InputCardApplicationInfo/CardLimit';
 
 const Background = styled.div`
   background: linear-gradient(180deg, #f1f1f1 37.44%, #b2b2b2 100%);
@@ -214,20 +215,17 @@ const ButtonWrap = styled.div`
 
 const ModalWrap = styled.div`
   background-color: rgba(0, 0, 0, 0.3);
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
   visibility: hidden;
+  overflow: hidden;
 `;
 
 function InputCardApplicationInfo(props) {
   const navigate = useNavigate();
   const [cardRegion, setCardRegion] = useState("visa");
-
-  const gotoNext = () => {
-    navigate("/cardApplicationModal", {})
-  };
 
   const gotoPrev = () => {
     navigate("/cardApplication3", {})
@@ -235,6 +233,11 @@ function InputCardApplicationInfo(props) {
 
   const selectRegion = (prop) => {
     setCardRegion(prop);
+  }
+
+  const displayModal = () => {
+    let modal = document.getElementById('certification');
+    modal.style.visibility = 'visible';
   }
 
     return (
@@ -299,14 +302,14 @@ function InputCardApplicationInfo(props) {
                     </AccountWrap>
                 </div>
                 <ButtonWrap>
-                  <button>계좌인증</button>
+                  <button onClick={displayModal}>계좌인증</button>
                   <button onClick={gotoPrev}>이전으로</button>
                 </ButtonWrap>
             </MainWrap>
         </Background>
 
-      <ModalWrap>
-
+      <ModalWrap id="certification">
+        <CardLimit />
       </ModalWrap>
       </>
     );
