@@ -176,13 +176,16 @@ input {
   flex-shrink: 0;
 }
 .item--zHs .auto-group-fram-hi5 .group-1000003245-FaV {
-  margin-bottom: 8.7rem;
-  width: 100%;
-  height: 40rem;
-  display: flex;
-  align-items: center;
+  margin-bottom: 20rem;
   border-radius: 1.2rem;
   flex-shrink: 0;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  position: relative;
+  top: 10rem;
 }
 .item--zHs .auto-group-fram-hi5 .group-1000003245-FaV .auto-group-xpr7-Nf7 {
   box-sizing: border-box;
@@ -901,8 +904,8 @@ input {
   .group-1000003161-Vfj
   .group-1000003158-ioP {
   margin: 0rem 5.7rem 0rem 2.6rem;
-  width: calc(100% - 8.3rem);
-  height: 6.5rem;
+  height: 6rem;
+  width: 12rem;
   text-align: center;
   font-size: 2rem;
   font-weight: 600;
