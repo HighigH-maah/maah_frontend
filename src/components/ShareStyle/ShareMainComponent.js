@@ -1,22 +1,28 @@
 import styled from "styled-components";
+import shareBackground from "../../assets/images/share_bg.png";
+import shareBackwings from "../../assets/images/share_back_wings.png";
 
 export const ShareBack = styled.div`
   width: auto;
   height: auto;
   position: relative;
   background: linear-gradient(
-    355.98deg,
-    #181048 99.92%,
-    #0e0831 99.93%,
-    #1b463b 200%
+    176deg,
+    #181048 0.08%,
+    #0f0932 0.09%,
+    #1b463c 100%
   );
   background-size: auto 100%;
+  padding: 0 10px;
 `;
 
 export const ShareMain = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
+  background-image: url(${shareBackground});
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 export const HiSection = styled.div`
@@ -36,7 +42,7 @@ export const HiTopper = styled.div`
 `;
 export const HiTopTitle = styled.p`
   text-align: center;
-  font-size: 6rem;
+  font-size: 60px;
   font-weight: 400;
   line-height: 0.97;
   color: #ffffff;
@@ -60,11 +66,27 @@ export const HiBottom = styled.div`
   width: 100%;
   position: relative;
   flex-shrink: 0;
-  margin: 5rem 0 2rem;
+  margin: 5rem 15rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
+
+export const HiBottomWings = styled.div`
+  width: 65vw;
+  min-height: 52vw;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url(${shareBackwings});
+  background-repeat: no-repeat;
+  background-size: cover;
+`;
+
 export const HiCardTypeName = styled.div`
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   font-weight: 400;
   line-height: 0.97;
   letter-spacing: -0.1rem;
@@ -72,12 +94,14 @@ export const HiCardTypeName = styled.div`
 
   white-space: nowrap;
   flex-shrink: 0;
+  margin-bottom: 1rem;
 `;
 
 export const HiCardImg = styled.img`
   box-sizing: border-box;
-  width: 200px;
-  height: 300px;
+  width: 232px;
+  height: 351px;
+  transition: all 0.15s linear;
 `;
 
 export const ReverseButton = styled.button`
@@ -93,10 +117,105 @@ export const ReverseButton = styled.button`
     rgba(200, 200, 200, 0.5) 45%,
     rgba(128, 128, 128, 0.5)
   );
-  bottom: 70px;
+  bottom: 21px;
 `;
 
 export const ReverseIcon = styled.img`
   margin: auto;
   margin-top: 5px;
+`;
+
+export const LearnMore = styled.div`
+  display: flex;
+  width: 184px;
+  height: 55px;
+  padding: 5px 10px;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+  border-radius: 64px;
+  background: linear-gradient(92deg, #9b988f 7.01%, #d8d3c5 72.28%);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  font-size: 20px;
+  color: #fff;
+  font-weight: 400;
+  line-height: 24px;
+  justify-content: center;
+  cursor: pointer;
+`;
+
+export const BySection = styled.div`
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 15rem 0 10rem;
+`;
+
+export const ByTopper = styled.div`
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 10rem;
+`;
+
+export const ByTitle = styled.div`
+  width: fit-content;
+  position: relative;
+  color: #fff;
+  font-size: 60px;
+  font-weight: 400;
+  left: 50%;
+  transform: translate(-50%, 0%);
+`;
+
+export const ByBottomArea = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 3rem;
+  padding: 0 14rem;
+  box-sizing: border-box;
+`;
+
+export const ByBottomCardArea = styled.div`
+  width: 100%;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  justify-content: space-evenly;
+`;
+
+export const ByBottomCardTitle = styled.p`
+  color: #fff;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -1.2px;
+`;
+
+export const ByBottomAdd = styled.div`
+  width: 311px;
+  height: 230px;
+  transform: rotate(90deg);
+  border-radius: 12px;
+  border: 2px solid #fff;
+  background: linear-gradient(
+    113deg,
+    rgba(255, 255, 255, 0.37) 10.29%,
+    rgba(255, 255, 255, 0) 100.35%
+  );
+  backdrop-filter: blur(37.5px);
+  position: relative;
+  > svg {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+  }
 `;

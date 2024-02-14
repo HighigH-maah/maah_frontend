@@ -3,7 +3,7 @@ import shareback from "../../assets/images/share-modal-back.png";
 export const Modal = styled.div`
   display: ${(props) => (props.isOpen ? "block" : "none")};
   display: block;
-  position: relative;
+  position: absolute;
   width: 1000px;
   height: 1769px;
   background: linear-gradient(
@@ -11,8 +11,9 @@ export const Modal = styled.div`
     #181048 0%,
     rgba(217, 217, 217, 0.74) 100%
   );
+  top: 0%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 25%);
   background-color: white;
   padding: 20px;
   z-index: 999;
