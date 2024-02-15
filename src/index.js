@@ -20,6 +20,7 @@ import LostCard from "./pages/My/LostCard";
 import InputIncome from "./pages/InputIncome/InputIncome";
 import InputIDCard from "./pages/InputIDCard/InputIDCard";
 import Cert from "./components/HiCard/Cert";
+import ByCard from "./pages/ByCard/ByCard";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -46,6 +47,8 @@ root.render(
       <Route path="/myCardList" element={<MyCardList />}></Route>
       <Route path="/lostCard" element={<LostCard />}></Route>
       <Route path="/cert" element={<Cert />}></Route>
+
+      <Route path="/byCardDetail" element={<ByCard />}></Route>
     </Routes>
   </BrowserRouter>
 );
