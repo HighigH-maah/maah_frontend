@@ -6,9 +6,12 @@ import {
   LineElement,
   Title,
   Tooltip,
+  ArcElement,
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import { styled } from "styled-components";
+import { Doughnut } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
@@ -52,12 +55,41 @@ export const data = {
   ],
 };
 
-export default function LineChart() {
+export function LineChart() {
   return (
     <div className="contentWrap">
       <div className="contentInner">
         <Line options={options} data={data} />
       </div>
     </div>
+  );
+}
+
+ChartJS.register(ArcElement, Tooltip, Legend);
+
+const Main = styled.div`
+  display: flex;
+  align-items: center;
+  width: 50%;
+`;
+
+export function MyDoughnutChart() {
+  const Data = {
+    labels: ["교통", "통신", "항공"],
+    datasets: [
+      {
+        data: [40, 20, 35],
+        backgroundColor: ["#ffeb9b", "#b5f2ff", "#c5f2ba"],
+        borderColor: ["#ffeb9b", "#b5f2ff", "#c5f2ba"],
+      },
+    ],
+  };
+
+  const Options = {};
+
+  return (
+    <Main>
+      <Doughnut data={Data} options={Options}></Doughnut>
+    </Main>
   );
 }

@@ -296,3 +296,49 @@ export const ToNextSub = styled.span`
   position: relative;
   margin: 0 auto;
 `;
+
+export const DataViewZone = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const PercentZone = styled.div`
+  display: flex;
+  width: 610px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+`;
+
+export const PercentBox = styled.div`
+  border-radius: 8px;
+  border: 1px solid var(--Gray-200, #f2f2f2);
+  background: #fff;
+  display: flex;
+  padding: 12px 179px 12px 12px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 9px;
+`;
+
+export const Ptitle = styled.p`
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #7a7a7a;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 18px; /* 128.571% */
+  letter-spacing: -0.5px;
+`;
+
+export const PData = styled.p`
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -1px;
+`;
