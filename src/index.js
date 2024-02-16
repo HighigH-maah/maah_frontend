@@ -15,10 +15,11 @@ import VirtualCardApply from "./components/HiCard/VirtualCardApply";
 import MyPaymentHistory from "./components/HiCard/MyPaymentHistory";
 import VirtualCardNumView from "./components/HiCard/VirtualCardNumView";
 import MyAccountChange from "./components/HiCard/MyAccountChange";
-import MyCardList from "./pages/My/MyCardList";
-import LostCard from "./pages/My/LostCard";
+import MyCardList from "./pages/MyCard/MyCardList";
+import LostCard from "./pages/MyCard/LostCard";
 import InputIncome from "./pages/InputIncome/InputIncome";
 import InputIDCard from "./pages/InputIDCard/InputIDCard";
+import MyData from "./pages/MyData/MyData";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -44,6 +45,7 @@ root.render(
       ></Route>
       <Route path="/myCardList" element={<MyCardList />}></Route>
       <Route path="/lostCard" element={<LostCard />}></Route>
+      <Route path="/myData" element={<MyData />}></Route>
     </Routes>
   </BrowserRouter>
 );

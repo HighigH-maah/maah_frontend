@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-
 import "../../assets/css/style.css";
 import { Element } from "react-scroll";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import styled, { keyframes, css } from "styled-components";
 import mainBackground from "../../assets/images/main_bg.png";
-import banner from "../../assets/images/banner.png";
 import blackvelvet from "../../assets/images/black_velvet.png";
 import blackBack from "../../assets/images/black_back.png";
 import whitevelvet from "../../assets/images/white_velvet.png";
@@ -36,24 +35,82 @@ import dolls from "../../assets/images/dolls.png";
 import midnightash from "../../assets/images/midnight_ash.png";
 import blueholo from "../../assets/images/blue_holo.png";
 import pinkholo from "../../assets/images/pink_holo.png";
+import unionbanner from "../../assets/images/banner-union.png";
+import nasabanner from "../../assets/images/banner-nasa.png";
+import blackvelvetbanner from "../../assets/images/banner-blackvelvet.png";
+import whitevelvetbanner from "../../assets/images/banner-whitevelvet.png";
+const banners = [blackvelvetbanner, whitevelvetbanner, nasabanner, unionbanner];
+
+const Arrows = styled.div`
+  position: absolute;
+  top: 50%;
+  width: 54%;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const ArrowBase = styled.div`
+  cursor: pointer;
+  font-size: 2rem;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 50%;
+`;
+
+export const ArrowLeft = styled(ArrowBase)``;
+export const ArrowRight = styled(ArrowBase)``;
+
 export const TopSection = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const handleBanner = (idx) => {
+    setCurrentSlide(idx);
+  };
+
+  const handleNextSlide = () => {
+    const nextSlide = (currentSlide + 1) % banners.length;
+    setCurrentSlide(nextSlide);
+  };
+
+  const handlePrevSlide = () => {
+    const prevSlide = (currentSlide - 1 + banners.length) % banners.length;
+    setCurrentSlide(prevSlide);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(handleNextSlide, 2000); // Adjust the interval as needed
+    return () => clearInterval(interval);
+  }, [currentSlide]);
+
   return (
     <MainPage1>
       <Banner>
-        <EventBanner src={banner}></EventBanner>
+        <EventBanner
+          src={banners[currentSlide]}
+          className={currentSlide !== 0 ? "hidden" : ""}
+        ></EventBanner>
         <BannerPage>
-          <SelectBanner></SelectBanner>
-          <UnselectBanner></UnselectBanner>
-          <UnselectBanner></UnselectBanner>
-          <UnselectBanner></UnselectBanner>
-          <UnselectBanner></UnselectBanner>
+          {banners.map((_, index) => (
+            <span
+              key={index}
+              onClick={() => handleBanner(index)}
+              className={currentSlide === index ? "selected" : ""}
+            ></span>
+          ))}
         </BannerPage>
+        <Arrows>
+          <ArrowLeft onClick={handlePrevSlide}>
+            <FaChevronLeft />
+          </ArrowLeft>
+          <ArrowRight onClick={handleNextSlide}>
+            <FaChevronRight />
+          </ArrowRight>
+        </Arrows>
       </Banner>
+
       <div>
-        <div>
-          <LoginTitle>한마음 님</LoginTitle>
-          <LoginWelcome>Welcome to ma:ah Card</LoginWelcome>
-        </div>
+        <NameSection name={"한마음"}></NameSection>
         <div>
           <SocialLogin>
             <SocialButtonBlock>
@@ -104,6 +161,19 @@ export const TopSection = () => {
         </div>
       </div>
     </MainPage1>
+  );
+};
+
+export const NameDiv = styled.div`
+  margin-top: 1rem;
+`;
+
+export const NameSection = ({ name }) => {
+  return (
+    <NameDiv>
+      <LoginTitle>{name} 님</LoginTitle>
+      <LoginWelcome>Welcome to ma:ah Card</LoginWelcome>
+    </NameDiv>
   );
 };
 export const FirstSection = () => {
@@ -234,8 +304,9 @@ export const EventBanner = styled.img`
   width: 100%;
   aspect-ratio: 16 / 9;
   border-radius: 1%;
+  opacity: 1; // Set initial opacity to 1
+  transition: opacity 1s ease-in-out;
 `;
-
 export const BannerPage = styled.div`
   text-align: center;
   & > span {
@@ -358,7 +429,8 @@ export const LoginButton = styled.div`
   }
 
   & > span {
-    margin-left: 8rem;
+    margin-top: 2rem;
+    margin-left: 11rem;
     position: relative;
     display: flex;
     cursor: pointer;
@@ -658,9 +730,14 @@ export const WhyBox = styled.div`
   }
 
   & > span {
+    cursor: pointer;
     font-size: 1.2rem;
     color: #b982ff;
     position: relative;
+    transition: text-shadow 0.3s ease;
+  }
+  & > span:hover {
+    text-shadow: 0px 0px 5px;
   }
 `;
 

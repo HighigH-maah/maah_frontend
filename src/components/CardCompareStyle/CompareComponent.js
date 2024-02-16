@@ -244,34 +244,10 @@ export const ExampleImage = ({ image }) => {
   return (
     <ImageOverlay>
       <img src={circle} alt="Circle" width="200" height="200" />
-      <CardImage src={image} alt={"The Velvet"} />
-
-      {/* <CardImage
-          src={require(`../../assets/images/${name}.png`).default}
-          alt={name}
-        /> */}
+      <CardImage src={image} alt={image} />
     </ImageOverlay>
   );
 };
-// export const ExampleImage = ({ image, name }) => {
-//   if (image) {
-//     console.log(image);
-//     return (
-//       <ImageOverlay>
-//         <img src={circle} alt="Circle" width="200" height="200" />
-//         <CardImage src={blackVelvet} alt={"The Velvet"} />
-
-//         {/* <CardImage
-//           src={require(`../../assets/images/${name}.png`).default}
-//           alt={name}
-//         /> */}
-//       </ImageOverlay>
-//     );
-//   } else {
-//     console.error("Image prop is undefined.");
-//     return null;
-//   }
-// };
 
 export const CardImageDiv = styled.div`
   display: flex;
