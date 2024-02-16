@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { HiCardModal, ModalClose } from "../HiCard/HiCard";
-import MyAccountChange from "../HiCard/MyAccountChange";
+import MyHiCardAccountChange from "../HiCard/MyHiCardAccountChange";
 import close from "../../assets/images/close.png";
 import bronzeImg from "../../assets/images/Grade/bronze.png";
 import silverImg from "../../assets/images/Grade/silver.png";
@@ -839,12 +839,12 @@ const MyHiCardRightSection = ({ myCardHi }) => {
           <AccountChange onClick={openMyAccountChangeModal}>
             연결계좌변경
           </AccountChange>
-          {/* MyAccountChange 모달 */}
+          {/* MyHiCardAccountChange 모달 */}
           {isMyAccountChangeModalOpen && (
             <HiCardModal>
               {/* <button onClick={closeModal}>Close Modal</button> */}
               <ModalClose src={close} onClick={closeModal}></ModalClose>
-              <MyAccountChange></MyAccountChange>
+              <MyHiCardAccountChange></MyHiCardAccountChange>
             </HiCardModal>
           )}
           <Link to="/lostCard" style={{ textDecoration: "none" }}>
@@ -985,12 +985,12 @@ export const MyByCardRightSection = ({ byCardData }) => {
           <AccountChange onClick={openMyAccountChangeModal}>
             연결계좌변경
           </AccountChange>
-          {/* MyAccountChange 모달 */}
+          {/* MyHiCardAccountChange 모달 */}
           {isMyAccountChangeModalOpen && (
             <HiCardModal>
               {/* <button onClick={closeModal}>Close Modal</button> */}
               <ModalClose src={close} onClick={closeModal}></ModalClose>
-              <MyAccountChange></MyAccountChange>
+              <MyHiCardAccountChange></MyHiCardAccountChange>
             </HiCardModal>
           )}
           <Link to="/lostCard" style={{ textDecoration: "none" }}>
