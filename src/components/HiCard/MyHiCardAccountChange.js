@@ -168,14 +168,14 @@ const InputBox = styled.input`
 //     console.log(error);
 //   });
 
-function MyAccountChange(props) {
+function MyHiCardAccountChange(props) {
   const [hiCardAccountInfo, setHiCardAccountInfo] = useState([]);
   const [bankInfo, setBankInfo] = useState([]);
 
   useEffect(() => {
     axios({
       method: "post",
-      url: "/getAccountInfo.do",
+      url: "/getHiCardAccountInfo.do",
       data: { memberId: "user3" },
     })
       .then((res) => {
@@ -261,4 +261,4 @@ function HiCardAccountChnage({ hiCardAccountInfo, bankInfo }) {
   );
 }
 
-export default MyAccountChange;
+export default MyHiCardAccountChange;

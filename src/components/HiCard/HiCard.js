@@ -18,7 +18,6 @@ import VirtualCardApply from "./VirtualCardApply";
 import close from "../../assets/images/close.png";
 import MyPaymentHistory from "./MyPaymentHistory";
 import VirtualCardNumView from "./VirtualCardNumView";
-import MyAccountChange from "./MyAccountChange";
 import axios from "axios";
 import HeaderLogoutBtn from "../Header/HeaderLogoutBtn";
 import Footer from "../Footer/Footer";
@@ -28,6 +27,7 @@ import silverImg from "../../assets/images/Grade/silver.png";
 import goldImg from "../../assets/images/Grade/gold.png";
 import platinumImg from "../../assets/images/Grade/platinum.png";
 import logoImg from "../../assets/images/Logo/maah_small_logo.png";
+import MyHiCardAccountChange from "./MyHiCardAccountChange";
 
 const HiCardDiv = styled.div`
   display: flex;
@@ -261,6 +261,7 @@ const HiCardBenefitsContent = styled.div`
   background: linear-gradient(180deg, #f0f0f0 -0%, #ffffff 100%);
   border-radius: 1rem;
   flex-direction: column;
+  font-size: 24px;
 
   .benefitsTitle {
     font-weight: 600;
@@ -612,7 +613,7 @@ function HiCardDetail({
                       clicked={isMyAccountChangeModalOpen.toString()}
                       onClick={closeMyAccountChangeModal}
                     ></ModalClose>
-                    <MyAccountChange></MyAccountChange>
+                    <MyHiCardAccountChange></MyHiCardAccountChange>
                   </HiCardModal>
                 </ModalBackground>
               )}

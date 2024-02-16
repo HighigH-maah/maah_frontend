@@ -168,20 +168,20 @@ const InputBox = styled.input`
 //     console.log(error);
 //   });
 
-function MyAccountChange(props) {
-  const [hiCardAccountInfo, setHiCardAccountInfo] = useState([]);
+function MyByCardAccountChange(props) {
+  const [byCardAccountInfo, setByCardAccountInfo] = useState([]);
   const [bankInfo, setBankInfo] = useState([]);
 
   useEffect(() => {
     axios({
       method: "post",
-      url: "/getAccountInfo.do",
+      url: "/getByCardAccountInfo.do",
       data: { memberId: "user3" },
     })
       .then((res) => {
         console.log(res.data);
         console.log("성공 성공 성공 성공 성공 성공");
-        setHiCardAccountInfo(res.data);
+        setByCardAccountInfo(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -206,32 +206,32 @@ function MyAccountChange(props) {
   }, []); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
 
   return (
-    <HiCardAccountChnage
-      hiCardAccountInfo={hiCardAccountInfo}
+    <ByCardAccountChange
+      byCardAccountInfo={byCardAccountInfo}
       bankInfo={bankInfo}
-    ></HiCardAccountChnage>
+    ></ByCardAccountChange>
   );
 }
 
-function HiCardAccountChnage({ hiCardAccountInfo, bankInfo }) {
+function ByCardAccountChange({ byCardAccountInfo, bankInfo }) {
   return (
     <MyAccountChangeDiv>
-      <div className="modalTitle">Hi:Card 연결 계좌 변경</div>
+      <div className="modalTitle">By:Card 연결 계좌 변경</div>
 
       <CurrentInfo>
         <p>변경정보 대상카드</p>
         <div className="currentCardInfoDiv">
           <div className="currentCardInfo">
             <p className="title">현재 결제은행</p>
-            <p className="value">{hiCardAccountInfo.bankName}</p>
+            <p className="value">{byCardAccountInfo.bankName}</p>
           </div>
           <div className="currentCardInfo">
             <p className="title">현재 계좌번호</p>
-            <p className="value">{hiCardAccountInfo.memberHiAccountNumber}</p>
+            <p className="value">{byCardAccountInfo.memberByAccountNumber}</p>
           </div>
           <div className="currentCardInfo">
             <p className="title">카드번호</p>
-            <p className="value">{hiCardAccountInfo.memberHiNumber}</p>
+            <p className="value">{byCardAccountInfo.memberByNumber}</p>
           </div>
         </div>
       </CurrentInfo>
@@ -261,4 +261,4 @@ function HiCardAccountChnage({ hiCardAccountInfo, bankInfo }) {
   );
 }
 
-export default MyAccountChange;
+export default MyByCardAccountChange;

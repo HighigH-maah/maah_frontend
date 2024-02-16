@@ -18,13 +18,13 @@ import chevronUp from "../../assets/icon/chevronUp.png";
 import close from "../../assets/images/close.png";
 import MyPaymentHistory from "./MyPaymentHistory";
 
-import MyAccountChange from "./MyAccountChange";
 import axios from "axios";
 
 import "../../assets/css/style.css";
 import logoImg from "../../assets/images/Logo/maah_small_logo.png";
 import Footer from "../../components/Footer/Footer";
 import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
+import MyByCardAccountChange from "./MyByCardAccountChange";
 
 const ByCardDiv = styled.div`
   display: flex;
@@ -246,6 +246,7 @@ const ByCardBenefitsContent = styled.div`
   background: linear-gradient(180deg, #f0f0f0 -0%, #ffffff 100%);
   border-radius: 1rem;
   flex-direction: column;
+  font-size: 24px;
 
   .benefitsTitle {
     font-weight: 600;
@@ -340,36 +341,18 @@ const ModalBackground = styled.div`
 
 function ByCard(props) {
   const [bycardInfo, setByCardInfo] = useState([]);
-  const [bycardInfo2, setByCardInfo2] = useState([]);
   const [bycardBenefitsInfo, setByCardBenefitsInfo] = useState([]);
 
   useEffect(() => {
     axios({
       method: "post",
-      url: `/getHiCardInfo.do`,
+      url: `/getAllByCardInfo.do`,
       data: { memberId: "user3" },
     })
       .then((res) => {
         console.log(res.data);
         console.log("성공 성공 성공 성공 성공 성공");
         setByCardInfo(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log("실패 실패 실패 실패 실패 실패");
-      });
-  }, []); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
-
-  useEffect(() => {
-    axios({
-      method: "post",
-      url: "/getHiCardBenefits.do",
-      data: { memberId: "user3" },
-    })
-      .then((res) => {
-        console.log(res.data);
-        console.log("성공 성공 성공 성공 성공 성공");
-        setByCardBenefitsInfo(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -391,7 +374,7 @@ function ByCard(props) {
           console.log(res.data[cardId][i]);
         }
         console.log("성공 성공 성공 성공 성공 성공");
-        setByCardInfo2(res.data);
+        setByCardBenefitsInfo(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -403,12 +386,11 @@ function ByCard(props) {
     <ByCardDetail
       bycardInfo={bycardInfo}
       bycardBenefitsInfo={bycardBenefitsInfo}
-      bycardInfo2={bycardInfo2}
     ></ByCardDetail>
   );
 }
 
-function ByCardDetail({ bycardInfo, bycardBenefitsInfo, bycardInfo2 }) {
+function ByCardDetail({ bycardInfo, bycardBenefitsInfo }) {
   const [openAccordions, setOpenAccordions] = useState([]);
   const [isMyPaymentHistoryModalOpen, setIsMyPaymentHistoryModalOpen] =
     useState(false);
@@ -472,99 +454,105 @@ function ByCardDetail({ bycardInfo, bycardBenefitsInfo, bycardInfo2 }) {
     }
   }
 
-  const accordions = bycardBenefitsInfo.map((benefitInfo, index) => ({
-    image: getImageForBenefit(benefitInfo.benefitName),
-    category: benefitInfo.benefitName,
-    benefit: benefitInfo.byBenefitDesc,
-    seeMoreBenefits: benefitInfo.byBenefitBody,
-  }));
+  const accordions = bycardBenefitsInfo[8]
+    ? bycardBenefitsInfo[8].map((bycardBenefits, index) => ({
+        image: getImageForBenefit(bycardBenefits.benefitName),
+        category: bycardBenefits.benefitName,
+        benefit: bycardBenefits.byBenefitDesc,
+        seeMoreBenefits: bycardBenefits.byBenefitBody,
+      }))
+    : [];
 
   return (
     <>
       <HeaderLogoutBtn></HeaderLogoutBtn>
       <ByCardDiv>
-        <ByCardDetailOuterDiv>
-          <ByCardDetailInnerDiv>
-            <ByCardDetailLeft>
-              <img
-                src={bycardInfo.hiCardImageFrontPath}
-                alt="바이카드 이미지"
-              ></img>
-            </ByCardDetailLeft>
-            <ByCardDetailRight>
-              <p className="name1">{bycardInfo.memberHiNickname}</p>
-              <p className="name2">By:Card</p>
+        {bycardInfo[8] &&
+          bycardInfo[8].map((bycardInfo, index) => (
+            <ByCardDetailOuterDiv>
+              <ByCardDetailInnerDiv>
+                <ByCardDetailLeft>
+                  <img src={bycardInfo.byImagePath} alt="바이카드 이미지"></img>
+                </ByCardDetailLeft>
+                <ByCardDetailRight>
+                  <p className="name1">{bycardInfo.byName}</p>
+                  <p className="name2">{bycardInfo.memberCardByNickname}</p>
 
-              <ByCardPoint>
-                <div className="title">By:Card Point</div>
-                <div className="point">
-                  {bycardInfo.memberMileage
-                    ? bycardInfo.memberMileage.toLocaleString("ko-KR")
+                  <ByCardPoint>
+                    <div className="title">By:Card Point</div>
+                    <div className="point">
+                      {bycardInfo.pointByAmount
+                        ? bycardInfo.pointByAmount.toLocaleString("ko-KR")
+                        : ""}
+                      P
+                    </div>
+                  </ByCardPoint>
+
+                  {bycardBenefitsInfo[8] &&
+                    bycardBenefitsInfo[8].map((bycardBenefits, index) => (
+                      <ByBenefit key={index}>
+                        <img
+                          src={getImageForBenefit(bycardBenefits.benefitName)}
+                          alt="아이콘이미지"
+                        ></img>
+                        <div>{bycardBenefits.byBenefitDesc}</div>
+                      </ByBenefit>
+                    ))}
+                  <ByCardBtn>
+                    <button onClick={openMyPaymentHistoryModal}>
+                      나의 결제 이력
+                    </button>
+                    <div>
+                      <p
+                        className="accountChange"
+                        onClick={openMyAccountChangeModal}
+                      >
+                        연결계좌변경
+                      </p>
+                    </div>
+                  </ByCardBtn>
+
+                  {/* MyPaymentHistory 모달 */}
+                  {isMyPaymentHistoryModalOpen && (
+                    <ModalBackground>
+                      <ByCardModal>
+                        <ModalClose
+                          src={close}
+                          clicked={isMyPaymentHistoryModalOpen.toString()}
+                          onClick={closeMyPaymentHistoryModal}
+                        ></ModalClose>
+                        <MyPaymentHistory></MyPaymentHistory>
+                      </ByCardModal>
+                    </ModalBackground>
+                  )}
+
+                  {/* MyAccountChange 모달 */}
+                  {isMyAccountChangeModalOpen && (
+                    <ModalBackground>
+                      <ByCardModal>
+                        <ModalClose
+                          src={close}
+                          clicked={isMyAccountChangeModalOpen.toString()}
+                          onClick={closeMyAccountChangeModal}
+                        ></ModalClose>
+                        <MyByCardAccountChange></MyByCardAccountChange>
+                      </ByCardModal>
+                    </ModalBackground>
+                  )}
+                </ByCardDetailRight>
+              </ByCardDetailInnerDiv>
+              <ByCardLimit>
+                <div className="cardLimit">
+                  전월실적{" "}
+                  {bycardInfo.byBenefitMinCondition
+                    ? bycardInfo.byBenefitMinCondition.toLocaleString("ko-KR")
                     : ""}
-                  P
+                  원 이상
                 </div>
-              </ByCardPoint>
-
-              {bycardInfo2[8].map((bycardInfo2Value, index) => (
-                <ByBenefit>
-                  <img src={trafficImg} alt="아이콘이미지"></img>
-                  <div key={index}>{bycardInfo2Value.byBenefitDesc}</div>
-                </ByBenefit>
-              ))}
-              <ByCardBtn>
-                <button onClick={openMyPaymentHistoryModal}>
-                  나의 결제 이력
-                </button>
-                <div>
-                  <p
-                    className="accountChange"
-                    onClick={openMyAccountChangeModal}
-                  >
-                    연결계좌변경
-                  </p>
-                </div>
-              </ByCardBtn>
-
-              {/* MyPaymentHistory 모달 */}
-              {isMyPaymentHistoryModalOpen && (
-                <ModalBackground>
-                  <ByCardModal>
-                    <ModalClose
-                      src={close}
-                      clicked={isMyPaymentHistoryModalOpen.toString()}
-                      onClick={closeMyPaymentHistoryModal}
-                    ></ModalClose>
-                    <MyPaymentHistory></MyPaymentHistory>
-                  </ByCardModal>
-                </ModalBackground>
-              )}
-
-              {/* MyAccountChange 모달 */}
-              {isMyAccountChangeModalOpen && (
-                <ModalBackground>
-                  <ByCardModal>
-                    <ModalClose
-                      src={close}
-                      clicked={isMyAccountChangeModalOpen.toString()}
-                      onClick={closeMyAccountChangeModal}
-                    ></ModalClose>
-                    <MyAccountChange></MyAccountChange>
-                  </ByCardModal>
-                </ModalBackground>
-              )}
-            </ByCardDetailRight>
-          </ByCardDetailInnerDiv>
-          <ByCardLimit>
-            <div className="cardLimit">
-              전월실적{" "}
-              {bycardInfo.cardApplyLimitAmount
-                ? bycardInfo.cardApplyLimitAmount.toLocaleString("ko-KR")
-                : ""}
-              원 이상
-            </div>
-            <div className="cardType">mastercard</div>
-          </ByCardLimit>
-        </ByCardDetailOuterDiv>
+                <div className="cardType">mastercard</div>
+              </ByCardLimit>
+            </ByCardDetailOuterDiv>
+          ))}
 
         {accordions.map((accordion, index) => (
           <div key={index}>
