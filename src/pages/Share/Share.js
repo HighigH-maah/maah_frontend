@@ -1,20 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import "../../assets/css/style.css";
 import "./share.css";
 import styled from "styled-components";
 import axios from "axios";
 import blackVelvetImg from "../../assets/images/black_velvet.png";
+import whiteVelvetImg from "../../assets/images/white_velvet.png";
+import nasa from "../../assets/images/nasa.png";
 import blackVelvetBack from "../../assets/images/black_velvet_back.png";
+import logoAirlineWhite from "../../assets/icon/airline_white.png";
+import { ReactComponent as LearnMoreArrow } from "../../assets/images/Svg/LearnMoreArrow.svg";
+import { ReactComponent as ShareCardAdd } from "../../assets/images/Svg/ShareCardAdd.svg";
 import reverse from "../../assets/images/reverse.png";
+import { selectIcon } from "../../assets/js/IconSelect";
 
 import ShareModal from "../../components/ShareStyle/ShareModal";
 import {
   BenefitToggleArea,
   ByBottomAdd,
   ByBottomArea,
+  ByBottomBtn,
   ByBottomCardArea,
   ByBottomCardTitle,
+  ByBottomDesc,
+  ByBottomDescBox,
+  ByBottomImg,
   BySection,
   ByTitle,
   ByTopper,
@@ -33,22 +43,30 @@ import {
   ShareMain,
 } from "../../components/ShareStyle/ShareMainComponent";
 import { ToggleButton } from "../../components/ShareStyle/ShareToggleButton";
-
-axios
-  .post("/member.do", {
-    memberId: "user3",
-  })
-  .then(function (res) {
-    console.log(res.data);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
+import Footer from "../../components/Footer/Footer";
 
 function Share(props) {
   const [blackVelvet, setBlackVelvet] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOn, setisOn] = useState(false);
+  const [hiCard, setHiCard] = useState([]);
+
+  useEffect(() => {
+    console.log("effect 1번");
+
+    axios
+      .post("/getmemberHiCard.do", {
+        memberId: "user3",
+      })
+      .then(function (res) {
+        console.log(res.data);
+        setHiCard(res.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
 
   const toggleHandler = () => {
     setisOn(!isOn);
@@ -82,18 +100,27 @@ function Share(props) {
   };
   return (
     <ShareBack>
+      <HeaderLogoutBtn />
+      {/* header 하얀색 필요 */}
       <ShareMain>
         <HiSection>
           <HiTopper>
             <HiTopTitle>Ma:ah Share</HiTopTitle>
-            <HiBotTitle>Hi:Card Name</HiBotTitle>
           </HiTopper>
           <HiBottom>
             <HiBottomWings>
-              <HiCardTypeName>X BOOST</HiCardTypeName>
+              <HiCardTypeName>
+                {hiCard ? hiCard.memberHiNickname : ""}
+              </HiCardTypeName>
               <HiCardImg
                 className="blackVelvet"
-                src={blackVelvet ? blackVelvetImg : blackVelvetBack}
+                src={
+                  hiCard.hiImageCode
+                    ? blackVelvet
+                      ? hiCard.hiImageCode.hiCardImageFrontPath
+                      : hiCard.hiImageCode.hiCardImageRearPath
+                    : null
+                }
                 onClick={openModal}
               ></HiCardImg>
               <ReverseButton
@@ -106,21 +133,7 @@ function Share(props) {
               </ReverseButton>
               <LearnMore>
                 Learn More
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="22.5"
-                  height="16.5"
-                  viewBox="0 0 25 20"
-                  fill="none"
-                >
-                  <path
-                    d="M1 9.69629H23.5M23.5 9.69629L16.5 18.1963M23.5 9.69629L16.5 1.69629"
-                    stroke="#EFF8F0"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
+                <LearnMoreArrow />
               </LearnMore>
             </HiBottomWings>
           </HiBottom>
@@ -135,54 +148,59 @@ function Share(props) {
           </ByTopper>
           <ByBottomArea>
             <ByBottomCardArea>
-              <div></div>
+              <ByBottomCardTitle>the white</ByBottomCardTitle>
+              <ByBottomImg src={whiteVelvetImg}></ByBottomImg>
+              <ByBottomBtn>
+                Learn More
+                <LearnMoreArrow />
+              </ByBottomBtn>
+            </ByBottomCardArea>
+            <ByBottomCardArea>
+              <ByBottomCardTitle>the Black</ByBottomCardTitle>
+              <ByBottomImg src={blackVelvetImg}></ByBottomImg>
+              <ByBottomBtn>
+                Learn More
+                <LearnMoreArrow />
+              </ByBottomBtn>
+            </ByBottomCardArea>
+            <ByBottomCardArea>
+              <ByBottomCardTitle>the white</ByBottomCardTitle>
+              <ByBottomImg src={nasa}></ByBottomImg>
+              <ByBottomDesc className={`${isOn ? "toggle--checked" : ""}`}>
+                <ByBottomDescBox>
+                  <img src={selectIcon("9", "white")}></img>
+                  <p>마트, 편의점 10% 할인</p>
+                </ByBottomDescBox>
+                <ByBottomDescBox>
+                  <img src={selectIcon("5", "white")}></img>
+                  <p>공과금 10% 할인</p>
+                </ByBottomDescBox>
+                <ByBottomDescBox>
+                  <img src={selectIcon("10", "white")}></img>
+                  <p>영화 5% 할인</p>
+                </ByBottomDescBox>
+              </ByBottomDesc>
+              <ByBottomBtn>
+                Learn More
+                <LearnMoreArrow />
+              </ByBottomBtn>
+            </ByBottomCardArea>
+            <ByBottomCardArea>
               <ByBottomAdd>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="52"
-                  height="53"
-                  viewBox="0 0 52 53"
-                  fill="none"
-                  onClick={clickTest}
-                >
-                  <path
-                    d="M26 13.5504L26 26.1008M26 26.1008V38.6511M26 26.1008H38.5M26 26.1008H13.5M51 10.4128L51 41.789C51 46.9876 46.8027 51.2018 41.625 51.2018H10.375C5.19733 51.2018 1 46.9876 1 41.789V10.4128C1 5.21425 5.19733 1 10.375 1H41.625C46.8027 1 51 5.21425 51 10.4128Z"
-                    stroke="url(#paint0_linear_42_1722)"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                  <defs>
-                    <linearGradient
-                      id="paint0_linear_42_1722"
-                      x1="7"
-                      y1="51.2018"
-                      x2="72.6941"
-                      y2="1.25527"
-                      gradientUnits="userSpaceOnUse"
-                    >
-                      <stop stop-color="white" />
-                      <stop offset="1" stop-color="white" stop-opacity="0.18" />
-                    </linearGradient>
-                  </defs>
-                </svg>
+                <ShareCardAdd onClick={clickTest} />
               </ByBottomAdd>
-            </ByBottomCardArea>
-            <ByBottomCardArea>
-              <ByBottomCardTitle>the Blue</ByBottomCardTitle>
-              <ByBottomAdd></ByBottomAdd>
-            </ByBottomCardArea>
-            <ByBottomCardArea>
-              <ByBottomAdd></ByBottomAdd>
-            </ByBottomCardArea>
-            <ByBottomCardArea>
-              <ByBottomAdd></ByBottomAdd>
             </ByBottomCardArea>
           </ByBottomArea>
         </BySection>
       </ShareMain>
       {isModalOpen ? (
-        <ShareModal isOpen={isModalOpen} closeModal={closeModal} />
+        <ShareModal
+          isOpen={isModalOpen}
+          closeModal={closeModal}
+          hiCard={hiCard}
+        />
       ) : null}
+      <Footer />
     </ShareBack>
   );
 }

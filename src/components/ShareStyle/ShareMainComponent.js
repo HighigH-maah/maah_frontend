@@ -157,7 +157,7 @@ export const ByTopper = styled.div`
   position: relative;
   display: flex;
   align-items: flex-end;
-  margin-bottom: 10rem;
+  margin-bottom: 6rem;
 `;
 
 export const ByTitle = styled.div`
@@ -185,17 +185,20 @@ export const ByBottomCardArea = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 50px;
-  justify-content: space-evenly;
+  position: relative;
+  justify-content: flex-start;
 `;
 
-export const ByBottomCardTitle = styled.p`
+export const ByBottomCardTitle = styled.div`
   color: #fff;
   font-size: 30px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: -1.2px;
+  margin-bottom: 30px;
+  position: absolute;
+  top: 0%;
 `;
 
 export const ByBottomAdd = styled.div`
@@ -210,12 +213,96 @@ export const ByBottomAdd = styled.div`
     rgba(255, 255, 255, 0) 100.35%
   );
   backdrop-filter: blur(37.5px);
-  position: relative;
+  position: absolute;
+  top: 22%;
   > svg {
     position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     cursor: pointer;
+  }
+`;
+
+export const ByBottomBtn = styled.div`
+  display: flex;
+  width: 150px;
+  padding: 12px 24px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-radius: 64px;
+  background: linear-gradient(
+    181deg,
+    #030115 0.65%,
+    rgba(254, 254, 254, 0.52) 54.65%,
+    rgba(3, 1, 21, 0) 114.33%
+  );
+  color: var(--naver-text, #fff);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  position: absolute;
+  top: 95%;
+`;
+
+export const ByBottomImg = styled.img`
+  width: 230px;
+  height: 311px;
+  border-radius: 12px;
+  border: 2px solid #fff;
+  position: absolute;
+  top: 12%;
+`;
+
+export const ByBottomDesc = styled.div`
+  width: 230px;
+  height: 311px;
+  border-radius: 12px;
+  border: 2px solid #fff;
+  background: linear-gradient(
+    113deg,
+    rgba(0, 0, 0, 0.37) 10.29%,
+    rgba(0, 0, 0, 0) 100.35%
+  );
+  backdrop-filter: blur(37.5px);
+  position: absolute;
+  top: 12%;
+  // opacity: 0.7;
+  z-index: 999;
+
+  color: #fff;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: -0.18px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  opacity: 0;
+  transition: opacity 0.5s;
+  &.toggle--checked {
+    opacity: 1;
+    transition: opacity 0.5s;
+  }
+`;
+
+export const ByBottomDescBox = styled.div`
+  display: flex;
+  gap: 5px;
+  width: 90%;
+  align-items: center;
+  justify-content: flex-start;
+
+  > img {
+    width: 40px;
+  }
+  > p {
+    word-break: keep-all;
   }
 `;

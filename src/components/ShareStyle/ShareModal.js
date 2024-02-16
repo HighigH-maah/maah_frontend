@@ -18,18 +18,27 @@ import {
   ShareBackImage,
   ShareInput,
 } from "./ShareComponent";
-import blackvelvet from "../../assets/images/black_velvet.png";
+import blackVelvet from "../../assets/images/black_velvet.png";
 import culture_white from "../../assets/icon/culture_white.png";
-function ShareModal({ isOpen, closeModal }) {
+function ShareModal({ isOpen, closeModal, hiCard }) {
   return (
     <Modal isOpen={isOpen}>
       <ModalCloseButton onClick={closeModal}>Close</ModalCloseButton>
       <ShareBackImage />
-      <HiModalTopDiv realpoint={9000} />
+      <HiModalTopDiv realpoint={hiCard ? hiCard.memberHiPoint : 0} />
       <HiModalMid>
         <HiImageSection>
-          The Blue
-          <img src={blackvelvet} name={blackvelvet} />
+          {hiCard ? hiCard.memberHiNickname : ""}
+          <img
+            src={
+              hiCard.hiImageCode
+                ? blackVelvet
+                  ? hiCard.hiImageCode.hiCardImageFrontPath
+                  : hiCard.hiImageCode.hiCardImageRearPath
+                : null
+            }
+            name={blackVelvet}
+          />
         </HiImageSection>
         <HiPointSection>
           <PointWrapper>

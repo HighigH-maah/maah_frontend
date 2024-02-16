@@ -280,7 +280,7 @@ function CardCompare(props) {
             byCard.map((card, index) => (
               <CardList key={index}>
                 <CardImageDiv>
-                  <ExampleImage></ExampleImage>
+                  <ExampleImage image={card.byImagePath}></ExampleImage>
                 </CardImageDiv>
                 <CardDetailDiv>
                   <CardTitle>{card.byName}</CardTitle>

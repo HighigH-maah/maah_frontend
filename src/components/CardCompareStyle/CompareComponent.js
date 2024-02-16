@@ -240,11 +240,11 @@ const CardImage = styled.img`
   width: 120px;
   height: 180px;
 `;
-export const ExampleImage = () => {
+export const ExampleImage = ({ image }) => {
   return (
     <ImageOverlay>
       <img src={circle} alt="Circle" width="200" height="200" />
-      <CardImage src={blackVelvet} alt={"The Velvet"} />
+      <CardImage src={image} alt={"The Velvet"} />
 
       {/* <CardImage
           src={require(`../../assets/images/${name}.png`).default}
