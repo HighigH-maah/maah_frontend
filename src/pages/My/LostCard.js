@@ -25,7 +25,7 @@ const Div = styled.div`
 `;
 
 const LostCardTitle = styled.p`
-  margin: 0rem 0rem 4.4rem 1.7rem;
+  margin: 0rem 0rem 4.4rem 0rem;
   text-align: center;
   font-size: 6rem;
   font-weight: 600;
@@ -37,7 +37,7 @@ const LostCardTitle = styled.p`
 `;
 
 const LostCardUnderTitle = styled.p`
-  margin: 0rem 0rem 4.9rem 3.2rem;
+  margin: 0rem 0rem 4.9rem 0rem;
   text-align: center;
   font-size: 4rem;
   font-weight: 600;
@@ -250,7 +250,7 @@ function LostCard(props) {
           </IdentityCheckBox>
         </LostCardBottomSection>
       </Div>
-      <Footer></Footer>
+      <Footer position="relative"></Footer>
     </LostCardDiv>
   );
 }

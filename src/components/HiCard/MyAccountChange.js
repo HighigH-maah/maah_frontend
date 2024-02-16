@@ -177,7 +177,7 @@ function MyAccountChange(props) {
     axios({
       method: "post",
       url: "/getAccountInfo.do",
-      data: { memberId: "user3" },
+      data: { memberId: "user2" },
     })
       .then((res) => {
         console.log(res.data);
@@ -231,7 +231,7 @@ function HiCardAccountChnage({ hiCardAccountInfo, bankInfo }) {
       method: "post",
       url: "/getAccountName.do",
       data: {
-        memberId: "user3",
+        memberId: "user2",
         bankCode: selectedBankCode,
         bankName: newAccountNumber,
       },
@@ -265,7 +265,7 @@ function HiCardAccountChnage({ hiCardAccountInfo, bankInfo }) {
 
     alert("등록 버튼이 눌렸습니다.");
     const data = {
-      memberId: "user3",
+      memberId: "user2",
       bankCode: selectedBankCode,
       bankName: newAccountNumber,
       cardNumber: hiCardAccountInfo.memberHiNumber,
@@ -275,7 +275,13 @@ function HiCardAccountChnage({ hiCardAccountInfo, bankInfo }) {
       method: "put",
       url: "/updateHiAccount.do",
       data,
-    });
+    })
+      .then((res) => {
+        alert("변경 성공!");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

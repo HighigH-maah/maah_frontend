@@ -53,7 +53,7 @@ export const MyHiCardLeftDiv = styled.div`
 `;
 
 export const MyHiCardShape = styled.div`
-  margin-bottom: 3.3rem;
+  margin-bottom: 2rem;
   box-sizing: border-box;
   padding: 1.3rem 4.9rem 1.2rem 5rem;
   width: 100%;
@@ -64,29 +64,26 @@ export const MyHiCardShape = styled.div`
   /* background-image: url("REPLACE_IMAGE:152:2759"); */
 `;
 
-export const HiCard = styled.div`
-  width: 100%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-  box-sizing: border-box;
-  background-color: #000000;
-  border-radius: 1.2rem;
-`;
+// export const HiCard = styled.div`
+//   width: 100%;
+//   height: 100%;
+//   position: relative;
+//   overflow: hidden;
+//   box-sizing: border-box;
+//   background-color: #ffffff;
+//   border-radius: 1.2rem;
+// `;
 
 export const HiCardName = styled.p`
-  width: 7.7rem;
-  height: 1.9rem;
-  position: absolute;
-  left: 1.217rem;
-  top: 1.218rem;
-  font-size: 1.9rem;
+  position: relative;
+  font-size: 3rem;
   font-weight: 400;
   line-height: 0.97;
   letter-spacing: -0.076rem;
-  color: #ffffff;
-  /* font-family: Iceland, "Source Sans Pro"; */
+  color: #000000;
   white-space: nowrap;
+  text-align: center;
+  margin-bottom: 0.7rem;
 `;
 
 export const HiCardDescription = styled.div`
@@ -386,6 +383,10 @@ export const LostCard = styled.p`
   white-space: nowrap;
   flex-shrink: 0;
   cursor: pointer;
+
+  &:hover {
+    text-shadow: 0px 1px 9px #0000004f;
+  }
 `;
 
 export const ByCardGroup = styled.div`
@@ -550,7 +551,7 @@ export const MyByCardCenterDiv = styled.div`
 
 export const ByCardBenefitContents = styled.div`
   box-sizing: border-box;
-  padding-top: 6.5rem;
+  padding-top: 5.5rem;
   width: 29.5rem;
   height: 19.2rem;
   position: absolute;
@@ -621,11 +622,11 @@ export const MyCardListHiSection = () => {
       data: { memberId: "user2" },
     })
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
         setMyCardHi(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
       });
   };
 
@@ -644,6 +645,7 @@ export const MyCardListHiSection = () => {
 
 export const MyCardListBySection = () => {
   const [myCardListBy, setMyCardListBy] = useState({});
+  const [myCardListNotBy, setMyCardListNotBy] = useState({});
 
   const getMyCardListBy = () => {
     axios({
@@ -652,15 +654,35 @@ export const MyCardListBySection = () => {
       data: { memberId: "user2" },
     })
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
+        //console.log("by");
         setMyCardListBy(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        //onsole.log(err);
+        //console.log("bbbb");
       });
   };
+
+  const getMyCardListNotBy = () => {
+    axios({
+      url: "/getMyCardListNotBy.do",
+      method: "post",
+      data: { memberId: "user2" },
+    })
+      .then((res) => {
+        //console.log(res.data);
+        //console.log("aaaaa");
+        setMyCardListNotBy(res.data);
+      })
+      .catch((err) => {
+        //console.log(err);
+      });
+  };
+
   useEffect(() => {
     getMyCardListBy();
+    getMyCardListNotBy();
   }, []);
 
   return (
@@ -668,6 +690,10 @@ export const MyCardListBySection = () => {
       {Array.isArray(myCardListBy) &&
         myCardListBy.map((byCardData, index) => (
           <MyByCard key={index} byCardData={byCardData} />
+        ))}
+      {Array.isArray(myCardListNotBy) &&
+        myCardListNotBy.map((notByCardData, index) => (
+          <MyByCard key={index} byCardData={notByCardData} hideTitle />
         ))}
     </ByCardGroup>
   );
@@ -678,14 +704,21 @@ export const MyHiCardLeftSection = ({ myCardHi }) => {
     <MyHiCardLeftDiv>
       <MyHiCardShape>
         <Link to={`../hiCardDetail/${myCardHi.memberHiNumber}`}>
-          <HiCard>
-            {/* <img class="shape-3g9" src="REPLACE_IMAGE:I152:2760;19:6230" /> */}
+          <img
+            src={myCardHi.hiCardImageFrontPath}
+            alt="하이카드 이미지"
+            style={{ width: "100%" }}
+          />
+          {/* <HiCard>
             <HiCardName>{myCardHi.memberHiNickname}</HiCardName>
             <HiCardNoise></HiCardNoise>
-          </HiCard>
+          </HiCard> */}
         </Link>
       </MyHiCardShape>
-      <HiCardNumber>{myCardHi.memberHiNumber}</HiCardNumber>
+      <ByCardNumberPart>
+        <HiCardName>{myCardHi.memberHiNickname}</HiCardName>
+        <HiCardNumber>{myCardHi.memberHiNumber}</HiCardNumber>
+      </ByCardNumberPart>
     </MyHiCardLeftDiv>
   );
 };
@@ -814,14 +847,16 @@ const MyHiCardRightSection = ({ myCardHi }) => {
               <MyAccountChange></MyAccountChange>
             </HiCardModal>
           )}
-          <LostCard>분실신고</LostCard>
+          <Link to="/lostCard" style={{ textDecoration: "none" }}>
+            <LostCard>분실신고</LostCard>
+          </Link>
         </ButtonUnderLine>
       </BottomButtonDiv>
     </MyHiCardRightDiv>
   );
 };
 
-export const MyByCard = ({ byCardData }) => {
+export const MyByCard = ({ byCardData, hideTitle }) => {
   return (
     <ByCardBox>
       <MyByCardAllSection>
@@ -829,6 +864,7 @@ export const MyByCard = ({ byCardData }) => {
         <MyByCardInfoSection>
           <MyByCardCenterSection
             byCardData={byCardData}
+            hideTitle={hideTitle}
           ></MyByCardCenterSection>
           <MyByCardRightSection byCardData={byCardData}></MyByCardRightSection>
         </MyByCardInfoSection>
@@ -841,13 +877,12 @@ export const MyByCardLeftSection = ({ byCardData }) => {
   return (
     <MyByCardLeftDiv>
       <MyByCardShape>
-        <ByCard>
-          {/* <img
-      class="shape-4TP"
-      src="REPLACE_IMAGE:I152:2125;19:6230"
-    /> */}
-          <ByCardNoise></ByCardNoise>
-        </ByCard>
+        <img
+          src={byCardData.byImagePath}
+          alt="바이카드 이미지"
+          style={{ width: "100%" }}
+        />
+        {/* <ByCard><ByCardNoise></ByCardNoise></ByCard> */}
       </MyByCardShape>
       <ByCardNumberPart>
         <ByCardNumberName>{byCardData.memberCardByNickname}</ByCardNumberName>
@@ -857,21 +892,29 @@ export const MyByCardLeftSection = ({ byCardData }) => {
   );
 };
 
-export const MyByCardCenterSection = () => {
+export const MyByCardCenterSection = ({ byCardData, hideTitle }) => {
+  const formatter = new Intl.NumberFormat("ko-KR");
+
+  // memberByLimit 값을 만원 단위로 변환
+  const limitInTenThousand = byCardData.byBenefitMinCondition / 10000;
+  const formattedLimit = formatter.format(limitInTenThousand);
+
   return (
     <MyByCardCenterDiv>
       <ByCardBenefitContents>
         <ByCardBenefitDetail>업종별 0.5%~3% 적립</ByCardBenefitDetail>
         <ByCardBenefitDetail>온라인 간편 결제 5% 적립</ByCardBenefitDetail>
         <ByCardBenefitDetail>해외 가맹점 3% 적립</ByCardBenefitDetail>
-        <ByCardBenefitCondition>전월실적 50만원 이상</ByCardBenefitCondition>
+        <ByCardBenefitCondition>
+          전월실적 {formattedLimit}원 이상
+        </ByCardBenefitCondition>
       </ByCardBenefitContents>
-      <CardTitle>By:Card</CardTitle>
+      {!hideTitle && <CardTitle>By:Card</CardTitle>}
     </MyByCardCenterDiv>
   );
 };
 
-export const MyByCardRightSection = () => {
+export const MyByCardRightSection = ({ byCardData }) => {
   const [isMyAccountChangeModalOpen, setIsMyAccountChangeModalOpen] =
     useState(false);
 
@@ -882,14 +925,62 @@ export const MyByCardRightSection = () => {
   const closeModal = () => {
     setIsMyAccountChangeModalOpen(false);
   };
+
+  const addHiCard = () => {
+    alert("하이카드 추가");
+
+    axios({
+      url: "/addHiCard.do",
+      method: "post",
+      data: { memberId: "user2", memberByNumber: byCardData.memberByNumber },
+    })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const excludeHiCard = () => {
+    alert("하이카드 제외");
+
+    axios({
+      url: "/addHiCard.do",
+      method: "post",
+      data: { memberId: "user2", memberByNumber: byCardData.memberByNumber },
+    })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <MyByCardRightDiv>
       <CardPoint>
-        <CardPointTitle>By:Card Point</CardPointTitle>
-        <CardPointScore>4500P</CardPointScore>
+        {byCardData.memberHiNumber === null ? (
+          <CardPointTitle style={{ fontSize: "2rem" }}>
+            이번 달 사용금액
+          </CardPointTitle>
+        ) : (
+          <CardPointTitle>By:Card Point</CardPointTitle>
+        )}
+        {/* <CardPointTitle>By:Card Point</CardPointTitle> */}
+        {byCardData.memberHiNumber === null ? (
+          <CardPointScore>{byCardData.thisMonthSum}원</CardPointScore>
+        ) : (
+          <CardPointScore>4500P</CardPointScore>
+        )}
       </CardPoint>
       <BottomButtonDiv>
-        <LinkButton>하이카드 제외</LinkButton>
+        {byCardData.memberHiNumber === null ? (
+          <LinkButton onClick={addHiCard}>하이카드 추가</LinkButton>
+        ) : (
+          <LinkButton onClick={excludeHiCard}>하이카드 제외</LinkButton>
+        )}
         <ButtonUnderLine>
           <AccountChange onClick={openMyAccountChangeModal}>
             연결계좌변경
@@ -902,7 +993,9 @@ export const MyByCardRightSection = () => {
               <MyAccountChange></MyAccountChange>
             </HiCardModal>
           )}
-          <LostCard>분실신고</LostCard>
+          <Link to="/lostCard" style={{ textDecoration: "none" }}>
+            <LostCard>분실신고</LostCard>
+          </Link>
         </ButtonUnderLine>
       </BottomButtonDiv>
     </MyByCardRightDiv>
