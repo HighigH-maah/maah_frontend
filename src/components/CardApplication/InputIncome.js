@@ -127,7 +127,7 @@ const Buttons = styled.div`
 
 function InputIncome({setProcess}) {
   const navigate = useNavigate();
-  cosnt [annualIncome, setAnnualIncome] = useState();
+  const [annualIncome, setAnnualIncome] = useState();
 
   const gotoNext = () => {
     setProcess(2);
