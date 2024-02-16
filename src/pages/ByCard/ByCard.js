@@ -151,50 +151,56 @@ const ByBenefit = styled.div`
 `;
 
 const ByCardBtn = styled.div`
+width: 100%;
+align-items: flex-end;
+display: flex;
+flex-direction: column;
+flex-shrink: 0;
+
+button {
   width: 100%;
-  align-items: flex-end;
+  height: 5rem;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: #ffffff;
+  white-space: nowrap;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    180deg,
+    rgba(188, 185, 179, 0.8539999723) -0%,
+    rgba(177, 172, 148, 0.9720500112) 34%,
+    rgba(130, 127, 116, 0.8700000048) 98%
+  );
+  border-radius: 0.5rem;
   flex-shrink: 0;
+  cursor: pointer;
+  border: none;
+  transition: box-shadow 0.3s ease;
+}
 
-  button {
-    width: 100%;
-    height: 5rem;
-    text-align: center;
-    font-size: 1.8rem;
-    font-weight: 400;
-    color: #ffffff;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(
-      180deg,
-      rgba(188, 185, 179, 0.8539999723) -0%,
-      rgba(177, 172, 148, 0.9720500112) 34%,
-      rgba(130, 127, 116, 0.8700000048) 98%
-    );
-    border-radius: 0.5rem;
-    flex-shrink: 0;
-    cursor: pointer;
-  }
+button:hover {
+  box-shadow: 11px 9px 5px 0px lightgray;
+}
 
-  div {
-    margin: 1rem 0rem 0rem 15rem;
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-  }
+div {
+  margin: 1rem 0rem 0rem 15rem;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
 
-  .accountChange {
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: #000000;
-    white-space: nowrap;
-    flex-shrink: 0;
-    cursor: pointer;
-  }
+.accountChange {
+  margin-right: 2rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #000000;
+  white-space: nowrap;
+  flex-shrink: 0;
+  cursor: pointer;
 `;
 
 const ByCardLimit = styled.div`

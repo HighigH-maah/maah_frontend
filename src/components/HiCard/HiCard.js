@@ -181,6 +181,12 @@ const HiCardBtn = styled.div`
     border-radius: 0.5rem;
     flex-shrink: 0;
     cursor: pointer;
+    border: none;
+    transition: box-shadow 0.3s ease;
+  }
+
+  button:hover {
+    box-shadow: 11px 9px 5px 0px lightgray;
   }
 
   div {
