@@ -155,7 +155,6 @@ const InputBox = styled.input`
   background-color: #f5f5f5;
   border-radius: 10px;
   font-size: 20px;
-  padding-left: 10px;
 `;
 
 // axios
@@ -169,20 +168,20 @@ const InputBox = styled.input`
 //     console.log(error);
 //   });
 
-function MyAccountChange(props) {
-  const [hiCardAccountInfo, setHiCardAccountInfo] = useState([]);
+function MyByCardAccountChange(props) {
+  const [byCardAccountInfo, setByCardAccountInfo] = useState([]);
   const [bankInfo, setBankInfo] = useState([]);
 
   useEffect(() => {
     axios({
       method: "post",
-      url: "/getAccountInfo.do",
-      data: { memberId: "user2" },
+      url: "/getByCardAccountInfo.do",
+      data: { memberId: "user3" },
     })
       .then((res) => {
         console.log(res.data);
         console.log("성공 성공 성공 성공 성공 성공");
-        setHiCardAccountInfo(res.data);
+        setByCardAccountInfo(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -207,101 +206,32 @@ function MyAccountChange(props) {
   }, []); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
 
   return (
-    <HiCardAccountChnage
-      hiCardAccountInfo={hiCardAccountInfo}
+    <ByCardAccountChange
+      byCardAccountInfo={byCardAccountInfo}
       bankInfo={bankInfo}
-    ></HiCardAccountChnage>
+    ></ByCardAccountChange>
   );
 }
 
-function HiCardAccountChnage({ hiCardAccountInfo, bankInfo }) {
-  const [selectedBankCode, setSelectedBankCode] = useState("");
-  const [newAccountNumber, setNewAccountNumber] = useState("");
-  const [isAccountVerified, setIsAccountVerified] = useState(false);
-
-  const handleAccountCheck = () => {
-    // 유효성 검사 예제: 필드가 비어있는지 확인
-    if (!selectedBankCode || !newAccountNumber) {
-      alert("모두 입력하세요.");
-      return;
-    }
-
-    // 서버로 계좌 인증 및 등록을 수행하기 위한 요청
-    axios({
-      method: "post",
-      url: "/getAccountName.do",
-      data: {
-        memberId: "user2",
-        bankCode: selectedBankCode,
-        bankName: newAccountNumber,
-      },
-    })
-      .then((res) => {
-        console.log(res.data);
-        console.log("계좌 인증 및 등록 성공");
-
-        if (res.data.accountChkYn === "Y") {
-          // 인증 완료
-          alert("인증 완료!");
-          // 버튼을 '등록'으로 변경하거나 다른 처리 수행
-          setIsAccountVerified(true);
-        } else if (res.data.accountChkYn === "N") {
-          // 본인명의 계좌를 입력해주세요
-          alert("본인명의 계좌 정보를 입력해주세요");
-          // 필요에 따라 추가적인 처리 수행
-        }
-        // 성공 시 처리, 예를 들어 성공 메시지 표시 또는 사용자를 리디렉션할 수 있습니다.
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log("계좌 인증 및 등록 실패");
-        // 오류 시 처리, 예를 들어 사용자에게 오류 메시지를 표시할 수 있습니다.
-      });
-  };
-
-  // 등록 로직 수행
-  const handleRegistration = () => {
-    //const [isHi, setIsHi] = useState(false);
-
-    alert("등록 버튼이 눌렸습니다.");
-    const data = {
-      memberId: "user2",
-      bankCode: selectedBankCode,
-      bankName: newAccountNumber,
-      cardNumber: hiCardAccountInfo.memberHiNumber,
-    };
-    console.log(data);
-    axios({
-      method: "put",
-      url: "/updateHiAccount.do",
-      data,
-    })
-      .then((res) => {
-        alert("변경 성공!");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
+function ByCardAccountChange({ byCardAccountInfo, bankInfo }) {
   return (
     <MyAccountChangeDiv>
-      <div className="modalTitle">Hi:Card 연결 계좌 변경</div>
+      <div className="modalTitle">By:Card 연결 계좌 변경</div>
 
       <CurrentInfo>
         <p>변경정보 대상카드</p>
         <div className="currentCardInfoDiv">
           <div className="currentCardInfo">
             <p className="title">현재 결제은행</p>
-            <p className="value">{hiCardAccountInfo.bankName}</p>
+            <p className="value">{byCardAccountInfo.bankName}</p>
           </div>
           <div className="currentCardInfo">
             <p className="title">현재 계좌번호</p>
-            <p className="value">{hiCardAccountInfo.memberHiAccountNumber}</p>
+            <p className="value">{byCardAccountInfo.memberByAccountNumber}</p>
           </div>
           <div className="currentCardInfo">
             <p className="title">카드번호</p>
-            <p className="value">{hiCardAccountInfo.memberHiNumber}</p>
+            <p className="value">{byCardAccountInfo.memberByNumber}</p>
           </div>
         </div>
       </CurrentInfo>
@@ -312,38 +242,23 @@ function HiCardAccountChnage({ hiCardAccountInfo, bankInfo }) {
           <div className="currentCardInfo">
             <p className="title">은행명</p>
             <label>
-              <select
-                className="selectbox"
-                onChange={(e) => setSelectedBankCode(e.target.value)}
-              >
+              <select className="selectbox">
                 {bankInfo &&
                   bankInfo.map((board, index) => (
-                    <option key={index} value={board.bankCode}>
-                      {board.bankName}
-                    </option>
+                    <option key={index}>{board.bankName}</option>
                   ))}
               </select>
             </label>
           </div>
           <div className="currentCardInfo">
             <p className="title">계좌번호</p>
-            <InputBox
-              placeholder="계좌번호를 입력하세요."
-              onChange={(e) => setNewAccountNumber(e.target.value)}
-            ></InputBox>
+            <InputBox placeholder="계좌번호를 입력하세요."></InputBox>
           </div>
-          <button
-            className="accountChangeBtn"
-            onClick={
-              isAccountVerified ? handleRegistration : handleAccountCheck
-            }
-          >
-            {isAccountVerified ? "등록" : "계좌인증"}
-          </button>
+          <div className="accountChangeBtn">계좌인증 및 등록</div>
         </div>
       </ChangeInfo>
     </MyAccountChangeDiv>
   );
 }
 
-export default MyAccountChange;
+export default MyByCardAccountChange;

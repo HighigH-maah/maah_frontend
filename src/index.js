@@ -14,11 +14,12 @@ import HiCard from "./components/HiCard/HiCard";
 import VirtualCardApply from "./components/HiCard/VirtualCardApply";
 import MyPaymentHistory from "./components/HiCard/MyPaymentHistory";
 import VirtualCardNumView from "./components/HiCard/VirtualCardNumView";
-import MyAccountChange from "./components/HiCard/MyAccountChange";
 import MyCardList from "./pages/MyCard/MyCardList";
 import LostCard from "./pages/MyCard/LostCard";
 import MyData from "./pages/MyData/MyData";
 import CardApplication from "./pages/CardApplication/CardApplication";
+import ByCard from "./pages/ByCard/ByCard";
+import MyHiCardAccountChange from "./components/HiCard/MyHiCardAccountChange";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -33,17 +34,11 @@ root.render(
       <Route path="/cardCompare" element={<CardCompare />}></Route>
       <Route path="/signUp" element={<SignUp />}></Route>
       <Route path="/hiCardDetail" element={<HiCard />}></Route>
-      <Route path="/myPaymentHistory" element={<MyPaymentHistory />}></Route>
-      <Route path="/myAccountChange" element={<MyAccountChange />}></Route>
-      <Route path="/virtualCardApply" element={<VirtualCardApply />}></Route>
-
-      <Route
-        path="/virtualCardNumView"
-        element={<VirtualCardNumView />}
-      ></Route>
       <Route path="/myCardList" element={<MyCardList />}></Route>
       <Route path="/lostCard" element={<LostCard />}></Route>
       <Route path="/myData" element={<MyData />}></Route>
+
+      <Route path="/byCardDetail" element={<ByCard />}></Route>
     </Routes>
   </BrowserRouter>
 );

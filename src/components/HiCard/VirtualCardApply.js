@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-//import close from "../../assets/images/close.png";
+import logo from "../../assets/images/maah_half_big_logo.png";
 
 const VirtualCardApplyDiv = styled.div`
   //position: absolute;
@@ -150,12 +151,146 @@ const AuthCheckBtn = styled.button`
   color: #ffffff;
 `;
 
+const VirtualCardNumViewDiv = styled.div`
+    box-sizing: border-box;
+    padding: 2rem 2rem 2rem 2rem;
+    width: 700px;
+    display: flex;
+    justify-content: center;
+    box-shadow: inset 0 0.4rem 0.4rem rgba(0, 0, 0, 0.25));
+    background: linear-gradient(148.33deg, #f8f8f8 39.98%, #dedede 83.01%);
+    border-radius: 2rem;
+
+    img{
+      position: relative;
+      right: 50px;
+    }
+
+    .box1{
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+        justify-content: space-evenly;
+    }
+
+    p{
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #000000;
+        font-family: M PLUS 1, 'Source Sans Pro';
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .box2{
+        margin-top: 2rem;
+        width: 100%;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+    }
+
+    .cardInfo{
+      margin-bottom: 2rem;
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      flex-shrink: 0;
+      justify-content: space-between;
+    }
+
+    .title{
+        margin-right: 9.9rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+        line-height: 1.2;
+        color: #5b5b5b;
+        font-family: M PLUS 1, 'Source Sans Pro';
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .num{
+        font-size: 1.5rem;
+        font-weight: 600;
+        line-height: 0.97;
+        color: #5b5b5b;
+        font-family: M PLUS 1, 'Source Sans Pro';
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+`;
+
 const EleName = styled.span``;
 
-function VirtualCardApply(props) {
+function VirtualCardApply() {
+  const [modal, setModal] = useState(false);
+  const [hiCardVirtualCardInfo, setHiCardVirtualCardInfo] = useState([]);
+
+  useEffect(() => {
+    const jquery = document.createElement("script");
+    jquery.src = "http://code.jquery.com/jquery-1.12.4.min.js";
+    const iamport = document.createElement("script");
+    iamport.src = "http://cdn.iamport.kr/js/iamport.payment-1.1.8.js";
+    document.head.appendChild(jquery);
+    document.head.appendChild(iamport);
+    return () => {
+      document.head.removeChild(jquery);
+      document.head.removeChild(iamport);
+    };
+  }, []);
+
+  if (modal) {
+    return (
+      <VirtualCardNumViewDiv>
+        <Modal2 hiCardVirtualCardInfo={hiCardVirtualCardInfo}></Modal2>
+      </VirtualCardNumViewDiv>
+    );
+  } else {
+    return (
+      <VirtualCardApplyDiv>
+        <Modal1
+          setModal={setModal}
+          setHiCardVirtualCardInfo={setHiCardVirtualCardInfo}
+        ></Modal1>
+      </VirtualCardApplyDiv>
+    );
+  }
+}
+
+//만들어진 가상카드번호가 나온당
+function Modal2({ hiCardVirtualCardInfo }) {
+  return (
+    <>
+      <img src={logo} alt="마하로고"></img>
+      <div className="box1">
+        <p>가상 카드 번호조회</p>
+        <div className="box2">
+          <div className="cardInfo">
+            <p className="title">카드번호</p>
+            <p className="num">{hiCardVirtualCardInfo.tempHiNumber}</p>
+          </div>
+          <div className="cardInfo">
+            <p className="title">cvc</p>
+            <p className="num">{hiCardVirtualCardInfo.tempHiCvc}</p>
+          </div>
+          <div className="cardInfo">
+            <p className="title">유효기간</p>
+            <p className="num">
+              {hiCardVirtualCardInfo.tempHiExpdate.slice(0, 10)}
+            </p>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function Modal1({ setModal, setHiCardVirtualCardInfo }) {
   const [isTermChecked1, setTermChecked1] = useState(false);
   const [isTermChecked2, setTermChecked2] = useState(false);
-  const [isAuthChecked, setAuthChecked] = useState(false); //본인인증
 
   const handleTermCheck1 = () => {
     setTermChecked1(!isTermChecked1);
@@ -175,14 +310,63 @@ function VirtualCardApply(props) {
   };
 
   const handleAuthCheck = () => {
-    // 본인 인증에 대한 로직을 여기에 추가합니다
-    // 본인 인증이 완료되면 setAuthChecked(true)로 설정합니다
-    setAuthChecked(true);
-    console.log("본인인증 버튼 클릭");
+    // 본인 인증
+    const { IMP } = window;
+    IMP.init("imp72857613");
+
+    IMP.certification(
+      {
+        pg: "MIIiasTest",
+        merchant_uid: `mid_${new Date().getTime()}`,
+      },
+      function (rsp) {
+        if (rsp.success) {
+          console.log("success");
+          console.log(rsp);
+
+          axios({
+            method: "post",
+            url: "/getCert.do",
+            data: { imp_uid: rsp.imp_uid, memberId: "user3" },
+          })
+            .then((res) => {
+              console.log(res.data);
+              const certInfo = res.data;
+              //본인인증 성공하면 가상카드번호 발급
+              console.log(certInfo.certName);
+              console.log(certInfo.memberName);
+              if (certInfo.certName === certInfo.memberName) {
+                axios({
+                  method: "post",
+                  url: "/getTempHiCard.do",
+                  data: { memberId: "user3" },
+                })
+                  .then((res) => {
+                    console.log(res.data);
+                    console.log("가상카드발급 성공");
+                    setHiCardVirtualCardInfo(res.data);
+                    setModal(true);
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                    console.log("가상카드발급 실패");
+                  });
+              } else {
+                console.log("본인인증 실패");
+                alert("본인인증을 다시 해주세요.");
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+              console.log("실패 실패 실패 실패 실패 실패");
+            });
+        }
+      }
+    );
   };
 
   return (
-    <VirtualCardApplyDiv>
+    <>
       {/* <ModalClose src={close}></ModalClose> */}
       <p className="ModalTitle">가상 카드 발급신청</p>
 
@@ -223,7 +407,7 @@ function VirtualCardApply(props) {
           <AuthCheckBtn onClick={handleAuthCheck}>본인인증</AuthCheckBtn>
         )}
       </EleBox>
-    </VirtualCardApplyDiv>
+    </>
   );
 }
 
