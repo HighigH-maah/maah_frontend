@@ -102,6 +102,66 @@ export const HiCardImg = styled.img`
   width: 232px;
   height: 351px;
   transition: all 0.15s linear;
+  position: relative;
+  border-radius: 12px;
+  border: 1px solid #fff;
+  transition: visibility 0.5s;
+  &:hover {
+    ~ div {
+      visibility: visible;
+    }
+  }
+`;
+
+export const HiCardDesc = styled.div`
+  box-sizing: border-box;
+  width: 232px;
+  height: 351px;
+  position: absolute;
+  top: 0;
+  background-color: #fff;
+  border-radius: 12px;
+  border: 1px solid #fff;
+
+  color: #fff;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: -0.18px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(
+    113deg,
+    rgba(255, 255, 255, 0.37) 10.29%,
+    rgba(255, 255, 255, 0) 100.35%
+  );
+  backdrop-filter: blur(20px);
+  visibility: hidden;
+
+  &:hover {
+    visibility: visible;
+    transition: visibility 0.5s;
+  }
+`;
+
+export const HiCardDescBox = styled.div`
+  display: flex;
+  gap: 5px;
+  width: 90%;
+  align-items: center;
+  justify-content: flex-start;
+
+  > img {
+    width: 40px;
+  }
+  > p {
+    word-break: keep-all;
+  }
 `;
 
 export const ReverseButton = styled.button`

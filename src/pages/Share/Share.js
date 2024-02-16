@@ -31,6 +31,8 @@ import {
   HiBotTitle,
   HiBottom,
   HiBottomWings,
+  HiCardDesc,
+  HiCardDescBox,
   HiCardImg,
   HiCardTypeName,
   HiSection,
@@ -45,12 +47,13 @@ import {
 import { ToggleButton } from "../../components/ShareStyle/ShareToggleButton";
 import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
 import Footer from "../../components/Footer/Footer";
+import { position } from "stylis";
 
 function Share(props) {
   const [blackVelvet, setBlackVelvet] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOn, setisOn] = useState(false);
-  const [hiCard, setHiCard] = useState([]);
+  const [card, setCard] = useState([]);
 
   useEffect(() => {
     console.log("effect 1번");
@@ -61,7 +64,7 @@ function Share(props) {
       })
       .then(function (res) {
         console.log(res.data);
-        setHiCard(res.data);
+        setCard(res.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -110,19 +113,27 @@ function Share(props) {
           <HiBottom>
             <HiBottomWings>
               <HiCardTypeName>
-                {hiCard ? hiCard.memberHiNickname : ""}
+                {card.hicard ? card.hicard.memberHiNickname : ""}
               </HiCardTypeName>
-              <HiCardImg
-                className="blackVelvet"
-                src={
-                  hiCard.hiImageCode
-                    ? blackVelvet
-                      ? hiCard.hiImageCode.hiCardImageFrontPath
-                      : hiCard.hiImageCode.hiCardImageRearPath
-                    : null
-                }
-                onClick={openModal}
-              ></HiCardImg>
+              <div style={{ position: "relative" }}>
+                <HiCardImg
+                  className="blackVelvet"
+                  src={
+                    card.hicard
+                      ? blackVelvet
+                        ? card.hicard.hiImageCode.hiCardImageFrontPath
+                        : card.hicard.hiImageCode.hiCardImageRearPath
+                      : null
+                  }
+                  onClick={openModal}
+                ></HiCardImg>
+                <HiCardDesc>
+                  <HiCardDescBox>
+                    <img src={selectIcon("8", "white")}></img>
+                    <p>혜택내용</p>
+                  </HiCardDescBox>
+                </HiCardDesc>
+              </div>
               <ReverseButton
                 type="button"
                 onClick={() => {
@@ -147,44 +158,37 @@ function Share(props) {
             ></ToggleButton>
           </ByTopper>
           <ByBottomArea>
-            <ByBottomCardArea>
-              <ByBottomCardTitle>the white</ByBottomCardTitle>
-              <ByBottomImg src={whiteVelvetImg}></ByBottomImg>
-              <ByBottomBtn>
-                Learn More
-                <LearnMoreArrow />
-              </ByBottomBtn>
-            </ByBottomCardArea>
-            <ByBottomCardArea>
-              <ByBottomCardTitle>the Black</ByBottomCardTitle>
-              <ByBottomImg src={blackVelvetImg}></ByBottomImg>
-              <ByBottomBtn>
-                Learn More
-                <LearnMoreArrow />
-              </ByBottomBtn>
-            </ByBottomCardArea>
-            <ByBottomCardArea>
-              <ByBottomCardTitle>the white</ByBottomCardTitle>
-              <ByBottomImg src={nasa}></ByBottomImg>
-              <ByBottomDesc className={`${isOn ? "toggle--checked" : ""}`}>
-                <ByBottomDescBox>
-                  <img src={selectIcon("9", "white")}></img>
-                  <p>마트, 편의점 10% 할인</p>
-                </ByBottomDescBox>
-                <ByBottomDescBox>
-                  <img src={selectIcon("5", "white")}></img>
-                  <p>공과금 10% 할인</p>
-                </ByBottomDescBox>
-                <ByBottomDescBox>
-                  <img src={selectIcon("10", "white")}></img>
-                  <p>영화 5% 할인</p>
-                </ByBottomDescBox>
-              </ByBottomDesc>
-              <ByBottomBtn>
-                Learn More
-                <LearnMoreArrow />
-              </ByBottomBtn>
-            </ByBottomCardArea>
+            {card.bycard
+              ? card.bycard.map((card, index) => (
+                  <ByBottomCardArea key={index}>
+                    <ByBottomCardTitle>
+                      {card.memberCardByNickname}
+                    </ByBottomCardTitle>
+                    <ByBottomImg src={card.byCard.byImagePath}></ByBottomImg>
+                    <ByBottomDesc
+                      className={`${isOn ? "toggle--checked" : ""}`}
+                    >
+                      {card.byCard
+                        ? card.byCard.benefitList.map((benefit, bIndex) => (
+                            <ByBottomDescBox key={bIndex}>
+                              <img
+                                src={selectIcon(
+                                  JSON.stringify(benefit.benefitCode),
+                                  "white"
+                                )}
+                              ></img>
+                              <p>{benefit.byBenefitDesc}</p>
+                            </ByBottomDescBox>
+                          ))
+                        : ""}
+                    </ByBottomDesc>
+                    <ByBottomBtn>
+                      Learn More
+                      <LearnMoreArrow />
+                    </ByBottomBtn>
+                  </ByBottomCardArea>
+                ))
+              : ""}
             <ByBottomCardArea>
               <ByBottomAdd>
                 <ShareCardAdd onClick={clickTest} />
@@ -197,7 +201,7 @@ function Share(props) {
         <ShareModal
           isOpen={isModalOpen}
           closeModal={closeModal}
-          hiCard={hiCard}
+          hiCard={card.hicard}
         />
       ) : null}
       <Footer />
