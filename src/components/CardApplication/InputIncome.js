@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import logo from "../../assets/images/maah_logo.png";
+import arrow from "../../assets/images/select_arrow.png";
+import { useNavigate } from 'react-router';
 
 const Background = styled.div`
   background: linear-gradient(180deg, #f1f1f1 37.44%, #b2b2b2 100%);
@@ -44,7 +46,8 @@ const MainWrap = styled.div`
   margin: auto;
   padding: 50px;
   width: 1100px;
-  height: 1100px;
+  height: 1030px;
+  box-shadow: inset 1px 5px rgba(0,0,0,0.2);
 `;
 
 const MainTitle = styled.div`
@@ -56,7 +59,7 @@ const MainTitle = styled.div`
 
 const InputBox = styled.div`
   width: 450px;
-  margin: 30px auto;
+  margin: 50px auto;
 `;
 
 const SubTitle = styled.div`
@@ -69,8 +72,13 @@ const SubTitle = styled.div`
 const IncomeOptions = styled.select`
   font-size: 15px;
   font-weight: bold;
-  padding: 7px 20px;
+  padding: 12px 20px;
   width: 450px;
+  border: 1px solid #D9D9D9;
+  border-radius: 10px;
+  appearance:none;
+  background: url(${arrow}) no-repeat right 20px center;
+  background-size: 10px;
 `;
 
 const IncomeComment = styled.div`
@@ -78,7 +86,56 @@ const IncomeComment = styled.div`
   margin: 3px;
 `;
 
-function InputIncome(props) {
+const Line = styled.hr`
+  border: 2px solid black;
+  border-radius: 2px;
+  margin: 30px;
+`;
+
+const InquireTitle = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+  margin: 32px;
+`;
+
+const InquireContact = styled.div`
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 29px;
+
+  & > div {
+    margin: 4px;
+  }
+`;
+
+const Buttons = styled.div`
+  margin: 32px;
+  text-align: center;
+
+  & > button {
+    width: 300px;
+    height: 60px;
+    margin: 20px;
+    border-radius: 35px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+  }
+`;
+
+function InputIncome({setProcess}) {
+  const navigate = useNavigate();
+  const [annualIncome, setAnnualIncome] = useState();
+
+  const gotoNext = () => {
+    setProcess(2);
+  };
+
+  const gotoPrev = () => {
+    navigate("/hiCard", {})
+  };
 
     return (
         <Background>
@@ -95,10 +152,10 @@ function InputIncome(props) {
                     <MainTitle>
                         소득 관련 필수 기입 사항
                     </MainTitle>
-                    <input type='file'></input>
                     <InputBox>
                         <SubTitle>연간소득</SubTitle>
                         <IncomeOptions>
+                            <option>5천만원 미만</option>
                             <option>5천만원 이상 ~ 1억원 미만</option>
                             <option>1억원 이상</option>
                         </IncomeOptions>
@@ -135,20 +192,20 @@ function InputIncome(props) {
                         </IncomeOptions>
                     </InputBox>
                 </div>
-                <hr/>
+                <Line/>
                 <div>
-                    <div>
+                    <InquireTitle>
                         Ma:aH 카드 관련 문의처
-                    </div>
-                    <div>
+                    </InquireTitle>
+                    <InquireContact>
                         <div>홈페이지 : FAQ &gt; 고객상담</div>
                         <div>고객센터 : 1588-8282</div>
-                    </div>
+                    </InquireContact>
                 </div>
-                <div>
-                    <button>확인</button>
-                    <button>취소</button>
-                </div>
+                <Buttons>
+                    <button onClick={gotoPrev}>취소</button>
+                    <button onClick={gotoNext}>확인</button>
+                </Buttons>
             </MainWrap>
         </Background>
     );
