@@ -3,6 +3,7 @@ import CardApplicationTerms from "../CardApplicationTerms/CardApplicationTerms";
 import CardSlider from "../../components/HiCardDesignSelect/CardSlider";
 import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
 import Footer from "../../components/Footer/Footer";
+import { useState } from "react";
 
 const SelectDesign = styled.div`
   background: linear-gradient(180deg, #fffdfd 37.44%, #d7d7d7 100%);
@@ -33,6 +34,7 @@ const ModalWrap = styled.div`
   visibility: hidden;
 `;
 function HiCardDesignSelect() {
+  const [card, setCard] = useState(0);
 
   return (
     <>
@@ -41,13 +43,13 @@ function HiCardDesignSelect() {
         <MainTitle>Hi:Card 신청</MainTitle>
         <SubTitle>마음에 드는 디자인을 골라주세요</SubTitle>
         <CardList>
-          <CardSlider></CardSlider>
+          <CardSlider setCard={setCard}></CardSlider>
         </CardList>
       </SelectDesign>
       <Footer></Footer>
 
       <ModalWrap id="cardApplicationTerms">
-        <CardApplicationTerms></CardApplicationTerms>
+        <CardApplicationTerms card={card} type="hi"></CardApplicationTerms>
       </ModalWrap>
     </>
   );

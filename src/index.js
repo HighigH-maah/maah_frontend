@@ -17,11 +17,7 @@ import VirtualCardNumView from "./components/HiCard/VirtualCardNumView";
 import MyAccountChange from "./components/HiCard/MyAccountChange";
 import MyCardList from "./pages/My/MyCardList";
 import LostCard from "./pages/My/LostCard";
-import InputIncome from "./pages/InputIncome/InputIncome";
-import InputIDCard from "./pages/InputIDCard/InputIDCard";
-import PersonalCertification from "./pages/PersonalCertification/PersonalCertification";
-import InputCardApplicationInfo from "./pages/InputCardApplicationInfo/InputCardApplicationInfo";
-import InputDestination from "./pages/InputDestination/InputDestination";
+import CardApplication from "./pages/CardApplication/CardApplication";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -31,11 +27,7 @@ root.render(
       <Route path="/header" element={<HeaderLogoutBtn />}></Route>
       <Route path="/footer" element={<Footer />}></Route>
       <Route path="/hiCard" element={<HiCardDesignSelect />}></Route>
-      <Route path="/cardApplication" element={<InputIncome />}></Route>
-      <Route path="/cardApplication2" element={<PersonalCertification />}></Route>
-      <Route path="/cardApplication3" element={<InputIDCard />}></Route>
-      <Route path="/cardApplication4" element={<InputCardApplicationInfo />}></Route>
-      <Route path="/cardApplication5" element={<InputDestination />}></Route>
+      <Route path="/cardApplication" element={<CardApplication />}></Route>
       <Route path="/share" element={<Share />}></Route>
       <Route path="/cardCompare" element={<CardCompare />}></Route>
       <Route path="/signUp" element={<SignUp />}></Route>

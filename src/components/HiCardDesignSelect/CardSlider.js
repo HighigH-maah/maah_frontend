@@ -83,7 +83,7 @@ const NextTo = styled.img`
   transform: rotateY(180deg);
 `;
 
-export default function CardSlider() {
+export default function CardSlider({setCard}) {
   const [cardStatus, setCardStatus] = useState([true, true, true, true, true]);
   const [hiCardImageList, setHiCardImageList] = useState([]);
 
@@ -98,8 +98,9 @@ export default function CardSlider() {
     });
   }, []);
 
-  const applicationTerm = () => {
+  const applicationTerm = (prop) => {
     let modal = document.getElementById("cardApplicationTerms");
+    setCard(prop);
     modal.style.visibility = "visible";
   };
 
@@ -162,7 +163,7 @@ export default function CardSlider() {
               className='card'
               src={cardStatus[index] ? card.hiCardImageFrontPath : card.hiCardImageRearPath}
               onClick={() => {
-                applicationTerm();
+                applicationTerm(card.hiCardImageCode);
               }}
             ></CardImage>
           </CardImageDiv>

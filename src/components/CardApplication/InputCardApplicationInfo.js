@@ -6,8 +6,7 @@ import gray from "../../assets/images/Logo/visa_logo_gray.png";
 import silver from "../../assets/images/Grade/silver.png";
 import bronze from "../../assets/images/Grade/bronze.png";
 import arrow from "../../assets/images/select_arrow.png";
-import { useNavigate } from 'react-router';
-import CardLimit from '../../components/InputCardApplicationInfo/CardLimit';
+import CardLimit from './CardLimit';
 
 const Background = styled.div`
   background: linear-gradient(180deg, #f1f1f1 37.44%, #b2b2b2 100%);
@@ -223,12 +222,11 @@ const ModalWrap = styled.div`
   overflow: hidden;
 `;
 
-function InputCardApplicationInfo(props) {
-  const navigate = useNavigate();
+function InputCardApplicationInfo({setProcess, setCardApply, type}) {
   const [cardRegion, setCardRegion] = useState("visa");
 
   const gotoPrev = () => {
-    navigate("/cardApplication3", {})
+    setProcess(3);
   };
 
   const selectRegion = (prop) => {
@@ -236,8 +234,13 @@ function InputCardApplicationInfo(props) {
   }
 
   const displayModal = () => {
-    let modal = document.getElementById('certification');
-    modal.style.visibility = 'visible';
+    if(type === 'hi') {
+      alert("계좌 인증 완료");
+      setProcess(5);
+    } else if(type === 'by') {
+      let modal = document.getElementById('certification');
+      modal.style.visibility = 'visible';
+    }
   }
 
     return (
@@ -309,7 +312,7 @@ function InputCardApplicationInfo(props) {
         </Background>
 
       <ModalWrap id="certification">
-        <CardLimit />
+        <CardLimit setProcess={setProcess} />
       </ModalWrap>
       </>
     );

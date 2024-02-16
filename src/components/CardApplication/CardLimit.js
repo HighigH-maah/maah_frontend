@@ -57,11 +57,9 @@ const ModalContent = styled.div`
   }
 `;
 
-function CardLimit() {
-  const navigate = useNavigate();
-
+function CardLimit({setProcess}) {
   const gotoNext = () => {
-    navigate("/cardApplication5", {})
+    setProcess(5);
   };
 
     return (
@@ -74,7 +72,6 @@ function CardLimit() {
         <button onClick={gotoNext}>확인</button>
         </ModalContent>
     </ModalBody>
-
     );
 }
 

@@ -244,7 +244,7 @@ const ApplicationResult = styled.div`
   }
 `;
 
-function InputDestination() {
+function InputDestination({setProcess}) {
   const navigate = useNavigate();
   const [zonecode, setZonecode] = useState();
   const [roadAddress, setRoadAddress] = useState();
@@ -253,7 +253,7 @@ function InputDestination() {
   const [date, setDate] = useState();
 
   const gotoPrev = () => {
-    navigate("/cardApplication4", {});
+    setProcess(4);
   };
 
   const gotoHome = () => {

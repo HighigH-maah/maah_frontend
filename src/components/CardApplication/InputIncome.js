@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import logo from "../../assets/images/maah_logo.png";
 import arrow from "../../assets/images/select_arrow.png";
@@ -125,11 +125,12 @@ const Buttons = styled.div`
   }
 `;
 
-function InputIncome(props) {
+function InputIncome({setProcess}) {
   const navigate = useNavigate();
+  cosnt [annualIncome, setAnnualIncome] = useState();
 
   const gotoNext = () => {
-    navigate("/cardApplication2", {})
+    setProcess(2);
   };
 
   const gotoPrev = () => {

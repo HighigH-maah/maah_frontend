@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import logo from "../../assets/images/maah_logo.png";
-import { useNavigate } from 'react-router';
 import Tesseract from 'tesseract.js';
 import grayBack from "../../assets/images/gray_back.jpg";
 
@@ -176,20 +175,19 @@ const Buttons = styled.div`
   }
 `;
 
-function InputIDCard(props) {
-  const navigate = useNavigate();
+function InputIDCard({setProcess}) {
   const [imagePath, setImagePath] = useState("");
   const [name, setName] = useState("한마음");
   const [personalNumber, setPersonalNumber] = useState("");
   const [issueDate, setIssuDate] = useState("");
 
   const gotoPrev = () => {
-    navigate("/cardApplication", {})
+    setProcess(2)
   };
 
   const gotoNext = () => {
     if((name.length > 0 ? 1 : 0) * personalNumber.length * issueDate.length === 112) {
-      navigate("/cardApplication4", {});
+      setProcess(4);
     } else {
       alert('입력 정보를 다시 확인해주세요.');
     }

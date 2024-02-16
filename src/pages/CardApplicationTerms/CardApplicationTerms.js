@@ -63,7 +63,7 @@ const ApplicationButton = styled.div`
   }
 `;
 
-function CardApplicationTerms() {
+function CardApplicationTerms({card, type}) {
   const navigate = useNavigate();
   const [term, setTerm] = useState(1);
 
@@ -78,7 +78,7 @@ function CardApplicationTerms() {
       }
     }
     if(isChecked) {
-      navigate("/cardApplication", {});
+      navigate("/cardApplication", {state: { card: card, type: type }});
     }
   };
 
