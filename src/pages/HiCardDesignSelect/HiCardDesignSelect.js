@@ -2,6 +2,7 @@ import styled from "styled-components";
 import CardApplicationTerms from "../CardApplicationTerms/CardApplicationTerms";
 import CardSlider from "../../components/HiCardDesignSelect/CardSlider";
 import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
+import Footer from "../../components/Footer/Footer";
 
 const SelectDesign = styled.div`
   background: linear-gradient(180deg, #fffdfd 37.44%, #d7d7d7 100%);
@@ -43,6 +44,7 @@ function HiCardDesignSelect() {
           <CardSlider></CardSlider>
         </CardList>
       </SelectDesign>
+      <Footer></Footer>
 
       <ModalWrap id="cardApplicationTerms">
         <CardApplicationTerms></CardApplicationTerms>

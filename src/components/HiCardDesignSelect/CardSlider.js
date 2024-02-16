@@ -1,24 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import styled from "styled-components";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import blackVelvetImg from "../../assets/images/black_velvet.png";
-import blackVelvetBack from "../../assets/images/black_velvet_back.png";
-import whiteVelvetImg from "../../assets/images/white_velvet.png";
-import whiteVelvetBack from "../../assets/images/white_velvet_back.png";
-import midnightAshImg from "../../assets/images/midnight_ash.png";
-import midnightAshBack from "../../assets/images/midnight_ash_back.png";
-import blueHoloImg from "../../assets/images/blue_holo.png";
-import blueHoloBack from "../../assets/images/blue_holo_back.png";
-import pinkHoloImg from "../../assets/images/pink_holo.png";
-import pinkHoloBack from "../../assets/images/pink_holo_back.png";
 import reverse from "../../assets/images/reverse.png";
 import prevArrow from "../../assets/images/prev_arrow.png";
 import card1 from "../../assets/images/card1.png";
 import card3 from "../../assets/images/card3.png";
 import card4 from "../../assets/images/card4.png";
 import card5 from "../../assets/images/card5.png";
+import axios from "axios";
 
 const StyledSlider = styled(Slider)`
   margin-left: 5%;
@@ -93,42 +84,33 @@ const NextTo = styled.img`
 `;
 
 export default function CardSlider() {
-  const [blackVelvet, setBlackVelvet] = useState(true);
-  const [whiteVelvet, setWhiteVelvet] = useState(true);
-  const [midnightAsh, setMidnightAsh] = useState(true);
-  const [blueHolo, setBlueHolo] = useState(true);
-  const [pinkHolo, setPinkHolo] = useState(true);
+  const [cardStatus, setCardStatus] = useState([true, true, true, true, true]);
+  const [hiCardImageList, setHiCardImageList] = useState([]);
 
-  const applicationTerm = (prop) => {
+  useEffect(() => {
+    axios
+    .post("/getHiCardImages", {member_id: "user3"})
+    .then(function (res) {
+      setHiCardImageList(res.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }, []);
+
+  const applicationTerm = () => {
     let modal = document.getElementById("cardApplicationTerms");
     modal.style.visibility = "visible";
   };
 
   const reverseCard = (prop) => {
-    let cards = document.getElementsByClassName(prop);
-    cards[0].style.transform = "rotateY(90deg)";
+    let cards = document.getElementsByClassName('card');
+    cards[prop].style.transform = "rotateY(90deg)";
     setTimeout(function () {
-      switch (prop) {
-        case "blackVelvet":
-          setBlackVelvet(!blackVelvet);
-          break;
-        case "whiteVelvet":
-          setWhiteVelvet(!whiteVelvet);
-          break;
-        case "midnightAsh":
-          setMidnightAsh(!midnightAsh);
-          break;
-        case "blueHolo":
-          setBlueHolo(!blueHolo);
-          break;
-        case "pinkHolo":
-          setPinkHolo(!pinkHolo);
-          break;
-        default:
-          break;
-      }
-      cards[0].style.transform = "rotateY(0deg)";
-    }, 100);
+      cardStatus[prop] = !cardStatus[prop];
+      setCardStatus([...cardStatus]);
+      cards[prop].style.transform = "rotateY(0deg)";
+    }, 150);
   };
 
   var settings = {
@@ -173,106 +155,28 @@ export default function CardSlider() {
   };
   return (
     <StyledSlider {...settings}>
-      <CardDesign>
-        <CardImageDiv>
-          <CardImage
-            className="blackVelvet"
-            src={blackVelvet ? blackVelvetImg : blackVelvetBack}
+      {hiCardImageList.map((card, index) => (
+        <CardDesign key={index}>
+          <CardImageDiv>
+            <CardImage
+              className='card'
+              src={cardStatus[index] ? card.hiCardImageFrontPath : card.hiCardImageRearPath}
+              onClick={() => {
+                applicationTerm();
+              }}
+            ></CardImage>
+          </CardImageDiv>
+          <CardName>{card.hiCardImageName}</CardName>
+          <ReverseButton
+            type="button"
             onClick={() => {
-              applicationTerm("blackVelvet");
+              reverseCard(index);
             }}
-          ></CardImage>
-        </CardImageDiv>
-        <CardName>Black Velvet</CardName>
-        <ReverseButton
-          type="button"
-          onClick={() => {
-            reverseCard("blackVelvet");
-          }}
-        >
-          <ReverseIcon src={reverse}></ReverseIcon>
-        </ReverseButton>
-      </CardDesign>
-      <CardDesign>
-        <CardImageDiv>
-          <CardImage
-            className="whiteVelvet"
-            src={whiteVelvet ? whiteVelvetImg : whiteVelvetBack}
-            onClick={() => {
-              applicationTerm("whiteVelvet");
-            }}
-          ></CardImage>
-        </CardImageDiv>
-        <CardName>White Velvet</CardName>
-        <ReverseButton
-          type="button"
-          onClick={() => {
-            reverseCard("whiteVelvet");
-          }}
-        >
-          <ReverseIcon src={reverse}></ReverseIcon>
-        </ReverseButton>
-      </CardDesign>
-      <CardDesign>
-        <CardImageDiv>
-          <CardImage
-            className="midnightAsh"
-            src={midnightAsh ? midnightAshImg : midnightAshBack}
-            onClick={() => {
-              applicationTerm("midnightAsh");
-            }}
-          ></CardImage>
-        </CardImageDiv>
-        <CardName>Midnight Ash</CardName>
-        <ReverseButton
-          type="button"
-          onClick={() => {
-            reverseCard("midnightAsh");
-          }}
-        >
-          <ReverseIcon src={reverse}></ReverseIcon>
-        </ReverseButton>
-      </CardDesign>
-      <CardDesign>
-        <CardImageDiv>
-          <CardImage
-            className="blueHolo"
-            src={blueHolo ? blueHoloImg : blueHoloBack}
-            onClick={() => {
-              applicationTerm("blueHolo");
-            }}
-          ></CardImage>
-        </CardImageDiv>
-        <CardName>Blue Holo</CardName>
-        <ReverseButton
-          type="button"
-          onClick={() => {
-            reverseCard("blueHolo");
-          }}
-        >
-          <ReverseIcon src={reverse}></ReverseIcon>
-        </ReverseButton>
-      </CardDesign>
-      <CardDesign>
-        <CardImageDiv>
-          <CardImage
-            className="pinkHolo"
-            src={pinkHolo ? pinkHoloImg : pinkHoloBack}
-            onClick={() => {
-              applicationTerm("pinkHolo");
-            }}
-          ></CardImage>
-        </CardImageDiv>
-        <CardName>Pink Holo</CardName>
-        <ReverseButton
-          type="button"
-          onClick={() => {
-            reverseCard("pinkHolo");
-          }}
-        >
-          <ReverseIcon src={reverse}></ReverseIcon>
-        </ReverseButton>
-      </CardDesign>
+          >
+            <ReverseIcon src={reverse}></ReverseIcon>
+          </ReverseButton>
+        </CardDesign>
+      ))}
       <CardDesign>
         <CardImageDiv>
           <CardImage

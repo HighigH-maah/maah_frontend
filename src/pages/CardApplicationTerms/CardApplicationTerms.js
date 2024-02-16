@@ -2,7 +2,7 @@ import styled from "styled-components";
 import close from "../../assets/images/close.png";
 import CardApplicationTerm from "../../components/CardApplicationTerms/CardApplicationTerm";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ModalBody = styled.div`
   background-color: white;
@@ -64,7 +64,23 @@ const ApplicationButton = styled.div`
 `;
 
 function CardApplicationTerms() {
+  const navigate = useNavigate();
   const [term, setTerm] = useState(1);
+
+  const gotoNext = () => {
+    let isChecked = true;
+    let terms = document.getElementsByClassName("application-term");
+    for(let i = 0; i < 2; i++) {
+      if(!terms[i].checked) {
+        alert("필수 항목을 확인해주세요.");
+        isChecked = false;
+        break;
+      }
+    }
+    if(isChecked) {
+      navigate("/cardApplication", {});
+    }
+  };
 
   const closeModal = () => {
     let modal = document.getElementById("cardApplicationTerms");
@@ -110,7 +126,7 @@ function CardApplicationTerms() {
           }}></input>
         </ApplicationTerm>
         <ApplicationButton>
-          <button><Link to="/cardApplication">확인</Link></button>
+          <button onClick={gotoNext}>확인</button>
         </ApplicationButton>
       </div>
     </ModalBody>
