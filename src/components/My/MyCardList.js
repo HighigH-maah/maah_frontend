@@ -1,7 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import gradeimg from "../../assets/images/Grade/bronze.png";
+import { HiCardModal, ModalClose } from "../HiCard/HiCard";
+import MyAccountChange from "../HiCard/MyAccountChange";
+import close from "../../assets/images/close.png";
+import bronzeImg from "../../assets/images/Grade/bronze.png";
+import silverImg from "../../assets/images/Grade/silver.png";
+import goldImg from "../../assets/images/Grade/gold.png";
+import platinumImg from "../../assets/images/Grade/platinum.png";
+import VirtualCardApply from "../HiCard/VirtualCardApply";
+import MyPaymentHistory from "../HiCard/MyPaymentHistory";
+import { Link } from "react-router-dom";
 
 export const MyCardListDiv = styled.div`
   width: 100%;
@@ -44,7 +53,7 @@ export const MyHiCardLeftDiv = styled.div`
 `;
 
 export const MyHiCardShape = styled.div`
-  margin-bottom: 3.3rem;
+  margin-bottom: 2rem;
   box-sizing: border-box;
   padding: 1.3rem 4.9rem 1.2rem 5rem;
   width: 100%;
@@ -55,29 +64,26 @@ export const MyHiCardShape = styled.div`
   /* background-image: url("REPLACE_IMAGE:152:2759"); */
 `;
 
-export const HiCard = styled.div`
-  width: 100%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-  box-sizing: border-box;
-  background-color: #000000;
-  border-radius: 1.2rem;
-`;
+// export const HiCard = styled.div`
+//   width: 100%;
+//   height: 100%;
+//   position: relative;
+//   overflow: hidden;
+//   box-sizing: border-box;
+//   background-color: #ffffff;
+//   border-radius: 1.2rem;
+// `;
 
 export const HiCardName = styled.p`
-  width: 7.7rem;
-  height: 1.9rem;
-  position: absolute;
-  left: 1.217rem;
-  top: 1.218rem;
-  font-size: 1.9rem;
+  position: relative;
+  font-size: 3rem;
   font-weight: 400;
   line-height: 0.97;
   letter-spacing: -0.076rem;
-  color: #ffffff;
-  /* font-family: Iceland, "Source Sans Pro"; */
+  color: #000000;
   white-space: nowrap;
+  text-align: center;
+  margin-bottom: 0.7rem;
 `;
 
 export const HiCardDescription = styled.div`
@@ -323,6 +329,7 @@ export const LinkButton = styled.button`
   border-radius: 0.5rem;
   flex-shrink: 0;
   border: none;
+  cursor: pointer;
 `;
 
 export const ButtonUnderLine = styled.div`
@@ -348,6 +355,7 @@ export const AccountChange = styled.p`
   /* font-family: Iceland, "Source Sans Pro"; */
   white-space: nowrap;
   flex-shrink: 0;
+  cursor: pointer;
 `;
 
 export const TempCardNumber = styled.p`
@@ -361,6 +369,7 @@ export const TempCardNumber = styled.p`
   flex-shrink: 0;
   position: absolute;
   left: 65rem;
+  cursor: pointer;
 `;
 
 export const LostCard = styled.p`
@@ -373,6 +382,11 @@ export const LostCard = styled.p`
   /* font-family: Iceland, "Source Sans Pro"; */
   white-space: nowrap;
   flex-shrink: 0;
+  cursor: pointer;
+
+  &:hover {
+    text-shadow: 0px 1px 9px #0000004f;
+  }
 `;
 
 export const ByCardGroup = styled.div`
@@ -537,7 +551,7 @@ export const MyByCardCenterDiv = styled.div`
 
 export const ByCardBenefitContents = styled.div`
   box-sizing: border-box;
-  padding-top: 6.5rem;
+  padding-top: 5.5rem;
   width: 29.5rem;
   height: 19.2rem;
   position: absolute;
@@ -603,34 +617,84 @@ export const MyCardListHiSection = () => {
 
   const getMyHiCard = () => {
     axios({
-      url: "/getCardList.do",
+      url: "/getMyCardListHi.do",
       method: "post",
-      data: { memberId: "user3" },
+      data: { memberId: "user2" },
     })
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
         setMyCardHi(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
       });
   };
+
   useEffect(() => {
     getMyHiCard();
   }, []);
+
   return (
     <HiCardBox>
       <MyHiCardLeftSection myCardHi={myCardHi}></MyHiCardLeftSection>
       <MyHiCardCenterSection myCardHi={myCardHi}></MyHiCardCenterSection>
-      <MyHiCardRightSection></MyHiCardRightSection>
+      <MyHiCardRightSection myCardHi={myCardHi}></MyHiCardRightSection>
     </HiCardBox>
   );
 };
 
 export const MyCardListBySection = () => {
+  const [myCardListBy, setMyCardListBy] = useState({});
+  const [myCardListNotBy, setMyCardListNotBy] = useState({});
+
+  const getMyCardListBy = () => {
+    axios({
+      url: "/getMyCardListBy.do",
+      method: "post",
+      data: { memberId: "user2" },
+    })
+      .then((res) => {
+        //console.log(res.data);
+        //console.log("by");
+        setMyCardListBy(res.data);
+      })
+      .catch((err) => {
+        //onsole.log(err);
+        //console.log("bbbb");
+      });
+  };
+
+  const getMyCardListNotBy = () => {
+    axios({
+      url: "/getMyCardListNotBy.do",
+      method: "post",
+      data: { memberId: "user2" },
+    })
+      .then((res) => {
+        //console.log(res.data);
+        //console.log("aaaaa");
+        setMyCardListNotBy(res.data);
+      })
+      .catch((err) => {
+        //console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getMyCardListBy();
+    getMyCardListNotBy();
+  }, []);
+
   return (
     <ByCardGroup>
-      <MyByCard></MyByCard>
+      {Array.isArray(myCardListBy) &&
+        myCardListBy.map((byCardData, index) => (
+          <MyByCard key={index} byCardData={byCardData} />
+        ))}
+      {Array.isArray(myCardListNotBy) &&
+        myCardListNotBy.map((notByCardData, index) => (
+          <MyByCard key={index} byCardData={notByCardData} hideTitle />
+        ))}
     </ByCardGroup>
   );
 };
@@ -639,13 +703,22 @@ export const MyHiCardLeftSection = ({ myCardHi }) => {
   return (
     <MyHiCardLeftDiv>
       <MyHiCardShape>
-        <HiCard>
-          {/* <img class="shape-3g9" src="REPLACE_IMAGE:I152:2760;19:6230" /> */}
-          <HiCardName>{myCardHi.memberHiNickname}</HiCardName>
-          <HiCardNoise></HiCardNoise>
-        </HiCard>
+        <Link to={`../hiCardDetail/${myCardHi.memberHiNumber}`}>
+          <img
+            src={myCardHi.hiCardImageFrontPath}
+            alt="하이카드 이미지"
+            style={{ width: "100%" }}
+          />
+          {/* <HiCard>
+            <HiCardName>{myCardHi.memberHiNickname}</HiCardName>
+            <HiCardNoise></HiCardNoise>
+          </HiCard> */}
+        </Link>
       </MyHiCardShape>
-      <HiCardNumber>{myCardHi.memberHiNumber}</HiCardNumber>
+      <ByCardNumberPart>
+        <HiCardName>{myCardHi.memberHiNickname}</HiCardName>
+        <HiCardNumber>{myCardHi.memberHiNumber}</HiCardNumber>
+      </ByCardNumberPart>
     </MyHiCardLeftDiv>
   );
 };
@@ -671,93 +744,258 @@ export const MyHiCardCenterSection = ({ myCardHi }) => {
   );
 };
 
-const MyHiCardRightSection = () => {
+const MyHiCardRightSection = ({ myCardHi }) => {
+  const [isMyPaymentHistoryModalOpen, setIsMyPaymentHistoryModalOpen] =
+    useState(false);
+  const [isVirtualCardApplyModalOpen, setIsVirtualCardApplyModalOpen] =
+    useState(false);
+  const [isMyAccountChangeModalOpen, setIsMyAccountChangeModalOpen] =
+    useState(false);
+
+  const openMyPaymentHistoryModal = () => {
+    setIsMyPaymentHistoryModalOpen(true);
+  };
+
+  const openVirtualCardApplyModal = () => {
+    setIsVirtualCardApplyModalOpen(true);
+  };
+
+  const openMyAccountChangeModal = () => {
+    setIsMyAccountChangeModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsMyPaymentHistoryModalOpen(false);
+    setIsVirtualCardApplyModalOpen(false);
+    setIsMyAccountChangeModalOpen(false);
+  };
+
   return (
     <MyHiCardRightDiv>
       <HiCardInfo>
         <CardPoint>
           <CardPointTitle>Hi:Card Point</CardPointTitle>
-          <CardPointScore>4500P</CardPointScore>
+          <CardPointScore>{myCardHi.memberHiPoint}P</CardPointScore>
         </CardPoint>
         <HiCardGrade>
           <HiCardGradeTitle>Hi:Credit Grade</HiCardGradeTitle>
-          <HiCardGradeImage src={gradeimg}></HiCardGradeImage>
+          <div className="HiCardGradeImage">
+            {/* hicardInfo.classBenefitName에 따라 다른 이미지를 표시 */}
+            {myCardHi.classBenefitName === "BRONZE" && (
+              <img
+                src={bronzeImg}
+                alt="하이카드 등급 이미지"
+                style={{ width: "9rem", height: "6rem" }}
+              ></img>
+            )}
+            {myCardHi.classBenefitName === "SILVER" && (
+              <img
+                src={silverImg}
+                alt="하이카드 등급 이미지"
+                style={{ width: "9rem", height: "6rem" }}
+              ></img>
+            )}
+            {myCardHi.classBenefitName === "GOLD" && (
+              <img
+                src={goldImg}
+                alt="하이카드 등급 이미지"
+                style={{ width: "9rem", height: "6rem" }}
+              ></img>
+            )}
+            {myCardHi.classBenefitName === "PLATINUM" && (
+              <img
+                src={platinumImg}
+                alt="하이카드 등급 이미지"
+                style={{ width: "9rem", height: "6rem" }}
+              ></img>
+            )}
+          </div>
         </HiCardGrade>
       </HiCardInfo>
       <BottomButtonDiv>
-        <LinkButton>나의 결제 이력</LinkButton>
+        <LinkButton onClick={openMyPaymentHistoryModal}>
+          나의 결제 이력
+        </LinkButton>
+        {/* MyPaymentHistory 모달 */}
+        {isMyPaymentHistoryModalOpen && (
+          <HiCardModal>
+            {/* <button onClick={closeModal}>Close Modal</button> */}
+            <ModalClose src={close} onClick={closeModal}></ModalClose>
+            <MyPaymentHistory></MyPaymentHistory>
+          </HiCardModal>
+        )}
         <ButtonUnderLine>
-          <TempCardNumber>가상카드번호 생성</TempCardNumber>
-          <AccountChange>연결계좌변경</AccountChange>
-          <LostCard>분실신고</LostCard>
+          <TempCardNumber onClick={openVirtualCardApplyModal}>
+            가상카드 발급신청
+          </TempCardNumber>
+          {/* VirtualCardApply 모달 */}
+          {isVirtualCardApplyModalOpen && (
+            <HiCardModal>
+              {/* <button onClick={closeModal}>Close Modal</button> */}
+              <ModalClose src={close} onClick={closeModal}></ModalClose>
+              <VirtualCardApply></VirtualCardApply>
+            </HiCardModal>
+          )}
+          <AccountChange onClick={openMyAccountChangeModal}>
+            연결계좌변경
+          </AccountChange>
+          {/* MyAccountChange 모달 */}
+          {isMyAccountChangeModalOpen && (
+            <HiCardModal>
+              {/* <button onClick={closeModal}>Close Modal</button> */}
+              <ModalClose src={close} onClick={closeModal}></ModalClose>
+              <MyAccountChange></MyAccountChange>
+            </HiCardModal>
+          )}
+          <Link to="/lostCard" style={{ textDecoration: "none" }}>
+            <LostCard>분실신고</LostCard>
+          </Link>
         </ButtonUnderLine>
       </BottomButtonDiv>
     </MyHiCardRightDiv>
   );
 };
 
-export const MyByCard = () => {
+export const MyByCard = ({ byCardData, hideTitle }) => {
   return (
     <ByCardBox>
       <MyByCardAllSection>
-        <MyByCardLeftSection></MyByCardLeftSection>
+        <MyByCardLeftSection byCardData={byCardData}></MyByCardLeftSection>
         <MyByCardInfoSection>
-          <MyByCardCenterSection></MyByCardCenterSection>
-          <MyByCardRightSection></MyByCardRightSection>
+          <MyByCardCenterSection
+            byCardData={byCardData}
+            hideTitle={hideTitle}
+          ></MyByCardCenterSection>
+          <MyByCardRightSection byCardData={byCardData}></MyByCardRightSection>
         </MyByCardInfoSection>
       </MyByCardAllSection>
     </ByCardBox>
   );
 };
 
-export const MyByCardLeftSection = () => {
+export const MyByCardLeftSection = ({ byCardData }) => {
   return (
     <MyByCardLeftDiv>
       <MyByCardShape>
-        <ByCard>
-          {/* <img
-      class="shape-4TP"
-      src="REPLACE_IMAGE:I152:2125;19:6230"
-    /> */}
-          <ByCardName>Card Name</ByCardName>
-          <ByCardDescription>card description</ByCardDescription>
-          <ByCardNoise></ByCardNoise>
-        </ByCard>
+        <img
+          src={byCardData.byImagePath}
+          alt="바이카드 이미지"
+          style={{ width: "100%" }}
+        />
+        {/* <ByCard><ByCardNoise></ByCardNoise></ByCard> */}
       </MyByCardShape>
       <ByCardNumberPart>
-        <ByCardNumberName>The Blue</ByCardNumberName>
-        <ByCardNumber>570*</ByCardNumber>
+        <ByCardNumberName>{byCardData.memberCardByNickname}</ByCardNumberName>
+        <ByCardNumber>{byCardData.memberByNumber}</ByCardNumber>
       </ByCardNumberPart>
     </MyByCardLeftDiv>
   );
 };
 
-export const MyByCardCenterSection = () => {
+export const MyByCardCenterSection = ({ byCardData, hideTitle }) => {
+  const formatter = new Intl.NumberFormat("ko-KR");
+
+  // memberByLimit 값을 만원 단위로 변환
+  const limitInTenThousand = byCardData.byBenefitMinCondition / 10000;
+  const formattedLimit = formatter.format(limitInTenThousand);
+
   return (
     <MyByCardCenterDiv>
       <ByCardBenefitContents>
         <ByCardBenefitDetail>업종별 0.5%~3% 적립</ByCardBenefitDetail>
         <ByCardBenefitDetail>온라인 간편 결제 5% 적립</ByCardBenefitDetail>
         <ByCardBenefitDetail>해외 가맹점 3% 적립</ByCardBenefitDetail>
-        <ByCardBenefitCondition>전월실적 50만원 이상</ByCardBenefitCondition>
+        <ByCardBenefitCondition>
+          전월실적 {formattedLimit}원 이상
+        </ByCardBenefitCondition>
       </ByCardBenefitContents>
-      <CardTitle>By:Card</CardTitle>
+      {!hideTitle && <CardTitle>By:Card</CardTitle>}
     </MyByCardCenterDiv>
   );
 };
 
-export const MyByCardRightSection = () => {
+export const MyByCardRightSection = ({ byCardData }) => {
+  const [isMyAccountChangeModalOpen, setIsMyAccountChangeModalOpen] =
+    useState(false);
+
+  const openMyAccountChangeModal = () => {
+    setIsMyAccountChangeModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsMyAccountChangeModalOpen(false);
+  };
+
+  const addHiCard = () => {
+    alert("하이카드 추가");
+
+    axios({
+      url: "/addHiCard.do",
+      method: "post",
+      data: { memberId: "user2", memberByNumber: byCardData.memberByNumber },
+    })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const excludeHiCard = () => {
+    alert("하이카드 제외");
+
+    axios({
+      url: "/addHiCard.do",
+      method: "post",
+      data: { memberId: "user2", memberByNumber: byCardData.memberByNumber },
+    })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <MyByCardRightDiv>
       <CardPoint>
-        <CardPointTitle>By:Card Point</CardPointTitle>
-        <CardPointScore>4500P</CardPointScore>
+        {byCardData.memberHiNumber === null ? (
+          <CardPointTitle style={{ fontSize: "2rem" }}>
+            이번 달 사용금액
+          </CardPointTitle>
+        ) : (
+          <CardPointTitle>By:Card Point</CardPointTitle>
+        )}
+        {/* <CardPointTitle>By:Card Point</CardPointTitle> */}
+        {byCardData.memberHiNumber === null ? (
+          <CardPointScore>{byCardData.thisMonthSum}원</CardPointScore>
+        ) : (
+          <CardPointScore>4500P</CardPointScore>
+        )}
       </CardPoint>
       <BottomButtonDiv>
-        <LinkButton>하이카드 제외</LinkButton>
+        {byCardData.memberHiNumber === null ? (
+          <LinkButton onClick={addHiCard}>하이카드 추가</LinkButton>
+        ) : (
+          <LinkButton onClick={excludeHiCard}>하이카드 제외</LinkButton>
+        )}
         <ButtonUnderLine>
-          <AccountChange>연결계좌변경</AccountChange>
-          <LostCard>분실신고</LostCard>
+          <AccountChange onClick={openMyAccountChangeModal}>
+            연결계좌변경
+          </AccountChange>
+          {/* MyAccountChange 모달 */}
+          {isMyAccountChangeModalOpen && (
+            <HiCardModal>
+              {/* <button onClick={closeModal}>Close Modal</button> */}
+              <ModalClose src={close} onClick={closeModal}></ModalClose>
+              <MyAccountChange></MyAccountChange>
+            </HiCardModal>
+          )}
+          <Link to="/lostCard" style={{ textDecoration: "none" }}>
+            <LostCard>분실신고</LostCard>
+          </Link>
         </ButtonUnderLine>
       </BottomButtonDiv>
     </MyByCardRightDiv>

@@ -306,7 +306,7 @@ const Category = styled.div`
   }
 `;
 
-const HiCardModal = styled.div`
+export const HiCardModal = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
@@ -315,7 +315,7 @@ const HiCardModal = styled.div`
   z-index: 1000;
 `;
 
-const ModalClose = styled.img`
+export const ModalClose = styled.img`
   position: absolute;
   top: 20px;
   right: 20px;
