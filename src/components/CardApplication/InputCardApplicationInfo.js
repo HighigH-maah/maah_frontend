@@ -224,6 +224,9 @@ const ModalWrap = styled.div`
 
 function InputCardApplicationInfo({setProcess, setCardApply, cardApply}) {
   const [cardRegion, setCardRegion] = useState("visa");
+  const [englishName, setEnglishName] = useState("");
+  const [transport, setTransport] = useState(false);
+  const [account, setAccount] = useState(0);
 
   const gotoPrev = () => {
     setProcess(3);
@@ -234,22 +237,37 @@ function InputCardApplicationInfo({setProcess, setCardApply, cardApply}) {
   }
 
   const displayModal = () => {
-    setCardApply({
-      ...cardApply,
-      cardApplyEngname: document.getElementsByClassName('engName')[0] + ' ' +  document.getElementsByClassName('engName')[1],
-      cardApplyIsTransport: document.getElementById('transport').checked,
-      cardApplyIsInternational: cardRegion === 'visa' ? true : false
-    })
-    if(cardApply.type === 'hi') {
-      alert("계좌 인증 완료");
+    if(englishName.length * account === 0) {
+      alert('필수 정보를 입력해주세요');
+    } else {
+      console.log(document.getElementsByClassName('engName')[0].value);
       setCardApply({
         ...cardApply,
-        cardApplyIsAccountVerify: true
+        cardApplyEngname: englishName,
+        cardApplyIsTransport: document.getElementById('transport').checked,
+        cardApplyIsInternational: cardRegion === 'visa' ? true : false
       })
-      setProcess(5);
-    } else if(cardApply.type === 'by') {
-      let modal = document.getElementById('certification');
-      modal.style.visibility = 'visible';
+      if(cardApply.type === 'hi') {
+        alert("계좌 인증 완료");
+        setCardApply({
+          ...cardApply,
+          cardApplyIsAccountVerify: true
+        })
+        setProcess(5);
+      } else if(cardApply.type === 'by') {
+        let modal = document.getElementById('certification');
+        modal.style.visibility = 'visible';
+      }
+    }
+  }
+
+  const changeHandler = (prop) => {
+    switch(prop) {
+      case 'name':
+        setEnglishName(document.getElementsByClassName('engName')[0] + ' ' +  document.getElementsByClassName('engName')[1]);
+        break;
+      default:
+        break;
     }
   }
 
@@ -274,11 +292,11 @@ function InputCardApplicationInfo({setProcess, setCardApply, cardApply}) {
                       <NameBox>
                         <div>
                           <div>영문 성</div>
-                          <input type='text' className='engName'></input>
+                          <input type='text' className='engName' onChange={() => {changeHandler('name')}}></input>
                         </div>
                         <div>
                           <div>영문 이름</div>
-                          <input type='text' className='engName'></input>
+                          <input type='text' className='engName' onChange={() => {changeHandler('name')}}></input>
                         </div>
                       </NameBox>
                     </NameWrap>
@@ -308,10 +326,10 @@ function InputCardApplicationInfo({setProcess, setCardApply, cardApply}) {
                     </MainTitle>
                     <AccountWrap>
                       <div>본인 명의의 계좌만 입력 가능합니다</div>
-                      <SelectBank>
+                      <SelectBank onChange={() => {changeHandler('bank')}}>
                         <option>우리은행</option>
                       </SelectBank>
-                      <input type='number' placeholder='계좌번호(- 제외)'></input>
+                      <input id='account' type='number' placeholder='계좌번호(- 제외)' onChange={() => {changeHandler('account')}}></input>
                     </AccountWrap>
                 </div>
                 <ButtonWrap>

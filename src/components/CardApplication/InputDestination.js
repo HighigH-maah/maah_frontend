@@ -265,7 +265,6 @@ function InputDestination({setProcess, setCardApply, cardApply}) {
   }
 
   const complete = () => {
-    setDate(new Date());
     setCardApply({
       ...cardApply,
       cardApplyAddress: '(' + zonecode + ') ' + roadAddress + ' ' + addressDetail,
@@ -273,7 +272,12 @@ function InputDestination({setProcess, setCardApply, cardApply}) {
       cardApplyPassword: password
     });
     axios
-    .post("/cardApply", cardApply)
+    .post("/cardApply", {
+      ...cardApply,
+      cardApplyAddress: '(' + zonecode + ') ' + roadAddress + ' ' + addressDetail,
+      cardApplyDate: new Date(),
+      cardApplyPassword: password
+    })
     .then(function (res) {
       console.log(res.data);
     })

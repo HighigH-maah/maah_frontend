@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-import { useNavigate } from 'react-router';
-import { useEffect, useState } from 'react';
-
+import { useState } from 'react';
 
 const ModalBody = styled.div`
   position: relative;
@@ -66,7 +64,11 @@ function CardLimit({setProcess, setCardApply, cardApply}) {
       ...cardApply,
       cardApplyLimitAmount: limitAmount
     });
-    setProcess(5);
+    if(limitAmount > 0) {
+      setProcess(5);
+    } else {
+      alert("한도를 올바르게 입력해주세요");
+    }
   };
 
   const changeHandler = (e) => {

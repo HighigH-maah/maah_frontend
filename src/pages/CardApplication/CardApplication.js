@@ -11,6 +11,7 @@ function CardApplication() {
     const [process, setProcess] = useState(1);
     const [cardApply, setCardApply] = useState(
         {   
+            memberId: 'user1',
             card: location.state.card, // hi일 경우 이미지 코드 / by일 경우 카드 상품 코드
             type: location.state.type, // type : hi or by
             cardApplyMemberSocialNumber: "", // 주민번호
