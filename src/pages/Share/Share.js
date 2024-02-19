@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import React from "react";
 import "../../assets/css/style.css";
 import "./share.css";
@@ -54,6 +54,12 @@ function Share(props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOn, setisOn] = useState(false);
   const [card, setCard] = useState([]);
+  const [hicardBene, setHicardBene] = useState([]);
+  // const [memberBenefit, setMemberBenefit] = useState([]);
+  const maxBenefitCount = 5; // 최대 출력 개수 설정
+  const [openCard, setOpenCard] = useState({});
+
+  const [isChange, setIsChange] = useState(false);
 
   useEffect(() => {
     console.log("effect 1번");
@@ -65,6 +71,7 @@ function Share(props) {
       .then(function (res) {
         console.log(res.data);
         setCard(res.data);
+        setHicardBene(res.data.hicard.memberBenefitList);
       })
       .catch(function (error) {
         console.log(error);
@@ -76,6 +83,7 @@ function Share(props) {
   };
 
   const reverseCard = (prop) => {
+    console.log(hicardBene);
     let cards = document.getElementsByClassName(prop);
     cards[0].style.transform = "rotateY(90deg)";
     setTimeout(function () {
@@ -90,17 +98,28 @@ function Share(props) {
     }, 100);
   };
 
+  const insertHiBenefit = ({ props }) => {
+    console.log(props);
+  };
+
   const openModal = () => {
     setIsModalOpen(true);
+    console.log(openCard);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+    if (isChange === true) {
+      window.location.replace("/share");
+    }
   };
 
   const clickTest = (props) => {
     console.log(props + "click");
   };
+
+  // closeModal 함수 안에서 상태 변경
+
   return (
     <ShareBack>
       <HeaderLogoutBtn />
@@ -128,9 +147,29 @@ function Share(props) {
                   onClick={openModal}
                 ></HiCardImg>
                 <HiCardDesc>
+                  <p>이 달의 혜택</p>
                   <HiCardDescBox>
-                    <img src={selectIcon("8", "white")}></img>
-                    <p>혜택내용</p>
+                    {card.hicard ? (
+                      hicardBene.map((benefit, index) => {
+                        if (index >= maxBenefitCount) {
+                          return null;
+                        }
+                        return (
+                          <h3 key={index}>
+                            <img
+                              src={selectIcon(
+                                JSON.stringify(benefit.benefitCode),
+                                "white"
+                              )}
+                              alt={`benefit-${index}`}
+                            ></img>
+                            <p>{benefit.byBenefitDesc}</p>
+                          </h3>
+                        );
+                      })
+                    ) : (
+                      <div>전월 혜택 없음</div>
+                    )}
                   </HiCardDescBox>
                 </HiCardDesc>
               </div>
@@ -166,6 +205,10 @@ function Share(props) {
                     </ByBottomCardTitle>
                     <ByBottomImg src={card.byCard.byImagePath}></ByBottomImg>
                     <ByBottomDesc
+                      onClick={() => {
+                        setOpenCard(card);
+                        openModal();
+                      }}
                       className={`${isOn ? "toggle--checked" : ""}`}
                     >
                       {card.byCard
@@ -202,6 +245,8 @@ function Share(props) {
           isOpen={isModalOpen}
           closeModal={closeModal}
           hiCard={card.hicard}
+          openCard={openCard}
+          setIsChange={setIsChange}
         />
       ) : null}
       <Footer />
