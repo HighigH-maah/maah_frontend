@@ -33,6 +33,7 @@ import {
 import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
 import Footer from "../../components/Footer/Footer";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function CardCompare(props) {
   const [selectedCompany, setSelectedCompany] = useState(null);
@@ -312,7 +313,10 @@ function CardCompare(props) {
                   </ConditionDiv>
                 </CardDetailDiv>
                 <DetailBtnDiv>
-                  <button>자세히 보기</button>
+                  {/* 1. Link to 달기 */}
+                  <button>
+                    <Link to={`/byCardDetail/${card.byCode}`}>자세히 보기</Link>
+                  </button>
                 </DetailBtnDiv>
               </CardList>
             ))

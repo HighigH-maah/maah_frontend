@@ -1,15 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { HiCardModal, ModalClose } from "../HiCard/HiCard";
-import MyHiCardAccountChange from "../HiCard/MyHiCardAccountChange";
+import { HiCardModal, ModalClose } from "../../pages/MyHiCard/HiCard";
+import MyHiCardAccountChange from "../../pages/MyHiCard/MyHiCardAccountChange";
 import close from "../../assets/images/close.png";
 import bronzeImg from "../../assets/images/Grade/bronze.png";
 import silverImg from "../../assets/images/Grade/silver.png";
 import goldImg from "../../assets/images/Grade/gold.png";
 import platinumImg from "../../assets/images/Grade/platinum.png";
-import VirtualCardApply from "../HiCard/VirtualCardApply";
-import MyPaymentHistory from "../HiCard/MyPaymentHistory";
+import VirtualCardApply from "../../pages/MyHiCard/VirtualCardApply";
+import MyPaymentHistory from "../../pages/MyHiCard/MyPaymentHistory";
 import { Link } from "react-router-dom";
 
 export const MyCardListDiv = styled.div`
