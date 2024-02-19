@@ -222,7 +222,7 @@ const ModalWrap = styled.div`
   overflow: hidden;
 `;
 
-function InputCardApplicationInfo({setProcess, setCardApply, type}) {
+function InputCardApplicationInfo({setProcess, setCardApply, cardApply}) {
   const [cardRegion, setCardRegion] = useState("visa");
 
   const gotoPrev = () => {
@@ -234,10 +234,20 @@ function InputCardApplicationInfo({setProcess, setCardApply, type}) {
   }
 
   const displayModal = () => {
-    if(type === 'hi') {
+    setCardApply({
+      ...cardApply,
+      cardApplyEngname: document.getElementsByClassName('engName')[0] + ' ' +  document.getElementsByClassName('engName')[1],
+      cardApplyIsTransport: document.getElementById('transport').checked,
+      cardApplyIsInternational: cardRegion === 'visa' ? true : false
+    })
+    if(cardApply.type === 'hi') {
       alert("계좌 인증 완료");
+      setCardApply({
+        ...cardApply,
+        cardApplyIsAccountVerify: true
+      })
       setProcess(5);
-    } else if(type === 'by') {
+    } else if(cardApply.type === 'by') {
       let modal = document.getElementById('certification');
       modal.style.visibility = 'visible';
     }
@@ -264,18 +274,18 @@ function InputCardApplicationInfo({setProcess, setCardApply, type}) {
                       <NameBox>
                         <div>
                           <div>영문 성</div>
-                          <input type='text'></input>
+                          <input type='text' className='engName'></input>
                         </div>
                         <div>
                           <div>영문 이름</div>
-                          <input type='text'></input>
+                          <input type='text' className='engName'></input>
                         </div>
                       </NameBox>
                     </NameWrap>
                 </div>
                 <Traffic>
                     <span>후불교통 기능 신청</span>
-                    <input type='checkbox'></input>
+                    <input id='transport' type='checkbox'></input>
                 </Traffic>
                 <ForeignPay>
                     <MainTitle>
@@ -312,7 +322,7 @@ function InputCardApplicationInfo({setProcess, setCardApply, type}) {
         </Background>
 
       <ModalWrap id="certification">
-        <CardLimit setProcess={setProcess} />
+        <CardLimit setProcess={setProcess} setCardApply={setCardApply} cardApply={cardApply} />
       </ModalWrap>
       </>
     );

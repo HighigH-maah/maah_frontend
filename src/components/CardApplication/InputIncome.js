@@ -125,17 +125,33 @@ const Buttons = styled.div`
   }
 `;
 
-function InputIncome({setProcess}) {
+function InputIncome({setProcess, setCardApply, cardApply}) {
   const navigate = useNavigate();
-  const [annualIncome, setAnnualIncome] = useState();
+  const [annualIncome, setAnnualIncome] = useState(cardApply.cardApplyAnnualIncome === '' ? '0' : cardApply.cardApplyAnnualIncome);
+  const [creditPoint, setCreditPoint] = useState(cardApply.cardApplyCreditPoint === '' ? '500' : cardApply.cardApplyCreditPoint);
+  const [payDate, setPayDate] = useState(cardApply.cardApplyPaydate === '' ? '5' : cardApply.cardApplyPaydate);
+  const [sourceFund, setSourceFund] = useState(cardApply.cardApplySourceFund === '' ? '근로' : cardApply.cardApplySourceFund);
+  const [purpose, setPurpose] = useState(cardApply.cardApplyPurpose === '' ? '생활' : cardApply.cardApplyPurpose);
 
   const gotoNext = () => {
+    setCardApply({
+      ...cardApply,
+      cardApplyAnnualIncome: annualIncome,
+      cardApplyCreditPoint: creditPoint,
+      cardApplyPaydate: payDate,
+      cardApplySourceFund: sourceFund,
+      cardApplyPurpose: purpose
+    })
     setProcess(2);
   };
 
   const gotoPrev = () => {
     navigate("/hiCard", {})
   };
+
+  const changeHandler = (event, changeFunction) => {
+    changeFunction(event.target.value);
+  }
 
     return (
         <Background>
@@ -154,41 +170,40 @@ function InputIncome({setProcess}) {
                     </MainTitle>
                     <InputBox>
                         <SubTitle>연간소득</SubTitle>
-                        <IncomeOptions>
-                            <option>5천만원 미만</option>
-                            <option>5천만원 이상 ~ 1억원 미만</option>
-                            <option>1억원 이상</option>
+                        <IncomeOptions onChange={(event) => {changeHandler(event, setAnnualIncome)}}>
+                            <option value='0'>5천만원 미만</option>
+                            <option value='5000'>5천만원 이상 ~ 1억원 미만</option>
+                            <option value='10000'>1억원 이상</option>
                         </IncomeOptions>
                     </InputBox>
                     <InputBox>
                         <SubTitle>신용점수</SubTitle>
-                        <IncomeOptions>
-                            <option>500점 미만</option>
-                            <option>500점 이상</option>
+                        <IncomeOptions onChange={(event) => {changeHandler(event, setCreditPoint)}}>
+                            <option value='500'>500점 미만</option>
+                            <option value='1000'>500점 이상</option>
                         </IncomeOptions>
                         <IncomeComment>신용점수는 0 ~ 1000점으로 구성되며, 예상 점수대를 선택해주세요</IncomeComment>
                     </InputBox>
                     <InputBox>
                         <SubTitle>카드 이용대금 결제일</SubTitle>
-                        <IncomeOptions>
-                            <option>5일</option>
-                            <option>15일</option>
-                            <option>25일</option>
+                        <IncomeOptions onChange={(event) => {changeHandler(event, setPayDate)}}>
+                            <option value='5'>5일</option>
+                            <option value='15'>15일</option>
+                            <option value='25'>25일</option>
                         </IncomeOptions>
                         <IncomeComment>전월 말일까지의 실적이 해당월에 청구됩니다</IncomeComment>
                     </InputBox>
                     <InputBox>
                         <SubTitle>자금 원천</SubTitle>
-                        <IncomeOptions>
-                            <option>근로 소득</option>
-                            <option>사업 소득</option>
-                            <option>근로 소득</option>
+                        <IncomeOptions onChange={(event) => {changeHandler(event, setSourceFund)}}>
+                            <option value='근로'>근로 소득</option>
+                            <option value='사업'>사업 소득</option>
                         </IncomeOptions>
                     </InputBox>
                     <InputBox>
                         <SubTitle>거래 목적</SubTitle>
-                        <IncomeOptions>
-                            <option>생활비</option>
+                        <IncomeOptions onChange={(event) => {changeHandler(event, setPurpose)}}>
+                            <option value='생활'>생활비</option>
                         </IncomeOptions>
                     </InputBox>
                 </div>

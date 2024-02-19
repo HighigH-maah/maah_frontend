@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router';
+import { useEffect, useState } from 'react';
 
 
 const ModalBody = styled.div`
@@ -57,17 +58,27 @@ const ModalContent = styled.div`
   }
 `;
 
-function CardLimit({setProcess}) {
+function CardLimit({setProcess, setCardApply, cardApply}) {
+  const [limitAmount, setLimitAmount] = useState(0);
+
   const gotoNext = () => {
+    setCardApply({
+      ...cardApply,
+      cardApplyLimitAmount: limitAmount
+    });
     setProcess(5);
   };
+
+  const changeHandler = (e) => {
+    setLimitAmount(e.target.value);
+  }
 
     return (
     <ModalBody>
         <ModalTitle>계좌 인증 완료</ModalTitle>
         <ModalContent>
         <div>카드 이용 한도를 입력해주세요</div>
-        <input type='text' placeholder='최소 200만원 / 최대 500만원'></input>
+        <input type='number' placeholder='최소 200만원 / 최대 500만원' onChange={changeHandler}></input>
         <span>실제 한도는 심사 결과에 따라 달라질 수 있습니다</span>
         <button onClick={gotoNext}>확인</button>
         </ModalContent>

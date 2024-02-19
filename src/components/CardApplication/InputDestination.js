@@ -4,6 +4,7 @@ import logo from "../../assets/images/maah_logo.png";
 import x from "../../assets/icon/x_icon.png";
 import { useNavigate } from 'react-router';
 import DaumPostcode from 'react-daum-postcode';
+import axios from 'axios';
 
 const Background = styled.div`
   background: linear-gradient(180deg, #f1f1f1 37.44%, #b2b2b2 100%);
@@ -244,12 +245,14 @@ const ApplicationResult = styled.div`
   }
 `;
 
-function InputDestination({setProcess}) {
+function InputDestination({setProcess, setCardApply, cardApply}) {
   const navigate = useNavigate();
   const [zonecode, setZonecode] = useState();
   const [roadAddress, setRoadAddress] = useState();
+  const [addressDetail, setAddressDetail] = useState("");
   const [viewModal, setViewModal] = useState(false);
   const [applicationComp, setApplicationComp] = useState(false);
+  const [password, setPassword] = useState('1234');
   const [date, setDate] = useState();
 
   const gotoPrev = () => {
@@ -257,11 +260,26 @@ function InputDestination({setProcess}) {
   };
 
   const gotoHome = () => {
-    navigate("/", {});
+    console.log(cardApply);
+    // navigate("/", {});
   }
 
   const complete = () => {
     setDate(new Date());
+    setCardApply({
+      ...cardApply,
+      cardApplyAddress: '(' + zonecode + ') ' + roadAddress + ' ' + addressDetail,
+      cardApplyDate: new Date(),
+      cardApplyPassword: password
+    });
+    axios
+    .post("/cardApply", cardApply)
+    .then(function (res) {
+      console.log(res.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
     let modal = document.getElementById('address');
     setApplicationComp(true);
     modal.style.visibility = 'visible';
@@ -286,7 +304,6 @@ function InputDestination({setProcess}) {
     setRoadAddress(data.roadAddress);
     setViewModal(false);
   }
-
 
     return (
       <>
@@ -314,7 +331,7 @@ function InputDestination({setProcess}) {
                         </ZoneCodeWrap>
                         <AddressDetailWrap>
                           <input type='text' value={roadAddress} readOnly onClick={displayModal}></input>
-                          <input type='text' placeholder='(상세주소)'></input>
+                          <input type='text' placeholder='(상세주소)' onChange={(e) => {setAddressDetail(e.target.value)}}></input>
                         </AddressDetailWrap>
                       </div>
                     </AddressWrap>

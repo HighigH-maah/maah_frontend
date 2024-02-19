@@ -33,6 +33,7 @@ const ModalWrap = styled.div`
   top: 0;
   visibility: hidden;
 `;
+
 function HiCardDesignSelect() {
   const [card, setCard] = useState(0);
 

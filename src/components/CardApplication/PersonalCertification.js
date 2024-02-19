@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import logo from "../../assets/images/maah_logo.png";
+import axios from 'axios';
 
 const Background = styled.div`
   background: linear-gradient(180deg, #f1f1f1 37.44%, #b2b2b2 100%);
@@ -73,13 +74,46 @@ const Buttons = styled.div`
   }
 `;
 
-function PersonalCertification({setProcess}) {
+
+
+function PersonalCertification({setProcess, setCardApply, cardApply}) {
+  useEffect(() => {
+    const jquery = document.createElement("script");
+    jquery.src = "http://code.jquery.com/jquery-1.12.4.min.js";
+    const iamport = document.createElement("script");
+    iamport.src = "http://cdn.iamport.kr/js/iamport.payment-1.1.8.js";
+    document.head.appendChild(jquery);
+    document.head.appendChild(iamport);
+    return () => {
+      document.head.removeChild(jquery);
+      document.head.removeChild(iamport);
+    };
+  }, []);
+  
   const gotoPrev = () => {
     setProcess(1);
   };
 
-  const gotoNext = () => {
-    setProcess(3);
+  const handleAuthCheck = () => {
+    // 본인 인증
+    const { IMP } = window;
+    IMP.init("imp72857613");
+
+    IMP.certification(
+      {
+        pg: "MIIiasTest",
+        merchant_uid: `mid_${new Date().getTime()}`,
+      },
+      function (rsp) {
+        if (rsp.success) {
+          setCardApply({
+            ...cardApply,
+            cardApplyIsVerify: true
+          })
+          setProcess(3);
+        }
+      }
+    );
   };
 
     return (
@@ -100,7 +134,7 @@ function PersonalCertification({setProcess}) {
                     </MainTitle>
                 </div>
                 <Buttons>
-                    <button onClick={gotoNext}>본인인증</button>
+                    <button onClick={handleAuthCheck}>본인인증</button>
                     <button onClick={gotoPrev}>이전으로</button>
                 </Buttons>
             </MainWrap>
