@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import React from "react";
 import "../../assets/css/style.css";
-import "./share.css";
 import styled from "styled-components";
 import axios from "axios";
 import blackVelvetImg from "../../assets/images/black_velvet.png";
@@ -48,6 +47,7 @@ import { ToggleButton } from "../../components/ShareStyle/ShareToggleButton";
 import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
 import Footer from "../../components/Footer/Footer";
 import { position } from "stylis";
+import { Link, useNavigate } from "react-router-dom";
 
 function Share(props) {
   const [blackVelvet, setBlackVelvet] = useState(true);
@@ -60,6 +60,7 @@ function Share(props) {
   const [openCard, setOpenCard] = useState({});
 
   const [isChange, setIsChange] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log("effect 1번");
@@ -115,7 +116,7 @@ function Share(props) {
   };
 
   const clickTest = (props) => {
-    console.log(props + "click");
+    navigate("/myCardList");
   };
 
   // closeModal 함수 안에서 상태 변경
@@ -181,10 +182,12 @@ function Share(props) {
               >
                 <ReverseIcon src={reverse}></ReverseIcon>
               </ReverseButton>
-              <LearnMore>
-                Learn More
-                <LearnMoreArrow />
-              </LearnMore>
+              <Link to="/hiCardDetail" style={{ textDecoration: "none" }}>
+                <LearnMore>
+                  Learn More
+                  <LearnMoreArrow />
+                </LearnMore>
+              </Link>
             </HiBottomWings>
           </HiBottom>
         </HiSection>
@@ -234,7 +237,7 @@ function Share(props) {
               : ""}
             <ByBottomCardArea>
               <ByBottomAdd>
-                <ShareCardAdd onClick={clickTest} />
+                <ShareCardAdd onClick={clickTest}></ShareCardAdd>
               </ByBottomAdd>
             </ByBottomCardArea>
           </ByBottomArea>

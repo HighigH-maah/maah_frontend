@@ -20,10 +20,12 @@ import MyData from "./pages/MyData/MyData";
 import CardApplication from "./pages/CardApplication/CardApplication";
 import ByCard from "./pages/ByCard/ByCard";
 import MyHiCardAccountChange from "./components/HiCard/MyHiCardAccountChange";
+import ScrollToTop from "./components/Scroll/ScrollToTop";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
+    <ScrollToTop />
     <Routes>
       <Route path="/" element={<Main />}></Route>
       <Route path="/header" element={<HeaderLogoutBtn />}></Route>
