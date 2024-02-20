@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import HeaderLogoutBtn from "../Header/HeaderLogoutBtn";
-import Footer from "../Footer/Footer";
+import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
+import Footer from "../../components/Footer/Footer";
 import axios from "axios";
 
 const LostCardDiv = styled.div`
