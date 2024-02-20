@@ -66,7 +66,7 @@ function Share(props) {
     console.log("effect 1번");
 
     axios
-      .post("/getmemberHiCard.do", {
+      .post("https://maahcard.azurewebsites.net/getmemberHiCard.do", {
         memberId: "user3",
       })
       .then(function (res) {
