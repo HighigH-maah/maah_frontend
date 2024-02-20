@@ -29,7 +29,6 @@ import platinumImg from "../../assets/images/Grade/platinum.png";
 import logoImg from "../../assets/images/Logo/maah_small_logo.png";
 import MyHiCardAccountChange from "./MyHiCardAccountChange";
 import { useLocation } from "react-router-dom";
-import { MyHiCardLeftSection } from "../../components/My/MyCardList";
 
 const HiCardDiv = styled.div`
   display: flex;
@@ -363,6 +362,7 @@ const ModalBackground = styled.div`
 `;
 
 function HiCard(props) {
+  const API_SERVER = process.env.REACT_APP_API_SERVER;
   // useLocation 훅을 사용하여 현재 location 정보를 가져옴
   const location = useLocation();
   // state에서 memberHiNumber 값 가져오기
@@ -376,7 +376,7 @@ function HiCard(props) {
   useEffect(() => {
     axios({
       method: "post",
-      url: `/getHiCardInfo.do`,
+      url: API_SERVER + `/getHiCardInfo.do`,
       data: { memberId: "user2" },
     })
       .then((res) => {
@@ -388,12 +388,12 @@ function HiCard(props) {
         console.log(err);
         console.log("실패 실패 실패 실패 실패 실패");
       });
-  }, []); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
+  }, [API_SERVER]); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
 
   useEffect(() => {
     axios({
       method: "post",
-      url: "/getHiCardBenefits.do",
+      url: API_SERVER + "/getHiCardBenefits.do",
       data: { memberId: "user2" },
     })
       .then((res) => {
@@ -405,12 +405,12 @@ function HiCard(props) {
         console.log(err);
         console.log("실패 실패 실패 실패 실패 실패");
       });
-  }, []); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
+  }, [API_SERVER]); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
 
   useEffect(() => {
     axios({
       method: "post",
-      url: `/getVirtualCardExistOrNot.do`,
+      url: API_SERVER + `/getVirtualCardExistOrNot.do`,
       data: { memberId: "user2" },
     })
       .then((res) => {
@@ -422,7 +422,7 @@ function HiCard(props) {
         console.log(err);
         console.log("실패 실패 실패 실패 실패 실패");
       });
-  }, []); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
+  }, [API_SERVER]); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
 
   if (memberHiNumber) {
     return (

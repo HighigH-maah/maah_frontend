@@ -286,6 +286,7 @@ const Category = styled.div`
 `;
 
 function ByCard(props) {
+  const API_SERVER = process.env.REACT_APP_API_SERVER;
   const { byCardCode } = useParams();
   const [bycardInfo, setByCardInfo] = useState([]);
   const [bycardBenefitsInfo, setByCardBenefitsInfo] = useState([]);
@@ -293,7 +294,7 @@ function ByCard(props) {
   useEffect(() => {
     axios({
       method: "get",
-      url: `/byCardDetail/${byCardCode}.do`,
+      url: API_SERVER + `/byCardDetail/${byCardCode}.do`,
     })
       .then((res) => {
         console.log(res.data);
@@ -304,12 +305,12 @@ function ByCard(props) {
         console.log(err);
         console.log("실패 실패 실패 실패 실패 실패");
       });
-  }, [byCardCode]); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
+  }, [byCardCode, API_SERVER]); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
 
   useEffect(() => {
     axios({
       method: "get",
-      url: `/byCardBenefits/${byCardCode}.do`,
+      url: API_SERVER + `/byCardBenefits/${byCardCode}.do`,
     })
       .then((res) => {
         console.log(res.data);
@@ -321,7 +322,7 @@ function ByCard(props) {
         console.log(err);
         console.log("실패 실패 실패 실패 실패 실패");
       });
-  }, [byCardCode]); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
+  }, [byCardCode, API_SERVER]); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
 
   return (
     <ByCardDetail

@@ -289,6 +289,7 @@ function Modal2({ hiCardVirtualCardInfo }) {
 }
 
 function Modal1({ setModal, setHiCardVirtualCardInfo }) {
+  const API_SERVER = process.env.REACT_APP_API_SERVER;
   const [isTermChecked1, setTermChecked1] = useState(false);
   const [isTermChecked2, setTermChecked2] = useState(false);
 
@@ -326,7 +327,7 @@ function Modal1({ setModal, setHiCardVirtualCardInfo }) {
 
           axios({
             method: "post",
-            url: "/getCert.do",
+            url: API_SERVER + "/getCert.do",
             data: { imp_uid: rsp.imp_uid, memberId: "user3" },
           })
             .then((res) => {
@@ -338,7 +339,7 @@ function Modal1({ setModal, setHiCardVirtualCardInfo }) {
               if (certInfo.certName === certInfo.memberName) {
                 axios({
                   method: "post",
-                  url: "/getTempHiCard.do",
+                  url: API_SERVER + "/getTempHiCard.do",
                   data: { memberId: "user3" },
                 })
                   .then((res) => {

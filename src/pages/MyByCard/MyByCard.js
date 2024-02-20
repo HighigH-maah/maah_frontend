@@ -346,6 +346,8 @@ const ModalBackground = styled.div`
 `;
 
 function MyByCard(props) {
+  const API_SERVER = process.env.REACT_APP_API_SERVER;
+
   // useLocation 훅을 사용하여 현재 location 정보를 가져옴
   const location = useLocation();
   // state에서 memberHiNumber 값 가져오기
@@ -361,7 +363,7 @@ function MyByCard(props) {
   useEffect(() => {
     axios({
       method: "post",
-      url: `/getMyBycardCode.do`,
+      url: API_SERVER + `/getMyBycardCode.do`,
       data: { memberId: "user2", memberByNumber: memberByNumber },
     })
       .then((res) => {
@@ -373,12 +375,12 @@ function MyByCard(props) {
         console.log(err);
         console.log("실패 실패 실패 실패 실패 실패");
       });
-  }, [memberByNumber]); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
+  }, [API_SERVER, memberByNumber]); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
 
   useEffect(() => {
     axios({
       method: "post",
-      url: `/isConnectHiOrNot.do`,
+      url: API_SERVER + `/isConnectHiOrNot.do`,
       data: { memberId: "user2", memberByNumber: memberByNumber },
     })
       .then((res) => {
@@ -390,12 +392,12 @@ function MyByCard(props) {
         console.log(err);
         console.log("실패 실패 실패 실패 실패 실패");
       });
-  }, [memberByNumber]); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
+  }, [API_SERVER, memberByNumber]); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
 
   useEffect(() => {
     axios({
       method: "post",
-      url: `/getAllByCardInfo.do`,
+      url: API_SERVER + `/getAllByCardInfo.do`,
       data: { memberId: "user2" },
     })
       .then((res) => {
@@ -407,12 +409,12 @@ function MyByCard(props) {
         console.log(err);
         console.log("실패 실패 실패 실패 실패 실패");
       });
-  }, []); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
+  }, [API_SERVER]); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
 
   useEffect(() => {
     axios({
       method: "post",
-      url: "/getAllByCardBenefits.do",
+      url: API_SERVER + "/getAllByCardBenefits.do",
       data: { memberId: "user2" },
     })
       .then((res) => {
@@ -429,7 +431,7 @@ function MyByCard(props) {
         console.log(err);
         console.log("실패 실패 실패 실패 실패 실패");
       });
-  }, []); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
+  }, [API_SERVER]); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
 
   return (
     <ByCardDetail

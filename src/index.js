@@ -17,7 +17,7 @@ import MyData from "./pages/MyData/MyData";
 import CardApplication from "./pages/CardApplication/CardApplication";
 import MyByCard from "./pages/MyByCard/MyByCard";
 import ByCard from "./pages/ByCard/ByCard";
-import MyHiCardAccountChange from "./components/HiCard/MyHiCardAccountChange";
+// import MyHiCardAccountChange from "./components/HiCard/MyHiCardAccountChange";
 import ScrollToTop from "./components/Scroll/ScrollToTop";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

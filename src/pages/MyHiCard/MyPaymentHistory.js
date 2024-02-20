@@ -203,6 +203,7 @@ const PageButton = styled.button`
 `;
 
 function MyPaymentHistory(props) {
+  const API_SERVER = process.env.REACT_APP_API_SERVER;
   const [hiCardHistory, setHiCardHistory] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -222,7 +223,7 @@ function MyPaymentHistory(props) {
   useEffect(() => {
     axios({
       method: "post",
-      url: "/getHicardHistory.do",
+      url: API_SERVER + "/getHicardHistory.do",
       data: { memberId: "user2" },
     })
       .then((res) => {
@@ -234,7 +235,7 @@ function MyPaymentHistory(props) {
         console.log(err);
         console.log("실패 실패 실패 실패 실패 실패");
       });
-  }, []); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
+  }, [API_SERVER]); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
 
   // startDate와 endDate 사이에 있는 hiCardHistory만 필터링
   const filteredHistory = hiCardHistory.filter((item) => {
