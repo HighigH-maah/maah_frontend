@@ -151,7 +151,7 @@ function HeaderLogoutBtn(props) {
               My
             </HeaderMenuMy>
           </Link>
-          <Link to="" style={{ textDecoration: "none" }}>
+          <Link to="/share" style={{ textDecoration: "none" }}>
             <HeaderMenuShare
               clicked={menuState.share}
               onClick={() => handleMenuClick("share")}
@@ -159,7 +159,7 @@ function HeaderLogoutBtn(props) {
               Share
             </HeaderMenuShare>
           </Link>
-          <Link to="" style={{ textDecoration: "none" }}>
+          <Link to="/cardcompare" style={{ textDecoration: "none" }}>
             <HeaderMenuCard
               clicked={menuState.card}
               onClick={() => handleMenuClick("card")}

@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import React from "react";
 import "../../assets/css/style.css";
-import "./share.css";
 import styled from "styled-components";
 import axios from "axios";
 import blackVelvetImg from "../../assets/images/black_velvet.png";
@@ -48,34 +47,45 @@ import { ToggleButton } from "../../components/ShareStyle/ShareToggleButton";
 import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
 import Footer from "../../components/Footer/Footer";
 import { position } from "stylis";
+import { Link, useNavigate } from "react-router-dom";
 
 function Share(props) {
   const [blackVelvet, setBlackVelvet] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOn, setisOn] = useState(false);
   const [card, setCard] = useState([]);
+  const [hicardBene, setHicardBene] = useState([]);
+  // const [memberBenefit, setMemberBenefit] = useState([]);
+  const maxBenefitCount = 5; // 최대 출력 개수 설정
+  const [openCard, setOpenCard] = useState({});
 
+  const [isChange, setIsChange] = useState(false);
+  const navigate = useNavigate();
+  const API_SERVER = process.env.REACT_APP_API_SERVER;
   useEffect(() => {
     console.log("effect 1번");
+    // setIsChange(false);
 
     axios
-      .post("/getmemberHiCard.do", {
+      .post(API_SERVER + "/getmemberHiCard.do", {
         memberId: "user3",
       })
       .then(function (res) {
-        console.log(res.data);
+        console.log("----", res.data);
         setCard(res.data);
+        setHicardBene(res.data.hicard.memberBenefitList);
       })
       .catch(function (error) {
         console.log(error);
       });
-  }, []);
+  }, [isChange]);
 
   const toggleHandler = () => {
     setisOn(!isOn);
   };
 
   const reverseCard = (prop) => {
+    console.log(hicardBene);
     let cards = document.getElementsByClassName(prop);
     cards[0].style.transform = "rotateY(90deg)";
     setTimeout(function () {
@@ -90,17 +100,34 @@ function Share(props) {
     }, 100);
   };
 
+  const insertHiBenefit = ({ props }) => {
+    console.log(props);
+  };
+
   const openModal = () => {
     setIsModalOpen(true);
+    console.log(openCard);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+    // if (isChange === true) {
+    //   navigate("/share");
+    // }
   };
 
   const clickTest = (props) => {
-    console.log(props + "click");
+    navigate("/myCardList");
   };
+
+  // props는 readonly이기 때문에 자식 컴포넌트에서 바꾼 상태를 부모 컴포넌트에 전달하려면
+  // 상태변화를 자식에서 직접 일으키는 것이 아니라
+  // 부모의 코드 내에 상태변화를 일으키는 함수를 선언하고, 자식에 그 함수를 전달해서 해당 함수를 실행만 함으로써
+  // 부모에 상태변화를 전달할 수 있다.
+  const updateChange = () => {
+    setIsChange(!isChange);
+  };
+
   return (
     <ShareBack>
       <HeaderLogoutBtn />
@@ -128,9 +155,29 @@ function Share(props) {
                   onClick={openModal}
                 ></HiCardImg>
                 <HiCardDesc>
+                  <p>이 달의 혜택</p>
                   <HiCardDescBox>
-                    <img src={selectIcon("8", "white")}></img>
-                    <p>혜택내용</p>
+                    {hicardBene ? (
+                      hicardBene.map((benefit, index) => {
+                        if (index >= maxBenefitCount) {
+                          return null;
+                        }
+                        return (
+                          <h3 key={index}>
+                            <img
+                              src={selectIcon(
+                                JSON.stringify(benefit.benefitCode),
+                                "white"
+                              )}
+                              alt={`benefit-${index}`}
+                            ></img>
+                            <p>{benefit.byBenefitDesc}</p>
+                          </h3>
+                        );
+                      })
+                    ) : (
+                      <div>전월 혜택 없음</div>
+                    )}
                   </HiCardDescBox>
                 </HiCardDesc>
               </div>
@@ -142,10 +189,12 @@ function Share(props) {
               >
                 <ReverseIcon src={reverse}></ReverseIcon>
               </ReverseButton>
-              <LearnMore>
-                Learn More
-                <LearnMoreArrow />
-              </LearnMore>
+              <Link to="/hiCardDetail" style={{ textDecoration: "none" }}>
+                <LearnMore>
+                  Learn More
+                  <LearnMoreArrow />
+                </LearnMore>
+              </Link>
             </HiBottomWings>
           </HiBottom>
         </HiSection>
@@ -166,6 +215,10 @@ function Share(props) {
                     </ByBottomCardTitle>
                     <ByBottomImg src={card.byCard.byImagePath}></ByBottomImg>
                     <ByBottomDesc
+                      onClick={() => {
+                        setOpenCard(card);
+                        openModal();
+                      }}
                       className={`${isOn ? "toggle--checked" : ""}`}
                     >
                       {card.byCard
@@ -191,7 +244,7 @@ function Share(props) {
               : ""}
             <ByBottomCardArea>
               <ByBottomAdd>
-                <ShareCardAdd onClick={clickTest} />
+                <ShareCardAdd onClick={clickTest}></ShareCardAdd>
               </ByBottomAdd>
             </ByBottomCardArea>
           </ByBottomArea>
@@ -202,6 +255,8 @@ function Share(props) {
           isOpen={isModalOpen}
           closeModal={closeModal}
           hiCard={card.hicard}
+          openCard={openCard}
+          updateChange={updateChange}
         />
       ) : null}
       <Footer />
