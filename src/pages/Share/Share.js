@@ -111,7 +111,8 @@ function Share(props) {
   const closeModal = () => {
     setIsModalOpen(false);
     if (isChange === true) {
-      window.location.replace("/share");
+      navigate("/share");
+      window.location.reload();
     }
   };
 
