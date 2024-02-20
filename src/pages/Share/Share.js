@@ -64,20 +64,21 @@ function Share(props) {
   const API_SERVER = process.env.REACT_APP_API_SERVER;
   useEffect(() => {
     console.log("effect 1번");
+    // setIsChange(false);
 
     axios
       .post(API_SERVER + "/getmemberHiCard.do", {
         memberId: "user3",
       })
       .then(function (res) {
-        console.log(res.data);
+        console.log("----", res.data);
         setCard(res.data);
         setHicardBene(res.data.hicard.memberBenefitList);
       })
       .catch(function (error) {
         console.log(error);
       });
-  }, []);
+  }, [isChange]);
 
   const toggleHandler = () => {
     setisOn(!isOn);
@@ -110,17 +111,22 @@ function Share(props) {
 
   const closeModal = () => {
     setIsModalOpen(false);
-    if (isChange === true) {
-      navigate("/share");
-      window.location.reload();
-    }
+    // if (isChange === true) {
+    //   navigate("/share");
+    // }
   };
 
   const clickTest = (props) => {
     navigate("/myCardList");
   };
 
-  // closeModal 함수 안에서 상태 변경
+  // props는 readonly이기 때문에 자식 컴포넌트에서 바꾼 상태를 부모 컴포넌트에 전달하려면
+  // 상태변화를 자식에서 직접 일으키는 것이 아니라
+  // 부모의 코드 내에 상태변화를 일으키는 함수를 선언하고, 자식에 그 함수를 전달해서 해당 함수를 실행만 함으로써
+  // 부모에 상태변화를 전달할 수 있다.
+  const updateChange = () => {
+    setIsChange(!isChange);
+  };
 
   return (
     <ShareBack>
@@ -250,7 +256,7 @@ function Share(props) {
           closeModal={closeModal}
           hiCard={card.hicard}
           openCard={openCard}
-          setIsChange={setIsChange}
+          updateChange={updateChange}
         />
       ) : null}
       <Footer />

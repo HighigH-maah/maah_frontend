@@ -15,6 +15,7 @@ import {
   Modal,
   ModalCloseButton,
   PointWrapper,
+  ReturnWrapper,
   ShareBackImage,
   ShareInput,
 } from "./ShareComponent";
@@ -23,13 +24,18 @@ import culture_white from "../../assets/icon/culture_white.png";
 import { selectIcon } from "../../assets/js/IconSelect";
 import { useEffect, useState } from "react";
 import axios from "axios";
-function ShareModal({ isOpen, closeModal, hiCard, openCard, setIsChange }) {
+function ShareModal({ isOpen, closeModal, hiCard, openCard, updateChange }) {
   const [inputValue, setInputValue] = useState("");
+  const [returnValue, setReturnValue] = useState("");
   const [hiPoint, setHiPoint] = useState("");
   const [byPoint, setByPoint] = useState("");
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
+  };
+
+  const handleReturnChange = (e) => {
+    setReturnValue(e.target.value);
   };
 
   const handleButtonClick = () => {
@@ -45,7 +51,27 @@ function ShareModal({ isOpen, closeModal, hiCard, openCard, setIsChange }) {
         setInputValue("");
         setHiPoint(res.data.hiAmount);
         setByPoint(res.data.byAmount);
-        setIsChange(true);
+        updateChange();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const handleReturnClick = () => {
+    console.log(returnValue);
+    axios
+      .post(process.env.REACT_APP_API_SERVER + "/returnByPoint.do", {
+        memberId: "user3",
+        byCardNumber: openCard.memberByNumber,
+        amount: returnValue,
+      })
+      .then(function (res) {
+        console.log(res.data);
+        setReturnValue("");
+        setHiPoint(res.data.hiAmount);
+        setByPoint(res.data.byAmount);
+        updateChange();
       })
       .catch(function (error) {
         console.log(error);
@@ -85,6 +111,10 @@ function ShareModal({ isOpen, closeModal, hiCard, openCard, setIsChange }) {
             <input value={inputValue} onChange={handleInputChange} />
             <button onClick={handleButtonClick}>SHARE</button>
           </InputWrapper>
+          <ReturnWrapper>
+            <input value={returnValue} onChange={handleReturnChange} />
+            <button onClick={handleReturnClick}>RETURN</button>
+          </ReturnWrapper>
         </HiPointSection>
       </HiModalMid>
       <BenefitDiv>
