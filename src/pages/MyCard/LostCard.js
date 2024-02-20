@@ -3,6 +3,9 @@ import styled from "styled-components";
 import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
 import Footer from "../../components/Footer/Footer";
 import axios from "axios";
+import LostCardModal from "./LostCardModal";
+import { ModalBackground, ModalClose } from "../../components/HiCard/HiCard";
+import close from "../../assets/images/close.png";
 
 const LostCardDiv = styled.div`
   width: 100%;
@@ -101,8 +104,8 @@ const LostCardImage = styled.img`
 
   &:hover,
   &:focus,
-  &:active {
-    transform: scale(1.05); // 호버 혹은 선택되었을 때 크기 증가
+  &.selected {
+    transform: scale(1.05);
   }
 `;
 
@@ -170,9 +173,23 @@ const IdentityCheckButton = styled.button`
   cursor: pointer;
 `;
 
+export const LostCardModalSet = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0.5rem;
+  z-index: 1000;
+`;
+
 function LostCard(props) {
   const [lostCardChooseList, setLostCardChooseList] = useState({});
   const [selectedCard, setSelectedCard] = useState("");
+  const [isLostCardModalOpen, setIsLostCardModalOpen] = useState(false);
+
+  const closeLostCardModal = () => {
+    setIsLostCardModalOpen(false);
+  };
 
   const getlostCardChooseList = () => {
     axios({
@@ -222,12 +239,13 @@ function LostCard(props) {
                   url: "/reportLost.do",
                   data: {
                     memberId: "user2",
-                    memberCardNumber: selectedCard,
+                    memberCardNumber: selectedCard.memberCardNumber,
                   },
                 })
                   .then((res) => {
                     console.log(res.data);
                     console.log("분실신고 성공");
+                    setIsLostCardModalOpen(true);
                   })
                   .catch((err) => {
                     console.log(err);
@@ -247,11 +265,14 @@ function LostCard(props) {
     );
   };
 
-  const handleImageClick = (memberCardNumber) => {
-    console.log("선택한 카드의 memberCardNumber:", memberCardNumber);
+  const handleImageClick = (selectedCard) => {
+    console.log(
+      "선택한 카드의 memberCardNumber:",
+      selectedCard.memberCardNumber
+    );
     // 여기서 memberCardNumber 값을 다른 함수나 API 호출 등에 사용할 수 있습니다.
     // 원하는 동작을 수행하세요.
-    setSelectedCard(memberCardNumber);
+    setSelectedCard(selectedCard);
   };
 
   useEffect(() => {
@@ -292,6 +313,18 @@ function LostCard(props) {
             </IdentityCheckButton>
           </IdentityCheckBox>
         </LostCardBottomSection>
+        {isLostCardModalOpen && (
+          <ModalBackground>
+            <LostCardModalSet>
+              <ModalClose
+                src={close}
+                clicked={isLostCardModalOpen.toString()}
+                onClick={closeLostCardModal}
+              ></ModalClose>
+              <LostCardModal selectedCard={selectedCard}></LostCardModal>
+            </LostCardModalSet>
+          </ModalBackground>
+        )}
       </Div>
       <Footer position="relative"></Footer>
     </LostCardDiv>
@@ -300,7 +333,7 @@ function LostCard(props) {
 
 const LostCardImageList = ({ lostCardChooseList, handleImageClick }) => {
   const handleClick = () => {
-    handleImageClick(lostCardChooseList.memberCardNumber);
+    handleImageClick(lostCardChooseList);
   };
 
   return (

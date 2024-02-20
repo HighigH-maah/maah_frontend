@@ -19,7 +19,8 @@ import MyData from "./pages/MyData/MyData";
 import CardApplication from "./pages/CardApplication/CardApplication";
 import ByCard from "./pages/ByCard/ByCard";
 import MyHiCardAccountChange from "./components/HiCard/MyHiCardAccountChange";
-import LostCard from "./components/My/LostCard";
+import LostCard from "./pages/MyCard/LostCard";
+import LostCardModal from "./pages/MyCard/LostCardModal";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -39,6 +40,7 @@ root.render(
       <Route path="/myData" element={<MyData />}></Route>
 
       <Route path="/byCardDetail" element={<ByCard />}></Route>
+      <Route path="/lostCardModal" element={<LostCardModal />}></Route>
     </Routes>
   </BrowserRouter>
 );
