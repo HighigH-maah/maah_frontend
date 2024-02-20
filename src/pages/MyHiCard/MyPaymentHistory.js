@@ -223,7 +223,7 @@ function MyPaymentHistory(props) {
     axios({
       method: "post",
       url: "/getHicardHistory.do",
-      data: { memberId: "user3" },
+      data: { memberId: "user2" },
     })
       .then((res) => {
         console.log(res.data);

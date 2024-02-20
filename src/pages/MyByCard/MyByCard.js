@@ -25,6 +25,7 @@ import logoImg from "../../assets/images/Logo/maah_small_logo.png";
 import Footer from "../../components/Footer/Footer";
 import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
 import MyByCardAccountChange from "./MyByCardAccountChange";
+import { useLocation } from "react-router-dom";
 
 const ByCardDiv = styled.div`
   display: flex;
@@ -345,14 +346,57 @@ const ModalBackground = styled.div`
 `;
 
 function MyByCard(props) {
+  // useLocation 훅을 사용하여 현재 location 정보를 가져옴
+  const location = useLocation();
+  // state에서 memberHiNumber 값 가져오기
+  const memberByNumber = location.state && location.state.memberByNumber;
+  //const memberHiNumber = location.state;
+  console.log(memberByNumber); // memberHiNumber 값 확인
+
+  const [bycardCode, setByCardCode] = useState([]);
   const [bycardInfo, setByCardInfo] = useState([]);
   const [bycardBenefitsInfo, setByCardBenefitsInfo] = useState([]);
+  const [isConnectHiOrNot, setisConnectHiOrNot] = useState([]);
+
+  useEffect(() => {
+    axios({
+      method: "post",
+      url: `/getMyBycardCode.do`,
+      data: { memberId: "user2", memberByNumber: memberByNumber },
+    })
+      .then((res) => {
+        console.log(res.data);
+        console.log("성공 성공 성공 성공 성공 성공");
+        setByCardCode(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("실패 실패 실패 실패 실패 실패");
+      });
+  }, [memberByNumber]); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
+
+  useEffect(() => {
+    axios({
+      method: "post",
+      url: `/isConnectHiOrNot.do`,
+      data: { memberId: "user2", memberByNumber: memberByNumber },
+    })
+      .then((res) => {
+        console.log(res.data);
+        console.log("성공 성공 성공 성공 성공 성공");
+        setisConnectHiOrNot(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("실패 실패 실패 실패 실패 실패");
+      });
+  }, [memberByNumber]); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
 
   useEffect(() => {
     axios({
       method: "post",
       url: `/getAllByCardInfo.do`,
-      data: { memberId: "user3" },
+      data: { memberId: "user2" },
     })
       .then((res) => {
         console.log(res.data);
@@ -369,7 +413,7 @@ function MyByCard(props) {
     axios({
       method: "post",
       url: "/getAllByCardBenefits.do",
-      data: { memberId: "user3" },
+      data: { memberId: "user2" },
     })
       .then((res) => {
         //const cardId = 8;
@@ -389,13 +433,20 @@ function MyByCard(props) {
 
   return (
     <ByCardDetail
+      bycardCode={bycardCode}
       bycardInfo={bycardInfo}
       bycardBenefitsInfo={bycardBenefitsInfo}
+      isConnectHiOrNot={isConnectHiOrNot}
     ></ByCardDetail>
   );
 }
 
-function ByCardDetail({ bycardInfo, bycardBenefitsInfo }) {
+function ByCardDetail({
+  bycardCode,
+  bycardInfo,
+  bycardBenefitsInfo,
+  isConnectHiOrNot,
+}) {
   const [openAccordions, setOpenAccordions] = useState([]);
   const [isMyPaymentHistoryModalOpen, setIsMyPaymentHistoryModalOpen] =
     useState(false);
@@ -459,8 +510,8 @@ function ByCardDetail({ bycardInfo, bycardBenefitsInfo }) {
     }
   }
 
-  const accordions = bycardBenefitsInfo[8]
-    ? bycardBenefitsInfo[8].map((bycardBenefits, index) => ({
+  const accordions = bycardBenefitsInfo[bycardCode]
+    ? bycardBenefitsInfo[bycardCode].map((bycardBenefits, index) => ({
         image: getImageForBenefit(bycardBenefits.benefitName),
         category: bycardBenefits.benefitName,
         benefit: bycardBenefits.byBenefitDesc,
@@ -472,8 +523,8 @@ function ByCardDetail({ bycardInfo, bycardBenefitsInfo }) {
     <>
       <HeaderLogoutBtn></HeaderLogoutBtn>
       <ByCardDiv>
-        {bycardInfo[8] &&
-          bycardInfo[8].map((bycardInfo, index) => (
+        {bycardInfo[bycardCode] &&
+          bycardInfo[bycardCode].map((bycardInfo, index) => (
             <ByCardDetailOuterDiv key={index}>
               <ByCardDetailInnerDiv>
                 <ByCardDetailLeft>
@@ -483,26 +534,30 @@ function ByCardDetail({ bycardInfo, bycardBenefitsInfo }) {
                   <p className="name1">{bycardInfo.byName}</p>
                   <p className="name2">{bycardInfo.memberCardByNickname}</p>
 
-                  <ByCardPoint>
-                    <div className="title">By:Card Point</div>
-                    <div className="point">
-                      {bycardInfo.pointByAmount
-                        ? bycardInfo.pointByAmount.toLocaleString("ko-KR")
-                        : ""}
-                      P
-                    </div>
-                  </ByCardPoint>
+                  {isConnectHiOrNot !== 0 && ( // isConnectHiOrNot가 0이 아닌 경우에만 렌더링
+                    <ByCardPoint>
+                      <div className="title">By:Card Point</div>
+                      <div className="point">
+                        {bycardInfo.pointByAmount
+                          ? bycardInfo.pointByAmount.toLocaleString("ko-KR")
+                          : ""}
+                        P
+                      </div>
+                    </ByCardPoint>
+                  )}
 
-                  {bycardBenefitsInfo[8] &&
-                    bycardBenefitsInfo[8].map((bycardBenefits, index) => (
-                      <ByBenefit key={index}>
-                        <img
-                          src={getImageForBenefit(bycardBenefits.benefitName)}
-                          alt="아이콘이미지"
-                        ></img>
-                        <div>{bycardBenefits.byBenefitDesc}</div>
-                      </ByBenefit>
-                    ))}
+                  {bycardBenefitsInfo[bycardCode] &&
+                    bycardBenefitsInfo[bycardCode].map(
+                      (bycardBenefits, index) => (
+                        <ByBenefit key={index}>
+                          <img
+                            src={getImageForBenefit(bycardBenefits.benefitName)}
+                            alt="아이콘이미지"
+                          ></img>
+                          <div>{bycardBenefits.byBenefitDesc}</div>
+                        </ByBenefit>
+                      )
+                    )}
                   <ByCardBtn>
                     <button onClick={openMyPaymentHistoryModal}>
                       나의 결제 이력
@@ -526,7 +581,9 @@ function ByCardDetail({ bycardInfo, bycardBenefitsInfo }) {
                           clicked={isMyPaymentHistoryModalOpen.toString()}
                           onClick={closeMyPaymentHistoryModal}
                         ></ModalClose>
-                        <MyPaymentHistory></MyPaymentHistory>
+                        <MyPaymentHistory
+                          bycardCode={bycardCode}
+                        ></MyPaymentHistory>
                       </ByCardModal>
                     </ModalBackground>
                   )}

@@ -28,6 +28,8 @@ import goldImg from "../../assets/images/Grade/gold.png";
 import platinumImg from "../../assets/images/Grade/platinum.png";
 import logoImg from "../../assets/images/Logo/maah_small_logo.png";
 import MyHiCardAccountChange from "./MyHiCardAccountChange";
+import { useLocation } from "react-router-dom";
+import { MyHiCardLeftSection } from "../../components/My/MyCardList";
 
 const HiCardDiv = styled.div`
   display: flex;
@@ -361,15 +363,21 @@ const ModalBackground = styled.div`
 `;
 
 function HiCard(props) {
+  // useLocation 훅을 사용하여 현재 location 정보를 가져옴
+  const location = useLocation();
+  // state에서 memberHiNumber 값 가져오기
+  const memberHiNumber = location.state && location.state.memberHiNumber;
+  //const memberHiNumber = location.state;
+  console.log(memberHiNumber); // memberHiNumber 값 확인
+
   const [hicardInfo, setHiCardInfo] = useState([]);
   const [hicardBenefitsInfo, setHiCardBenefitsInfo] = useState([]);
   const [virtualCardExistOrNot, setVirtualCardExistOrNot] = useState([]);
-
   useEffect(() => {
     axios({
       method: "post",
       url: `/getHiCardInfo.do`,
-      data: { memberId: "user3" },
+      data: { memberId: "user2" },
     })
       .then((res) => {
         console.log(res.data);
@@ -386,7 +394,7 @@ function HiCard(props) {
     axios({
       method: "post",
       url: "/getHiCardBenefits.do",
-      data: { memberId: "user3" },
+      data: { memberId: "user2" },
     })
       .then((res) => {
         console.log(res.data);
@@ -403,7 +411,7 @@ function HiCard(props) {
     axios({
       method: "post",
       url: `/getVirtualCardExistOrNot.do`,
-      data: { memberId: "user3" },
+      data: { memberId: "user2" },
     })
       .then((res) => {
         console.log(res.data);
@@ -416,13 +424,15 @@ function HiCard(props) {
       });
   }, []); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
 
-  return (
-    <HiCardDetail
-      hicardInfo={hicardInfo}
-      hicardBenefitsInfo={hicardBenefitsInfo}
-      virtualCardExistOrNot={virtualCardExistOrNot}
-    ></HiCardDetail>
-  );
+  if (memberHiNumber) {
+    return (
+      <HiCardDetail
+        hicardInfo={hicardInfo}
+        hicardBenefitsInfo={hicardBenefitsInfo}
+        virtualCardExistOrNot={virtualCardExistOrNot}
+      ></HiCardDetail>
+    );
+  }
 }
 
 function HiCardDetail({

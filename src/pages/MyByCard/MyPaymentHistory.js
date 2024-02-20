@@ -202,7 +202,7 @@ const PageButton = styled.button`
   }
 `;
 
-function MyPaymentHistory(props) {
+function MyPaymentHistory({ bycardCode }) {
   const [byCardHistory, setByCardHistory] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -223,7 +223,7 @@ function MyPaymentHistory(props) {
     axios({
       method: "post",
       url: "/getBycardHistory.do",
-      data: { memberId: "user3" },
+      data: { memberId: "user2" },
     })
       .then((res) => {
         console.log(res.data);
@@ -238,8 +238,8 @@ function MyPaymentHistory(props) {
 
   // startDate와 endDate 사이에 있는 hiCardHistory만 필터링
   const filteredHistory =
-    byCardHistory[8] &&
-    byCardHistory[8].filter((item) => {
+    byCardHistory[bycardCode] &&
+    byCardHistory[bycardCode].filter((item) => {
       const historyDate = new Date(item.cardHistoryDate);
       return historyDate >= startDate && historyDate <= endDate;
     });

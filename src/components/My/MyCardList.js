@@ -703,7 +703,14 @@ export const MyHiCardLeftSection = ({ myCardHi }) => {
   return (
     <MyHiCardLeftDiv>
       <MyHiCardShape>
-        <Link to={`../hiCardDetail/${myCardHi.memberHiNumber}`}>
+        <Link
+          to="/myHiCardDetail"
+          state={{ memberHiNumber: myCardHi.memberHiNumber }}
+          // to={{
+          //   pathname: "/myHiCardDetail",
+          //   state: { memberHiNumber: "1234567" },
+          // }}
+        >
           <img
             src={myCardHi.hiCardImageFrontPath}
             alt="하이카드 이미지"
@@ -877,12 +884,17 @@ export const MyByCardLeftSection = ({ byCardData }) => {
   return (
     <MyByCardLeftDiv>
       <MyByCardShape>
-        <img
-          src={byCardData.byImagePath}
-          alt="바이카드 이미지"
-          style={{ width: "100%" }}
-        />
-        {/* <ByCard><ByCardNoise></ByCardNoise></ByCard> */}
+        <Link
+          to="/myByCardDetail"
+          state={{ memberByNumber: byCardData.memberByNumber }}
+        >
+          <img
+            src={byCardData.byImagePath}
+            alt="바이카드 이미지"
+            style={{ width: "100%" }}
+          />
+          {/* <ByCard><ByCardNoise></ByCardNoise></ByCard> */}
+        </Link>
       </MyByCardShape>
       <ByCardNumberPart>
         <ByCardNumberName>{byCardData.memberCardByNickname}</ByCardNumberName>
