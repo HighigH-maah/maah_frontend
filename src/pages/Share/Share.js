@@ -61,12 +61,13 @@ function Share(props) {
 
   const [isChange, setIsChange] = useState(false);
   const navigate = useNavigate();
-
+  const API_SERVER = process.env.REACT_APP_API_SERVER;
   useEffect(() => {
     console.log("effect 1번");
+    console.log(API_SERVER);
 
     axios
-      .post("/getmemberHiCard.do", {
+      .post(API_SERVER + "/getmemberHiCard.do", {
         memberId: "user3",
       })
       .then(function (res) {
