@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { HiCardModal, ModalClose } from "../HiCard/HiCard";
 import MyHiCardAccountChange from "../HiCard/MyHiCardAccountChange";
@@ -11,6 +11,8 @@ import platinumImg from "../../assets/images/Grade/platinum.png";
 import VirtualCardApply from "../HiCard/VirtualCardApply";
 import MyPaymentHistory from "../HiCard/MyPaymentHistory";
 import { Link } from "react-router-dom";
+import MyByCardAccountChange from "../../pages/ByCard/MyByCardAccountChange";
+import { ByCardModal, ModalBackground } from "../../pages/ByCard/ByCard";
 
 export const MyCardListDiv = styled.div`
   width: 100%;
@@ -330,6 +332,11 @@ export const LinkButton = styled.button`
   flex-shrink: 0;
   border: none;
   cursor: pointer;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 4px 6px 7px 0px gray;
+  }
 `;
 
 export const ButtonUnderLine = styled.div`
@@ -751,6 +758,15 @@ const MyHiCardRightSection = ({ myCardHi }) => {
     useState(false);
   const [isMyAccountChangeModalOpen, setIsMyAccountChangeModalOpen] =
     useState(false);
+  const closeMyPaymentHistoryModal = () => {
+    setIsMyPaymentHistoryModalOpen(false);
+  };
+  const closeVirtualCardApplyModal = () => {
+    setIsVirtualCardApplyModalOpen(false);
+  };
+  const closeMyAccountChangeModal = () => {
+    setIsMyAccountChangeModalOpen(false);
+  };
 
   const openMyPaymentHistoryModal = () => {
     setIsMyPaymentHistoryModalOpen(true);
@@ -762,12 +778,6 @@ const MyHiCardRightSection = ({ myCardHi }) => {
 
   const openMyAccountChangeModal = () => {
     setIsMyAccountChangeModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsMyPaymentHistoryModalOpen(false);
-    setIsVirtualCardApplyModalOpen(false);
-    setIsMyAccountChangeModalOpen(false);
   };
 
   return (
@@ -818,11 +828,16 @@ const MyHiCardRightSection = ({ myCardHi }) => {
         </LinkButton>
         {/* MyPaymentHistory 모달 */}
         {isMyPaymentHistoryModalOpen && (
-          <HiCardModal>
-            {/* <button onClick={closeModal}>Close Modal</button> */}
-            <ModalClose src={close} onClick={closeModal}></ModalClose>
-            <MyPaymentHistory></MyPaymentHistory>
-          </HiCardModal>
+          <ModalBackground>
+            <HiCardModal>
+              <ModalClose
+                src={close}
+                clicked={isMyPaymentHistoryModalOpen.toString()}
+                onClick={closeMyPaymentHistoryModal}
+              ></ModalClose>
+              <MyPaymentHistory></MyPaymentHistory>
+            </HiCardModal>
+          </ModalBackground>
         )}
         <ButtonUnderLine>
           <TempCardNumber onClick={openVirtualCardApplyModal}>
@@ -830,22 +845,32 @@ const MyHiCardRightSection = ({ myCardHi }) => {
           </TempCardNumber>
           {/* VirtualCardApply 모달 */}
           {isVirtualCardApplyModalOpen && (
-            <HiCardModal>
-              {/* <button onClick={closeModal}>Close Modal</button> */}
-              <ModalClose src={close} onClick={closeModal}></ModalClose>
-              <VirtualCardApply></VirtualCardApply>
-            </HiCardModal>
+            <ModalBackground>
+              <HiCardModal>
+                <ModalClose
+                  src={close}
+                  clicked={isVirtualCardApplyModalOpen.toString()}
+                  onClick={closeVirtualCardApplyModal}
+                ></ModalClose>
+                <VirtualCardApply></VirtualCardApply>
+              </HiCardModal>
+            </ModalBackground>
           )}
           <AccountChange onClick={openMyAccountChangeModal}>
             연결계좌변경
           </AccountChange>
-          {/* MyHiCardAccountChange 모달 */}
+          {/* MyAccountChange 모달 */}
           {isMyAccountChangeModalOpen && (
-            <HiCardModal>
-              {/* <button onClick={closeModal}>Close Modal</button> */}
-              <ModalClose src={close} onClick={closeModal}></ModalClose>
-              <MyHiCardAccountChange></MyHiCardAccountChange>
-            </HiCardModal>
+            <ModalBackground>
+              <HiCardModal>
+                <ModalClose
+                  src={close}
+                  clicked={isMyAccountChangeModalOpen.toString()}
+                  onClick={closeMyAccountChangeModal}
+                ></ModalClose>
+                <MyHiCardAccountChange></MyHiCardAccountChange>
+              </HiCardModal>
+            </ModalBackground>
           )}
           <Link to="/lostCard" style={{ textDecoration: "none" }}>
             <LostCard>분실신고</LostCard>
@@ -917,13 +942,11 @@ export const MyByCardCenterSection = ({ byCardData, hideTitle }) => {
 export const MyByCardRightSection = ({ byCardData }) => {
   const [isMyAccountChangeModalOpen, setIsMyAccountChangeModalOpen] =
     useState(false);
-
+  const closeMyAccountChangeModal = () => {
+    setIsMyAccountChangeModalOpen(false);
+  };
   const openMyAccountChangeModal = () => {
     setIsMyAccountChangeModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsMyAccountChangeModalOpen(false);
   };
 
   const addHiCard = () => {
@@ -935,10 +958,11 @@ export const MyByCardRightSection = ({ byCardData }) => {
       data: { memberId: "user2", memberByNumber: byCardData.memberByNumber },
     })
       .then((res) => {
-        console.log(res.data);
+        window.location.reload();
+        //console.log(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
       });
   };
 
@@ -951,10 +975,11 @@ export const MyByCardRightSection = ({ byCardData }) => {
       data: { memberId: "user2", memberByNumber: byCardData.memberByNumber },
     })
       .then((res) => {
-        console.log(res.data);
+        window.location.reload();
+        //console.log(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
       });
   };
 
@@ -985,13 +1010,20 @@ export const MyByCardRightSection = ({ byCardData }) => {
           <AccountChange onClick={openMyAccountChangeModal}>
             연결계좌변경
           </AccountChange>
-          {/* MyHiCardAccountChange 모달 */}
+          {/* MyAccountChange 모달 */}
           {isMyAccountChangeModalOpen && (
-            <HiCardModal>
-              {/* <button onClick={closeModal}>Close Modal</button> */}
-              <ModalClose src={close} onClick={closeModal}></ModalClose>
-              <MyHiCardAccountChange></MyHiCardAccountChange>
-            </HiCardModal>
+            <ModalBackground>
+              <ByCardModal>
+                <ModalClose
+                  src={close}
+                  clicked={isMyAccountChangeModalOpen.toString()}
+                  onClick={closeMyAccountChangeModal}
+                ></ModalClose>
+                <MyByCardAccountChange
+                  byCardData={byCardData}
+                ></MyByCardAccountChange>
+              </ByCardModal>
+            </ModalBackground>
           )}
           <Link to="/lostCard" style={{ textDecoration: "none" }}>
             <LostCard>분실신고</LostCard>

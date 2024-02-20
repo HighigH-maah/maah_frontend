@@ -177,7 +177,7 @@ function MyHiCardAccountChange(props) {
     axios({
       method: "post",
       url: "/getHiCardAccountInfo.do",
-      data: { memberId: "user3" },
+      data: { memberId: "user2" },
     })
       .then((res) => {
         console.log(res.data);
@@ -232,6 +232,7 @@ function HiCardAccountChnage({ hiCardAccountInfo, bankInfo }) {
       url: "/getAccountName.do",
       data: {
         memberId: "user2",
+        memberName: "한마음",
         bankCode: selectedBankCode,
         bankName: newAccountNumber,
       },

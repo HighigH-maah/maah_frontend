@@ -313,7 +313,7 @@ const Category = styled.div`
   }
 `;
 
-const ByCardModal = styled.div`
+export const ByCardModal = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
@@ -329,7 +329,7 @@ const ModalClose = styled.img`
   cursor: pointer;
 `;
 
-const ModalBackground = styled.div`
+export const ModalBackground = styled.div`
   position: fixed;
   top: 0;
   left: 0;
