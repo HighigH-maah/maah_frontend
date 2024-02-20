@@ -150,7 +150,7 @@ function Share(props) {
                 <HiCardDesc>
                   <p>이 달의 혜택</p>
                   <HiCardDescBox>
-                    {card.hicard ? (
+                    {hicardBene ? (
                       hicardBene.map((benefit, index) => {
                         if (index >= maxBenefitCount) {
                           return null;
