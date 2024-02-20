@@ -35,7 +35,7 @@ function ShareModal({ isOpen, closeModal, hiCard, openCard, setIsChange }) {
   const handleButtonClick = () => {
     console.log(inputValue);
     axios
-      .post("/updateByPoint.do", {
+      .post(process.env.REACT_APP_API_SERVER + "/updateByPoint.do", {
         memberId: "user3",
         byCardNumber: openCard.memberByNumber,
         amount: inputValue,
