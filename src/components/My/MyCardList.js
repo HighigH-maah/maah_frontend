@@ -246,7 +246,7 @@ export const CardPoint = styled.div`
 `;
 
 export const CardPointTitle = styled.div`
-  margin-right: 6rem;
+  margin-right: 4rem;
   display: flex;
   font-size: 2.3rem;
   font-weight: 400;
@@ -651,8 +651,8 @@ export const MyCardListHiSection = () => {
 };
 
 export const MyCardListBySection = () => {
-  const [myCardListBy, setMyCardListBy] = useState({});
-  const [myCardListNotBy, setMyCardListNotBy] = useState({});
+  const [myCardListBy, setMyCardListBy] = useState([]);
+  const [myCardListNotBy, setMyCardListNotBy] = useState([]);
 
   const getMyCardListBy = () => {
     axios({
@@ -662,11 +662,10 @@ export const MyCardListBySection = () => {
     })
       .then((res) => {
         //console.log(res.data);
-        //console.log("by");
         setMyCardListBy(res.data);
       })
       .catch((err) => {
-        //onsole.log(err);
+        console.log(err);
         //console.log("bbbb");
       });
   };
@@ -683,7 +682,7 @@ export const MyCardListBySection = () => {
         setMyCardListNotBy(res.data);
       })
       .catch((err) => {
-        //console.log(err);
+        console.log(err);
       });
   };
 
@@ -696,11 +695,20 @@ export const MyCardListBySection = () => {
     <ByCardGroup>
       {Array.isArray(myCardListBy) &&
         myCardListBy.map((byCardData, index) => (
-          <MyByCard key={index} byCardData={byCardData} />
+          <MyByCard
+            key={index}
+            byCardData={byCardData}
+            byCardBeneList={myCardListBy[index].byCard}
+          />
         ))}
       {Array.isArray(myCardListNotBy) &&
         myCardListNotBy.map((notByCardData, index) => (
-          <MyByCard key={index} byCardData={notByCardData} hideTitle />
+          <MyByCard
+            key={index}
+            byCardData={notByCardData}
+            hideTitle
+            byCardBeneList={myCardListNotBy[index].byCard}
+          />
         ))}
     </ByCardGroup>
   );
@@ -881,7 +889,7 @@ const MyHiCardRightSection = ({ myCardHi }) => {
   );
 };
 
-export const MyByCard = ({ byCardData, hideTitle }) => {
+export const MyByCard = ({ byCardData, hideTitle, byCardBeneList }) => {
   return (
     <ByCardBox>
       <MyByCardAllSection>
@@ -890,6 +898,7 @@ export const MyByCard = ({ byCardData, hideTitle }) => {
           <MyByCardCenterSection
             byCardData={byCardData}
             hideTitle={hideTitle}
+            byCardBeneList={byCardBeneList}
           ></MyByCardCenterSection>
           <MyByCardRightSection byCardData={byCardData}></MyByCardRightSection>
         </MyByCardInfoSection>
@@ -917,9 +926,13 @@ export const MyByCardLeftSection = ({ byCardData }) => {
   );
 };
 
-export const MyByCardCenterSection = ({ byCardData, hideTitle }) => {
+export const MyByCardCenterSection = ({
+  byCardData,
+  hideTitle,
+  byCardBeneList,
+}) => {
   const formatter = new Intl.NumberFormat("ko-KR");
-
+  //console.log(byCardData);
   // memberByLimit 값을 만원 단위로 변환
   const limitInTenThousand = byCardData.byBenefitMinCondition / 10000;
   const formattedLimit = formatter.format(limitInTenThousand);
@@ -927,15 +940,25 @@ export const MyByCardCenterSection = ({ byCardData, hideTitle }) => {
   return (
     <MyByCardCenterDiv>
       <ByCardBenefitContents>
-        <ByCardBenefitDetail>업종별 0.5%~3% 적립</ByCardBenefitDetail>
+        {Array.isArray(byCardBeneList.benefitList) &&
+          byCardBeneList.benefitList.map((byCardBeneList, index) => (
+            <ByCardBenefitList key={index} byCardBeneList={byCardBeneList} />
+          ))}
+        {/* <ByCardBenefitDetail>업종별 0.5%~3% 적립</ByCardBenefitDetail>
         <ByCardBenefitDetail>온라인 간편 결제 5% 적립</ByCardBenefitDetail>
-        <ByCardBenefitDetail>해외 가맹점 3% 적립</ByCardBenefitDetail>
+        <ByCardBenefitDetail>해외 가맹점 3% 적립</ByCardBenefitDetail> */}
         <ByCardBenefitCondition>
-          전월실적 {formattedLimit}원 이상
+          전월실적 {formattedLimit}만원 이상
         </ByCardBenefitCondition>
       </ByCardBenefitContents>
       {!hideTitle && <CardTitle>By:Card</CardTitle>}
     </MyByCardCenterDiv>
+  );
+};
+
+const ByCardBenefitList = ({ byCardBeneList }) => {
+  return (
+    <ByCardBenefitDetail>{byCardBeneList.byBenefitDesc}</ByCardBenefitDetail>
   );
 };
 
@@ -997,7 +1020,7 @@ export const MyByCardRightSection = ({ byCardData }) => {
         {byCardData.memberHiNumber === null ? (
           <CardPointScore>{byCardData.thisMonthSum}원</CardPointScore>
         ) : (
-          <CardPointScore>4500P</CardPointScore>
+          <CardPointScore>{byCardData.pointByAmount}P</CardPointScore>
         )}
       </CardPoint>
       <BottomButtonDiv>
