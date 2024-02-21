@@ -9,6 +9,7 @@ import {
   CompareLastMonth,
   DataDesc,
   DataTitle,
+  DataTitleCategory,
   DataView,
   DataViewZone,
   ForNow,
@@ -53,6 +54,7 @@ function MyData(props) {
     { value: "Newest", label: "Sort by Newest" },
     { value: "Highest", label: "Sort by Highest" },
   ];
+
   useEffect(() => {
     axios
       .post("/getMyData.do", {
@@ -117,245 +119,24 @@ function MyData(props) {
         <SaleForMonth>
           <MonthHeading>
             <DataTitle>By 카드 포인트 현황</DataTitle>
-            <Sorting>
+            {/* <Sorting>
               <Select options={options} />
-            </Sorting>
+            </Sorting> */}
           </MonthHeading>
 
           <CardDataListWrapper myCardForMonth={myCardForMonth} />
-          {/*         
-        <CardDataList>
-         
-            <CardInfoDesc>
-              <CardSemiPic image={blackvelvet} />
-              <CardName>The Blue</CardName>
-              <Price>210,000</Price>
-            </CardInfoDesc>
-
-            <CardInfoDesc>
-              <CardSemiPic image={blackvelvet} />
-              <CardName>The Blue</CardName>
-              <Price>210,000</Price>
-            </CardInfoDesc>
-
-            <CardInfoDesc>
-              <CardSemiPic image={blackvelvet} />
-              <CardName>The Blue</CardName>
-              <Price>210,000</Price>
-            </CardInfoDesc>
-
-            <CardInfoDesc>
-              <CardSemiPic image={blackvelvet} />
-              <CardName>The Blue</CardName>
-              <Price>210,000</Price>
-            </CardInfoDesc>
-
-            <CardInfoDesc>
-              <CardSemiPic image={blackvelvet} />
-              <CardName>The Blue</CardName>
-              <Price>210,000</Price>
-            </CardInfoDesc>
-
-            <CardInfoDesc>
-              <CardSemiPic image={blackvelvet} />
-              <CardName>The Blue</CardName>
-              <Price>210,000</Price>
-            </CardInfoDesc>
-
-            <CardInfoDesc>
-              <CardSemiPic image={blackvelvet} />
-              <CardName>The Blue</CardName>
-              <Price>210,000</Price>
-            </CardInfoDesc>
-
-            <CardInfoDesc>
-              <CardSemiPic image={blackvelvet} />
-              <CardName>The Blue</CardName>
-              <Price>210,000</Price>
-            </CardInfoDesc>
-
-            <CardInfoDesc>
-              <CardSemiPic image={blackvelvet} />
-              <CardName>The Blue</CardName>
-              <Price>210,000</Price>
-            </CardInfoDesc>
-          </CardDataList> */}
         </SaleForMonth>
         <CompareLastMonth>
           <DataDesc>저번달 VS 이번 달</DataDesc>
           <DataView>{myCompare.moreThanUsed} 사용했습니다</DataView>
-          <LineChart></LineChart>
+          <LineChart compareData={myCompare}></LineChart>
         </CompareLastMonth>
       </LimitWrapper>
       <LimitWrapper isLast>
         <CategoryGraph>
-          <DataTitle>카테고리 비율</DataTitle>
+          <DataTitleCategory>카테고리 비율</DataTitleCategory>
           <DataViewZone>
-            <MyDoughnutChart></MyDoughnutChart>
-            <PercentZone>
-              <PercentBox>
-                <Ptitle>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="7"
-                    height="6"
-                    viewBox="0 0 7 6"
-                    fill="none"
-                  >
-                    <g clip-path="url(#clip0_611_461)">
-                      <circle cx="3.50879" cy="3" r="3" fill="#0E1456" />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_611_461">
-                        <rect
-                          width="6"
-                          height="6"
-                          fill="white"
-                          transform="translate(0.508789)"
-                        />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                  교통
-                </Ptitle>
-                <PData>1.1K</PData>
-              </PercentBox>
-              <PercentBox>
-                <Ptitle>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="7"
-                    height="6"
-                    viewBox="0 0 7 6"
-                    fill="none"
-                  >
-                    <g clip-path="url(#clip0_611_561)">
-                      <circle cx="3.50879" cy="3" r="3" fill="#B6C2FF" />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_611_561">
-                        <rect
-                          width="6"
-                          height="6"
-                          fill="white"
-                          transform="translate(0.508789)"
-                        />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                  항공
-                </Ptitle>
-                <PData>1.1K</PData>
-              </PercentBox>
-              <PercentBox>
-                <Ptitle>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="7"
-                    height="6"
-                    viewBox="0 0 7 6"
-                    fill="none"
-                  >
-                    <g clip-path="url(#clip0_611_436)">
-                      <circle cx="3.50879" cy="3" r="3" fill="#63A5B5" />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_611_436">
-                        <rect
-                          width="6"
-                          height="6"
-                          fill="white"
-                          transform="translate(0.508789)"
-                        />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                  33
-                </Ptitle>
-                <PData>1.1K</PData>
-              </PercentBox>
-              <PercentBox>
-                <Ptitle>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="7"
-                    height="6"
-                    viewBox="0 0 7 6"
-                    fill="none"
-                  >
-                    <g clip-path="url(#clip0_611_572)">
-                      <circle cx="3.50879" cy="3" r="3" fill="#D4BEFD" />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_611_572">
-                        <rect
-                          width="6"
-                          height="6"
-                          fill="white"
-                          transform="translate(0.508789)"
-                        />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                  44
-                </Ptitle>
-                <PData>1.1K</PData>
-              </PercentBox>
-              <PercentBox>
-                <Ptitle>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="6"
-                    height="6"
-                    viewBox="0 0 6 6"
-                    fill="none"
-                  >
-                    <g clip-path="url(#clip0_611_553)">
-                      <circle cx="3.00879" cy="3" r="3" fill="black" />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_611_553">
-                        <rect
-                          width="6"
-                          height="6"
-                          fill="white"
-                          transform="translate(0.00878906)"
-                        />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                  55
-                </Ptitle>
-                <PData>1.1K</PData>
-              </PercentBox>
-              <PercentBox>
-                <Ptitle>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="6"
-                    height="6"
-                    viewBox="0 0 6 6"
-                    fill="none"
-                  >
-                    <g clip-path="url(#clip0_611_521)">
-                      <circle cx="3.00879" cy="3" r="3" fill="#FF98E2" />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_611_521">
-                        <rect
-                          width="6"
-                          height="6"
-                          fill="white"
-                          transform="translate(0.00878906)"
-                        />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                  기타
-                </Ptitle>
-                <PData>1.1K</PData>
-              </PercentBox>
-            </PercentZone>
+            <MyDoughnutChart myCategory={myCategoryView}></MyDoughnutChart>
           </DataViewZone>
         </CategoryGraph>
       </LimitWrapper>
