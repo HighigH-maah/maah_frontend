@@ -154,6 +154,67 @@ export const InputWrapper = styled.div`
     font-size: 1.5rem;
     cursor: pointer;
   }
+  > input {
+    width: 289px;
+    height: 101px;
+    flex-shrink: 0;
+    background: linear-gradient(
+      96deg,
+      #fff 40.85%,
+      rgba(238, 245, 255, 0.58) 76.39%,
+      rgba(219, 233, 255, 0) 126.49%
+    );
+    border-radius: 20px;
+    padding-left: 1rem;
+    padding-left: 1rem;
+    font-size: 1.8rem;
+    border-radius: 20px;
+    color: #02358b;
+    cursor: pointer;
+    outline: none;
+  }
+`;
+
+export const ReturnWrapper = styled.div`
+  display: flex;
+  color: #02358b;
+  gap: 3rem;
+  & > button {
+    border-radius: 50px;
+    background: linear-gradient(
+      240deg,
+      #fff 31.88%,
+      rgba(255, 255, 255, 0.07) 103.62%,
+      rgba(219, 233, 255, 0) 103.62%
+    );
+    color: #02358b;
+    width: 176px;
+    font-weight: bolder;
+    border-color: lightgray;
+    height: 97px;
+    flex-shrink: 0;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  > input {
+    width: 289px;
+    height: 101px;
+    flex-shrink: 0;
+    background: linear-gradient(
+      276deg,
+      #fff 40.85%,
+      rgba(238, 245, 255, 0.58) 76.39%,
+      rgba(219, 233, 255, 0) 126.49%
+    );
+    border-radius: 20px;
+    padding-left: 1rem;
+    padding-left: 1rem;
+    font-size: 1.8rem;
+    border-radius: 20px;
+    color: #02358b;
+    cursor: pointer;
+    outline: none;
+  }
 `;
 
 export const BenefitDiv = styled.div`
@@ -180,6 +241,11 @@ export const Benefit = styled.div`
   display: flex;
   gap: 1rem;
   font-weight: 500;
+  align-items: center;
+  color: #777;
+  &.nextMonth {
+    color: #fff;
+  }
 `;
 
 export const BenefitTitle = styled.p`

@@ -946,7 +946,7 @@ export const MyByCardRightSection = ({ byCardData }) => {
     alert("하이카드 제외");
 
     axios({
-      url: "/addHiCard.do",
+      url: "/excludeHiCard.do",
       method: "post",
       data: { memberId: "user2", memberByNumber: byCardData.memberByNumber },
     })

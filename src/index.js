@@ -20,10 +20,15 @@ import MyData from "./pages/MyData/MyData";
 import CardApplication from "./pages/CardApplication/CardApplication";
 import ByCard from "./pages/ByCard/ByCard";
 import MyHiCardAccountChange from "./components/HiCard/MyHiCardAccountChange";
+import ScrollToTop from "./components/Utils/ScrollToTop";
+import MemberLoad from "./components/Utils/SessionStorage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+//메인화면 진입 시 session 저장
+MemberLoad();
 root.render(
   <BrowserRouter>
+    <ScrollToTop />
     <Routes>
       <Route path="/" element={<Main />}></Route>
       <Route path="/header" element={<HeaderLogoutBtn />}></Route>
