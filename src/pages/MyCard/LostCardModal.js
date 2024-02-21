@@ -3,9 +3,14 @@ import "../../assets/css/style.css";
 import styled from "styled-components";
 
 const LostCardModalDiv = styled.div`
-  width: 100%;
-  height: 98.7rem;
-  position: relative;
+  width: 1000px;
+  height: 800px;
+  background: linear-gradient(180deg, #ffffff -0%, #ffffff 100%);
+  border-radius: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `;
 
 const LostCardCenterSection = styled.div`
@@ -18,7 +23,7 @@ const LostCardCenterSection = styled.div`
 
 const LostCardTop = styled.div`
   box-sizing: border-box;
-  padding: 0rem 4.05rem 2.4rem 4.05rem;
+  padding: 4rem;
   width: 100%;
   align-items: center;
   display: flex;
@@ -27,9 +32,9 @@ const LostCardTop = styled.div`
 `;
 
 const LostCardTitle = styled.p`
-  margin-bottom: 5.3rem;
+  margin-bottom: 3rem;
   text-align: center;
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 600;
   line-height: 1.2125;
   color: #000000;
@@ -39,7 +44,6 @@ const LostCardTitle = styled.p`
 `;
 
 const LostCardSection = styled.div`
-  margin: 0rem 0.1rem 0rem 0.2rem;
   box-sizing: border-box;
   padding-bottom: 1.1363rem;
   width: calc(100% - 0.3rem);
@@ -51,11 +55,10 @@ const LostCardSection = styled.div`
 `;
 
 const LostCardImage = styled.img`
-  margin-bottom: 1.1731rem;
+  margin-bottom: 1.5rem;
   box-sizing: border-box;
-  padding-bottom: 2.3372rem;
-  width: 100%;
-  height: 35.1906rem;
+
+  height: 20rem;
   overflow: hidden;
   position: relative;
   display: flex;
@@ -65,9 +68,8 @@ const LostCardImage = styled.img`
 `;
 
 const LostCardName = styled.div`
-  margin-right: 0.115rem;
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 400;
   line-height: 0.97;
   letter-spacing: -0.1rem;
@@ -78,7 +80,6 @@ const LostCardName = styled.div`
 `;
 
 const LostCardInfoSection = styled.div`
-  margin-bottom: 5.9rem;
   width: 100%;
   align-items: center;
   display: flex;
@@ -87,9 +88,9 @@ const LostCardInfoSection = styled.div`
 `;
 
 const LostCardContent = styled.p`
-  margin-bottom: 4.8rem;
+  margin-bottom: 3rem;
   text-align: center;
-  font-size: 4rem;
+  font-size: 2.5rem;
   font-weight: 600;
   line-height: 0.97;
   letter-spacing: -0.16rem;
@@ -100,9 +101,8 @@ const LostCardContent = styled.p`
 `;
 
 const LostCardTime = styled.p`
-  margin-left: 0.1rem;
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 600;
   line-height: 0.97;
   letter-spacing: -0.1rem;
@@ -112,24 +112,24 @@ const LostCardTime = styled.p`
   flex-shrink: 0;
 `;
 
-const LostCardConfirmButton = styled.button`
-  margin: 0 4.65rem;
-  width: calc(100% - 9.3rem);
-  height: 6.5rem;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 600;
-  line-height: 1.2;
-  color: #ffffff;
-  font-family: Inter, "Source Sans Pro";
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #000000;
-  border-radius: 3rem;
-  flex-shrink: 0;
-`;
+// const LostCardConfirmButton = styled.button`
+//   margin: 0 4.65rem;
+//   width: calc(100% - 9.3rem);
+//   height: 6.5rem;
+//   text-align: center;
+//   font-size: 2rem;
+//   font-weight: 600;
+//   line-height: 1.2;
+//   color: #ffffff;
+//   font-family: Inter, "Source Sans Pro";
+//   white-space: nowrap;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   background-color: #000000;
+//   border-radius: 3rem;
+//   flex-shrink: 0;
+// `;
 
 function LostCardModal({ selectedCard }) {
   const today = new Date();
@@ -166,7 +166,7 @@ function LostCardModal({ selectedCard }) {
           <LostCardContent>정상적으로 정지 처리 되었습니다.</LostCardContent>
           <LostCardTime>{formattedDate} 기준</LostCardTime>
         </LostCardInfoSection>
-        <LostCardConfirmButton>확인</LostCardConfirmButton>
+        {/* <LostCardConfirmButton>확인</LostCardConfirmButton> */}
       </LostCardCenterSection>
     </LostCardModalDiv>
   );

@@ -100,7 +100,7 @@ const LostCardImage = styled.img`
   border-radius: 1.2rem;
   flex-shrink: 0;
   cursor: pointer;
-  transition: transform 0.3s ease-in-out; // 부드러운 효과를 위한 transition 추가
+  transition: transform 0.3s ease-in-out;
 
   &:hover,
   &:focus,
@@ -189,6 +189,7 @@ function LostCard(props) {
 
   const closeLostCardModal = () => {
     setIsLostCardModalOpen(false);
+    window.location.reload();
   };
 
   const getlostCardChooseList = () => {
