@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import MemberLoad from "../../components/Utils/SessionStorage";
 //import axios from "axios";
 
 const MyAccountChangeDiv = styled.div`
@@ -175,9 +176,9 @@ function MyByCardAccountChange({ byCardData }) {
   useEffect(() => {
     axios({
       method: "post",
-      url: "/getByCardAccountInfo.do",
+      url: process.env.REACT_APP_API_SERVER + "/getByCardAccountInfo.do",
       data: {
-        memberId: "user2",
+        memberId: MemberLoad(),
       },
     })
       .then((res) => {
@@ -194,7 +195,7 @@ function MyByCardAccountChange({ byCardData }) {
   useEffect(() => {
     axios({
       method: "get",
-      url: "/getBankName.do",
+      url: process.env.REACT_APP_API_SERVER + "/getBankName.do",
     })
       .then((res) => {
         console.log(res.data);
@@ -231,10 +232,9 @@ function ByCardAccountChange({ byCardAccountInfo, bankInfo, byCardData }) {
     // 서버로 계좌 인증 및 등록을 수행하기 위한 요청
     axios({
       method: "post",
-      url: "/getAccountName.do",
+      url: process.env.REACT_APP_API_SERVER + "/getAccountName.do",
       data: {
-        memberId: "user2",
-        memberName: "한마음",
+        memberId: MemberLoad(),
         bankCode: selectedBankCode,
         bankName: newAccountNumber,
       },
@@ -268,7 +268,7 @@ function ByCardAccountChange({ byCardAccountInfo, bankInfo, byCardData }) {
 
     alert("등록 버튼이 눌렸습니다.");
     const data = {
-      memberId: "user2",
+      memberId: MemberLoad(),
       bankCode: selectedBankCode,
       bankName: newAccountNumber,
       cardNumber: byCardData.memberByNumber,
@@ -276,7 +276,7 @@ function ByCardAccountChange({ byCardAccountInfo, bankInfo, byCardData }) {
     console.log(data);
     axios({
       method: "put",
-      url: "/updateByAccount.do",
+      url: process.env.REACT_APP_API_SERVER + "/updateByAccount.do",
       data,
     })
       .then((res) => {

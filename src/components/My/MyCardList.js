@@ -13,6 +13,7 @@ import MyPaymentHistory from "../HiCard/MyPaymentHistory";
 import { Link } from "react-router-dom";
 import MyByCardAccountChange from "../../pages/ByCard/MyByCardAccountChange";
 import { ByCardModal, ModalBackground } from "../../pages/ByCard/ByCard";
+import MemberLoad from "../Utils/SessionStorage";
 
 export const MyCardListDiv = styled.div`
   width: 100%;
@@ -55,7 +56,6 @@ export const MyHiCardLeftDiv = styled.div`
 `;
 
 export const MyHiCardShape = styled.div`
-  margin-bottom: 2rem;
   box-sizing: border-box;
   padding: 1.3rem 4.9rem 1.2rem 5rem;
   width: 100%;
@@ -143,8 +143,10 @@ export const CardTitle = styled.p`
   font-weight: 400;
   line-height: 0.97;
   letter-spacing: -0.2rem;
-  /* font-family: Iceland, "Source Sans Pro"; */
   white-space: nowrap;
+  position: relative;
+  top: -2rem;
+  left: -0.3rem;
 `;
 export const HiCardLimit = styled.div`
   margin-bottom: 2.7rem;
@@ -508,7 +510,7 @@ export const ByCardName = styled.div`
 `;
 
 export const ByCardNumberPart = styled.div`
-  margin: 0 2.75rem;
+  margin: 0 3rem;
   width: calc(100% - 5.5rem);
   align-items: center;
   display: flex;
@@ -529,7 +531,6 @@ export const ByCardNumberName = styled.div`
 `;
 
 export const ByCardNumber = styled.div`
-  margin-right: 0.9rem;
   font-size: 2.1rem;
   font-weight: 600;
   line-height: 1.2125;
@@ -626,7 +627,7 @@ export const MyCardListHiSection = () => {
     axios({
       url: process.env.REACT_APP_API_SERVER + "/getMyCardListHi.do",
       method: "post",
-      data: { memberId: "user2" },
+      data: { memberId: MemberLoad() },
     })
       .then((res) => {
         //console.log(res.data);
@@ -656,9 +657,9 @@ export const MyCardListBySection = () => {
 
   const getMyCardListBy = () => {
     axios({
-      url: "/getMyCardListBy.do",
+      url: process.env.REACT_APP_API_SERVER + "/getMyCardListBy.do",
       method: "post",
-      data: { memberId: "user2" },
+      data: { memberId: MemberLoad() },
     })
       .then((res) => {
         //console.log(res.data);
@@ -672,9 +673,9 @@ export const MyCardListBySection = () => {
 
   const getMyCardListNotBy = () => {
     axios({
-      url: "/getMyCardListNotBy.do",
+      url: process.env.REACT_APP_API_SERVER + "/getMyCardListNotBy.do",
       method: "post",
-      data: { memberId: "user2" },
+      data: { memberId: MemberLoad() },
     })
       .then((res) => {
         //console.log(res.data);
@@ -976,9 +977,12 @@ export const MyByCardRightSection = ({ byCardData }) => {
     alert("하이카드 추가");
 
     axios({
-      url: "/addHiCard.do",
+      url: process.env.REACT_APP_API_SERVER + "/addHiCard.do",
       method: "post",
-      data: { memberId: "user2", memberByNumber: byCardData.memberByNumber },
+      data: {
+        memberId: MemberLoad(),
+        memberByNumber: byCardData.memberByNumber,
+      },
     })
       .then((res) => {
         window.location.reload();
@@ -993,9 +997,12 @@ export const MyByCardRightSection = ({ byCardData }) => {
     alert("하이카드 제외");
 
     axios({
-      url: "/excludeHiCard.do",
+      url: process.env.REACT_APP_API_SERVER + "/excludeHiCard.do",
       method: "post",
-      data: { memberId: "user2", memberByNumber: byCardData.memberByNumber },
+      data: {
+        memberId: MemberLoad(),
+        memberByNumber: byCardData.memberByNumber,
+      },
     })
       .then((res) => {
         window.location.reload();

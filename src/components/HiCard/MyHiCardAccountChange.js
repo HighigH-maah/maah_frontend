@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import MemberLoad from "../Utils/SessionStorage";
 //import axios from "axios";
 
 const MyAccountChangeDiv = styled.div`
@@ -176,8 +177,8 @@ function MyHiCardAccountChange(props) {
   useEffect(() => {
     axios({
       method: "post",
-      url: "/getHiCardAccountInfo.do",
-      data: { memberId: "user2" },
+      url: process.env.REACT_APP_API_SERVER + "/getHiCardAccountInfo.do",
+      data: { memberId: MemberLoad() },
     })
       .then((res) => {
         console.log(res.data);
@@ -193,7 +194,7 @@ function MyHiCardAccountChange(props) {
   useEffect(() => {
     axios({
       method: "get",
-      url: "/getBankName.do",
+      url: process.env.REACT_APP_API_SERVER + "/getBankName.do",
     })
       .then((res) => {
         console.log(res.data);
@@ -229,10 +230,9 @@ function HiCardAccountChnage({ hiCardAccountInfo, bankInfo }) {
     // 서버로 계좌 인증 및 등록을 수행하기 위한 요청
     axios({
       method: "post",
-      url: "/getAccountName.do",
+      url: process.env.REACT_APP_API_SERVER + "/getAccountName.do",
       data: {
-        memberId: "user2",
-        memberName: "한마음",
+        memberId: MemberLoad(),
         bankCode: selectedBankCode,
         bankName: newAccountNumber,
       },
@@ -255,7 +255,7 @@ function HiCardAccountChnage({ hiCardAccountInfo, bankInfo }) {
       })
       .catch((err) => {
         console.log(err);
-        console.log("계좌 인증 및 등록 실패");
+        console.log("계좌 인증 실패");
         // 오류 시 처리, 예를 들어 사용자에게 오류 메시지를 표시할 수 있습니다.
       });
   };
@@ -266,7 +266,7 @@ function HiCardAccountChnage({ hiCardAccountInfo, bankInfo }) {
 
     alert("등록 버튼이 눌렸습니다.");
     const data = {
-      memberId: "user2",
+      memberId: MemberLoad(),
       bankCode: selectedBankCode,
       bankName: newAccountNumber,
       cardNumber: hiCardAccountInfo.memberHiNumber,
@@ -274,7 +274,7 @@ function HiCardAccountChnage({ hiCardAccountInfo, bankInfo }) {
     console.log(data);
     axios({
       method: "put",
-      url: "/updateHiAccount.do",
+      url: process.env.REACT_APP_API_SERVER + "/updateHiAccount.do",
       data,
     })
       .then((res) => {

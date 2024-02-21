@@ -6,6 +6,7 @@ import axios from "axios";
 import LostCardModal from "./LostCardModal";
 import { ModalBackground, ModalClose } from "../../components/HiCard/HiCard";
 import close from "../../assets/images/close.png";
+import MemberLoad from "../../components/Utils/SessionStorage";
 
 const LostCardDiv = styled.div`
   width: 100%;
@@ -193,9 +194,9 @@ function LostCard(props) {
 
   const getlostCardChooseList = () => {
     axios({
-      url: "/getlostCardChooseList.do",
+      url: process.env.REACT_APP_API_SERVER + "/getlostCardChooseList.do",
       method: "post",
-      data: { memberId: "user2" },
+      data: { memberId: MemberLoad() },
     })
       .then((res) => {
         //console.log(res.data);
@@ -223,8 +224,8 @@ function LostCard(props) {
 
           axios({
             method: "post",
-            url: "/getCert.do",
-            data: { imp_uid: rsp.imp_uid, memberId: "user2" },
+            url: process.env.REACT_APP_API_SERVER + "/getCert.do",
+            data: { imp_uid: rsp.imp_uid, memberId: MemberLoad() },
           })
             .then((res) => {
               console.log(res.data);
@@ -235,10 +236,10 @@ function LostCard(props) {
               if (certInfo.certName === certInfo.memberName) {
                 // memberCardNumber를 이용하여 성공 시 실행할 로직을 작성합니다.
                 axios({
-                  method: "post",
+                  method: process.env.REACT_APP_API_SERVER + "post",
                   url: "/reportLost.do",
                   data: {
-                    memberId: "user2",
+                    memberId: MemberLoad(),
                     memberCardNumber: selectedCard.memberCardNumber,
                   },
                 })
