@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 import logo from "../../assets/images/maah_logo.png";
 import visa from "../../assets/images/Logo/visa_logo.png";
 import gray from "../../assets/images/Logo/visa_logo_gray.png";
 import silver from "../../assets/images/Grade/silver.png";
 import bronze from "../../assets/images/Grade/bronze.png";
 import arrow from "../../assets/images/select_arrow.png";
-import CardLimit from './CardLimit';
-import axios from 'axios';
+import CardLimit from "./CardLimit";
+import axios from "axios";
 
 const Background = styled.div`
   background: linear-gradient(180deg, #f1f1f1 37.44%, #b2b2b2 100%);
@@ -33,7 +33,7 @@ const CompleteStep = styled.span`
   height: 20px;
   margin: 5px;
   border-radius: 10px;
-  background-color: #5A5A5A;
+  background-color: #5a5a5a;
 `;
 
 const ProcessStep = styled.span`
@@ -42,7 +42,7 @@ const ProcessStep = styled.span`
   height: 20px;
   margin: 5px;
   border-radius: 10px;
-  background-color: #CECDCA;
+  background-color: #cecdca;
 `;
 
 const MainWrap = styled.div`
@@ -52,7 +52,7 @@ const MainWrap = styled.div`
   padding: 50px;
   width: 1100px;
   height: 1030px;
-  box-shadow: inset 1px 5px rgba(0,0,0,0.2);
+  box-shadow: inset 1px 5px rgba(0, 0, 0, 0.2);
 `;
 
 const MainTitle = styled.div`
@@ -101,7 +101,7 @@ const Traffic = styled.div`
   width: 440px;
   padding: 20px 30px;
   border-radius: 30px;
-  background-color: #EFEFEF;
+  background-color: #efefef;
   display: flex;
   justify-content: space-between;
   margin: 40px auto 40px auto;
@@ -122,7 +122,8 @@ const VisaRegion = styled.label`
   font-weight: bold;
   text-align: center;
   vertical-align: top;
-  background-color: ${(props) => props.region === 'visa' ? '#F0F3FF' : '#F1F1F1'};
+  background-color: ${(props) =>
+    props.region === "visa" ? "#F0F3FF" : "#F1F1F1"};
   cursor: pointer;
 
   & > img {
@@ -142,7 +143,8 @@ const MaahRegion = styled.label`
   font-size: 20px;
   font-weight: bold;
   text-align: center;
-  background-color: ${(props) => props.region === 'maah' ? '#F4DFDF' : '#F1F1F1'};
+  background-color: ${(props) =>
+    props.region === "maah" ? "#F4DFDF" : "#F1F1F1"};
 
   & > img {
     height: 40px;
@@ -186,10 +188,10 @@ const AccountWrap = styled.div`
 const SelectBank = styled.select`
   font-weight: bold;
   padding: 12px 20px;
-  border: 1px solid #D9D9D9;
+  border: 1px solid #d9d9d9;
   border-radius: 10px;
   margin: 10px 0;
-  appearance:none;
+  appearance: none;
   background: url(${arrow}) no-repeat right 20px center;
   background-size: 10px;
 `;
@@ -223,10 +225,12 @@ const ModalWrap = styled.div`
   overflow: hidden;
 `;
 
-function InputCardApplicationInfo({setProcess, setCardApply, cardApply}) {
+function InputCardApplicationInfo({ setProcess, setCardApply, cardApply }) {
   const [cardRegion, setCardRegion] = useState("visa");
   const [englishName, setEnglishName] = useState("");
   const [account, setAccount] = useState(0);
+  const [bankCode, setBankCode] = useState("");
+  const [bankHorderYN, setBankHorderYN] = useState("");
   const [bankList, setBankList] = useState([]);
   const API_SERVER = process.env.REACT_APP_API_SERVER;
 
@@ -236,135 +240,205 @@ function InputCardApplicationInfo({setProcess, setCardApply, cardApply}) {
 
   const selectRegion = (prop) => {
     setCardRegion(prop);
-  }
+  };
 
   const displayModal = () => {
-    if(englishName.length * account.length === 0) {
-      alert('필수 정보를 입력해주세요');
+    if (englishName.length * account.length === 0) {
+      alert("필수 정보를 입력해주세요");
     } else {
       // 계좌인증 함수 호출
-
-      // ---------------
-      if(true) { // true 대신에 계좌인증 결과값
+      axios({
+        method: "post",
+        url: process.env.REACT_APP_API_SERVER + "/getAccountName.do",
+        data: {
+          memberId: "user2",
+          bankCode: bankCode,
+          bankName: account,
+        },
+      })
+        .then((res) => {
+          console.log(res.data);
+          console.log("계좌 인증 성공");
+          setBankHorderYN(res.data.accountChkYn);
+          console.log(res.data.accountChkYn);
+          // if (res.data.accountChkYn === "Y") {
+          //   // 인증 완료
+          //   alert("인증 완료");
+          //   setBankHorderYN(res.data.accountChkYn);
+          // } else if (res.data.accountChkYn === "N") {
+          //   alert("본인 명의 계좌 정보를 입력해주세요");
+          // }
+          // 성공 시 처리, 예를 들어 성공 메시지 표시 또는 사용자를 리디렉션할 수 있습니다.
+        })
+        .catch((err) => {
+          console.log(err);
+          console.log("계좌 인증 실패");
+          // 오류 시 처리, 예를 들어 사용자에게 오류 메시지를 표시할 수 있습니다.
+        });
+      if (bankHorderYN === "Y") {
+        // true 대신에 계좌인증 결과값
         setCardApply({
           ...cardApply,
           cardApplyEngname: englishName,
-          cardApplyIsTransport: document.getElementById('transport').checked,
-          cardApplyIsInternational: cardRegion === 'visa' ? true : false,
-          bankCode: document.getElementById('bank').value,
-          accountNumber: document.getElementById('account').value,
-          cardApplyIsAccountVerify: true
-        })
-        if(cardApply.type === 'hi') {
+          cardApplyIsTransport: document.getElementById("transport").checked,
+          cardApplyIsInternational: cardRegion === "visa" ? true : false,
+          bankCode: document.getElementById("bank").value,
+          accountNumber: document.getElementById("account").value,
+          cardApplyIsAccountVerify: true,
+        });
+        if (cardApply.type === "hi") {
           alert("계좌 인증 완료");
           setProcess(5);
-        } else if(cardApply.type === 'by') {
-          let modal = document.getElementById('certification');
-          modal.style.visibility = 'visible';
+        } else if (cardApply.type === "by") {
+          let modal = document.getElementById("certification");
+          modal.style.visibility = "visible";
         }
       } else {
         alert("계좌정보를 다시 입력해주세요.");
       }
     }
-  }
+  };
 
   const changeHandler = (prop) => {
-    switch(prop) {
-      case 'name':
-        setEnglishName(document.getElementsByClassName('engName')[0].value + ' ' +  document.getElementsByClassName('engName')[1].value);
+    switch (prop) {
+      case "name":
+        setEnglishName(
+          document.getElementsByClassName("engName")[0].value +
+            " " +
+            document.getElementsByClassName("engName")[1].value
+        );
         break;
-      case 'account':
-        setAccount(document.getElementById('account').value);
+      case "account":
+        setAccount(document.getElementById("account").value);
         break;
       default:
         break;
     }
-  }
+  };
 
   axios
-  .get(API_SERVER + "/getCardApplyBankCode", {})
-  .then(function (res) {
-    setBankList(res.data);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+    .get(API_SERVER + "/getCardApplyBankCode", {})
+    .then(function (res) {
+      setBankList(res.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 
-    return (
-      <>
-        <Background>
-            <BackLogo src={logo}></BackLogo>
-            <Process>
-                <CompleteStep></CompleteStep>
-                <CompleteStep></CompleteStep>
-                <CompleteStep></CompleteStep>
-                <CompleteStep></CompleteStep>
-                <ProcessStep></ProcessStep>
-            </Process>
-            <MainWrap>
+  return (
+    <>
+      <Background>
+        <BackLogo src={logo}></BackLogo>
+        <Process>
+          <CompleteStep></CompleteStep>
+          <CompleteStep></CompleteStep>
+          <CompleteStep></CompleteStep>
+          <CompleteStep></CompleteStep>
+          <ProcessStep></ProcessStep>
+        </Process>
+        <MainWrap>
+          <div>
+            <MainTitle>영문명 입력</MainTitle>
+            <NameWrap>
+              <div>&nbsp;여권과 동일하게 입력해주세요.</div>
+              <NameBox>
                 <div>
-                    <MainTitle>
-                        영문명 입력
-                    </MainTitle>
-                    <NameWrap>
-                      <div>&nbsp;여권과 동일하게 입력해주세요.</div>
-                      <NameBox>
-                        <div>
-                          <div>영문 성</div>
-                          <input type='text' className='engName' onChange={() => {changeHandler('name')}}></input>
-                        </div>
-                        <div>
-                          <div>영문 이름</div>
-                          <input type='text' className='engName' onChange={() => {changeHandler('name')}}></input>
-                        </div>
-                      </NameBox>
-                    </NameWrap>
+                  <div>영문 성</div>
+                  <input
+                    type="text"
+                    className="engName"
+                    onChange={() => {
+                      changeHandler("name");
+                    }}
+                  ></input>
                 </div>
-                <Traffic>
-                    <span>후불교통 기능 신청</span>
-                    <input id='transport' type='checkbox'></input>
-                </Traffic>
-                <ForeignPay>
-                    <MainTitle>
-                        해외 결제 여부
-                    </MainTitle>
-                    <VisaRegion region={cardRegion} for='visa' onClick={() => {selectRegion('visa')}}>
-                        <img alt='visa' src={cardRegion === 'visa' ? visa : gray} />
-                        <div>국내외겸용</div>
-                    </VisaRegion>
-                    <MaahRegion region={cardRegion} for='maah' onClick={() => {selectRegion('maah')}}>
-                        <img alt='maah' src={cardRegion === 'maah' ? bronze : silver} />
-                        <div>국내전용</div>
-                    </MaahRegion>
-                    <RegionRadio type='radio' checked name='payRegion' id='visa'></RegionRadio>
-                    <RegionRadio type='radio' name='payRegion' id='maah'></RegionRadio>
-                </ForeignPay>
                 <div>
-                    <MainTitle>
-                        출금 계좌 정보
-                    </MainTitle>
-                    <AccountWrap>
-                      <div>본인 명의의 계좌만 입력 가능합니다</div>
-                      <SelectBank id='bank'>
-                        {bankList.map((bank, index) => (
-                          <option key={index} value={bank.bankCode}>{bank.bankName}</option>
-                        ))}
-                      </SelectBank>
-                      <input id='account' type='number' placeholder='계좌번호(- 제외)' onChange={(e) => {setAccount(e.target.value)}}></input>
-                    </AccountWrap>
+                  <div>영문 이름</div>
+                  <input
+                    type="text"
+                    className="engName"
+                    onChange={() => {
+                      changeHandler("name");
+                    }}
+                  ></input>
                 </div>
-                <ButtonWrap>
-                  <button onClick={displayModal}>계좌인증</button>
-                  <button onClick={gotoPrev}>이전으로</button>
-                </ButtonWrap>
-            </MainWrap>
-        </Background>
+              </NameBox>
+            </NameWrap>
+          </div>
+          <Traffic>
+            <span>후불교통 기능 신청</span>
+            <input id="transport" type="checkbox"></input>
+          </Traffic>
+          <ForeignPay>
+            <MainTitle>해외 결제 여부</MainTitle>
+            <VisaRegion
+              region={cardRegion}
+              for="visa"
+              onClick={() => {
+                selectRegion("visa");
+              }}
+            >
+              <img alt="visa" src={cardRegion === "visa" ? visa : gray} />
+              <div>국내외겸용</div>
+            </VisaRegion>
+            <MaahRegion
+              region={cardRegion}
+              for="maah"
+              onClick={() => {
+                selectRegion("maah");
+              }}
+            >
+              <img alt="maah" src={cardRegion === "maah" ? bronze : silver} />
+              <div>국내전용</div>
+            </MaahRegion>
+            <RegionRadio
+              type="radio"
+              checked
+              name="payRegion"
+              id="visa"
+            ></RegionRadio>
+            <RegionRadio type="radio" name="payRegion" id="maah"></RegionRadio>
+          </ForeignPay>
+          <div>
+            <MainTitle>출금 계좌 정보</MainTitle>
+            <AccountWrap>
+              <div>본인 명의의 계좌만 입력 가능합니다</div>
+              <SelectBank
+                id="bank"
+                onChange={(e) => setBankCode(e.target.value)}
+              >
+                {bankList.map((bank, index) => (
+                  <option key={index} value={bank.bankCode}>
+                    {bank.bankName}
+                  </option>
+                ))}
+              </SelectBank>
+              <input
+                id="account"
+                type="number"
+                placeholder="계좌번호(- 제외)"
+                onChange={(e) => {
+                  setAccount(e.target.value);
+                }}
+              ></input>
+            </AccountWrap>
+          </div>
+          <ButtonWrap>
+            <button onClick={displayModal}>계좌인증</button>
+            <button onClick={gotoPrev}>이전으로</button>
+          </ButtonWrap>
+        </MainWrap>
+      </Background>
 
       <ModalWrap id="certification">
-        <CardLimit setProcess={setProcess} setCardApply={setCardApply} cardApply={cardApply} />
+        <CardLimit
+          setProcess={setProcess}
+          setCardApply={setCardApply}
+          cardApply={cardApply}
+        />
       </ModalWrap>
-      </>
-    );
+    </>
+  );
 }
 
 export default InputCardApplicationInfo;
