@@ -76,12 +76,13 @@ const VirtualCardNumViewDiv = styled.div`
 `;
 
 function VirtualCardNumView(props) {
+  const API_SERVER = process.env.REACT_APP_API_SERVER;
   const [virtualCardInfo, setVirtualCardInfo] = useState([]);
 
   useEffect(() => {
     axios({
       method: "post",
-      url: "/getTempCard.do",
+      url: API_SERVER + "/getTempCard.do",
       data: { memberId: "user3" },
     })
       .then((res) => {

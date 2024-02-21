@@ -19,8 +19,8 @@ import close from "../../assets/images/close.png";
 import MyPaymentHistory from "./MyPaymentHistory";
 import VirtualCardNumView from "./VirtualCardNumView";
 import axios from "axios";
-import HeaderLogoutBtn from "../Header/HeaderLogoutBtn";
-import Footer from "../Footer/Footer";
+import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
+import Footer from "../../components/Footer/Footer";
 import "../../assets/css/style.css";
 import bronzeImg from "../../assets/images/Grade/bronze.png";
 import silverImg from "../../assets/images/Grade/silver.png";
@@ -181,6 +181,12 @@ const HiCardBtn = styled.div`
     border-radius: 0.5rem;
     flex-shrink: 0;
     cursor: pointer;
+    border: none;
+    transition: box-shadow 0.3s ease;
+  }
+
+  button:hover {
+    box-shadow: 11px 9px 5px 0px lightgray;
   }
 
   div {

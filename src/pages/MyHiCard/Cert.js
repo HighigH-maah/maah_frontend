@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 
 const Cert = () => {
+  const API_SERVER = process.env.REACT_APP_API_SERVER;
   useEffect(() => {
     const jquery = document.createElement("script");
     jquery.src = "http://code.jquery.com/jquery-1.12.4.min.js";
@@ -32,7 +33,7 @@ const Cert = () => {
 
           axios({
             method: "post",
-            url: "/getCert.do",
+            url: API_SERVER + "/getCert.do",
             data: { imp_uid: rsp.imp_uid, memberId: "user3" },
           })
             .then((res) => {

@@ -1,15 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { HiCardModal, ModalClose } from "../HiCard/HiCard";
-import MyHiCardAccountChange from "../HiCard/MyHiCardAccountChange";
+import { HiCardModal, ModalClose } from "../../pages/MyHiCard/HiCard";
+import MyHiCardAccountChange from "../../pages/MyHiCard/MyHiCardAccountChange";
 import close from "../../assets/images/close.png";
 import bronzeImg from "../../assets/images/Grade/bronze.png";
 import silverImg from "../../assets/images/Grade/silver.png";
 import goldImg from "../../assets/images/Grade/gold.png";
 import platinumImg from "../../assets/images/Grade/platinum.png";
-import VirtualCardApply from "../HiCard/VirtualCardApply";
-import MyPaymentHistory from "../HiCard/MyPaymentHistory";
+import VirtualCardApply from "../../pages/MyHiCard/VirtualCardApply";
+import MyPaymentHistory from "../../pages/MyHiCard/MyPaymentHistory";
 import { Link } from "react-router-dom";
 
 export const MyCardListDiv = styled.div`
@@ -703,7 +703,14 @@ export const MyHiCardLeftSection = ({ myCardHi }) => {
   return (
     <MyHiCardLeftDiv>
       <MyHiCardShape>
-        <Link to={`../hiCardDetail/${myCardHi.memberHiNumber}`}>
+        <Link
+          to="/myHiCardDetail"
+          state={{ memberHiNumber: myCardHi.memberHiNumber }}
+          // to={{
+          //   pathname: "/myHiCardDetail",
+          //   state: { memberHiNumber: "1234567" },
+          // }}
+        >
           <img
             src={myCardHi.hiCardImageFrontPath}
             alt="하이카드 이미지"
@@ -877,12 +884,17 @@ export const MyByCardLeftSection = ({ byCardData }) => {
   return (
     <MyByCardLeftDiv>
       <MyByCardShape>
-        <img
-          src={byCardData.byImagePath}
-          alt="바이카드 이미지"
-          style={{ width: "100%" }}
-        />
-        {/* <ByCard><ByCardNoise></ByCardNoise></ByCard> */}
+        <Link
+          to="/myByCardDetail"
+          state={{ memberByNumber: byCardData.memberByNumber }}
+        >
+          <img
+            src={byCardData.byImagePath}
+            alt="바이카드 이미지"
+            style={{ width: "100%" }}
+          />
+          {/* <ByCard><ByCardNoise></ByCardNoise></ByCard> */}
+        </Link>
       </MyByCardShape>
       <ByCardNumberPart>
         <ByCardNumberName>{byCardData.memberCardByNickname}</ByCardNumberName>

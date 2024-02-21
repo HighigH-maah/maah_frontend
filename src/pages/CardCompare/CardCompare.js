@@ -33,6 +33,7 @@ import {
 import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
 import Footer from "../../components/Footer/Footer";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function CardCompare(props) {
   const [selectedCompany, setSelectedCompany] = useState(null);
@@ -311,9 +312,14 @@ function CardCompare(props) {
                     <p>교통카드 {card.byIsTransport ? "가능" : "불가능"}</p>
                   </ConditionDiv>
                 </CardDetailDiv>
-                <DetailBtnDiv>
-                  <button>자세히 보기</button>
-                </DetailBtnDiv>
+                <Link
+                  to={`/byCardDetail/${card.byCode}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <DetailBtnDiv>
+                    <button>자세히 보기</button>
+                  </DetailBtnDiv>
+                </Link>
               </CardList>
             ))
           ) : (

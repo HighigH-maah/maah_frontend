@@ -170,13 +170,14 @@ const InputBox = styled.input`
 //   });
 
 function MyHiCardAccountChange(props) {
+  const API_SERVER = process.env.REACT_APP_API_SERVER;
   const [hiCardAccountInfo, setHiCardAccountInfo] = useState([]);
   const [bankInfo, setBankInfo] = useState([]);
 
   useEffect(() => {
     axios({
       method: "post",
-      url: "/getHiCardAccountInfo.do",
+      url: API_SERVER + "/getHiCardAccountInfo.do",
       data: { memberId: "user3" },
     })
       .then((res) => {
@@ -188,12 +189,12 @@ function MyHiCardAccountChange(props) {
         console.log(err);
         console.log("실패 실패 실패 실패 실패 실패");
       });
-  }, []); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
+  }, [API_SERVER]); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
 
   useEffect(() => {
     axios({
       method: "get",
-      url: "/getBankName.do",
+      url: API_SERVER + "/getBankName.do",
     })
       .then((res) => {
         console.log(res.data);
@@ -204,7 +205,7 @@ function MyHiCardAccountChange(props) {
         console.log(err);
         console.log("실패 실패 실패 실패 실패 실패");
       });
-  }, []); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
+  }, [API_SERVER]); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
 
   return (
     <HiCardAccountChnage

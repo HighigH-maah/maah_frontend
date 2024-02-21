@@ -4,7 +4,7 @@ import MaahSmallLogo from "../../assets/images/Logo/maah_small_logo_white.png";
 
 const FooterDiv = styled.div`
   box-sizing: border-box;
-  padding: 5rem;
+  padding: 2rem;
   width: 100%;
   backdrop-filter: blur(0.8rem);
   background-color: rgba(40, 52, 48, 0.2399999946);
