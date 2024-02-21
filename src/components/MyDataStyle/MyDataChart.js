@@ -61,15 +61,29 @@ export const data = {
   ],
 };
 
+export const contentInner = styled.div`
+  width: 470px;
+  height: 297px;
+`;
+
+export const contentWrap = styled.div`
+  margin-top: 3rem;
+`;
 export function LineChart({ compareData }) {
   const [first, setFirst] = useState("");
+  const [pfirst, setpFirst] = useState("");
   const [middle, setMiddle] = useState("");
+  const [pmiddle, setpMiddle] = useState("");
   const [last, setLast] = useState("");
+  const [plast, setpLast] = useState("");
 
   useEffect(() => {
     setFirst(compareData.first);
     setMiddle(compareData.middle);
     setLast(compareData.last);
+    setpFirst(compareData.pfirst);
+    setpMiddle(compareData.pmiddle);
+    setpLast(compareData.plast);
   }, []);
 
   const data = {
@@ -77,13 +91,13 @@ export function LineChart({ compareData }) {
     datasets: [
       {
         label: "Last Month", //그래프 분류되는 항목
-        data: [first, middle, last], //실제 그려지는 데이터(Y축 숫자)
+        data: [pfirst, pmiddle, plast], //실제 그려지는 데이터(Y축 숫자)
         borderColor: "rgb(255, 99, 132)", //그래프 선 color
         backgroundColor: "rgba(255, 99, 132, 0.5)", //마우스 호버시 나타나는 분류네모 표시 bg
       },
       {
         label: "This Month",
-        data: [first, 900, last], //실제 그려지는 데이터(Y축 숫자)
+        data: [first, middle, last], //실제 그려지는 데이터(Y축 숫자)
         borderColor: "rgb(53, 162, 235)", //실제 그려지는 데이터(Y축 숫자)
         backgroundColor: "rgba(53, 162, 235, 0.5)",
       },
@@ -91,11 +105,11 @@ export function LineChart({ compareData }) {
   };
 
   return (
-    <div className="contentWrap">
-      <div className="contentInner">
-        <Line options={options} data={data} />
-      </div>
-    </div>
+    <contentWrap>
+      <contentInner>
+        <Line options={options} data={data} width="470" height="235" />
+      </contentInner>
+    </contentWrap>
   );
 }
 
