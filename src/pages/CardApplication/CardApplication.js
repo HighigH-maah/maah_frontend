@@ -5,13 +5,14 @@ import InputIDCard from "../../components/CardApplication/InputIDCard";
 import InputCardApplicationInfo from "../../components/CardApplication/InputCardApplicationInfo";
 import InputDestination from "../../components/CardApplication/InputDestination";
 import { useLocation } from "react-router-dom";
+import MemberLoad from "../../components/Utils/SessionStorage";
 
 function CardApplication() {
     const location = useLocation();
     const [process, setProcess] = useState(1);
     const [cardApply, setCardApply] = useState(
         {   
-            memberId: 'user1',
+            memberId: MemberLoad(),
             card: location.state.card, // hi일 경우 이미지 코드 / by일 경우 카드 상품 코드
             type: location.state.type, // type : hi or by
             cardApplyMemberSocialNumber: "", // 주민번호
@@ -30,7 +31,9 @@ function CardApplication() {
             cardApplyLimitAmount: null, // 한도
             cardApplyAddress: "", // 배송지
             cardApplyPassword: "", // 비밀번호
-            cardApplyIsTransport: false // 교통카드
+            cardApplyIsTransport: false, // 교통카드
+            bankCode: "",
+            accountNumber: ""
         });
 
     switch(process) {

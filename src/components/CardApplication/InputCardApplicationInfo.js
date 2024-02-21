@@ -7,6 +7,7 @@ import silver from "../../assets/images/Grade/silver.png";
 import bronze from "../../assets/images/Grade/bronze.png";
 import arrow from "../../assets/images/select_arrow.png";
 import CardLimit from './CardLimit';
+import axios from 'axios';
 
 const Background = styled.div`
   background: linear-gradient(180deg, #f1f1f1 37.44%, #b2b2b2 100%);
@@ -225,8 +226,9 @@ const ModalWrap = styled.div`
 function InputCardApplicationInfo({setProcess, setCardApply, cardApply}) {
   const [cardRegion, setCardRegion] = useState("visa");
   const [englishName, setEnglishName] = useState("");
-  const [transport, setTransport] = useState(false);
   const [account, setAccount] = useState(0);
+  const [bankList, setBankList] = useState([]);
+  const API_SERVER = process.env.REACT_APP_API_SERVER;
 
   const gotoPrev = () => {
     setProcess(3);
@@ -237,26 +239,31 @@ function InputCardApplicationInfo({setProcess, setCardApply, cardApply}) {
   }
 
   const displayModal = () => {
-    if(englishName.length * account === 0) {
+    if(englishName.length * account.length === 0) {
       alert('필수 정보를 입력해주세요');
     } else {
-      console.log(document.getElementsByClassName('engName')[0].value);
-      setCardApply({
-        ...cardApply,
-        cardApplyEngname: englishName,
-        cardApplyIsTransport: document.getElementById('transport').checked,
-        cardApplyIsInternational: cardRegion === 'visa' ? true : false
-      })
-      if(cardApply.type === 'hi') {
-        alert("계좌 인증 완료");
+      // 계좌인증 함수 호출
+
+      // ---------------
+      if(true) { // true 대신에 계좌인증 결과값
         setCardApply({
           ...cardApply,
+          cardApplyEngname: englishName,
+          cardApplyIsTransport: document.getElementById('transport').checked,
+          cardApplyIsInternational: cardRegion === 'visa' ? true : false,
+          bankCode: document.getElementById('bank').value,
+          accountNumber: document.getElementById('account').value,
           cardApplyIsAccountVerify: true
         })
-        setProcess(5);
-      } else if(cardApply.type === 'by') {
-        let modal = document.getElementById('certification');
-        modal.style.visibility = 'visible';
+        if(cardApply.type === 'hi') {
+          alert("계좌 인증 완료");
+          setProcess(5);
+        } else if(cardApply.type === 'by') {
+          let modal = document.getElementById('certification');
+          modal.style.visibility = 'visible';
+        }
+      } else {
+        alert("계좌정보를 다시 입력해주세요.");
       }
     }
   }
@@ -264,12 +271,24 @@ function InputCardApplicationInfo({setProcess, setCardApply, cardApply}) {
   const changeHandler = (prop) => {
     switch(prop) {
       case 'name':
-        setEnglishName(document.getElementsByClassName('engName')[0] + ' ' +  document.getElementsByClassName('engName')[1]);
+        setEnglishName(document.getElementsByClassName('engName')[0].value + ' ' +  document.getElementsByClassName('engName')[1].value);
+        break;
+      case 'account':
+        setAccount(document.getElementById('account').value);
         break;
       default:
         break;
     }
   }
+
+  axios
+  .get(API_SERVER + "/getCardApplyBankCode", {})
+  .then(function (res) {
+    setBankList(res.data);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 
     return (
       <>
@@ -326,10 +345,12 @@ function InputCardApplicationInfo({setProcess, setCardApply, cardApply}) {
                     </MainTitle>
                     <AccountWrap>
                       <div>본인 명의의 계좌만 입력 가능합니다</div>
-                      <SelectBank onChange={() => {changeHandler('bank')}}>
-                        <option>우리은행</option>
+                      <SelectBank id='bank'>
+                        {bankList.map((bank, index) => (
+                          <option key={index} value={bank.bankCode}>{bank.bankName}</option>
+                        ))}
                       </SelectBank>
-                      <input id='account' type='number' placeholder='계좌번호(- 제외)' onChange={() => {changeHandler('account')}}></input>
+                      <input id='account' type='number' placeholder='계좌번호(- 제외)' onChange={(e) => {setAccount(e.target.value)}}></input>
                     </AccountWrap>
                 </div>
                 <ButtonWrap>

@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import reverse from "../../assets/images/reverse.png";
 import prevArrow from "../../assets/images/prev_arrow.png";
 import axios from "axios";
+import MemberLoad from "../Utils/SessionStorage";
 
 const StyledSlider = styled(Slider)`
   margin-left: 5%;
@@ -83,10 +84,11 @@ export default function CardSlider({setCard}) {
   const [cardStatus, setCardStatus] = useState([true, true, true, true, true]);
   const [hiCardImageList, setHiCardImageList] = useState([]);
   const [byCardImageList, setByCardImageList] = useState([]);
+  const API_SERVER = process.env.REACT_APP_API_SERVER;
 
   useEffect(() => {
     axios
-    .post("/getHiCardImages", {member_id: "user1"})
+    .post(API_SERVER + "/getHiCardImages", {member_id: MemberLoad()})
     .then(function (res) {
       setHiCardImageList(res.data['hi']);
       setByCardImageList(res.data['by']);

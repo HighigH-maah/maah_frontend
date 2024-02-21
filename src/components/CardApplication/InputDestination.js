@@ -252,41 +252,48 @@ function InputDestination({setProcess, setCardApply, cardApply}) {
   const [addressDetail, setAddressDetail] = useState("");
   const [viewModal, setViewModal] = useState(false);
   const [applicationComp, setApplicationComp] = useState(false);
-  const [password, setPassword] = useState('1234');
-  const [date, setDate] = useState();
+  const [password, setPassword] = useState(false);
+  const [image, setImage] = useState("");
+  const [cardName, setCardName] = useState("");
+  const API_SERVER = process.env.REACT_APP_API_SERVER;
+  let date = new Date();
 
   const gotoPrev = () => {
     setProcess(4);
   };
 
   const gotoHome = () => {
-    console.log(cardApply);
-    // navigate("/", {});
+    navigate("/", {});
   }
 
   const complete = () => {
-    setCardApply({
-      ...cardApply,
-      cardApplyAddress: '(' + zonecode + ') ' + roadAddress + ' ' + addressDetail,
-      cardApplyDate: new Date(),
-      cardApplyPassword: password
-    });
-    axios
-    .post("/cardApply", {
-      ...cardApply,
-      cardApplyAddress: '(' + zonecode + ') ' + roadAddress + ' ' + addressDetail,
-      cardApplyDate: new Date(),
-      cardApplyPassword: password
-    })
-    .then(function (res) {
-      console.log(res.data);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-    let modal = document.getElementById('address');
-    setApplicationComp(true);
-    modal.style.visibility = 'visible';
+    if(password) {
+      date = new Date();
+      setCardApply({
+        ...cardApply,
+        cardApplyAddress: '(' + zonecode + ') ' + roadAddress + ' ' + addressDetail,
+        cardApplyPassword: document.getElementsByClassName('pwd')[0].value
+      });
+      axios
+      .post(API_SERVER + "/cardApply", {
+        ...cardApply,
+        cardApplyAddress: '(' + zonecode + ') ' + roadAddress + ' ' + addressDetail,
+        cardApplyDate: date,
+        cardApplyPassword: document.getElementsByClassName('pwd')[0].value
+      })
+      .then(function (res) {
+        setImage(res.data['hiCardImageFrontPath']);
+        setCardName(res.data['hiCardImageName']);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+      let modal = document.getElementById('address');
+      setApplicationComp(true);
+      modal.style.visibility = 'visible';
+    } else {
+      alert("비밀번호를 다시 확인해주세요.");
+    }
   }
 
   const displayModal = () => {
@@ -307,6 +314,15 @@ function InputDestination({setProcess, setCardApply, cardApply}) {
     setZonecode(data.zonecode);
     setRoadAddress(data.roadAddress);
     setViewModal(false);
+  }
+
+  const checkPassword = () => {
+    if(document.getElementsByClassName('pwd')[0].value.length === 4 
+      && document.getElementsByClassName('pwd')[0].value === document.getElementsByClassName('pwd')[1].value) {
+        setPassword(true);
+    } else {
+      setPassword(false);
+    }
   }
 
     return (
@@ -347,11 +363,11 @@ function InputDestination({setProcess, setCardApply, cardApply}) {
                     <div>카드 비밀번호 설정</div>
                     <div>
                         <div>카드 비밀번호</div>
-                        <input type='password'></input>
+                        <input className='pwd' type='password'></input>
                     </div>
                     <div>
                         <div>비밀번호 확인</div>
-                        <input type='password'></input>
+                        <input className='pwd' type='password' onChange={checkPassword}></input>
                     </div>
                 </PasswordWrap>
 
@@ -374,8 +390,8 @@ function InputDestination({setProcess, setCardApply, cardApply}) {
         <CompleteBody>
             <div>카드 신청 완료</div>
             <Card>
-                <img src='https://maah-s3.s3.ap-northeast-2.amazonaws.com/Cards/black_velvet.png' alt='card'></img>
-                <div>BLACK VELVET</div>
+                <img src={image} alt='hicard'></img>
+                <div>{cardName}</div>
             </Card>
             <ApplicationResult>
                 <div>정상적으로 신청 되었습니다.</div>
