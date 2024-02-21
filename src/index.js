@@ -19,6 +19,7 @@ import MyByCard from "./pages/MyByCard/MyByCard";
 import ByCard from "./pages/ByCard/ByCard";
 // import MyHiCardAccountChange from "./components/HiCard/MyHiCardAccountChange";
 import ScrollToTop from "./components/Scroll/ScrollToTop";
+import AboutUs from "./pages/AboutUs/AboutUs";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -39,6 +40,7 @@ root.render(
       <Route path="/myHiCardDetail" element={<HiCard />}></Route>
       <Route path="/myByCardDetail" element={<MyByCard />}></Route>
       <Route path="/byCardDetail/:byCardCode" element={<ByCard />}></Route>
+      <Route path="/aboutUs" element={<AboutUs />}></Route>
     </Routes>
   </BrowserRouter>
 );
