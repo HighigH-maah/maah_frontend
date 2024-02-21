@@ -19,7 +19,7 @@ function MyCardList(props) {
           <Main>
             <MyCardListHiSection></MyCardListHiSection>
             <MyCardListBySection></MyCardListBySection>
-            <Footer position="relative" top="-20rem"></Footer>
+            <Footer position="relative" top="10rem"></Footer>
           </Main>
         </BackImage>
       </Mainback>
