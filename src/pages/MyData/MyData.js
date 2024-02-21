@@ -48,6 +48,7 @@ import {
   LineChart,
   MyDoughnutChart,
 } from "../../components/MyDataStyle/MyDataChart";
+import HeaderWhiteVer from "../../components/Header/HeaderWhiteVer";
 
 function MyData(props) {
   const [myAvg, setmyAvg] = useState("");
@@ -98,7 +99,7 @@ function MyData(props) {
 
   return (
     <MyDataBack>
-      <HeaderLogoutBtn />
+      <HeaderWhiteVer />
       <MyDataTitle>Ma:ah My Data</MyDataTitle>
       <LimitWrapper isFirst>
         <LimitDiv>
