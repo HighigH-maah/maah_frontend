@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { HiCardModal, ModalClose } from "../HiCard/HiCard";
 import MyHiCardAccountChange from "../HiCard/MyHiCardAccountChange";

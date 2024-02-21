@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import maahbiglogo from "../../assets/images/Logo/maah_big_logo.png";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import MemberLoad from "../Utils/SessionStorage";
 
 const HeaderDiv = styled.div`
   width: 100%;
@@ -113,27 +115,39 @@ const HeaderMenuAbout = styled.p`
 
 function HeaderLogoutBtn(props) {
   const [buttonText, setButtonText] = useState("한마음 님");
+  const [member, setMember] = useState([]);
+
+  const getMember = () => {
+    axios({
+      url: process.env.REACT_APP_API_SERVER + "/member.do",
+      method: "post",
+      data: { memberId: MemberLoad() },
+    })
+      .then((res) => {
+        //console.log(res.data);
+        setMember(res.data);
+      })
+      .catch((err) => {
+        //console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getMember();
+  }, []);
+
+  useEffect(() => {
+    if (member && member.memberName) {
+      setButtonText(`${member.memberName} 님`);
+    }
+  }, [member]);
 
   const handleMouseEnter = () => {
     setButtonText("LOGOUT");
   };
 
   const handleMouseLeave = () => {
-    setButtonText("한마음 님");
-  };
-
-  const [menuState, setMenuState] = useState({
-    my: false,
-    share: false,
-    card: false,
-    faqs: false,
-  });
-
-  const handleMenuClick = (menu) => {
-    setMenuState({
-      ...menuState,
-      [menu]: !menuState[menu],
-    });
+    setButtonText(`${member.memberName} 님`);
   };
 
   return (
@@ -143,37 +157,17 @@ function HeaderLogoutBtn(props) {
           <HeaderLogoImage src={maahbiglogo}></HeaderLogoImage>
         </Link>
         <HeaderMenuBar>
-          <Link to="" style={{ textDecoration: "none" }}>
-            <HeaderMenuMy
-              clicked={menuState.my}
-              onClick={() => handleMenuClick("my")}
-            >
-              My
-            </HeaderMenuMy>
+          <Link to="/myData" style={{ textDecoration: "none" }}>
+            <HeaderMenuMy>My</HeaderMenuMy>
           </Link>
           <Link to="/share" style={{ textDecoration: "none" }}>
-            <HeaderMenuShare
-              clicked={menuState.share}
-              onClick={() => handleMenuClick("share")}
-            >
-              Share
-            </HeaderMenuShare>
+            <HeaderMenuShare>Share</HeaderMenuShare>
           </Link>
           <Link to="/cardcompare" style={{ textDecoration: "none" }}>
-            <HeaderMenuCard
-              clicked={menuState.card}
-              onClick={() => handleMenuClick("card")}
-            >
-              Card
-            </HeaderMenuCard>
+            <HeaderMenuCard>Card</HeaderMenuCard>
           </Link>
           <Link to="" style={{ textDecoration: "none" }}>
-            <HeaderMenuAbout
-              clicked={menuState.about}
-              onClick={() => handleMenuClick("about")}
-            >
-              About us
-            </HeaderMenuAbout>
+            <HeaderMenuAbout>About us</HeaderMenuAbout>
           </Link>
         </HeaderMenuBar>
         <HeaderLogoutButton
