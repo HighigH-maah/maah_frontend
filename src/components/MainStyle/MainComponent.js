@@ -695,7 +695,7 @@ export const ByCardSectionDiv = styled.div`
 export const ByCardWrapper = styled.div`
   display: flex;
   gap: 2rem;
-  width: 50%;
+  width: 65%;
   margin-right: 1rem;
   margin-left: 3rem;
   flex-wrap: wrap;
