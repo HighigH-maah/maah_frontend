@@ -123,13 +123,6 @@ export const HiCardDesc = styled.div`
   border-radius: 12px;
   border: 1px solid #fff;
 
-  color: #fff;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 22px;
-  letter-spacing: -0.18px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -147,19 +140,38 @@ export const HiCardDesc = styled.div`
     visibility: visible;
     transition: visibility 0.5s;
   }
+
+  > p {
+    background: linear-gradient(92deg, #bfbdb7 7.01%, #f2efdf 72.28%);
+    -webkit-background-clip: text; /* 웹킷 브라우저 지원 */
+    -webkit-text-fill-color: transparent; /* 웹킷 브라우저 지원 */
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
 `;
 
 export const HiCardDescBox = styled.div`
   display: flex;
-  gap: 5px;
   width: 90%;
+  flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-
-  > img {
+  > h3 {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 90%;
+    color: #fff;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: -0.18px;
+  }
+  > h3 img {
     width: 40px;
   }
-  > p {
+  > h3 p {
     word-break: keep-all;
   }
 `;
