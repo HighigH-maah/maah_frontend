@@ -29,6 +29,7 @@ import platinumImg from "../../assets/images/Grade/platinum.png";
 import logoImg from "../../assets/images/Logo/maah_small_logo.png";
 import MyHiCardAccountChange from "./MyHiCardAccountChange";
 import { useLocation } from "react-router-dom";
+import MyHiCardInfoChangeModal from "./MyHiCardInfoChangeModal";
 
 const HiCardDiv = styled.div`
   display: flex;
@@ -373,6 +374,12 @@ function HiCard(props) {
   const [hicardInfo, setHiCardInfo] = useState([]);
   const [hicardBenefitsInfo, setHiCardBenefitsInfo] = useState([]);
   const [virtualCardExistOrNot, setVirtualCardExistOrNot] = useState([]);
+  const [isChange, setIsChange] = useState(false);
+
+  const updateChange = () => {
+    setIsChange(!isChange);
+  };
+
   useEffect(() => {
     axios({
       method: "post",
@@ -388,7 +395,7 @@ function HiCard(props) {
         console.log(err);
         console.log("실패 실패 실패 실패 실패 실패");
       });
-  }, [API_SERVER]); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
+  }, [API_SERVER, isChange]); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
 
   useEffect(() => {
     axios({
@@ -430,6 +437,7 @@ function HiCard(props) {
         hicardInfo={hicardInfo}
         hicardBenefitsInfo={hicardBenefitsInfo}
         virtualCardExistOrNot={virtualCardExistOrNot}
+        updateChange={updateChange}
       ></HiCardDetail>
     );
   }
@@ -440,6 +448,7 @@ function HiCardDetail({
   hicardBenefitsInfo,
   virtualCardExistOrNot,
   setVirtualCardExistOrNot,
+  updateChange,
 }) {
   const [openAccordions, setOpenAccordions] = useState([]);
   const [isMyPaymentHistoryModalOpen, setIsMyPaymentHistoryModalOpen] =
@@ -450,6 +459,8 @@ function HiCardDetail({
     useState(false);
   const [isVirtualCardNumViewModalOpen, setIsVirtualCardNumViewModalOpen] =
     useState(false);
+
+  const [isInfoChangeModalOpen, setIsInfoChangeModalOpen] = useState(false);
 
   const toggleAccordion = (index) => {
     if (openAccordions.includes(index)) {
@@ -477,6 +488,10 @@ function HiCardDetail({
     setIsVirtualCardNumViewModalOpen(true);
   };
 
+  const openIsInfoChangeModal = () => {
+    setIsInfoChangeModalOpen(true);
+  };
+
   const closeMyPaymentHistoryModal = () => {
     setIsMyPaymentHistoryModalOpen(false);
   };
@@ -488,6 +503,10 @@ function HiCardDetail({
   };
   const closeVirtualCardNumViewModal = () => {
     setIsVirtualCardNumViewModalOpen(false);
+  };
+
+  const closeIsInfoChangeModal = () => {
+    setIsInfoChangeModalOpen(false);
   };
 
   function getImageForBenefit(benefitName) {
@@ -578,6 +597,9 @@ function HiCardDetail({
                   나의 결제 이력
                 </button>
                 <div>
+                  <p className="accountChange" onClick={openIsInfoChangeModal}>
+                    카드정보변경
+                  </p>
                   <p
                     className="accountChange"
                     onClick={openMyAccountChangeModal}
@@ -630,6 +652,24 @@ function HiCardDetail({
                       onClick={closeMyAccountChangeModal}
                     ></ModalClose>
                     <MyHiCardAccountChange></MyHiCardAccountChange>
+                  </HiCardModal>
+                </ModalBackground>
+              )}
+
+              {/* MyInfoChange 모달 */}
+              {isInfoChangeModalOpen && (
+                <ModalBackground>
+                  <HiCardModal>
+                    <ModalClose
+                      src={close}
+                      clicked={isInfoChangeModalOpen.toString()}
+                      onClick={closeIsInfoChangeModal}
+                    ></ModalClose>
+                    <MyHiCardInfoChangeModal
+                      info={hicardInfo}
+                      updateChange={updateChange}
+                      closeIsInfoChangeModal={closeIsInfoChangeModal}
+                    ></MyHiCardInfoChangeModal>
                   </HiCardModal>
                 </ModalBackground>
               )}

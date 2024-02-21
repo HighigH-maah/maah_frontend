@@ -19,6 +19,7 @@ import MyByCard from "./pages/MyByCard/MyByCard";
 import ByCard from "./pages/ByCard/ByCard";
 import ScrollToTop from "./components/Utils/ScrollToTop";
 import MemberLoad from "./components/Utils/SessionStorage";
+import DragTest from "./pages/Share/DragTest";
 // import MyHiCardAccountChange from "./components/HiCard/MyHiCardAccountChange";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -42,6 +43,7 @@ root.render(
       <Route path="/myHiCardDetail" element={<HiCard />}></Route>
       <Route path="/myByCardDetail" element={<MyByCard />}></Route>
       <Route path="/byCardDetail/:byCardCode" element={<ByCard />}></Route>
+      <Route path="/drag" element={<DragTest />}></Route>
     </Routes>
   </BrowserRouter>
 );

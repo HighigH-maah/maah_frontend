@@ -644,6 +644,7 @@ function ByCardDetail({
                         <MyByCardGoalChange
                           info={bycardInfo}
                           updateChange={updateChange}
+                          closeMyGoalChangeModal={closeMyGoalChangeModal}
                         ></MyByCardGoalChange>
                       </ByCardModal>
                     </ModalBackground>

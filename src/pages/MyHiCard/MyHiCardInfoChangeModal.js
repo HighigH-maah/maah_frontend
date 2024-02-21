@@ -1,9 +1,8 @@
 import axios from "axios";
-import { func } from "prop-types";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-const MyGoalChangeDiv = styled.div`
+const MyInfoChangeDiv = styled.div`
     box-sizing: border-box;
     padding: 3rem;
     width: 1000px;
@@ -100,45 +99,40 @@ const CurrentInfo = styled.div`
   }
 `;
 
-function MyByCardGoalChange(props) {
-  const API_SERVER = process.env.REACT_APP_API_SERVER;
-  const [byInfo, setByInfo] = useState(() => props.info);
+function MyHiCardInfoChangeModal(props) {
+  const [hiInfo, setByInfo] = useState(() => props.info);
   useEffect(() => {
     console.log(props.info);
-  }, [byInfo]);
+  }, [hiInfo]);
 
   return (
-    <ByCardGoalChange
-      byInfo={byInfo}
+    <MyInfoChange
+      hiInfo={hiInfo}
       updateChange={props.updateChange}
-      closeMyGoalChangeModal={props.closeMyGoalChangeModal}
-    ></ByCardGoalChange>
+      closeIsInfoChangeModal={props.closeIsInfoChangeModal}
+    >
+      ㅇㅇㅇㅇ
+    </MyInfoChange>
   );
 }
 
-function ByCardGoalChange({ byInfo, updateChange, closeMyGoalChangeModal }) {
-  const [nickname, setNickname] = useState(byInfo.memberCardByNickname);
-  const [byGoal, setByGoal] = useState(() => byInfo.memberByPointGoal);
-  const [byRank, setByRank] = useState(() => byInfo.memberByRank);
+function MyInfoChange({ hiInfo, updateChange, closeIsInfoChangeModal }) {
+  const [nickname, setNickname] = useState(hiInfo.memberHiNickname);
 
   const cardInfoUpdate = () => {
     console.log(nickname);
-    console.log(byGoal);
-    console.log(byRank);
 
     axios
-      .post(process.env.REACT_APP_API_SERVER + "/updateByCardInfo.do", {
-        memberByNumber: byInfo.memberByNumber,
-        memberByRank: byRank,
-        memberByPointGoal: byGoal,
-        memberCardByNickname: nickname,
+      .post(process.env.REACT_APP_API_SERVER + "/updateHicardInfo.do", {
+        memberHiNumber: hiInfo.memberHiNumber,
+        memberCardHiNickname: nickname,
       })
       .then(function (res) {
         console.log(res.data);
         if (res.data === 1) {
           updateChange();
           alert("변경 성공");
-          closeMyGoalChangeModal();
+          closeIsInfoChangeModal();
         }
       })
       .catch(function (error) {
@@ -147,14 +141,14 @@ function ByCardGoalChange({ byInfo, updateChange, closeMyGoalChangeModal }) {
   };
 
   return (
-    <MyGoalChangeDiv>
-      <div className="modalTitle">By:Card 정보 변경</div>
+    <MyInfoChangeDiv>
+      <div className="modalTitle">Hi:Card 정보 변경</div>
       <CurrentInfo>
         <p>변경정보 대상카드</p>
         <div className="currentCardInfoDiv">
           <div className="currentCardInfo">
             <p className="title">카드번호</p>
-            <p className="value">{byInfo.memberByNumber}</p>
+            <p className="value">{hiInfo.memberHiNumber}</p>
           </div>
           <div className="currentCardInfo">
             <p className="title">카드별명</p>
@@ -165,22 +159,13 @@ function ByCardGoalChange({ byInfo, updateChange, closeMyGoalChangeModal }) {
               onChange={(e) => setNickname(e.target.value)}
             />
           </div>
-          <div className="currentCardInfo">
-            <p className="title">목표 By:Point</p>
-            <input
-              type="number"
-              className="value"
-              value={byGoal}
-              onChange={(e) => setByGoal(e.target.value)}
-            />
-          </div>
           <div className="accountChangeBtn" onClick={cardInfoUpdate}>
             카드정보변경
           </div>
         </div>
       </CurrentInfo>
-    </MyGoalChangeDiv>
+    </MyInfoChangeDiv>
   );
 }
 
-export default MyByCardGoalChange;
+export default MyHiCardInfoChangeModal;

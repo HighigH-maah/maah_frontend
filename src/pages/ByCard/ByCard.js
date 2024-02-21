@@ -22,6 +22,7 @@ import logoImg from "../../assets/images/Logo/maah_small_logo.png";
 import Footer from "../../components/Footer/Footer";
 import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
 import { useParams } from "react-router-dom";
+import CardApplicationTerms from "../CardApplicationTerms/CardApplicationTerms";
 
 const ByCardDiv = styled.div`
   display: flex;
@@ -284,6 +285,16 @@ const Category = styled.div`
     flex-shrink: 0;
   }
 `;
+const ModalWrap = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 투명한 검은색 배경 */
+  z-index: 1000; /* 모달보다 뒤에 위치 */
+  visibility: hidden;
+`;
 
 function ByCard(props) {
   const API_SERVER = process.env.REACT_APP_API_SERVER;
@@ -334,6 +345,7 @@ function ByCard(props) {
 
 function ByCardDetail({ bycardInfo, bycardBenefitsInfo }) {
   const [openAccordions, setOpenAccordions] = useState([]);
+  const [openCardApplyModal, setOpenCardApplyModal] = useState(false);
 
   const toggleAccordion = (index) => {
     if (openAccordions.includes(index)) {
@@ -343,6 +355,12 @@ function ByCardDetail({ bycardInfo, bycardBenefitsInfo }) {
       // If accordion is closed, open it
       setOpenAccordions([...openAccordions, index]);
     }
+  };
+
+  const openCardApply = (prop) => {
+    setOpenCardApplyModal(!openCardApplyModal);
+    let modal = document.getElementById("cardApplicationTerms");
+    modal.style.visibility = "visible";
   };
 
   function getImageForBenefit(benefitName) {
@@ -410,7 +428,7 @@ function ByCardDetail({ bycardInfo, bycardBenefitsInfo }) {
                   </ByBenefit>
                 ))}
               <ByCardBtn>
-                <button>카드 신청</button>
+                <button onClick={openCardApply}>카드 신청</button>
               </ByCardBtn>
             </ByCardDetailRight>
           </ByCardDetailInnerDiv>
@@ -424,6 +442,12 @@ function ByCardDetail({ bycardInfo, bycardBenefitsInfo }) {
             </div>
             <div className="cardType">mastercard</div>
           </ByCardLimit>
+          <ModalWrap id="cardApplicationTerms">
+            <CardApplicationTerms
+              card={bycardInfo.byCode}
+              type="by"
+            ></CardApplicationTerms>
+          </ModalWrap>
         </ByCardDetailOuterDiv>
 
         {/* {bycardInfo &&
@@ -500,6 +524,7 @@ function ByCardDetail({ bycardInfo, bycardBenefitsInfo }) {
           </div>
         ))}
       </ByCardDiv>
+
       <Footer position="relative" top="0rem"></Footer>
     </>
   );

@@ -191,7 +191,15 @@ function Share(props) {
               >
                 <ReverseIcon src={reverse}></ReverseIcon>
               </ReverseButton>
-              <Link to="/hiCardDetail" style={{ textDecoration: "none" }}>
+              <Link
+                to="/myHiCardDetail"
+                state={{
+                  memberHiNumber: card.hicard
+                    ? card.hicard.memberHiNumber
+                    : null,
+                }}
+                style={{ textDecoration: "none" }}
+              >
                 <LearnMore>
                   Learn More
                   <LearnMoreArrow />
