@@ -13,6 +13,7 @@ import {
   DataView,
   DataViewZone,
   ForNow,
+  Level,
   LevelDiv,
   LevelPic,
   LevelTitle,
@@ -29,6 +30,7 @@ import {
   SaleForMonth,
   Sorting,
   ToNext,
+  ToNextImg,
   ToNextSub,
 } from "../../components/MyDataStyle/MyDataComponent";
 import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
@@ -36,7 +38,12 @@ import Footer from "../../components/Footer/Footer";
 import axios from "axios";
 import blackvelvet from "../../assets/images/black_velvet.png";
 import bronze from "../../assets/icon/bronze.png";
+import silver from "../../assets/icon/silver.png";
+import gold from "../../assets/icon/gold.png";
+import platinum from "../../assets/icon/platinum.png";
 import Select from "react-select";
+
+import nextBack from "../../assets/images/nextLevelBack.png";
 import {
   LineChart,
   MyDoughnutChart,
@@ -102,16 +109,30 @@ function MyData(props) {
           <DataTitle>평균사용량</DataTitle> <DataView>{myAvg}</DataView>
           <DataDesc>2월까지의 평균 사용 금액</DataDesc>
           <LevelDiv>
-            <LevelPic level={bronze} />
-            <LevelTitle>{myNextLevel.memberClass}</LevelTitle>
+            {myNextLevel.memberClass === "SILVER" && (
+              <LevelPic level={silver} />
+            )}
+            {myNextLevel.memberClass === "GOLD" && <LevelPic level={gold} />}
+            {myNextLevel.memberClass === "BRONZE" && (
+              <LevelPic level={bronze} />
+            )}
+            {myNextLevel.memberClass === "PLATINUM" && (
+              <LevelPic level={platinum} />
+            )}
+            <LevelTitle level={myNextLevel.memberClass}>
+              {myNextLevel.memberClass}
+            </LevelTitle>
           </LevelDiv>
         </LimitDiv>
         <LimitDiv>
+          <img src={nextBack} alt={nextBack} />
+
           <ToNext>{myNextLevel.toNextClass}</ToNext>
           <ToNextSub>{myNextLevel.nextClass}까지 남은 금액</ToNextSub>
 
           <ForNow>
-            현재 사용 금액 <span>{myNextLevel.priceHasUsed}</span>
+            <span>사용한 금액</span>
+            <span>{myNextLevel.priceHasUsed}</span>
           </ForNow>
         </LimitDiv>
       </LimitWrapper>

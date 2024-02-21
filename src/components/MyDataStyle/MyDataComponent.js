@@ -1,5 +1,8 @@
 import styled from "styled-components";
-
+import bronze from "../../assets/icon/bronze.png";
+import silver from "../../assets/icon/silver.png";
+import gold from "../../assets/icon/gold.png";
+import platinum from "../../assets/icon/platinum.png";
 export const MyDataBack = styled.div`
   width: auto;
   height: auto;
@@ -261,15 +264,40 @@ const getLevelColor = (memberClass) => {
   }
 };
 
+export const levelBack = styled.div``;
+export const Level = styled.image`
+  width: 100px;
+`;
+export const LevelImg = styled.image`
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  width: 100px;
+  height: 100px;
+  align-items: center;
+`;
+
 export const LevelTitle = styled.p`
-  color: #700002;
   font-size: 20px;
   font-style: normal;
   font-weight: bold;
   line-height: 18px;
   letter-spacing: -0.5px;
+  color: ${(props) => {
+    switch (props.level) {
+      case "SILVER":
+        return "grey";
+      case "GOLD":
+        return "#B4AD98";
+      case "BRONZE":
+        return "#730000";
+      case "PLATINUM":
+        return "#87D4C6";
+      default:
+        return "#000000";
+    }
+  }};
 `;
-
 export const LevelDiv = styled.div`
   display: flex;
   align-items: flex-end;
