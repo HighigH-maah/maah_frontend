@@ -78,7 +78,11 @@ function CardApplicationTerms({card, type}) {
       }
     }
     if(isChecked) {
-      navigate("/cardApplication", {state: { card: card, type: type }});
+      navigate("/cardApplication", {state: { 
+        card: card, 
+        type: type,
+        applyIsTermsOfService: terms[2].checked ? true : false
+      }});
     }
   };
 

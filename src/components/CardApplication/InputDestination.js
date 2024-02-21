@@ -4,6 +4,7 @@ import logo from "../../assets/images/maah_logo.png";
 import x from "../../assets/icon/x_icon.png";
 import { useNavigate } from 'react-router';
 import DaumPostcode from 'react-daum-postcode';
+import axios from 'axios';
 
 const Background = styled.div`
   background: linear-gradient(180deg, #f1f1f1 37.44%, #b2b2b2 100%);
@@ -244,13 +245,18 @@ const ApplicationResult = styled.div`
   }
 `;
 
-function InputDestination({setProcess}) {
+function InputDestination({setProcess, setCardApply, cardApply}) {
   const navigate = useNavigate();
   const [zonecode, setZonecode] = useState();
   const [roadAddress, setRoadAddress] = useState();
+  const [addressDetail, setAddressDetail] = useState("");
   const [viewModal, setViewModal] = useState(false);
   const [applicationComp, setApplicationComp] = useState(false);
-  const [date, setDate] = useState();
+  const [password, setPassword] = useState(false);
+  const [image, setImage] = useState("");
+  const [cardName, setCardName] = useState("");
+  const API_SERVER = process.env.REACT_APP_API_SERVER;
+  let date = new Date();
 
   const gotoPrev = () => {
     setProcess(4);
@@ -261,10 +267,33 @@ function InputDestination({setProcess}) {
   }
 
   const complete = () => {
-    setDate(new Date());
-    let modal = document.getElementById('address');
-    setApplicationComp(true);
-    modal.style.visibility = 'visible';
+    if(password) {
+      date = new Date();
+      setCardApply({
+        ...cardApply,
+        cardApplyAddress: '(' + zonecode + ') ' + roadAddress + ' ' + addressDetail,
+        cardApplyPassword: document.getElementsByClassName('pwd')[0].value
+      });
+      axios
+      .post(API_SERVER + "/cardApply", {
+        ...cardApply,
+        cardApplyAddress: '(' + zonecode + ') ' + roadAddress + ' ' + addressDetail,
+        cardApplyDate: date,
+        cardApplyPassword: document.getElementsByClassName('pwd')[0].value
+      })
+      .then(function (res) {
+        setImage(res.data['hiCardImageFrontPath']);
+        setCardName(res.data['hiCardImageName']);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+      let modal = document.getElementById('address');
+      setApplicationComp(true);
+      modal.style.visibility = 'visible';
+    } else {
+      alert("비밀번호를 다시 확인해주세요.");
+    }
   }
 
   const displayModal = () => {
@@ -287,6 +316,14 @@ function InputDestination({setProcess}) {
     setViewModal(false);
   }
 
+  const checkPassword = () => {
+    if(document.getElementsByClassName('pwd')[0].value.length === 4 
+      && document.getElementsByClassName('pwd')[0].value === document.getElementsByClassName('pwd')[1].value) {
+        setPassword(true);
+    } else {
+      setPassword(false);
+    }
+  }
 
     return (
       <>
@@ -314,7 +351,7 @@ function InputDestination({setProcess}) {
                         </ZoneCodeWrap>
                         <AddressDetailWrap>
                           <input type='text' value={roadAddress} readOnly onClick={displayModal}></input>
-                          <input type='text' placeholder='(상세주소)'></input>
+                          <input type='text' placeholder='(상세주소)' onChange={(e) => {setAddressDetail(e.target.value)}}></input>
                         </AddressDetailWrap>
                       </div>
                     </AddressWrap>
@@ -326,11 +363,11 @@ function InputDestination({setProcess}) {
                     <div>카드 비밀번호 설정</div>
                     <div>
                         <div>카드 비밀번호</div>
-                        <input type='password'></input>
+                        <input className='pwd' type='password'></input>
                     </div>
                     <div>
                         <div>비밀번호 확인</div>
-                        <input type='password'></input>
+                        <input className='pwd' type='password' onChange={checkPassword}></input>
                     </div>
                 </PasswordWrap>
 
@@ -353,8 +390,8 @@ function InputDestination({setProcess}) {
         <CompleteBody>
             <div>카드 신청 완료</div>
             <Card>
-                <img src='https://maah-s3.s3.ap-northeast-2.amazonaws.com/Cards/black_velvet.png' alt='card'></img>
-                <div>BLACK VELVET</div>
+                <img src={image} alt='hicard'></img>
+                <div>{cardName}</div>
             </Card>
             <ApplicationResult>
                 <div>정상적으로 신청 되었습니다.</div>
