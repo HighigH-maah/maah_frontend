@@ -13,7 +13,7 @@ const HeaderDiv = styled.div`
   box-sizing: border-box;
   top: 3rem;
   justify-content: center;
-  z-index: 10;
+  //z-index: 10;
 `;
 
 const HeaderLogoMenuDiv = styled.div`
