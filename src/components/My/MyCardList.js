@@ -620,7 +620,7 @@ export const MyByCardAllSection = styled.div`
 `;
 
 export const MyCardListHiSection = () => {
-  const [myCardHi, setMyCardHi] = useState({});
+  const [myCardHi, setMyCardHi] = useState([]);
 
   const getMyHiCard = () => {
     axios({

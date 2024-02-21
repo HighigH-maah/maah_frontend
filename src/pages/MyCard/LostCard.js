@@ -89,7 +89,6 @@ const LostCardImageBox = styled.div`
 const LostCardImage = styled.img`
   margin-bottom: 1rem;
   box-sizing: border-box;
-  padding-bottom: 1.9385rem;
   width: 100%;
   height: 30rem;
   overflow: hidden;
@@ -183,7 +182,7 @@ export const LostCardModalSet = styled.div`
 `;
 
 function LostCard(props) {
-  const [lostCardChooseList, setLostCardChooseList] = useState({});
+  const [lostCardChooseList, setLostCardChooseList] = useState([]);
   const [selectedCard, setSelectedCard] = useState("");
   const [isLostCardModalOpen, setIsLostCardModalOpen] = useState(false);
 
@@ -266,11 +265,22 @@ function LostCard(props) {
     );
   };
 
-  const handleImageClick = (selectedCard) => {
+  const handleImageClick = (selectedCard, index) => {
     console.log(
+      index.target,
       "선택한 카드의 memberCardNumber:",
       selectedCard.memberCardNumber
     );
+    let cardList = document.getElementsByClassName("paste-image-here-tG5");
+    for (let i = 0; i < cardList.length; i++) {
+      if (index.target === cardList[i]) {
+        cardList[i].style.transform = "scale(1.05)";
+        cardList[i].style.boxShadow = "0 0 60px rgba(0, 0, 0, 0.7)";
+      } else {
+        cardList[i].style.transform = "";
+        cardList[i].style.boxShadow = "";
+      }
+    }
     // 여기서 memberCardNumber 값을 다른 함수나 API 호출 등에 사용할 수 있습니다.
     // 원하는 동작을 수행하세요.
     setSelectedCard(selectedCard);
@@ -303,6 +313,7 @@ function LostCard(props) {
                 key={index}
                 lostCardChooseList={lostCardChooseList}
                 handleImageClick={handleImageClick} // handleImageClick 함수를 전달합니다.
+                index={index}
               />
             ))}
         </LostCardMiddleSection>
@@ -332,15 +343,15 @@ function LostCard(props) {
   );
 }
 
-const LostCardImageList = ({ lostCardChooseList, handleImageClick }) => {
-  const handleClick = () => {
-    handleImageClick(lostCardChooseList);
+const LostCardImageList = ({ lostCardChooseList, handleImageClick, index }) => {
+  const handleClick = (index) => {
+    handleImageClick(lostCardChooseList, index);
   };
 
   return (
     <LostCardImageBox onClick={handleClick}>
       <LostCardImage
-        class="paste-image-here-tG5"
+        className="paste-image-here-tG5"
         src={lostCardChooseList.cardImageFrontPath}
         alt="카드 이미지"
       ></LostCardImage>
