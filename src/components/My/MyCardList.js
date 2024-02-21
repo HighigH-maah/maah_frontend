@@ -617,7 +617,7 @@ export const MyCardListHiSection = () => {
 
   const getMyHiCard = () => {
     axios({
-      url: "/getMyCardListHi.do",
+      url: process.env.REACT_APP_API_SERVER + "/getMyCardListHi.do",
       method: "post",
       data: { memberId: "user2" },
     })
