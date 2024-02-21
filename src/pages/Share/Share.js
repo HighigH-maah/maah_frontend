@@ -48,6 +48,7 @@ import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
 import Footer from "../../components/Footer/Footer";
 import { position } from "stylis";
 import { Link, useNavigate } from "react-router-dom";
+import MemberLoad from "../../components/Utils/SessionStorage";
 
 function Share(props) {
   const [blackVelvet, setBlackVelvet] = useState(true);
@@ -62,13 +63,14 @@ function Share(props) {
   const [isChange, setIsChange] = useState(false);
   const navigate = useNavigate();
   const API_SERVER = process.env.REACT_APP_API_SERVER;
+
   useEffect(() => {
     console.log("effect 1번");
     // setIsChange(false);
 
     axios
       .post(API_SERVER + "/getmemberHiCard.do", {
-        memberId: "user3",
+        memberId: MemberLoad(),
       })
       .then(function (res) {
         console.log("----", res.data);
@@ -235,6 +237,10 @@ function Share(props) {
                           ))
                         : ""}
                     </ByBottomDesc>
+                    <Link
+                      to="/byCardDetail"
+                      style={{ textDecoration: "none" }}
+                    ></Link>
                     <ByBottomBtn>
                       Learn More
                       <LearnMoreArrow />

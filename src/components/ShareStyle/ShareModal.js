@@ -24,6 +24,7 @@ import culture_white from "../../assets/icon/culture_white.png";
 import { selectIcon } from "../../assets/js/IconSelect";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import MemberLoad from "../Utils/SessionStorage";
 function ShareModal({ isOpen, closeModal, hiCard, openCard, updateChange }) {
   const [inputValue, setInputValue] = useState("");
   const [returnValue, setReturnValue] = useState("");
@@ -62,7 +63,7 @@ function ShareModal({ isOpen, closeModal, hiCard, openCard, updateChange }) {
     console.log(returnValue);
     axios
       .post(process.env.REACT_APP_API_SERVER + "/returnByPoint.do", {
-        memberId: "user3",
+        memberId: MemberLoad(),
         byCardNumber: openCard.memberByNumber,
         amount: returnValue,
       })
@@ -106,6 +107,10 @@ function ShareModal({ isOpen, closeModal, hiCard, openCard, updateChange }) {
           <PointWrapper>
             <p>By:Card Point</p>
             <span>{byPoint}</span>
+          </PointWrapper>
+          <PointWrapper>
+            <p>By:Point Goal</p>
+            <span>{openCard.memberByPointGoal}</span>
           </PointWrapper>
           <InputWrapper>
             <input value={inputValue} onChange={handleInputChange} />
