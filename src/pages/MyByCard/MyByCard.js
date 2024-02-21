@@ -26,6 +26,7 @@ import Footer from "../../components/Footer/Footer";
 import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
 import MyByCardAccountChange from "./MyByCardAccountChange";
 import { useLocation } from "react-router-dom";
+import MyByCardGoalChange from "./MyByCardGoalChange";
 
 const ByCardDiv = styled.div`
   display: flex;
@@ -192,7 +193,16 @@ div {
   align-items: center;
   flex-shrink: 0;
 }
-
+.goalChange{
+  margin-right: 2rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #000000;
+  white-space: nowrap;
+  flex-shrink: 0;
+  cursor: pointer;
+}
 .accountChange {
   text-align: center;
   font-size: 1.2rem;
@@ -359,7 +369,11 @@ function MyByCard(props) {
   const [bycardInfo, setByCardInfo] = useState([]);
   const [bycardBenefitsInfo, setByCardBenefitsInfo] = useState([]);
   const [isConnectHiOrNot, setisConnectHiOrNot] = useState([]);
+  const [isChange, setIsChange] = useState(false);
 
+  const updateChange = () => {
+    setIsChange(!isChange);
+  };
   useEffect(() => {
     axios({
       method: "post",
@@ -409,7 +423,7 @@ function MyByCard(props) {
         console.log(err);
         console.log("실패 실패 실패 실패 실패 실패");
       });
-  }, [API_SERVER]); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
+  }, [API_SERVER, isChange]); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
 
   useEffect(() => {
     axios({
@@ -439,6 +453,7 @@ function MyByCard(props) {
       bycardInfo={bycardInfo}
       bycardBenefitsInfo={bycardBenefitsInfo}
       isConnectHiOrNot={isConnectHiOrNot}
+      updateChange={updateChange}
     ></ByCardDetail>
   );
 }
@@ -448,12 +463,15 @@ function ByCardDetail({
   bycardInfo,
   bycardBenefitsInfo,
   isConnectHiOrNot,
+  updateChange,
 }) {
   const [openAccordions, setOpenAccordions] = useState([]);
   const [isMyPaymentHistoryModalOpen, setIsMyPaymentHistoryModalOpen] =
     useState(false);
   const [isMyAccountChangeModalOpen, setIsMyAccountChangeModalOpen] =
     useState(false);
+
+  const [isMyGoalChangeModalOpen, setIsMyGoalChangeModalOpen] = useState(false);
 
   const toggleAccordion = (index) => {
     if (openAccordions.includes(index)) {
@@ -473,11 +491,19 @@ function ByCardDetail({
     setIsMyAccountChangeModalOpen(true);
   };
 
+  const openMyGoalChangeModal = () => {
+    setIsMyGoalChangeModalOpen(true);
+  };
+
   const closeMyPaymentHistoryModal = () => {
     setIsMyPaymentHistoryModalOpen(false);
   };
   const closeMyAccountChangeModal = () => {
     setIsMyAccountChangeModalOpen(false);
+  };
+
+  const closeMyGoalChangeModal = () => {
+    setIsMyGoalChangeModalOpen(false);
   };
 
   function getImageForBenefit(benefitName) {
@@ -565,6 +591,9 @@ function ByCardDetail({
                       나의 결제 이력
                     </button>
                     <div>
+                      <p className="goalChange" onClick={openMyGoalChangeModal}>
+                        카드정보변경
+                      </p>
                       <p
                         className="accountChange"
                         onClick={openMyAccountChangeModal}
@@ -600,6 +629,22 @@ function ByCardDetail({
                           onClick={closeMyAccountChangeModal}
                         ></ModalClose>
                         <MyByCardAccountChange></MyByCardAccountChange>
+                      </ByCardModal>
+                    </ModalBackground>
+                  )}
+                  {/* MyGoalChange 모달 */}
+                  {isMyGoalChangeModalOpen && (
+                    <ModalBackground>
+                      <ByCardModal>
+                        <ModalClose
+                          src={close}
+                          clicked={isMyGoalChangeModalOpen.toString()}
+                          onClick={closeMyGoalChangeModal}
+                        ></ModalClose>
+                        <MyByCardGoalChange
+                          info={bycardInfo}
+                          updateChange={updateChange}
+                        ></MyByCardGoalChange>
                       </ByCardModal>
                     </ModalBackground>
                   )}

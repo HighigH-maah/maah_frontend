@@ -238,13 +238,19 @@ function Share(props) {
                         : ""}
                     </ByBottomDesc>
                     <Link
-                      to="/byCardDetail"
-                      style={{ textDecoration: "none" }}
-                    ></Link>
-                    <ByBottomBtn>
-                      Learn More
-                      <LearnMoreArrow />
-                    </ByBottomBtn>
+                      to="/myByCardDetail"
+                      state={{ memberByNumber: card.memberByNumber }}
+                      style={{
+                        textDecoration: "none",
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <ByBottomBtn>
+                        Learn More
+                        <LearnMoreArrow />
+                      </ByBottomBtn>
+                    </Link>
                   </ByBottomCardArea>
                 ))
               : ""}
