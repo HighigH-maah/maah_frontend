@@ -56,6 +56,7 @@ function MyData(props) {
   const [myCompare, setmyCompare] = useState([]);
   const [myLimit, setmyLimit] = useState([]);
   const [myNextLevel, setmyNextLevel] = useState([]);
+  const [hicard, setHiCard] = useState("");
 
   const options = [
     { value: "Newest", label: "Sort by Newest" },
@@ -69,6 +70,7 @@ function MyData(props) {
       })
       .then((res) => {
         console.log(res.data);
+        setHiCard(res.data.myHiCardImage);
         setmyAvg(res.data.myAvg);
         setmyCardForMonth(res.data.myCardForMonth);
         setmyCategoryView(res.data.myCategoryView);
@@ -85,7 +87,7 @@ function MyData(props) {
         {myCardForMonth &&
           myCardForMonth.map((card, index) => (
             <CardInfoDesc key={index}>
-              <CardSemiPic image={blackvelvet} />
+              <CardSemiPic image={card.byCardImage} />
               <CardName>{card.byCardName}</CardName>
               <Price>{new Intl.NumberFormat().format(card.point)}</Price>
             </CardInfoDesc>
@@ -103,7 +105,7 @@ function MyData(props) {
           <DataTitle>한도현황</DataTitle>
           <DataView>{myLimit.limitedAmount}</DataView>
           <DataDesc>남은 금액 {myLimit.historyAmount}</DataDesc>
-          <CardLimitPic image={blackvelvet} />
+          <CardLimitPic image={hicard} />
         </LimitDiv>
         <LimitDiv>
           <DataTitle>평균사용량</DataTitle> <DataView>{myAvg}</DataView>
