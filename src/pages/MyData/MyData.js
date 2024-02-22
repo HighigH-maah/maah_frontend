@@ -55,6 +55,7 @@ import {
 import HeaderWhiteVer from "../../components/Header/HeaderWhiteVer";
 
 function MyData(props) {
+  const API_SERVER = process.env.REACT_APP_API_SERVER;
   const [myAvg, setmyAvg] = useState("");
   const [myCardForMonth, setmyCardForMonth] = useState([]);
   const [myCategoryView, setmyCategoryView] = useState([]);
@@ -69,10 +70,11 @@ function MyData(props) {
   ];
 
   useEffect(() => {
-    axios
-      .post("/getMyData.do", {
-        memberId: "user2",
-      })
+    axios({
+      method: "post",
+      url: API_SERVER + "/getMyData.do",
+      data: { memberId: "user2" },
+    })
       .then((res) => {
         console.log(res.data);
         setHiCard(res.data.myHiCardImage);

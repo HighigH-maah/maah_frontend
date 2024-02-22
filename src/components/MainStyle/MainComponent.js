@@ -41,6 +41,7 @@ import nasabanner from "../../assets/images/banner-nasa.png";
 import blackvelvetbanner from "../../assets/images/banner-blackvelvet.png";
 import whitevelvetbanner from "../../assets/images/banner-whitevelvet.png";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 const Arrows = styled.div`
   position: absolute;
   top: 50%;
@@ -62,14 +63,14 @@ export const ArrowLeft = styled(ArrowBase)``;
 export const ArrowRight = styled(ArrowBase)``;
 const banners = [blackvelvetbanner, whitevelvetbanner, nasabanner, unionbanner];
 export const TopSection = () => {
+  const API_SERVER = process.env.REACT_APP_API_SERVER;
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [hicardCode, setHiCardCode] = useState(0);
+  const [hicardNumber, setHicardNumber] = useState(0);
   const navigate = useNavigate();
-
   const handleBannerClick = (idx) => {
-    console.log("핸들배너 클릭", idx);
     clearInterval(interval); // Clear the interval to stop automatic sliding
     setCurrentSlide(idx);
-    console.log(banners[idx]);
 
     const clickedBannerPath = banners[idx];
 
@@ -78,9 +79,43 @@ export const TopSection = () => {
     } else if (clickedBannerPath.includes("union")) {
       navigate(`/byCardDetail/${9}`);
     } else {
-      // Handle other banners if needed
+      axios
+        .post(API_SERVER + "/getMemberInfo.do", {
+          memberId: "user2",
+        })
+        .then(function (res) {
+          console.log(res.data);
+          setHiCardCode(res.data.hiCardImageCode);
+          setHicardNumber(res.data.myHiNumber);
+
+          if (
+            (res.data.hiCardImageCode === 2 && idx === 1) ||
+            (res.data.hiCardImageCode === 1 && idx === 0)
+          ) {
+            console.log("2번입니다", res.data.hiCardImageCode);
+          } else {
+            console.log("하이카드가 아예 없기땨문에 신청으로 넘어감");
+            navigate("/hiCard");
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   };
+
+  useEffect(() => {
+    if (
+      (hicardCode === 2 && currentSlide === 1) ||
+      (hicardCode === 1 && currentSlide === 0)
+    ) {
+      navigate(`/myHiCardDetail/`, {
+        state: {
+          memberHiNumber: hicardNumber,
+        },
+      });
+    }
+  }, [hicardCode, currentSlide, hicardNumber, navigate]);
 
   const handleNextSlide = () => {
     const nextSlide = (currentSlide + 1) % banners.length;
