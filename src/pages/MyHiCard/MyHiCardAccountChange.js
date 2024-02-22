@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import MemberLoad from "../Utils/SessionStorage";
+import MemberLoad from "../../components/Utils/SessionStorage";
 //import axios from "axios";
 
 const MyAccountChangeDiv = styled.div`

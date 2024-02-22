@@ -16,7 +16,6 @@ import MyData from "./pages/MyData/MyData";
 import CardApplication from "./pages/CardApplication/CardApplication";
 import MyByCard from "./pages/MyByCard/MyByCard";
 import ByCard from "./pages/ByCard/ByCard";
-import MyHiCardAccountChange from "./components/HiCard/MyHiCardAccountChange";
 import LostCard from "./pages/MyCard/LostCard";
 import ScrollToTop from "./components/Utils/ScrollToTop";
 import MemberLoad from "./components/Utils/SessionStorage";

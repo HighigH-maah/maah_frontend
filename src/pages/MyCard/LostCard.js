@@ -4,9 +4,10 @@ import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
 import Footer from "../../components/Footer/Footer";
 import axios from "axios";
 import LostCardModal from "./LostCardModal";
-import { ModalBackground, ModalClose } from "../../components/HiCard/HiCard";
 import close from "../../assets/images/close.png";
 import MemberLoad from "../../components/Utils/SessionStorage";
+import { ModalBackground } from "../ByCard/ByCard";
+import { ModalClose } from "../MyHiCard/HiCard";
 
 const LostCardDiv = styled.div`
   width: 100%;

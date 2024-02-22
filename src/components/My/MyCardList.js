@@ -11,9 +11,9 @@ import platinumImg from "../../assets/images/Grade/platinum.png";
 import VirtualCardApply from "../../pages/MyHiCard/VirtualCardApply";
 import MyPaymentHistory from "../../pages/MyHiCard/MyPaymentHistory";
 import { Link } from "react-router-dom";
-import MyByCardAccountChange from "../../pages/ByCard/MyByCardAccountChange";
 import { ByCardModal, ModalBackground } from "../../pages/ByCard/ByCard";
 import MemberLoad from "../Utils/SessionStorage";
+import MyByCardAccountChange from "../../pages/MyByCard/MyByCardAccountChange";
 
 export const MyCardListDiv = styled.div`
   width: 100%;
