@@ -56,7 +56,7 @@ const FooterMain = styled.p`
   font-weight: 400;
   line-height: 1.5;
   letter-spacing: -0.048rem;
-  color: #adb2b1;
+  color: #ffffff;
   font-family: M PLUS 1, "Source Sans Pro";
   flex-shrink: 0;
 `;
@@ -134,7 +134,7 @@ function Footer({ position, top }) {
               </FooterMenuDown>
             </FooterMenuAboutus>
             <FooterMenuProducts>
-              <FooterMenu>Products</FooterMenu>
+              <FooterMenu>Create</FooterMenu>
               <FooterMenuDown>
                 <FooterMenuDownP>Credits Cards</FooterMenuDownP>
                 <FooterMenuDownP>Gift Cards</FooterMenuDownP>
@@ -143,7 +143,7 @@ function Footer({ position, top }) {
               </FooterMenuDown>
             </FooterMenuProducts>
             <FooterMenuUseful>
-              <FooterMenu>Useful Links</FooterMenu>
+              <FooterMenu>Share</FooterMenu>
               <FooterMenuDown>
                 <FooterMenuDownP>Free rewards</FooterMenuDownP>
                 <FooterMenuDownP>Documentation</FooterMenuDownP>
@@ -151,7 +151,7 @@ function Footer({ position, top }) {
               </FooterMenuDown>
             </FooterMenuUseful>
             <FooterMenuSocial>
-              <FooterMenu>Social</FooterMenu>
+              <FooterMenu>Benefit</FooterMenu>
               <FooterMenuDown>
                 <FooterMenuDownP>Changelog</FooterMenuDownP>
                 <FooterMenuDownP>License</FooterMenuDownP>
