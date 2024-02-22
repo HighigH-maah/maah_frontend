@@ -119,6 +119,7 @@ const Main = styled.div`
   display: flex;
   align-items: center;
   width: 35%;
+  margin-left: 2rem;
 `;
 
 export function MyDoughnutChart({ myCategory }) {
@@ -192,7 +193,10 @@ export function MyDoughnutChart({ myCategory }) {
               {/* Add your SVG here or customize as needed */}
               {category.benefitName}
             </Ptitle>
-            <PData>{category.benefitData}</PData>
+
+            <PData>
+              {new Intl.NumberFormat().format(category.benefitData)}
+            </PData>
           </PercentBox>
         ))}
       </PercentZone>
