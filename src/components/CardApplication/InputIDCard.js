@@ -175,7 +175,7 @@ const Buttons = styled.div`
   }
 `;
 
-function InputIDCard({setProcess}) {
+function InputIDCard({setProcess, setCardApply, cardApply}) {
   const [imagePath, setImagePath] = useState("");
   const [name, setName] = useState("한마음");
   const [personalNumber, setPersonalNumber] = useState("");
@@ -187,6 +187,11 @@ function InputIDCard({setProcess}) {
 
   const gotoNext = () => {
     if((name.length > 0 ? 1 : 0) * personalNumber.length * issueDate.length === 112) {
+      setCardApply({
+        ...cardApply,
+        cardApplyMemberSocialNumber: personalNumber,
+        cardApplyIdIssueDate: issueDate
+      });
       setProcess(4);
     } else {
       alert('입력 정보를 다시 확인해주세요.');

@@ -5,11 +5,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import reverse from "../../assets/images/reverse.png";
 import prevArrow from "../../assets/images/prev_arrow.png";
-import card1 from "../../assets/images/card1.png";
-import card3 from "../../assets/images/card3.png";
-import card4 from "../../assets/images/card4.png";
-import card5 from "../../assets/images/card5.png";
 import axios from "axios";
+import MemberLoad from "../Utils/SessionStorage";
 
 const StyledSlider = styled(Slider)`
   margin-left: 5%;
@@ -86,12 +83,15 @@ const NextTo = styled.img`
 export default function CardSlider({setCard}) {
   const [cardStatus, setCardStatus] = useState([true, true, true, true, true]);
   const [hiCardImageList, setHiCardImageList] = useState([]);
+  const [byCardImageList, setByCardImageList] = useState([]);
+  const API_SERVER = process.env.REACT_APP_API_SERVER;
 
   useEffect(() => {
     axios
-    .post("/getHiCardImages", {member_id: "user3"})
+    .post(API_SERVER + "/getHiCardImages", {member_id: MemberLoad()})
     .then(function (res) {
-      setHiCardImageList(res.data);
+      setHiCardImageList(res.data['hi']);
+      setByCardImageList(res.data['by']);
     })
     .catch(function (error) {
       console.log(error);
@@ -178,71 +178,21 @@ export default function CardSlider({setCard}) {
           </ReverseButton>
         </CardDesign>
       ))}
-      <CardDesign>
-        <CardImageDiv>
-          <CardImage
-            className="card1"
-            src={card1}
-            onClick={() => {
-              applicationTerm("card1");
-            }}
-          ></CardImage>
-        </CardImageDiv>
-        <CardName>Card1</CardName>
-        <ReverseButton type="button"></ReverseButton>
-      </CardDesign>
-      <CardDesign>
-        <CardImageDiv>
-          <CardImage
-            className="card2"
-            src='https://maah-s3.s3.ap-northeast-2.amazonaws.com/card2.png'
-            onClick={() => {
-              applicationTerm("card2");
-            }}
-          ></CardImage>
-        </CardImageDiv>
-        <CardName>Card2</CardName>
-        <ReverseButton type="button"></ReverseButton>
-      </CardDesign>
-      <CardDesign>
-        <CardImageDiv>
-          <CardImage
-            className="card3"
-            src={card3}
-            onClick={() => {
-              applicationTerm("card3");
-            }}
-          ></CardImage>
-        </CardImageDiv>
-        <CardName>Card3</CardName>
-        <ReverseButton type="button"></ReverseButton>
-      </CardDesign>
-      <CardDesign>
-        <CardImageDiv>
-          <CardImage
-            className="card4"
-            src={card4}
-            onClick={() => {
-              applicationTerm("card4");
-            }}
-          ></CardImage>
-        </CardImageDiv>
-        <CardName>Card4</CardName>
-        <ReverseButton type="button"></ReverseButton>
-      </CardDesign>
-      <CardDesign>
-        <CardImageDiv>
-          <CardImage
-            className="card5"
-            src={card5}
-            onClick={() => {
-              applicationTerm("card5");
-            }}
-          ></CardImage>
-        </CardImageDiv>
-        <CardName>Card5</CardName>
-        <ReverseButton type="button"></ReverseButton>
-      </CardDesign>
+
+      {byCardImageList.map((card, index) => (
+        <CardDesign key={index}>
+          <CardImageDiv>
+            <CardImage
+              src={card.image}
+              onClick={() => {
+                applicationTerm(card.nickname);
+              }}
+            ></CardImage>
+          </CardImageDiv>
+          <CardName>{card.nickname}</CardName>
+          <ReverseButton type="button"></ReverseButton>
+        </CardDesign>
+      ))}
     </StyledSlider>
   );
 }

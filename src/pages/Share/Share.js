@@ -49,6 +49,7 @@ import Footer from "../../components/Footer/Footer";
 import { position } from "stylis";
 import { Link, useNavigate } from "react-router-dom";
 import MemberLoad from "../../components/Utils/SessionStorage";
+import HeaderWhiteVer from "../../components/Header/HeaderWhiteVer";
 
 function Share(props) {
   const [blackVelvet, setBlackVelvet] = useState(true);
@@ -132,7 +133,7 @@ function Share(props) {
 
   return (
     <ShareBack>
-      <HeaderLogoutBtn />
+      <HeaderWhiteVer />
       {/* header 하얀색 필요 */}
       <ShareMain>
         <HiSection>

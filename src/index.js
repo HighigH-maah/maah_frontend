@@ -15,11 +15,11 @@ import VirtualCardApply from "./components/HiCard/VirtualCardApply";
 import MyPaymentHistory from "./components/HiCard/MyPaymentHistory";
 import VirtualCardNumView from "./components/HiCard/VirtualCardNumView";
 import MyCardList from "./pages/MyCard/MyCardList";
-import LostCard from "./pages/MyCard/LostCard";
 import MyData from "./pages/MyData/MyData";
 import CardApplication from "./pages/CardApplication/CardApplication";
 import ByCard from "./pages/ByCard/ByCard";
 import MyHiCardAccountChange from "./components/HiCard/MyHiCardAccountChange";
+import LostCard from "./pages/MyCard/LostCard";
 import ScrollToTop from "./components/Utils/ScrollToTop";
 import MemberLoad from "./components/Utils/SessionStorage";
 

@@ -39,6 +39,7 @@ import unionbanner from "../../assets/images/banner-union.png";
 import nasabanner from "../../assets/images/banner-nasa.png";
 import blackvelvetbanner from "../../assets/images/banner-blackvelvet.png";
 import whitevelvetbanner from "../../assets/images/banner-whitevelvet.png";
+import { Link } from "react-router-dom";
 const banners = [blackvelvetbanner, whitevelvetbanner, nasabanner, unionbanner];
 
 const Arrows = styled.div`
@@ -115,9 +116,11 @@ export const TopSection = () => {
           <SocialLogin>
             <SocialButtonBlock>
               <SocialBtnDiv>
-                <SocialButton>
-                  <img src={cardcheck}></img>
-                </SocialButton>
+                <Link to="/myCardList">
+                  <SocialButton>
+                    <img src={cardcheck}></img>
+                  </SocialButton>
+                </Link>
                 <p>보유카드</p>
               </SocialBtnDiv>
               <SocialBtnDiv>
@@ -148,9 +151,11 @@ export const TopSection = () => {
                 <p>적립쿠폰</p>
               </SocialBtnDiv>
               <SocialBtnDiv>
-                <SocialButton>
-                  <img src={annotation}></img>
-                </SocialButton>
+                <Link to="/lostCard">
+                  <SocialButton>
+                    <img src={annotation}></img>
+                  </SocialButton>
+                </Link>
                 <p>분실신고</p>
               </SocialBtnDiv>
             </SocialButtonBlock>
