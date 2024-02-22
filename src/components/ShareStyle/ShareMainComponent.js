@@ -23,6 +23,7 @@ export const ShareMain = styled.div`
   background-image: url(${shareBackground});
   background-repeat: no-repeat;
   background-size: cover;
+  margin-top: -5rem;
 `;
 
 export const HiSection = styled.div`

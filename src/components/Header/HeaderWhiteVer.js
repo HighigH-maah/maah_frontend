@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import maahbiglogo from "../../assets/images/Logo/maah_big_logo.png";
+import maahbiglogowhite from "../../assets/images/Logo/maah_big_logo_white.png";
 import { Link, NavLink } from "react-router-dom";
 import axios from "axios";
 import MemberLoad from "../Utils/SessionStorage";
@@ -13,7 +13,7 @@ const HeaderDiv = styled.div`
   box-sizing: border-box;
   top: 3rem;
   justify-content: center;
-  //z-index: 10;
+  z-index: 10;
 `;
 
 const HeaderLogoMenuDiv = styled.div`
@@ -30,12 +30,12 @@ const HeaderLogoutButton = styled.button`
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 1.5;
-  color: rgba(0, 0, 0, 0.200000003);
+  color: rgb(100, 100, 100);
   white-space: nowrap;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: solid 0.2rem rgba(0, 0, 0, 0.200000003);
+  border: solid 0.2rem rgb(100, 100, 100);
   box-sizing: border-box;
   border-radius: 6.4rem;
   flex-shrink: 0;
@@ -63,7 +63,7 @@ const HeaderMenuMy = styled.p`
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 0.97;
-  color: ${({ clicked }) => (clicked ? "#808080" : "#000000")};
+  color: #ffffff;
   white-space: nowrap;
   flex-shrink: 0;
 
@@ -77,7 +77,7 @@ const HeaderMenuShare = styled.p`
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 1.2125;
-  color: ${({ clicked }) => (clicked ? "#808080" : "#000000")};
+  color: #ffffff;
   white-space: nowrap;
   flex-shrink: 0;
 
@@ -90,7 +90,7 @@ const HeaderMenuCard = styled.p`
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 0.97;
-  color: ${({ clicked }) => (clicked ? "#808080" : "#000000")};
+  color: #ffffff;
   white-space: nowrap;
   flex-shrink: 0;
 
@@ -103,7 +103,7 @@ const HeaderMenuAbout = styled.p`
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 1.2125;
-  color: ${({ clicked }) => (clicked ? "#808080" : "#000000")};
+  color: #ffffff;
   white-space: nowrap;
   flex-shrink: 0;
 
@@ -145,7 +145,7 @@ const Li = styled.li`
   margin-bottom: 0.7rem;
 
   &:hover {
-    color: #000000;
+    color: #ffffff;
   }
 `;
 
@@ -163,12 +163,6 @@ const Ul = styled.ul`
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: inherit;
-`;
-
-const StyledNavLick = styled(NavLink)`
-  text-decoration: none;
-  color: inherit;
-  font-weight: 600;
 `;
 
 // const useDetectClose = (initialState) => {
@@ -197,7 +191,7 @@ const StyledNavLick = styled(NavLink)`
 //   return [isOpen, ref, removeHandler];
 // };
 
-function HeaderLogoutBtn(props) {
+function HeaderWhiteVer(props) {
   const [buttonText, setButtonText] = useState([]);
   const [member, setMember] = useState([]);
 
@@ -243,10 +237,10 @@ function HeaderLogoutBtn(props) {
     <HeaderDiv>
       <HeaderLogoMenuDiv>
         <StyledLink to="../">
-          <HeaderLogoImage src={maahbiglogo}></HeaderLogoImage>
+          <HeaderLogoImage src={maahbiglogowhite}></HeaderLogoImage>
         </StyledLink>
         <HeaderMenuBar>
-          <StyledNavLick to="/myData">
+          <StyledLink className={""} to="/myData">
             <DropDown>
               <HeaderMenuMy>
                 My
@@ -262,11 +256,11 @@ function HeaderLogoutBtn(props) {
                 </ListContainer>
               </HeaderMenuMy>
             </DropDown>
-          </StyledNavLick>
-          <StyledNavLick to="/share">
+          </StyledLink>
+          <StyledLink className={""} to="/share">
             <HeaderMenuShare>Share</HeaderMenuShare>
-          </StyledNavLick>
-          <StyledNavLick to="/cardcompare">
+          </StyledLink>
+          <StyledLink className={""} to="/cardcompare">
             <DropDown>
               <HeaderMenuCard>
                 Card
@@ -282,10 +276,10 @@ function HeaderLogoutBtn(props) {
                 </ListContainer>
               </HeaderMenuCard>
             </DropDown>
-          </StyledNavLick>
-          <StyledNavLick to="/">
+          </StyledLink>
+          <StyledLink className={""} to="/">
             <HeaderMenuAbout>About us</HeaderMenuAbout>
-          </StyledNavLick>
+          </StyledLink>
         </HeaderMenuBar>
         <HeaderLogoutButton
           onMouseEnter={handleMouseEnter}
@@ -298,4 +292,4 @@ function HeaderLogoutBtn(props) {
   );
 }
 
-export default HeaderLogoutBtn;
+export default HeaderWhiteVer;

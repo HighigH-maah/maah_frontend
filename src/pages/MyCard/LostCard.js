@@ -1,8 +1,12 @@
-import React from "react";
-import "./lostcard.css";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
 import Footer from "../../components/Footer/Footer";
+import axios from "axios";
+import LostCardModal from "./LostCardModal";
+import { ModalBackground, ModalClose } from "../../components/HiCard/HiCard";
+import close from "../../assets/images/close.png";
+import MemberLoad from "../../components/Utils/SessionStorage";
 
 const LostCardDiv = styled.div`
   width: 100%;
@@ -83,10 +87,9 @@ const LostCardImageBox = styled.div`
   flex-shrink: 0;
 `;
 
-const LostCardImage = styled.div`
+const LostCardImage = styled.img`
   margin-bottom: 1rem;
   box-sizing: border-box;
-  padding-bottom: 1.9385rem;
   width: 100%;
   height: 30rem;
   overflow: hidden;
@@ -94,15 +97,15 @@ const LostCardImage = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  background-color: #000000;
   border-radius: 1.2rem;
   flex-shrink: 0;
   cursor: pointer;
-  transition: transform 0.3s ease-in-out; // 부드러운 효과를 위한 transition 추가
+  transition: transform 0.3s ease-in-out;
 
   &:hover,
-  &:focus {
-    transform: scale(1.05); // 호버 혹은 선택되었을 때 크기 증가
+  &:focus,
+  &.selected {
+    transform: scale(1.05);
   }
 `;
 
@@ -170,7 +173,134 @@ const IdentityCheckButton = styled.button`
   cursor: pointer;
 `;
 
+export const LostCardModalSet = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0.5rem;
+  z-index: 1000;
+`;
+
 function LostCard(props) {
+  const [lostCardChooseList, setLostCardChooseList] = useState([]);
+  const [selectedCard, setSelectedCard] = useState("");
+  const [isLostCardModalOpen, setIsLostCardModalOpen] = useState(false);
+
+  const closeLostCardModal = () => {
+    setIsLostCardModalOpen(false);
+    window.location.reload();
+  };
+
+  const getlostCardChooseList = () => {
+    axios({
+      url: process.env.REACT_APP_API_SERVER + "/getlostCardChooseList.do",
+      method: "post",
+      data: { memberId: MemberLoad() },
+    })
+      .then((res) => {
+        //console.log(res.data);
+        setLostCardChooseList(res.data);
+      })
+      .catch((err) => {
+        //onsole.log(err);
+      });
+  };
+
+  const handleAuthCheck = () => {
+    // 본인 인증
+    const { IMP } = window;
+    IMP.init("imp72857613");
+
+    IMP.certification(
+      {
+        pg: "MIIiasTest",
+        merchant_uid: `mid_${new Date().getTime()}`,
+      },
+      function (rsp) {
+        if (rsp.success) {
+          console.log("success");
+          console.log(rsp);
+
+          axios({
+            method: "post",
+            url: process.env.REACT_APP_API_SERVER + "/getCert.do",
+            data: { imp_uid: rsp.imp_uid, memberId: MemberLoad() },
+          })
+            .then((res) => {
+              console.log(res.data);
+              const certInfo = res.data;
+              //본인인증 성공하면 분실신고 성공
+              console.log(certInfo.certName);
+              console.log(certInfo.memberName);
+              if (certInfo.certName === certInfo.memberName) {
+                // memberCardNumber를 이용하여 성공 시 실행할 로직을 작성합니다.
+                axios({
+                  method: process.env.REACT_APP_API_SERVER + "post",
+                  url: "/reportLost.do",
+                  data: {
+                    memberId: MemberLoad(),
+                    memberCardNumber: selectedCard.memberCardNumber,
+                  },
+                })
+                  .then((res) => {
+                    console.log(res.data);
+                    console.log("분실신고 성공");
+                    setIsLostCardModalOpen(true);
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                    console.log("분실신고 실패");
+                  });
+              } else {
+                console.log("본인인증 실패");
+                alert("본인인증을 다시 해주세요.");
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+              console.log("실패 실패 실패 실패 실패 실패");
+            });
+        }
+      }
+    );
+  };
+
+  const handleImageClick = (selectedCard, index) => {
+    console.log(
+      index.target,
+      "선택한 카드의 memberCardNumber:",
+      selectedCard.memberCardNumber
+    );
+    let cardList = document.getElementsByClassName("paste-image-here-tG5");
+    for (let i = 0; i < cardList.length; i++) {
+      if (index.target === cardList[i]) {
+        cardList[i].style.transform = "scale(1.05)";
+        cardList[i].style.boxShadow = "0 0 60px rgba(0, 0, 0, 0.7)";
+      } else {
+        cardList[i].style.transform = "";
+        cardList[i].style.boxShadow = "";
+      }
+    }
+    // 여기서 memberCardNumber 값을 다른 함수나 API 호출 등에 사용할 수 있습니다.
+    // 원하는 동작을 수행하세요.
+    setSelectedCard(selectedCard);
+  };
+
+  useEffect(() => {
+    getlostCardChooseList();
+    const jquery = document.createElement("script");
+    jquery.src = "http://code.jquery.com/jquery-1.12.4.min.js";
+    const iamport = document.createElement("script");
+    iamport.src = "http://cdn.iamport.kr/js/iamport.payment-1.1.8.js";
+    document.head.appendChild(jquery);
+    document.head.appendChild(iamport);
+    return () => {
+      document.head.removeChild(jquery);
+      document.head.removeChild(iamport);
+    };
+  }, []);
+
   return (
     <LostCardDiv>
       <HeaderLogoutBtn></HeaderLogoutBtn>
@@ -178,81 +308,57 @@ function LostCard(props) {
         <LostCardTitle>카드 분실 신고</LostCardTitle>
         <LostCardUnderTitle>분실한 카드를 선택해주세요</LostCardUnderTitle>
         <LostCardMiddleSection>
-          {/* <LostCardMiddleLeftSection> */}
-          <LostCardImageBox>
-            <LostCardImage>
-              {/* <div class="auto-group-dsr5-wLq">
-                <img
-                    class="paste-image-here-tG5"
-                    src="./assets/paste-image-here-fU1.png"
-                  />
-                <div class="shape-9xh"></div>
-                <p class="card-name-Dhf">Card Name</p>
-              </div>
-              <div class="card-description-tYu">card description</div> */}
-            </LostCardImage>
-            <LostCardName>the Pink</LostCardName>
-          </LostCardImageBox>
-          {/* <div class="group-1000003020-uD7">
-              <div class="cards-vertical-duo">
-                <img class="shape-BAd" src="REPLACE_IMAGE:I187:699;19:6230" />
-                <p class="card-name-HUZ">Card Name</p>
-                <div class="card-description-MzD">card description</div>
-                <div class="noise-4dj"></div>
-              </div>
-              <p class="the-blue-Lr9">the Blue</p>
-            </div> */}
-          {/* </LostCardMiddleLeftSection> */}
-          {/* <div class="group-1000003024-ebw">
-            <div class="cards-vertical-zA1">
-              <div class="auto-group-qysf-hKK">
-                <img
-                  class="paste-image-here-dTs"
-                  src="./assets/paste-image-here.png"
-                />
-                <div class="shape-Lt5"></div>
-                <p class="card-name-pYM">Card Name</p>
-              </div>
-              <div class="card-description-Kk1">card description</div>
-            </div>
-            <p class="x-boost-SJq">X BOOST</p>
-          </div>
-          <div class="auto-group-6x9w-7fs">
-            <div class="group-1000003022-33j">
-              <div class="cards-vertical-Xjb">
-                <img class="shape-5WD" src="REPLACE_IMAGE:I187:702;19:6230" />
-                <p class="card-name-1em">Card Name</p>
-                <div class="card-description-ip5">card description</div>
-                <div class="noise-CjF"></div>
-              </div>
-              <p class="the-blue-6Zj">the Blue</p>
-            </div>
-            <div class="group-1000003023-Lys">
-              <div class="cards-vertical-tkV">
-                <div class="auto-group-hy1w-p8M">
-                  <img
-                    class="paste-image-here-N9s"
-                    src="./assets/paste-image-here-Bpq.png"
-                  />
-                  <div class="shape-FzM"></div>
-                  <p class="card-name-7Wm">Card Name</p>
-                </div>
-                <div class="card-description-27w">card description</div>
-              </div>
-              <p class="x-boost-uSd">X BOOST</p>
-            </div>
-          </div> */}
+          {Array.isArray(lostCardChooseList) &&
+            lostCardChooseList.map((lostCardChooseList, index) => (
+              <LostCardImageList
+                key={index}
+                lostCardChooseList={lostCardChooseList}
+                handleImageClick={handleImageClick} // handleImageClick 함수를 전달합니다.
+                index={index}
+              />
+            ))}
         </LostCardMiddleSection>
         <LostCardBottomSection>
           <IdentityCheckBox>
             <IdentityCheckText>본인인증을 진행해 주세요</IdentityCheckText>
-            <IdentityCheckButton>본인인증</IdentityCheckButton>
+            <IdentityCheckButton onClick={handleAuthCheck}>
+              본인인증
+            </IdentityCheckButton>
           </IdentityCheckBox>
         </LostCardBottomSection>
+        {isLostCardModalOpen && (
+          <ModalBackground>
+            <LostCardModalSet>
+              <ModalClose
+                src={close}
+                clicked={isLostCardModalOpen.toString()}
+                onClick={closeLostCardModal}
+              ></ModalClose>
+              <LostCardModal selectedCard={selectedCard}></LostCardModal>
+            </LostCardModalSet>
+          </ModalBackground>
+        )}
       </Div>
       <Footer position="relative"></Footer>
     </LostCardDiv>
   );
 }
+
+const LostCardImageList = ({ lostCardChooseList, handleImageClick, index }) => {
+  const handleClick = (index) => {
+    handleImageClick(lostCardChooseList, index);
+  };
+
+  return (
+    <LostCardImageBox onClick={handleClick}>
+      <LostCardImage
+        className="paste-image-here-tG5"
+        src={lostCardChooseList.cardImageFrontPath}
+        alt="카드 이미지"
+      ></LostCardImage>
+      <LostCardName>{lostCardChooseList.memberCardNickname}</LostCardName>
+    </LostCardImageBox>
+  );
+};
 
 export default LostCard;

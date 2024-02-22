@@ -1,5 +1,8 @@
 import styled from "styled-components";
-
+import bronze from "../../assets/icon/bronze.png";
+import silver from "../../assets/icon/silver.png";
+import gold from "../../assets/icon/gold.png";
+import platinum from "../../assets/icon/platinum.png";
 export const MyDataBack = styled.div`
   width: auto;
   height: auto;
@@ -246,15 +249,55 @@ export const LevelPic = ({ level }) => {
   return <LImage src={level} alt="Level" />;
 };
 
+const getLevelColor = (memberClass) => {
+  switch (memberClass) {
+    case "BRONZE":
+      return "#700002";
+    case "SILVER":
+      return "#BABABA";
+    case "GOLD":
+      return "#B4AD98";
+    case "PLATINUM":
+      return "#87D4C6";
+    default:
+      return "#700002";
+  }
+};
+
+export const levelBack = styled.div``;
+export const Level = styled.image`
+  width: 100px;
+`;
+export const LevelImg = styled.image`
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  width: 100px;
+  height: 100px;
+  align-items: center;
+`;
+
 export const LevelTitle = styled.p`
-  color: #700002;
   font-size: 20px;
   font-style: normal;
   font-weight: bold;
   line-height: 18px;
   letter-spacing: -0.5px;
+  color: ${(props) => {
+    switch (props.level) {
+      case "SILVER":
+        return "grey";
+      case "GOLD":
+        return "#B4AD98";
+      case "BRONZE":
+        return "#730000";
+      case "PLATINUM":
+        return "#87D4C6";
+      default:
+        return "#000000";
+    }
+  }};
 `;
-
 export const LevelDiv = styled.div`
   display: flex;
   align-items: flex-end;
@@ -296,7 +339,18 @@ export const ToNextSub = styled.span`
   position: relative;
   margin: 0 auto;
 `;
-
+export const DataTitleCategory = styled.div`
+  margin-top: 1rem;
+  display: flex;
+  padding: 0px 24px;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.2px;
+`;
 export const DataViewZone = styled.div`
   display: flex;
   flex-direction: row;
@@ -305,12 +359,15 @@ export const DataViewZone = styled.div`
 export const PercentZone = styled.div`
   display: flex;
   width: 610px;
+  gap: 1rem;
   flex-wrap: wrap;
   align-items: center;
-  gap: 1rem;
+  justify-content: center;
+  align-content: center;
 `;
 
 export const PercentBox = styled.div`
+  width: 80px;
   border-radius: 8px;
   border: 1px solid var(--Gray-200, #f2f2f2);
   background: #fff;

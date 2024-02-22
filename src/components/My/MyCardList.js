@@ -11,6 +11,9 @@ import platinumImg from "../../assets/images/Grade/platinum.png";
 import VirtualCardApply from "../../pages/MyHiCard/VirtualCardApply";
 import MyPaymentHistory from "../../pages/MyHiCard/MyPaymentHistory";
 import { Link } from "react-router-dom";
+import MyByCardAccountChange from "../../pages/ByCard/MyByCardAccountChange";
+import { ByCardModal, ModalBackground } from "../../pages/ByCard/ByCard";
+import MemberLoad from "../Utils/SessionStorage";
 
 export const MyCardListDiv = styled.div`
   width: 100%;
@@ -53,7 +56,6 @@ export const MyHiCardLeftDiv = styled.div`
 `;
 
 export const MyHiCardShape = styled.div`
-  margin-bottom: 2rem;
   box-sizing: border-box;
   padding: 1.3rem 4.9rem 1.2rem 5rem;
   width: 100%;
@@ -141,8 +143,10 @@ export const CardTitle = styled.p`
   font-weight: 400;
   line-height: 0.97;
   letter-spacing: -0.2rem;
-  /* font-family: Iceland, "Source Sans Pro"; */
   white-space: nowrap;
+  position: relative;
+  top: -2rem;
+  left: -0.3rem;
 `;
 export const HiCardLimit = styled.div`
   margin-bottom: 2.7rem;
@@ -244,7 +248,7 @@ export const CardPoint = styled.div`
 `;
 
 export const CardPointTitle = styled.div`
-  margin-right: 6rem;
+  margin-right: 4rem;
   display: flex;
   font-size: 2.3rem;
   font-weight: 400;
@@ -330,6 +334,11 @@ export const LinkButton = styled.button`
   flex-shrink: 0;
   border: none;
   cursor: pointer;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 4px 6px 7px 0px gray;
+  }
 `;
 
 export const ButtonUnderLine = styled.div`
@@ -501,7 +510,7 @@ export const ByCardName = styled.div`
 `;
 
 export const ByCardNumberPart = styled.div`
-  margin: 0 2.75rem;
+  margin: 0 3rem;
   width: calc(100% - 5.5rem);
   align-items: center;
   display: flex;
@@ -522,7 +531,6 @@ export const ByCardNumberName = styled.div`
 `;
 
 export const ByCardNumber = styled.div`
-  margin-right: 0.9rem;
   font-size: 2.1rem;
   font-weight: 600;
   line-height: 1.2125;
@@ -613,13 +621,13 @@ export const MyByCardAllSection = styled.div`
 `;
 
 export const MyCardListHiSection = () => {
-  const [myCardHi, setMyCardHi] = useState({});
+  const [myCardHi, setMyCardHi] = useState([]);
 
   const getMyHiCard = () => {
     axios({
       url: process.env.REACT_APP_API_SERVER + "/getMyCardListHi.do",
       method: "post",
-      data: { memberId: "user2" },
+      data: { memberId: MemberLoad() },
     })
       .then((res) => {
         //console.log(res.data);
@@ -644,31 +652,30 @@ export const MyCardListHiSection = () => {
 };
 
 export const MyCardListBySection = () => {
-  const [myCardListBy, setMyCardListBy] = useState({});
-  const [myCardListNotBy, setMyCardListNotBy] = useState({});
+  const [myCardListBy, setMyCardListBy] = useState([]);
+  const [myCardListNotBy, setMyCardListNotBy] = useState([]);
 
   const getMyCardListBy = () => {
     axios({
-      url: "/getMyCardListBy.do",
+      url: process.env.REACT_APP_API_SERVER + "/getMyCardListBy.do",
       method: "post",
-      data: { memberId: "user2" },
+      data: { memberId: MemberLoad() },
     })
       .then((res) => {
         //console.log(res.data);
-        //console.log("by");
         setMyCardListBy(res.data);
       })
       .catch((err) => {
-        //onsole.log(err);
+        console.log(err);
         //console.log("bbbb");
       });
   };
 
   const getMyCardListNotBy = () => {
     axios({
-      url: "/getMyCardListNotBy.do",
+      url: process.env.REACT_APP_API_SERVER + "/getMyCardListNotBy.do",
       method: "post",
-      data: { memberId: "user2" },
+      data: { memberId: MemberLoad() },
     })
       .then((res) => {
         //console.log(res.data);
@@ -676,7 +683,7 @@ export const MyCardListBySection = () => {
         setMyCardListNotBy(res.data);
       })
       .catch((err) => {
-        //console.log(err);
+        console.log(err);
       });
   };
 
@@ -689,11 +696,20 @@ export const MyCardListBySection = () => {
     <ByCardGroup>
       {Array.isArray(myCardListBy) &&
         myCardListBy.map((byCardData, index) => (
-          <MyByCard key={index} byCardData={byCardData} />
+          <MyByCard
+            key={index}
+            byCardData={byCardData}
+            byCardBeneList={myCardListBy[index].byCard}
+          />
         ))}
       {Array.isArray(myCardListNotBy) &&
         myCardListNotBy.map((notByCardData, index) => (
-          <MyByCard key={index} byCardData={notByCardData} hideTitle />
+          <MyByCard
+            key={index}
+            byCardData={notByCardData}
+            hideTitle
+            byCardBeneList={myCardListNotBy[index].byCard}
+          />
         ))}
     </ByCardGroup>
   );
@@ -758,6 +774,15 @@ const MyHiCardRightSection = ({ myCardHi }) => {
     useState(false);
   const [isMyAccountChangeModalOpen, setIsMyAccountChangeModalOpen] =
     useState(false);
+  const closeMyPaymentHistoryModal = () => {
+    setIsMyPaymentHistoryModalOpen(false);
+  };
+  const closeVirtualCardApplyModal = () => {
+    setIsVirtualCardApplyModalOpen(false);
+  };
+  const closeMyAccountChangeModal = () => {
+    setIsMyAccountChangeModalOpen(false);
+  };
 
   const openMyPaymentHistoryModal = () => {
     setIsMyPaymentHistoryModalOpen(true);
@@ -769,12 +794,6 @@ const MyHiCardRightSection = ({ myCardHi }) => {
 
   const openMyAccountChangeModal = () => {
     setIsMyAccountChangeModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsMyPaymentHistoryModalOpen(false);
-    setIsVirtualCardApplyModalOpen(false);
-    setIsMyAccountChangeModalOpen(false);
   };
 
   return (
@@ -825,11 +844,16 @@ const MyHiCardRightSection = ({ myCardHi }) => {
         </LinkButton>
         {/* MyPaymentHistory 모달 */}
         {isMyPaymentHistoryModalOpen && (
-          <HiCardModal>
-            {/* <button onClick={closeModal}>Close Modal</button> */}
-            <ModalClose src={close} onClick={closeModal}></ModalClose>
-            <MyPaymentHistory></MyPaymentHistory>
-          </HiCardModal>
+          <ModalBackground>
+            <HiCardModal>
+              <ModalClose
+                src={close}
+                clicked={isMyPaymentHistoryModalOpen.toString()}
+                onClick={closeMyPaymentHistoryModal}
+              ></ModalClose>
+              <MyPaymentHistory></MyPaymentHistory>
+            </HiCardModal>
+          </ModalBackground>
         )}
         <ButtonUnderLine>
           <TempCardNumber onClick={openVirtualCardApplyModal}>
@@ -837,22 +861,32 @@ const MyHiCardRightSection = ({ myCardHi }) => {
           </TempCardNumber>
           {/* VirtualCardApply 모달 */}
           {isVirtualCardApplyModalOpen && (
-            <HiCardModal>
-              {/* <button onClick={closeModal}>Close Modal</button> */}
-              <ModalClose src={close} onClick={closeModal}></ModalClose>
-              <VirtualCardApply></VirtualCardApply>
-            </HiCardModal>
+            <ModalBackground>
+              <HiCardModal>
+                <ModalClose
+                  src={close}
+                  clicked={isVirtualCardApplyModalOpen.toString()}
+                  onClick={closeVirtualCardApplyModal}
+                ></ModalClose>
+                <VirtualCardApply></VirtualCardApply>
+              </HiCardModal>
+            </ModalBackground>
           )}
           <AccountChange onClick={openMyAccountChangeModal}>
             연결계좌변경
           </AccountChange>
-          {/* MyHiCardAccountChange 모달 */}
+          {/* MyAccountChange 모달 */}
           {isMyAccountChangeModalOpen && (
-            <HiCardModal>
-              {/* <button onClick={closeModal}>Close Modal</button> */}
-              <ModalClose src={close} onClick={closeModal}></ModalClose>
-              <MyHiCardAccountChange></MyHiCardAccountChange>
-            </HiCardModal>
+            <ModalBackground>
+              <HiCardModal>
+                <ModalClose
+                  src={close}
+                  clicked={isMyAccountChangeModalOpen.toString()}
+                  onClick={closeMyAccountChangeModal}
+                ></ModalClose>
+                <MyHiCardAccountChange></MyHiCardAccountChange>
+              </HiCardModal>
+            </ModalBackground>
           )}
           <Link to="/lostCard" style={{ textDecoration: "none" }}>
             <LostCard>분실신고</LostCard>
@@ -863,7 +897,7 @@ const MyHiCardRightSection = ({ myCardHi }) => {
   );
 };
 
-export const MyByCard = ({ byCardData, hideTitle }) => {
+export const MyByCard = ({ byCardData, hideTitle, byCardBeneList }) => {
   return (
     <ByCardBox>
       <MyByCardAllSection>
@@ -872,6 +906,7 @@ export const MyByCard = ({ byCardData, hideTitle }) => {
           <MyByCardCenterSection
             byCardData={byCardData}
             hideTitle={hideTitle}
+            byCardBeneList={byCardBeneList}
           ></MyByCardCenterSection>
           <MyByCardRightSection byCardData={byCardData}></MyByCardRightSection>
         </MyByCardInfoSection>
@@ -904,9 +939,13 @@ export const MyByCardLeftSection = ({ byCardData }) => {
   );
 };
 
-export const MyByCardCenterSection = ({ byCardData, hideTitle }) => {
+export const MyByCardCenterSection = ({
+  byCardData,
+  hideTitle,
+  byCardBeneList,
+}) => {
   const formatter = new Intl.NumberFormat("ko-KR");
-
+  //console.log(byCardData);
   // memberByLimit 값을 만원 단위로 변환
   const limitInTenThousand = byCardData.byBenefitMinCondition / 10000;
   const formattedLimit = formatter.format(limitInTenThousand);
@@ -914,11 +953,15 @@ export const MyByCardCenterSection = ({ byCardData, hideTitle }) => {
   return (
     <MyByCardCenterDiv>
       <ByCardBenefitContents>
-        <ByCardBenefitDetail>업종별 0.5%~3% 적립</ByCardBenefitDetail>
+        {Array.isArray(byCardBeneList.benefitList) &&
+          byCardBeneList.benefitList.map((byCardBeneList, index) => (
+            <ByCardBenefitList key={index} byCardBeneList={byCardBeneList} />
+          ))}
+        {/* <ByCardBenefitDetail>업종별 0.5%~3% 적립</ByCardBenefitDetail>
         <ByCardBenefitDetail>온라인 간편 결제 5% 적립</ByCardBenefitDetail>
-        <ByCardBenefitDetail>해외 가맹점 3% 적립</ByCardBenefitDetail>
+        <ByCardBenefitDetail>해외 가맹점 3% 적립</ByCardBenefitDetail> */}
         <ByCardBenefitCondition>
-          전월실적 {formattedLimit}원 이상
+          전월실적 {formattedLimit}만원 이상
         </ByCardBenefitCondition>
       </ByCardBenefitContents>
       {!hideTitle && <CardTitle>By:Card</CardTitle>}
@@ -926,31 +969,39 @@ export const MyByCardCenterSection = ({ byCardData, hideTitle }) => {
   );
 };
 
+const ByCardBenefitList = ({ byCardBeneList }) => {
+  return (
+    <ByCardBenefitDetail>{byCardBeneList.byBenefitDesc}</ByCardBenefitDetail>
+  );
+};
+
 export const MyByCardRightSection = ({ byCardData }) => {
   const [isMyAccountChangeModalOpen, setIsMyAccountChangeModalOpen] =
     useState(false);
-
+  const closeMyAccountChangeModal = () => {
+    setIsMyAccountChangeModalOpen(false);
+  };
   const openMyAccountChangeModal = () => {
     setIsMyAccountChangeModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsMyAccountChangeModalOpen(false);
   };
 
   const addHiCard = () => {
     alert("하이카드 추가");
 
     axios({
-      url: "/addHiCard.do",
+      url: process.env.REACT_APP_API_SERVER + "/addHiCard.do",
       method: "post",
-      data: { memberId: "user2", memberByNumber: byCardData.memberByNumber },
+      data: {
+        memberId: MemberLoad(),
+        memberByNumber: byCardData.memberByNumber,
+      },
     })
       .then((res) => {
-        console.log(res.data);
+        window.location.reload();
+        //console.log(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
       });
   };
 
@@ -958,15 +1009,19 @@ export const MyByCardRightSection = ({ byCardData }) => {
     alert("하이카드 제외");
 
     axios({
-      url: "/excludeHiCard.do",
+      url: process.env.REACT_APP_API_SERVER + "/excludeHiCard.do",
       method: "post",
-      data: { memberId: "user2", memberByNumber: byCardData.memberByNumber },
+      data: {
+        memberId: MemberLoad(),
+        memberByNumber: byCardData.memberByNumber,
+      },
     })
       .then((res) => {
-        console.log(res.data);
+        window.location.reload();
+        //console.log(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
       });
   };
 
@@ -984,7 +1039,7 @@ export const MyByCardRightSection = ({ byCardData }) => {
         {byCardData.memberHiNumber === null ? (
           <CardPointScore>{byCardData.thisMonthSum}원</CardPointScore>
         ) : (
-          <CardPointScore>4500P</CardPointScore>
+          <CardPointScore>{byCardData.pointByAmount}P</CardPointScore>
         )}
       </CardPoint>
       <BottomButtonDiv>
@@ -997,13 +1052,20 @@ export const MyByCardRightSection = ({ byCardData }) => {
           <AccountChange onClick={openMyAccountChangeModal}>
             연결계좌변경
           </AccountChange>
-          {/* MyHiCardAccountChange 모달 */}
+          {/* MyAccountChange 모달 */}
           {isMyAccountChangeModalOpen && (
-            <HiCardModal>
-              {/* <button onClick={closeModal}>Close Modal</button> */}
-              <ModalClose src={close} onClick={closeModal}></ModalClose>
-              <MyHiCardAccountChange></MyHiCardAccountChange>
-            </HiCardModal>
+            <ModalBackground>
+              <ByCardModal>
+                <ModalClose
+                  src={close}
+                  clicked={isMyAccountChangeModalOpen.toString()}
+                  onClick={closeMyAccountChangeModal}
+                ></ModalClose>
+                <MyByCardAccountChange
+                  byCardData={byCardData}
+                ></MyByCardAccountChange>
+              </ByCardModal>
+            </ModalBackground>
           )}
           <Link to="/lostCard" style={{ textDecoration: "none" }}>
             <LostCard>분실신고</LostCard>

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import MemberLoad from "../../components/Utils/SessionStorage";
 //import axios from "axios";
 
 const MyAccountChangeDiv = styled.div`
@@ -168,7 +169,7 @@ const InputBox = styled.input`
 //     console.log(error);
 //   });
 
-function MyByCardAccountChange(props) {
+function MyByCardAccountChange({ byCardData }) {
   const API_SERVER = process.env.REACT_APP_API_SERVER;
   const [byCardAccountInfo, setByCardAccountInfo] = useState([]);
   const [bankInfo, setBankInfo] = useState([]);
@@ -176,8 +177,10 @@ function MyByCardAccountChange(props) {
   useEffect(() => {
     axios({
       method: "post",
-      url: API_SERVER + "/getByCardAccountInfo.do",
-      data: { memberId: "user3" },
+      url: process.env.REACT_APP_API_SERVER + "/getByCardAccountInfo.do",
+      data: {
+        memberId: MemberLoad(),
+      },
     })
       .then((res) => {
         console.log(res.data);
@@ -193,7 +196,7 @@ function MyByCardAccountChange(props) {
   useEffect(() => {
     axios({
       method: "get",
-      url: API_SERVER + "/getBankName.do",
+      url: process.env.REACT_APP_API_SERVER + "/getBankName.do",
     })
       .then((res) => {
         console.log(res.data);
@@ -210,11 +213,81 @@ function MyByCardAccountChange(props) {
     <ByCardAccountChange
       byCardAccountInfo={byCardAccountInfo}
       bankInfo={bankInfo}
+      byCardData={byCardData}
     ></ByCardAccountChange>
   );
 }
 
-function ByCardAccountChange({ byCardAccountInfo, bankInfo }) {
+function ByCardAccountChange({ byCardAccountInfo, bankInfo, byCardData }) {
+  const [selectedBankCode, setSelectedBankCode] = useState("");
+  const [newAccountNumber, setNewAccountNumber] = useState("");
+  const [isAccountVerified, setIsAccountVerified] = useState(false);
+
+  const handleAccountCheck = () => {
+    // 유효성 검사 예제: 필드가 비어있는지 확인
+    if (!selectedBankCode || !newAccountNumber) {
+      alert("모두 입력하세요.");
+      return;
+    }
+
+    // 서버로 계좌 인증 및 등록을 수행하기 위한 요청
+    axios({
+      method: "post",
+      url: process.env.REACT_APP_API_SERVER + "/getAccountName.do",
+      data: {
+        memberId: MemberLoad(),
+        bankCode: selectedBankCode,
+        bankName: newAccountNumber,
+      },
+    })
+      .then((res) => {
+        console.log(res.data);
+        console.log("계좌 인증 및 등록 성공");
+
+        if (res.data.accountChkYn === "Y") {
+          // 인증 완료
+          alert("인증 완료!");
+          // 버튼을 '등록'으로 변경하거나 다른 처리 수행
+          setIsAccountVerified(true);
+        } else if (res.data.accountChkYn === "N") {
+          // 본인명의 계좌를 입력해주세요
+          alert("본인명의 계좌 정보를 입력해주세요");
+          // 필요에 따라 추가적인 처리 수행
+        }
+        // 성공 시 처리, 예를 들어 성공 메시지 표시 또는 사용자를 리디렉션할 수 있습니다.
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("계좌 인증 및 등록 실패");
+        // 오류 시 처리, 예를 들어 사용자에게 오류 메시지를 표시할 수 있습니다.
+      });
+  };
+
+  // 등록 로직 수행
+  const handleRegistration = () => {
+    //const [isHi, setIsHi] = useState(false);
+
+    alert("등록 버튼이 눌렸습니다.");
+    const data = {
+      memberId: MemberLoad(),
+      bankCode: selectedBankCode,
+      bankName: newAccountNumber,
+      cardNumber: byCardData.memberByNumber,
+    };
+    console.log(data);
+    axios({
+      method: "put",
+      url: process.env.REACT_APP_API_SERVER + "/updateByAccount.do",
+      data,
+    })
+      .then((res) => {
+        alert("변경 성공!");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <MyAccountChangeDiv>
       <div className="modalTitle">By:Card 연결 계좌 변경</div>
@@ -232,7 +305,7 @@ function ByCardAccountChange({ byCardAccountInfo, bankInfo }) {
           </div>
           <div className="currentCardInfo">
             <p className="title">카드번호</p>
-            <p className="value">{byCardAccountInfo.memberByNumber}</p>
+            <p className="value">{byCardData.memberByNumber}</p>
           </div>
         </div>
       </CurrentInfo>
@@ -243,19 +316,34 @@ function ByCardAccountChange({ byCardAccountInfo, bankInfo }) {
           <div className="currentCardInfo">
             <p className="title">은행명</p>
             <label>
-              <select className="selectbox">
+              <select
+                className="selectbox"
+                onChange={(e) => setSelectedBankCode(e.target.value)}
+              >
                 {bankInfo &&
                   bankInfo.map((board, index) => (
-                    <option key={index}>{board.bankName}</option>
+                    <option key={index} value={board.bankCode}>
+                      {board.bankName}
+                    </option>
                   ))}
               </select>
             </label>
           </div>
           <div className="currentCardInfo">
             <p className="title">계좌번호</p>
-            <InputBox placeholder="계좌번호를 입력하세요."></InputBox>
+            <InputBox
+              placeholder="계좌번호를 입력하세요."
+              onChange={(e) => setNewAccountNumber(e.target.value)}
+            ></InputBox>
           </div>
-          <div className="accountChangeBtn">계좌인증 및 등록</div>
+          <div
+            className="accountChangeBtn"
+            onClick={
+              isAccountVerified ? handleRegistration : handleAccountCheck
+            }
+          >
+            {isAccountVerified ? "등록" : "계좌인증"}
+          </div>
         </div>
       </ChangeInfo>
     </MyAccountChangeDiv>

@@ -296,6 +296,33 @@ const ModalWrap = styled.div`
   visibility: hidden;
 `;
 
+export const ByCardModal = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0.5rem;
+  z-index: 1000;
+`;
+
+const ModalClose = styled.img`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+`;
+
+export const ModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 투명한 검은색 배경 */
+  z-index: 1000; /* 모달보다 뒤에 위치 */
+  visibility: hidden;
+`;
+
 function ByCard(props) {
   const API_SERVER = process.env.REACT_APP_API_SERVER;
   const { byCardCode } = useParams();
