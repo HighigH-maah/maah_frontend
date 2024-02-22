@@ -422,6 +422,16 @@ function ByCardDetail({ bycardInfo, bycardBenefitsInfo }) {
     }
   }
 
+  const [minCondition, setMincondition] = useState(3000000);
+
+  const min = (bycardBenefitsInfo) => {
+    bycardBenefitsInfo.map((bycardBenefits, index) => {
+      if (bycardBenefits.byBenefitMinCondition < minCondition) {
+        setMincondition(bycardBenefits.byBenefitMinCondition);
+      }
+    });
+    return minCondition;
+  };
   const accordions =
     bycardBenefitsInfo &&
     bycardBenefitsInfo.map((bycardBenefits, index) => ({
@@ -462,9 +472,7 @@ function ByCardDetail({ bycardInfo, bycardBenefitsInfo }) {
           <ByCardLimit>
             <div className="cardLimit">
               전월실적{" "}
-              {bycardInfo.byBenefitMinCondition
-                ? bycardInfo.byBenefitMinCondition.toLocaleString("ko-KR")
-                : ""}
+              {bycardInfo.byBenefitMinCondition ? min(bycardBenefitsInfo) : ""}
               원 이상
             </div>
             <div className="cardType">mastercard</div>

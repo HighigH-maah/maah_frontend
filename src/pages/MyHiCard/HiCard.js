@@ -30,6 +30,7 @@ import logoImg from "../../assets/images/Logo/maah_small_logo.png";
 import MyHiCardAccountChange from "./MyHiCardAccountChange";
 import { useLocation } from "react-router-dom";
 import MyHiCardInfoChangeModal from "./MyHiCardInfoChangeModal";
+import MemberLoad from "../../components/Utils/SessionStorage";
 
 const HiCardDiv = styled.div`
   display: flex;
@@ -384,7 +385,7 @@ function HiCard(props) {
     axios({
       method: "post",
       url: API_SERVER + `/getHiCardInfo.do`,
-      data: { memberId: "user2" },
+      data: { memberId: MemberLoad() },
     })
       .then((res) => {
         console.log(res.data);
@@ -401,7 +402,7 @@ function HiCard(props) {
     axios({
       method: "post",
       url: API_SERVER + "/getHiCardBenefits.do",
-      data: { memberId: "user2" },
+      data: { memberId: MemberLoad() },
     })
       .then((res) => {
         console.log(res.data);
@@ -418,7 +419,7 @@ function HiCard(props) {
     axios({
       method: "post",
       url: API_SERVER + `/getVirtualCardExistOrNot.do`,
-      data: { memberId: "user2" },
+      data: { memberId: MemberLoad() },
     })
       .then((res) => {
         console.log(res.data);

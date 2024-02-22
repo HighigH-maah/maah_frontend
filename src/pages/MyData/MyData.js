@@ -53,6 +53,7 @@ import {
   MyDoughnutChart,
 } from "../../components/MyDataStyle/MyDataChart";
 import HeaderWhiteVer from "../../components/Header/HeaderWhiteVer";
+import MemberLoad from "../../components/Utils/SessionStorage";
 
 function MyData(props) {
   const API_SERVER = process.env.REACT_APP_API_SERVER;
@@ -73,7 +74,7 @@ function MyData(props) {
     axios({
       method: "post",
       url: API_SERVER + "/getMyData.do",
-      data: { memberId: "user2" },
+      data: { memberId: MemberLoad() },
     })
       .then((res) => {
         console.log(res.data);
