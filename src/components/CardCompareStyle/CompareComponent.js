@@ -12,7 +12,7 @@ export const SelectDiv = styled.div`
   gap: 2rem;
   border-radius: 30px;
   flex-direction: column;
-  top: 5rem;
+  top: 8rem;
 `;
 
 export const Company = styled.div`
@@ -53,31 +53,33 @@ export const BtnWrapper = styled.div`
   }
 `;
 
-export const DefaultCardDiv = () => {
-  return (
-    <CardList>
-      <CardImageDiv>
-        <ExampleImage></ExampleImage>
-      </CardImageDiv>
-      <CardDetailDiv>
-        <CardTitle>마하카드</CardTitle>
-        <CardEvent>신규회원 연회비 캐쉬백 이벤트</CardEvent>
-        <BenefitDiv>
-          <Benefit>업종별 0.5~3% 적립</Benefit>|
-          <Benefit>업종별 0.5~3% 적립</Benefit>|
-          <Benefit>업종별 0.5~3% 적립</Benefit>
-        </BenefitDiv>
-        <ConditionDiv>
-          <p>국내 전용 30,000원/해외겸용 30,000원</p>
-          <p>전월 실적 50만원 이상</p>
-        </ConditionDiv>
-      </CardDetailDiv>
-      <DetailBtnDiv>
-        <button>자세히 보기</button>
-      </DetailBtnDiv>
-    </CardList>
-  );
-};
+export const DefaultCardDiv = styled.div``;
+
+// export const DefaultCardDiv = () => {
+//   return (
+//     <CardList>
+//       <CardImageDiv>
+//         <ExampleImage></ExampleImage>
+//       </CardImageDiv>
+//       <CardDetailDiv>
+//         <CardTitle>마하카드</CardTitle>
+//         <CardEvent>신규회원 연회비 캐쉬백 이벤트</CardEvent>
+//         <BenefitDiv>
+//           <Benefit>업종별 0.5~3% 적립</Benefit>|
+//           <Benefit>업종별 0.5~3% 적립</Benefit>|
+//           <Benefit>업종별 0.5~3% 적립</Benefit>
+//         </BenefitDiv>
+//         <ConditionDiv>
+//           <p>국내 전용 30,000원/해외겸용 30,000원</p>
+//           <p>전월 실적 50만원 이상</p>
+//         </ConditionDiv>
+//       </CardDetailDiv>
+//       <DetailBtnDiv>
+//         <button>자세히 보기</button>
+//       </DetailBtnDiv>
+//     </CardList>
+//   );
+// };
 
 export const Btn = ({
   image,
@@ -256,6 +258,7 @@ export const CardImageDiv = styled.div`
 `;
 
 export const CardDetailDiv = styled.div`
+  width: 526px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
