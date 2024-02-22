@@ -19,7 +19,6 @@ import ByCard from "./pages/ByCard/ByCard";
 import LostCard from "./pages/MyCard/LostCard";
 import ScrollToTop from "./components/Utils/ScrollToTop";
 import MemberLoad from "./components/Utils/SessionStorage";
-import DragTest from "./pages/Share/DragTest";
 // import MyHiCardAccountChange from "./components/HiCard/MyHiCardAccountChange";
 import AboutUsTest from "./pages/AboutUs/AboutUsTest";
 import AboutUs from "./pages/AboutUs/AboutUs";
@@ -45,7 +44,6 @@ root.render(
       <Route path="/myHiCardDetail" element={<HiCard />}></Route>
       <Route path="/myByCardDetail" element={<MyByCard />}></Route>
       <Route path="/byCardDetail/:byCardCode" element={<ByCard />}></Route>
-      <Route path="/drag" element={<DragTest />}></Route>
       <Route path="/aboutUsTest" element={<AboutUsTest />}></Route>
       <Route path="/aboutUs" element={<AboutUs />}></Route>
     </Routes>

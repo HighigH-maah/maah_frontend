@@ -63,26 +63,28 @@ const ApplicationButton = styled.div`
   }
 `;
 
-function CardApplicationTerms({card, type}) {
+function CardApplicationTerms({ card, type }) {
   const navigate = useNavigate();
   const [term, setTerm] = useState(1);
 
   const gotoNext = () => {
     let isChecked = true;
     let terms = document.getElementsByClassName("application-term");
-    for(let i = 0; i < 2; i++) {
-      if(!terms[i].checked) {
+    for (let i = 0; i < 2; i++) {
+      if (!terms[i].checked) {
         alert("필수 항목을 확인해주세요.");
         isChecked = false;
         break;
       }
     }
-    if(isChecked) {
-      navigate("/cardApplication", {state: { 
-        card: card, 
-        type: type,
-        applyIsTermsOfService: terms[2].checked ? true : false
-      }});
+    if (isChecked) {
+      navigate("/cardApplication", {
+        state: {
+          card: card,
+          type: type,
+          applyIsTermsOfService: terms[2].checked ? true : false,
+        },
+      });
     }
   };
 
@@ -91,7 +93,7 @@ function CardApplicationTerms({card, type}) {
     let terms = document.getElementsByClassName("application-term");
     modal.style.visibility = "hidden";
     setTerm(1);
-    for(let i = 0; i < terms.length; i++) {
+    for (let i = 0; i < terms.length; i++) {
       terms[i].checked = false;
     }
   };
@@ -101,33 +103,49 @@ function CardApplicationTerms({card, type}) {
       <ModalClose src={close} onClick={closeModal}></ModalClose>
       <div>
         <ModalTitle>약관 및 주요 안내사항</ModalTitle>
-        <CardApplicationTerm term={ term } ></CardApplicationTerm>
+        <CardApplicationTerm term={term}></CardApplicationTerm>
       </div>
       <div>
         <ModalSubTitle>카드 신청 약관 동의</ModalSubTitle>
         <ApplicationTerm>
           <span>[필수] 약관 및 주요 안내사항 동의</span>
-          <input className="application-term" type="checkbox" onClick={() => {
-            setTerm(1);
-          }}></input>
+          <input
+            className="application-term"
+            type="checkbox"
+            onClick={() => {
+              setTerm(1);
+            }}
+          ></input>
         </ApplicationTerm>
         <ApplicationTerm>
           <span>[필수] 개인(신용)정보 동의</span>
-          <input className="application-term" type="checkbox" onClick={() => {
-            setTerm(2);
-          }}></input>
+          <input
+            className="application-term"
+            type="checkbox"
+            onClick={() => {
+              setTerm(2);
+            }}
+          ></input>
         </ApplicationTerm>
         <ApplicationTerm>
           <span>[선택] 개인(신용)정보 동의</span>
-          <input className="application-term" type="checkbox" onClick={() => {
-            setTerm(3);
-          }}></input>
+          <input
+            className="application-term"
+            type="checkbox"
+            onClick={() => {
+              setTerm(3);
+            }}
+          ></input>
         </ApplicationTerm>
         <ApplicationTerm>
           <span>[선택] 카드 신청/이용을 위한 동의</span>
-          <input className="application-term" type="checkbox" onClick={() => {
-            setTerm(4);
-          }}></input>
+          <input
+            className="application-term"
+            type="checkbox"
+            onClick={() => {
+              setTerm(4);
+            }}
+          ></input>
         </ApplicationTerm>
         <ApplicationButton>
           <button onClick={gotoNext}>확인</button>

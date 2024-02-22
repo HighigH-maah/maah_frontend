@@ -1,9 +1,10 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   ByBottomBtn,
   ByBottomCardArea,
   ByBottomCardTitle,
   ByBottomDesc,
+  ByBottomDescBox,
   ByBottomImg,
 } from "./ShareMainComponent";
 import { ReactComponent as LearnMoreArrow } from "../../assets/images/Svg/LearnMoreArrow.svg";
@@ -11,8 +12,21 @@ import { ReactComponent as LearnMoreArrow } from "../../assets/images/Svg/LearnM
 import { useDrag, useDrop } from "react-dnd";
 import { ItemTypes } from "../Drag/ItemTypes";
 import { Link } from "react-router-dom";
+import { selectIcon } from "../../assets/js/IconSelect";
 
-function ByBottomCard({ id, index, moveCard, text }) {
+function ByBottomCard({
+  id,
+  index,
+  moveCard,
+  openCardFunc,
+  openModal,
+  card,
+  isOn,
+  setisOn,
+}) {
+  // console.log("2차ㅇㅇㅇ" + isOn);
+
+  // openCardFunc(card);
   const ref = useRef(null);
   const [{ handlerId }, drop] = useDrop({
     accept: ItemTypes.ByCARD,
@@ -36,18 +50,32 @@ function ByBottomCard({ id, index, moveCard, text }) {
       //수직 중간. 수평도 필요함
       const hoverMiddleY =
         (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+      const hoverMiddleX =
+        (hoverBoundingRect.right - hoverBoundingRect.left) / 2;
+      // console.log(hoverMiddleX);
+      // console.log(hoverMiddleY);
       //마우스 위치 결정?
       const clientOffset = monitor.getClientOffset();
       //top부터 픽셀 얻기
       const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+      const hoverClinetX = clientOffset.x - hoverBoundingRect.left;
+      // console.log(hoverClinetX, hoverClientY);
 
       // 마우스가 아이템을 절반 이상 넘어갔을 때만 수행
       // 아래로 내리는 경우 절반 판단
-      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+      if (
+        dragIndex < hoverIndex &&
+        hoverClientY < hoverMiddleY &&
+        hoverClinetX < hoverMiddleX
+      ) {
         return;
       }
       // 위로 올리는 경우 절반 판단
-      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+      if (
+        dragIndex > hoverIndex &&
+        hoverClientY > hoverMiddleY &&
+        hoverClinetX > hoverMiddleX
+      ) {
         return;
       }
       //실제로 움직이기
@@ -66,36 +94,53 @@ function ByBottomCard({ id, index, moveCard, text }) {
     }),
   });
   const opacity = isDragging ? 0.5 : 1;
+
   drag(drop(ref));
   return (
     <ByBottomCardArea ref={ref} style={{ opacity }} data-handler-id={handlerId}>
-      {/* 여기에 카드 내용 */}
-      내용내용
-      <ByBottomCardTitle>
-        제목
-        {text}
-        {/* {card.memberCardByNickname} */}
-      </ByBottomCardTitle>
-      <ByBottomImg
-        //   src={card.byCard.byImagePath}
-        src={
-          "https://maah-s3.s3.ap-northeast-2.amazonaws.com/Cards/sparkle.png"
-        }
-      ></ByBottomImg>
-      <ByBottomDesc>혜택 내용</ByBottomDesc>
+      <ByBottomCardTitle>{card.memberCardByNickname}</ByBottomCardTitle>
+      <ByBottomImg src={card.byCard.byImagePath}></ByBottomImg>
+      <ByBottomDesc
+        onClick={() => {
+          openCardFunc(card);
+          openModal();
+        }}
+        className={`${isOn ? "toggle--checked" : ""}`}
+      >
+        {card.byCard
+          ? card.byCard.benefitList.map((benefit, bIndex) => (
+              <ByBottomDescBox key={bIndex}>
+                <img
+                  src={selectIcon(JSON.stringify(benefit.benefitCode), "white")}
+                ></img>
+                <p>{benefit.byBenefitDesc}</p>
+              </ByBottomDescBox>
+            ))
+          : ""}
+      </ByBottomDesc>
       <Link
         to="/myByCardDetail"
-        //   state={{ memberByNumber: card.memberByNumber }}
+        state={{ memberByNumber: card.memberByNumber }}
         style={{
           textDecoration: "none",
           display: "flex",
           justifyContent: "center",
         }}
       >
-        <ByBottomBtn>
-          {text}Learn More
-          <LearnMoreArrow />
-        </ByBottomBtn>
+        <Link
+          to="/myByCardDetail"
+          state={{ memberByNumber: id }}
+          style={{
+            textDecoration: "none",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <ByBottomBtn>
+            Learn More
+            <LearnMoreArrow />
+          </ByBottomBtn>
+        </Link>
       </Link>
     </ByBottomCardArea>
   );

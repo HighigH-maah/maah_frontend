@@ -50,6 +50,9 @@ import { position } from "stylis";
 import { Link, useNavigate } from "react-router-dom";
 import MemberLoad from "../../components/Utils/SessionStorage";
 import HeaderWhiteVer from "../../components/Header/HeaderWhiteVer";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import ByBottomDragContainer from "../../components/ShareStyle/ByBottomDragContainer";
 
 function Share(props) {
   const [blackVelvet, setBlackVelvet] = useState(true);
@@ -60,6 +63,7 @@ function Share(props) {
   // const [memberBenefit, setMemberBenefit] = useState([]);
   const maxBenefitCount = 5; // 최대 출력 개수 설정
   const [openCard, setOpenCard] = useState({});
+  const [byCardList, setByCardList] = useState([]);
 
   const [isChange, setIsChange] = useState(false);
   const navigate = useNavigate();
@@ -75,6 +79,7 @@ function Share(props) {
       })
       .then(function (res) {
         console.log("----", res.data);
+        setByCardList(res.data.bycard);
         setCard(res.data);
         setHicardBene(res.data.hicard.memberBenefitList);
       })
@@ -85,6 +90,10 @@ function Share(props) {
 
   const toggleHandler = () => {
     setisOn(!isOn);
+  };
+
+  const openCardFunc = (card) => {
+    setOpenCard(card);
   };
 
   const reverseCard = (prop) => {
@@ -108,6 +117,7 @@ function Share(props) {
   };
 
   const openModal = () => {
+    console.log("byCardList", byCardList);
     setIsModalOpen(true);
     console.log(openCard);
   };
@@ -217,58 +227,15 @@ function Share(props) {
               isOn={isOn}
             ></ToggleButton>
           </ByTopper>
-          <ByBottomArea>
-            {card.bycard
-              ? card.bycard.map((card, index) => (
-                  <ByBottomCardArea key={index}>
-                    <ByBottomCardTitle>
-                      {card.memberCardByNickname}
-                    </ByBottomCardTitle>
-                    <ByBottomImg src={card.byCard.byImagePath}></ByBottomImg>
-                    <ByBottomDesc
-                      onClick={() => {
-                        setOpenCard(card);
-                        openModal();
-                      }}
-                      className={`${isOn ? "toggle--checked" : ""}`}
-                    >
-                      {card.byCard
-                        ? card.byCard.benefitList.map((benefit, bIndex) => (
-                            <ByBottomDescBox key={bIndex}>
-                              <img
-                                src={selectIcon(
-                                  JSON.stringify(benefit.benefitCode),
-                                  "white"
-                                )}
-                              ></img>
-                              <p>{benefit.byBenefitDesc}</p>
-                            </ByBottomDescBox>
-                          ))
-                        : ""}
-                    </ByBottomDesc>
-                    <Link
-                      to="/myByCardDetail"
-                      state={{ memberByNumber: card.memberByNumber }}
-                      style={{
-                        textDecoration: "none",
-                        display: "flex",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <ByBottomBtn>
-                        Learn More
-                        <LearnMoreArrow />
-                      </ByBottomBtn>
-                    </Link>
-                  </ByBottomCardArea>
-                ))
-              : ""}
-            <ByBottomCardArea>
-              <ByBottomAdd>
-                <ShareCardAdd onClick={clickTest}></ShareCardAdd>
-              </ByBottomAdd>
-            </ByBottomCardArea>
-          </ByBottomArea>
+          <DndProvider backend={HTML5Backend}>
+            <ByBottomDragContainer
+              byCardList={byCardList}
+              openCardFunc={openCardFunc}
+              openModal={openModal}
+              isOn={isOn}
+              setisOn={setisOn}
+            />
+          </DndProvider>
         </BySection>
       </ShareMain>
       {isModalOpen ? (

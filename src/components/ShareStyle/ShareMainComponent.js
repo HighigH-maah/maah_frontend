@@ -359,6 +359,7 @@ export const ByBottomDesc = styled.div`
   gap: 5px;
   opacity: 0;
   transition: opacity 0.5s;
+
   &.toggle--checked {
     opacity: 1;
     transition: opacity 0.5s;
