@@ -46,6 +46,7 @@ function AboutUsTest(props) {
           </span>
           <span class="master-hi-card-6Hd-sub-2">Master Hi:Card</span>
         </p>
+
         <p class="hi-card--ekP">
           <span class="hi-card--ekP-sub-0">
             이제껏 경험 못 했던 쉽고 편리한 카드 서비스

@@ -169,7 +169,7 @@ const InputBox = styled.input`
 //     console.log(error);
 //   });
 
-function MyByCardAccountChange({ byCardData }) {
+function MyByCardAccountChange({ byCardData, memberByNumber }) {
   const API_SERVER = process.env.REACT_APP_API_SERVER;
   const [byCardAccountInfo, setByCardAccountInfo] = useState([]);
   const [bankInfo, setBankInfo] = useState([]);
@@ -180,6 +180,7 @@ function MyByCardAccountChange({ byCardData }) {
       url: process.env.REACT_APP_API_SERVER + "/getByCardAccountInfo.do",
       data: {
         memberId: MemberLoad(),
+        memberByNumber: memberByNumber,
       },
     })
       .then((res) => {
@@ -191,7 +192,7 @@ function MyByCardAccountChange({ byCardData }) {
         console.log(err);
         console.log("실패 실패 실패 실패 실패 실패");
       });
-  }, [API_SERVER]); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
+  }, [API_SERVER, memberByNumber]); // 두 번째 매개변수로 빈 배열을 전달하여 한 번만 실행되도록 설정
 
   useEffect(() => {
     axios({
@@ -214,11 +215,17 @@ function MyByCardAccountChange({ byCardData }) {
       byCardAccountInfo={byCardAccountInfo}
       bankInfo={bankInfo}
       byCardData={byCardData}
+      memberByNumber={memberByNumber}
     ></ByCardAccountChange>
   );
 }
 
-function ByCardAccountChange({ byCardAccountInfo, bankInfo, byCardData }) {
+function ByCardAccountChange({
+  byCardAccountInfo,
+  bankInfo,
+  byCardData,
+  memberByNumber,
+}) {
   const [selectedBankCode, setSelectedBankCode] = useState("");
   const [newAccountNumber, setNewAccountNumber] = useState("");
   const [isAccountVerified, setIsAccountVerified] = useState(false);
@@ -305,7 +312,7 @@ function ByCardAccountChange({ byCardAccountInfo, bankInfo, byCardData }) {
           </div>
           <div className="currentCardInfo">
             <p className="title">카드번호</p>
-            <p className="value">{byCardData.memberByNumber}</p>
+            <p className="value">{memberByNumber}</p>
           </div>
         </div>
       </CurrentInfo>

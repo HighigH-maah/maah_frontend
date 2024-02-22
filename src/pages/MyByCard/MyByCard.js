@@ -454,6 +454,7 @@ function MyByCard(props) {
       bycardBenefitsInfo={bycardBenefitsInfo}
       isConnectHiOrNot={isConnectHiOrNot}
       updateChange={updateChange}
+      memberByNumber={memberByNumber}
     ></ByCardDetail>
   );
 }
@@ -464,6 +465,7 @@ function ByCardDetail({
   bycardBenefitsInfo,
   isConnectHiOrNot,
   updateChange,
+  memberByNumber,
 }) {
   const [openAccordions, setOpenAccordions] = useState([]);
   const [isMyPaymentHistoryModalOpen, setIsMyPaymentHistoryModalOpen] =
@@ -628,7 +630,9 @@ function ByCardDetail({
                           clicked={isMyAccountChangeModalOpen.toString()}
                           onClick={closeMyAccountChangeModal}
                         ></ModalClose>
-                        <MyByCardAccountChange></MyByCardAccountChange>
+                        <MyByCardAccountChange
+                          memberByNumber={memberByNumber}
+                        ></MyByCardAccountChange>
                       </ByCardModal>
                     </ModalBackground>
                   )}
