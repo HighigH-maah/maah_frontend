@@ -21,6 +21,7 @@ import ScrollToTop from "./components/Utils/ScrollToTop";
 import MemberLoad from "./components/Utils/SessionStorage";
 import DragTest from "./pages/Share/DragTest";
 // import MyHiCardAccountChange from "./components/HiCard/MyHiCardAccountChange";
+import AboutUs from "./pages/AboutUs/AboutUs";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 //메인화면 진입 시 session 저장
@@ -44,6 +45,7 @@ root.render(
       <Route path="/myByCardDetail" element={<MyByCard />}></Route>
       <Route path="/byCardDetail/:byCardCode" element={<ByCard />}></Route>
       <Route path="/drag" element={<DragTest />}></Route>
+      <Route path="/aboutUs" element={<AboutUs />}></Route>
     </Routes>
   </BrowserRouter>
 );
