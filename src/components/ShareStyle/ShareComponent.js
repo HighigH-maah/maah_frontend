@@ -118,6 +118,7 @@ export const PointWrapper = styled.div`
   font-style: normal;
   font-weight: bolder;
   line-height: 100%; /* 50px */
+  align-items: center;
 
   & > span {
     background: linear-gradient(
