@@ -22,6 +22,9 @@ import {
   MonthHeading,
   MyDataBack,
   MyDataTitle,
+  NextContent,
+  NextLevelDiv,
+  NextLevelPic,
   PData,
   PercentBox,
   PercentZone,
@@ -30,6 +33,7 @@ import {
   SaleForMonth,
   Sorting,
   ToNext,
+  ToNextDiv,
   ToNextImg,
   ToNextSub,
 } from "../../components/MyDataStyle/MyDataComponent";
@@ -104,12 +108,19 @@ function MyData(props) {
       <LimitWrapper isFirst>
         <LimitDiv>
           <DataTitle>한도현황</DataTitle>
-          <DataView>{myLimit.limitedAmount}</DataView>
-          <DataDesc>남은 금액 {myLimit.historyAmount}</DataDesc>
+
+          <DataView>
+            {new Intl.NumberFormat().format(myLimit.limitedAmount)}
+          </DataView>
+
+          <DataDesc>
+            남은 금액 {new Intl.NumberFormat().format(myLimit.historyAmount)}
+          </DataDesc>
           <CardLimitPic image={hicard} />
         </LimitDiv>
         <LimitDiv>
-          <DataTitle>평균사용량</DataTitle> <DataView>{myAvg}</DataView>
+          <DataTitle>평균사용량</DataTitle>{" "}
+          <DataView>{new Intl.NumberFormat().format(myAvg)}</DataView>
           <DataDesc>2월까지의 평균 사용 금액</DataDesc>
           <LevelDiv>
             {myNextLevel.memberClass === "SILVER" && (
@@ -129,14 +140,36 @@ function MyData(props) {
         </LimitDiv>
         <LimitDiv>
           <img src={nextBack} alt={nextBack} />
+          <NextContent>
+            <NextLevelDiv>
+              {myNextLevel.nextClass === "SILVER" && (
+                <NextLevelPic level={silver} />
+              )}
+              {myNextLevel.nextClass === "GOLD" && (
+                <NextLevelPic level={gold} />
+              )}
+              {myNextLevel.nextClass === "BRONZE" && (
+                <NextLevelPic level={bronze} />
+              )}
+              {myNextLevel.nextClass === "PLATINUM" && (
+                <NextLevelPic level={platinum} />
+              )}
+            </NextLevelDiv>
 
-          <ToNext>{myNextLevel.toNextClass}</ToNext>
-          <ToNextSub>{myNextLevel.nextClass}까지 남은 금액</ToNextSub>
+            <ToNextDiv>
+              <ToNext>
+                {new Intl.NumberFormat().format(myNextLevel.toNextClass)}
+              </ToNext>
 
-          <ForNow>
-            <span>사용한 금액</span>
-            <span>{myNextLevel.priceHasUsed}</span>
-          </ForNow>
+              <ToNextSub>{myNextLevel.nextClass}까지 남은 금액</ToNextSub>
+            </ToNextDiv>
+            <ForNow>
+              <span>사용한 금액</span>
+              <span>
+                {new Intl.NumberFormat().format(myNextLevel.priceHasUsed)}
+              </span>
+            </ForNow>
+          </NextContent>
         </LimitDiv>
       </LimitWrapper>
       <LimitWrapper>
@@ -151,8 +184,12 @@ function MyData(props) {
           <CardDataListWrapper myCardForMonth={myCardForMonth} />
         </SaleForMonth>
         <CompareLastMonth>
-          <DataDesc>저번달 VS 이번 달</DataDesc>
-          <DataView>{myCompare.moreThanUsed} 사용했습니다</DataView>
+          <DataDesc>지난 달 VS 이번 달</DataDesc>
+
+          <DataView>
+            {new Intl.NumberFormat().format(myCompare.moreThanUsed)}{" "}
+            사용했습니다
+          </DataView>
           <LineChart compareData={myCompare}></LineChart>
         </CompareLastMonth>
       </LimitWrapper>

@@ -119,13 +119,13 @@ export const CategoryGraph = styled.div`
     rgba(255, 255, 255, 0.99) 105.59%
   );
   width: 1155px;
-  height: 477px;
+  height: 590px;
   flex-shrink: 0;
 `;
 
 export const MyDataTitle = styled.div`
   color: white;
-  font-size: 2rem;
+  font-size: 3rem;
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -306,7 +306,7 @@ export const LevelDiv = styled.div`
 export const ForNow = styled.div`
   display: flex;
   height: 68px;
-  padding: 12px 120px;
+  padding: 5px 120px;
   justify-content: center;
   align-items: center;
   gap: 10px;
@@ -364,6 +364,7 @@ export const PercentZone = styled.div`
   align-items: center;
   justify-content: center;
   align-content: center;
+  margin-left: 4rem;
 `;
 
 export const PercentBox = styled.div`
@@ -399,3 +400,26 @@ export const PData = styled.p`
   line-height: 28px;
   letter-spacing: -1px;
 `;
+
+export const NextLevelDiv = styled.div`
+  padding-left: 7rem;
+`;
+
+export const ToNextDiv = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const NextContent = styled.div`
+  margin-top: -3rem;
+`;
+
+export const NLImage = styled.img`
+  width: 90px;
+  height: 72px;
+`;
+
+export const NextLevelPic = ({ level }) => {
+  return <NLImage src={level} alt="Level" />;
+};
