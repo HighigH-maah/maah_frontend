@@ -277,7 +277,7 @@ function HeaderWhiteVer(props) {
               </HeaderMenuCard>
             </DropDown>
           </StyledLink>
-          <StyledLink className={""} to="/">
+          <StyledLink className={""} to="/aboutUs">
             <HeaderMenuAbout>About us</HeaderMenuAbout>
           </StyledLink>
         </HeaderMenuBar>

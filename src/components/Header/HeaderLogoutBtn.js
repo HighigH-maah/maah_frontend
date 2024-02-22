@@ -283,7 +283,7 @@ function HeaderLogoutBtn(props) {
               </HeaderMenuCard>
             </DropDown>
           </StyledNavLick>
-          <StyledNavLick to="/">
+          <StyledNavLick to="/aboutUs">
             <HeaderMenuAbout>About us</HeaderMenuAbout>
           </StyledNavLick>
         </HeaderMenuBar>
