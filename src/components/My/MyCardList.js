@@ -1103,7 +1103,7 @@ export const MyByCardRightSection = ({ byCardData }) => {
                   onClick={closeMyByAccountChangeModal}
                 ></ModalClose>
                 <MyByCardAccountChange
-                  byCardData={byCardData}
+                  memberByNumber={byCardData.memberByNumber}
                 ></MyByCardAccountChange>
               </ByCardModal>
             </ModalBackground>
