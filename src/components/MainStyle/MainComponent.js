@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import "../../assets/css/style.css";
 import { Element } from "react-scroll";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
@@ -39,9 +40,7 @@ import unionbanner from "../../assets/images/banner-union.png";
 import nasabanner from "../../assets/images/banner-nasa.png";
 import blackvelvetbanner from "../../assets/images/banner-blackvelvet.png";
 import whitevelvetbanner from "../../assets/images/banner-whitevelvet.png";
-import { Link } from "react-router-dom";
-const banners = [blackvelvetbanner, whitevelvetbanner, nasabanner, unionbanner];
-
+import { useNavigate } from "react-router-dom";
 const Arrows = styled.div`
   position: absolute;
   top: 50%;
@@ -61,12 +60,26 @@ const ArrowBase = styled.div`
 
 export const ArrowLeft = styled(ArrowBase)``;
 export const ArrowRight = styled(ArrowBase)``;
-
+const banners = [blackvelvetbanner, whitevelvetbanner, nasabanner, unionbanner];
 export const TopSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const navigate = useNavigate();
 
-  const handleBanner = (idx) => {
+  const handleBannerClick = (idx) => {
+    console.log("핸들배너 클릭", idx);
+    clearInterval(interval); // Clear the interval to stop automatic sliding
     setCurrentSlide(idx);
+    console.log(banners[idx]);
+
+    const clickedBannerPath = banners[idx];
+
+    if (clickedBannerPath.includes("nasa")) {
+      navigate(`/byCardDetail/${8}`);
+    } else if (clickedBannerPath.includes("union")) {
+      navigate(`/byCardDetail/${9}`);
+    } else {
+      // Handle other banners if needed
+    }
   };
 
   const handleNextSlide = () => {
@@ -79,9 +92,9 @@ export const TopSection = () => {
     setCurrentSlide(prevSlide);
   };
 
-  useEffect(() => {
-    const interval = setInterval(handleNextSlide, 2000); // Adjust the interval as needed
-    return () => clearInterval(interval);
+  const interval = useEffect(() => {
+    const intervalId = setInterval(handleNextSlide, 2000); // Adjust the interval as needed
+    return () => clearInterval(intervalId); // Cleanup function to clear the interval
   }, [currentSlide]);
 
   return (
@@ -90,12 +103,13 @@ export const TopSection = () => {
         <EventBanner
           src={banners[currentSlide]}
           className={currentSlide !== 0 ? "hidden" : ""}
-        ></EventBanner>
+          onClick={() => handleBannerClick(currentSlide)} // Apply the click handler here
+        />
         <BannerPage>
           {banners.map((_, index) => (
             <span
               key={index}
-              onClick={() => handleBanner(index)}
+              onClick={() => handleBannerClick(index)} // Click handler for the pagination dots
               className={currentSlide === index ? "selected" : ""}
             ></span>
           ))}
