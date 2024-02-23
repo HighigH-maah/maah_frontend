@@ -193,7 +193,7 @@ function MyData(props) {
             {new Intl.NumberFormat().format(myCompare.moreThanUsed)}{" "}
             사용했습니다
           </DataView>
-          <LineChart compareData={myCompare}></LineChart>
+          {myCompare.length === 0 ? null : <LineChart compareData={myCompare}></LineChart>}
         </CompareLastMonth>
       </LimitWrapper>
       <LimitWrapper isLast>
