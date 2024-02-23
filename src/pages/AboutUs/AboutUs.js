@@ -75,19 +75,19 @@ const Banner = styled.div`
 `;
 
 const Share = styled.div`
-  width: 100rem;
+  //width: 100rem;
   //height: 87.05rem;
   position: absolute;
-  left: 7rem;
+  left: 10rem;
   top: 70rem;
 
   .top {
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
     width: 45rem;
   }
 
   .top .title {
-    margin-bottom: 2.1rem;
+    margin: 0rem;
     //width: 100%;
     // text-align: center;
     font-size: 4rem;
@@ -101,7 +101,7 @@ const Share = styled.div`
   .top .subTitle {
     //max-width: 28.2rem;
     font-size: 3rem;
-    font-weight: 400;
+    font-weight: 800;
     line-height: 1.5;
     color: #ffffff;
     //font-family: Poppins, "Source Sans Pro";
@@ -116,24 +116,25 @@ const Share = styled.div`
   }
 
   .bottom .shareimg {
-    margin-right: 15rem;
+    margin-right: 5rem;
     //width: 52.5rem;
     height: 40rem;
     object-fit: cover;
     vertical-align: top;
     flex-shrink: 0;
+    border-radius: 30px;
   }
 
   .bottom .bottom_right {
-    margin: 14.35rem 0rem 14.15rem 0rem;
-    height: calc(100% - 28.5rem);
+    //margin: 14.35rem 0rem 14.15rem 0rem;
+    //height: calc(100% - 28.5rem);
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
   }
 
   .bottom .bottom_right .info1 {
-    margin-bottom: 3rem;
+    margin: 0rem;
     //max-width: 29.8rem;
     font-size: 3rem;
     font-weight: 400;
