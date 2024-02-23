@@ -53,18 +53,7 @@ function CardCompare(props) {
   const handleselectedOtherClick = (otherClicked) => {
     setselectedOther(otherClicked);
     console.log("selectedOther:", otherClicked);
-    // axios({
-    //   method: "post",
-    //   url: API_SERVER + "/byCardsByOther.do",
-    //   data: { otherName: otherClicked },
-    // })
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     setByCard(res.data);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+
     axios
       .post(API_SERVER + "/byCardsByOther.do", {
         otherName: otherClicked,
@@ -91,19 +80,6 @@ function CardCompare(props) {
       .catch(function (error) {
         console.log(error);
       });
-
-    // axios
-    //   .get("/allbycards.do", {})
-    //   .then(function (res) {
-    //     console.log(res.data);
-
-    //     setByCard(res.data);
-    //     setSelectedMaah(true);
-    //     setBenefitList(res.data.benefitList);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
   };
 
   const handleCategoryClick = (categoryClicked) => {

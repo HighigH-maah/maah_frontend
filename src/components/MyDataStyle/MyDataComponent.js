@@ -423,3 +423,19 @@ export const NLImage = styled.img`
 export const NextLevelPic = ({ level }) => {
   return <NLImage src={level} alt="Level" />;
 };
+
+export const PlatinumImg = styled.img`
+  width: 90px;
+  height: 72px;
+  margin: 0 auto;
+  position: relative;
+`;
+export const BestLevel = () => {
+  return (
+    <>
+      <PlatinumImg src={platinum} alt={platinum} />
+      <ToNext>Best Level</ToNext>
+      <ToNextSub>현재 최고 등급입니다</ToNextSub>
+    </>
+  );
+};
