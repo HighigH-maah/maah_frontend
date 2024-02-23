@@ -230,7 +230,6 @@ function InputCardApplicationInfo({ setProcess, setCardApply, cardApply }) {
   const [englishName, setEnglishName] = useState("");
   const [account, setAccount] = useState(0);
   const [bankCode, setBankCode] = useState("");
-  const [bankHorderYN, setBankHorderYN] = useState("");
   const [bankList, setBankList] = useState([]);
   const API_SERVER = process.env.REACT_APP_API_SERVER;
 
@@ -257,10 +256,6 @@ function InputCardApplicationInfo({ setProcess, setCardApply, cardApply }) {
         },
       })
         .then((res) => {
-          console.log(res.data);
-          console.log("계좌 인증 성공");
-          setBankHorderYN(res.data.accountChkYn);
-          console.log(res.data.accountChkYn);
           // if (res.data.accountChkYn === "Y") {
           //   // 인증 완료
           //   alert("인증 완료");
@@ -269,33 +264,32 @@ function InputCardApplicationInfo({ setProcess, setCardApply, cardApply }) {
           //   alert("본인 명의 계좌 정보를 입력해주세요");
           // }
           // 성공 시 처리, 예를 들어 성공 메시지 표시 또는 사용자를 리디렉션할 수 있습니다.
+          if(res.data.accountChkYn === 'Y') {
+            setCardApply({
+              ...cardApply,
+              cardApplyEngname: englishName,
+              cardApplyIsTransport: document.getElementById("transport").checked,
+              cardApplyIsInternational: cardRegion === "visa" ? true : false,
+              bankCode: document.getElementById("bank").value,
+              accountNumber: document.getElementById("account").value,
+              cardApplyIsAccountVerify: true,
+            });
+            if (cardApply.type === "hi") {
+              alert("계좌 인증 완료");
+              setProcess(5);
+            } else if (cardApply.type === "by") {
+              let modal = document.getElementById("certification");
+              modal.style.visibility = "visible";
+            }
+          } else {
+            alert("계좌정보를 다시 입력해주세요.");
+          }
         })
         .catch((err) => {
           console.log(err);
           console.log("계좌 인증 실패");
           // 오류 시 처리, 예를 들어 사용자에게 오류 메시지를 표시할 수 있습니다.
         });
-      if (bankHorderYN === "Y") {
-        // true 대신에 계좌인증 결과값
-        setCardApply({
-          ...cardApply,
-          cardApplyEngname: englishName,
-          cardApplyIsTransport: document.getElementById("transport").checked,
-          cardApplyIsInternational: cardRegion === "visa" ? true : false,
-          bankCode: document.getElementById("bank").value,
-          accountNumber: document.getElementById("account").value,
-          cardApplyIsAccountVerify: true,
-        });
-        if (cardApply.type === "hi") {
-          alert("계좌 인증 완료");
-          setProcess(5);
-        } else if (cardApply.type === "by") {
-          let modal = document.getElementById("certification");
-          modal.style.visibility = "visible";
-        }
-      } else {
-        alert("계좌정보를 다시 입력해주세요.");
-      }
     }
   };
 
