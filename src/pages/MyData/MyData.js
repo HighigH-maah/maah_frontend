@@ -49,12 +49,10 @@ import platinum from "../../assets/icon/platinum.png";
 import Select from "react-select";
 
 import nextBack from "../../assets/images/nextLevelBack.png";
-import {
-  LineChart,
-  MyDoughnutChart,
-} from "../../components/MyDataStyle/MyDataChart";
+import { MyDoughnutChart } from "../../components/MyDataStyle/MyDataChart";
 import HeaderWhiteVer from "../../components/Header/HeaderWhiteVer";
 import MemberLoad from "../../components/Utils/SessionStorage";
+import MyDataLineChart from "../../components/MyDataStyle/MyDataLineChart";
 
 function MyData(props) {
   const API_SERVER = process.env.REACT_APP_API_SERVER;
@@ -196,12 +194,12 @@ function MyData(props) {
         </SaleForMonth>
         <CompareLastMonth>
           <DataDesc>지난 달 VS 이번 달</DataDesc>
-
           <DataView>
             {new Intl.NumberFormat().format(myCompare.moreThanUsed)}{" "}
             사용했습니다
           </DataView>
-          <LineChart compareData={myCompare}></LineChart>
+
+          <MyDataLineChart compareData={myCompare} />
         </CompareLastMonth>
       </LimitWrapper>
       <LimitWrapper isLast>

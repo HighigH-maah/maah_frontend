@@ -119,7 +119,7 @@ export const CategoryGraph = styled.div`
     rgba(255, 255, 255, 0.99) 105.59%
   );
   width: 1155px;
-  height: 590px;
+  height: 497px;
   flex-shrink: 0;
 `;
 
@@ -374,10 +374,16 @@ export const PercentBox = styled.div`
   background: #fff;
   display: flex;
   padding: 12px 179px 12px 12px;
+  height: 95px;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  cursor: pointer;
   gap: 9px;
+  transition: box-shadow 0.3s ease;
+  &:hover {
+    box-shadow: 2px 3px 4px gray;
+  }
 `;
 
 export const Ptitle = styled.p`
@@ -406,6 +412,7 @@ export const NextLevelDiv = styled.div`
 `;
 
 export const ToNextDiv = styled.div`
+  margin-bottom: 0.5rem;
   position: relative;
   display: flex;
   flex-direction: column;
