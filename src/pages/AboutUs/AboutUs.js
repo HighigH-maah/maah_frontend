@@ -3,7 +3,7 @@ import styled from "styled-components";
 import lineBg from "../../assets/images/AboutUs/bg_line.png";
 import starBg from "../../assets/images/AboutUs/star_bg.png";
 import share from "../../assets/images/AboutUs/share.png";
-import chevronDown from "../../assets/icon/chevronDown.png";
+import chevronDown from "../../assets/images/AboutUs/chevrondown.png";
 import { animateScroll as scroll, Link } from "react-scroll";
 
 const AboutUsDiv = styled.div`
@@ -36,13 +36,21 @@ const AboutUsDiv = styled.div`
     background-repeat: no-repeat;
     background-position: center;
   }
+
+  .chevronDown {
+    position: relative;
+    left: 47%;
+    top: 50rem;
+    width: 7rem;
+    cursor: pointer;
+  }
 `;
 
 const Banner = styled.div`
   box-sizing: border-box;
   position: absolute;
   left: 7rem;
-  top: 21rem;
+  top: 25rem;
   display: flex;
   flex-direction: column;
   background-size: 100% 100%;
@@ -57,20 +65,20 @@ const Banner = styled.div`
     color: #ffffff;
   }
 
+  .info11 {
+    margin: 0.5rem 0rem;
+    font-size: 4rem;
+    font-weight: 600;
+    line-height: 0.97;
+    color: #ccb88f;
+  }
+
   .info2 {
     margin: 0.5rem 0rem;
     font-size: 2rem;
     font-weight: 400;
     line-height: 0.97;
     color: #ffffff;
-  }
-
-  img {
-    position: relative;
-    left: 43rem;
-    top: 17rem;
-    width: 7rem;
-    cursor: pointer;
   }
 `;
 
@@ -162,10 +170,10 @@ function AboutUs(props) {
   return (
     <AboutUsDiv>
       {/* <img className="background" src={lineBg} alt="lineBg" /> */}
-      <img className="background" src={starBg} alt="starBg" />
+      {/* <img className="background" src={starBg} alt="starBg" /> */}
       <video
         className="banner"
-        src="/videos/nasa.mp4"
+        src="/videos/nasa2.mp4"
         muted
         autoPlay
         loop
@@ -173,15 +181,20 @@ function AboutUs(props) {
 
       <Banner>
         <p className="info1">최고의 가치를 고객과 함께하는</p>
-        <p className="info1">Master Hi:Card</p>
-        <p className="info2">이제껏 경험 못 했던 쉽고 편리한 카드 서비스</p>
+        <p className="info11">Master Hi:Card</p>
+        {/* <p className="info2">이제껏 경험 못 했던 쉽고 편리한 카드 서비스</p>
         <p className="info2">
           Hi:Card와 함께라면 당신의 일상이 새로워질 거예요.
-        </p>
-        <Link to="shareSection" smooth={true} duration={500}>
-          <img src={chevronDown} alt="chevronDown" onClick={scrollToShare} />
-        </Link>
+        </p> */}
       </Banner>
+      <Link to="shareSection" smooth={true} duration={500}>
+        <img
+          className="chevronDown"
+          src={chevronDown}
+          alt="chevronDown"
+          onClick={scrollToShare}
+        />
+      </Link>
 
       <Share id="shareSection">
         <div className="top">
