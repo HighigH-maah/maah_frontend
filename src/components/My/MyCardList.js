@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import MyHiCardAccountChange from "../../pages/MyHiCard/MyHiCardAccountChange";
 import close from "../../assets/images/close.png";
 import bronzeImg from "../../assets/images/Grade/bronze.png";
@@ -419,12 +419,11 @@ const ByCardBox = styled.div`
   padding: 3.3rem 9.6rem 5.6rem 5.2rem;
   width: 90%;
   height: 32.4rem;
-  background: linear-gradient(
-    280.43deg,
-    #ffffff 18.1%,
-    rgba(219, 219, 219, 0.5180130601) 47.23%,
-    rgba(255, 255, 255, 0) 78.54%
-  );
+  ${({ isNotByCard }) => css`
+    background: ${isNotByCard
+      ? "#c0c0c0"
+      : "linear-gradient(280.43deg, #ffffff 18.1%, rgba(219, 219, 219, 0.5180130601) 47.23%, rgba(255, 255, 255, 0) 78.54%)"};
+  `}
   border-radius: 3rem;
   flex-shrink: 0;
 `;
@@ -938,8 +937,10 @@ const MyHiCardRightSection = ({ myCardHi }) => {
 };
 
 export const MyByCard = ({ byCardData, hideTitle, byCardBeneList }) => {
+  const isNotByCard = byCardData.memberHiNumber === null;
+
   return (
-    <ByCardBox>
+    <ByCardBox isNotByCard={isNotByCard}>
       <MyByCardAllSection>
         <MyByCardLeftSection byCardData={byCardData}></MyByCardLeftSection>
         <MyByCardInfoSection>
