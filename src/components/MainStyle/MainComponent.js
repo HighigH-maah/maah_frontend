@@ -159,9 +159,9 @@ export const TopSection = () => {
         </Arrows>
       </Banner>
 
-      <div>
+      <div style={{ width: "300px", position: "relative", top: "9%" }}>
         <NameSection name={"이신한"}></NameSection>
-        <div>
+        <div style={{ width: "100%" }}>
           <SocialLogin>
             <SocialButtonBlock>
               <SocialBtnDiv>
@@ -209,9 +209,9 @@ export const TopSection = () => {
               </SocialBtnDiv>
             </SocialButtonBlock>
           </SocialLogin>
-          <LoginButton>
+          {/* <LoginButton>
             <span>비밀번호 변경</span>
-          </LoginButton>
+          </LoginButton> */}
         </div>
       </div>
     </MainPage1>
@@ -219,6 +219,7 @@ export const TopSection = () => {
 };
 
 export const NameDiv = styled.div`
+  width: 100%;
   margin-top: 1rem;
 `;
 
@@ -364,7 +365,7 @@ export const MainPage1 = styled.div`
   width: 100%;
   height: 90vh;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-evenly;
   & > div {
     display: inline-block;
     vertical-align: top;
@@ -441,7 +442,7 @@ export const SocialLogin = styled.div`
 
 export const SocialButtonBlock = styled.div`
   display: flex;
-  width: 50%;
+  width: 95%;
   text-align: center;
   flex-wrap: wrap;
 `;
