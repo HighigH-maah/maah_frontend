@@ -149,14 +149,15 @@ export const TopSection = () => {
             ></span>
           ))}
         </BannerPage>
-        <Arrows>
+        {/* 화살표 위치 맞추기 어려워서 그냥 빼기로 */}
+        {/* <Arrows>
           <ArrowLeft onClick={handlePrevSlide}>
             <FaChevronLeft />
           </ArrowLeft>
           <ArrowRight onClick={handleNextSlide}>
             <FaChevronRight />
           </ArrowRight>
-        </Arrows>
+        </Arrows> */}
       </Banner>
 
       <div style={{ width: "300px", position: "relative", top: "9%" }}>
