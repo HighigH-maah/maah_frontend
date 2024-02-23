@@ -27,6 +27,7 @@ function ByBottomCard({
   // console.log("2차ㅇㅇㅇ" + isOn);
 
   // openCardFunc(card);
+  // console.log(card);
   const ref = useRef(null);
   const [{ handlerId }, drop] = useDrop({
     accept: ItemTypes.ByCARD,
