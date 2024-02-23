@@ -168,12 +168,14 @@ export const HiCardDescBox = styled.div`
     font-weight: 600;
     line-height: 22px;
     letter-spacing: -0.18px;
+    margin: 0px;
   }
   > h3 img {
     width: 40px;
   }
   > h3 p {
     word-break: keep-all;
+    margin: 5px;
   }
 `;
 
@@ -359,6 +361,7 @@ export const ByBottomDesc = styled.div`
   gap: 5px;
   opacity: 0;
   transition: opacity 0.5s;
+
   &.toggle--checked {
     opacity: 1;
     transition: opacity 0.5s;

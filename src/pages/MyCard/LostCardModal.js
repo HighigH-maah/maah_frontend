@@ -23,7 +23,6 @@ const LostCardCenterSection = styled.div`
 
 const LostCardTop = styled.div`
   box-sizing: border-box;
-  padding: 4rem;
   width: 100%;
   align-items: center;
   display: flex;

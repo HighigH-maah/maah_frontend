@@ -41,6 +41,7 @@ import nasabanner from "../../assets/images/banner-nasa.png";
 import blackvelvetbanner from "../../assets/images/banner-blackvelvet.png";
 import whitevelvetbanner from "../../assets/images/banner-whitevelvet.png";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 const Arrows = styled.div`
   position: absolute;
   top: 50%;
@@ -62,14 +63,14 @@ export const ArrowLeft = styled(ArrowBase)``;
 export const ArrowRight = styled(ArrowBase)``;
 const banners = [blackvelvetbanner, whitevelvetbanner, nasabanner, unionbanner];
 export const TopSection = () => {
+  const API_SERVER = process.env.REACT_APP_API_SERVER;
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [hicardCode, setHiCardCode] = useState(0);
+  const [hicardNumber, setHicardNumber] = useState(0);
   const navigate = useNavigate();
-
   const handleBannerClick = (idx) => {
-    console.log("핸들배너 클릭", idx);
     clearInterval(interval); // Clear the interval to stop automatic sliding
     setCurrentSlide(idx);
-    console.log(banners[idx]);
 
     const clickedBannerPath = banners[idx];
 
@@ -78,9 +79,43 @@ export const TopSection = () => {
     } else if (clickedBannerPath.includes("union")) {
       navigate(`/byCardDetail/${9}`);
     } else {
-      // Handle other banners if needed
+      axios
+        .post(API_SERVER + "/getMemberInfo.do", {
+          memberId: "user2",
+        })
+        .then(function (res) {
+          console.log(res.data);
+          setHiCardCode(res.data.hiCardImageCode);
+          setHicardNumber(res.data.myHiNumber);
+
+          if (
+            (res.data.hiCardImageCode === 2 && idx === 1) ||
+            (res.data.hiCardImageCode === 1 && idx === 0)
+          ) {
+            console.log("2번입니다", res.data.hiCardImageCode);
+          } else {
+            console.log("하이카드가 아예 없기땨문에 신청으로 넘어감");
+            navigate("/hiCard");
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   };
+
+  useEffect(() => {
+    if (
+      (hicardCode === 2 && currentSlide === 1) ||
+      (hicardCode === 1 && currentSlide === 0)
+    ) {
+      navigate(`/myHiCardDetail/`, {
+        state: {
+          memberHiNumber: hicardNumber,
+        },
+      });
+    }
+  }, [hicardCode, currentSlide, hicardNumber, navigate]);
 
   const handleNextSlide = () => {
     const nextSlide = (currentSlide + 1) % banners.length;
@@ -196,6 +231,7 @@ export const NameSection = ({ name }) => {
   );
 };
 export const FirstSection = () => {
+  const navigate = useNavigate();
   return (
     <HiCardSection>
       <HiCardTitleSection>
@@ -204,7 +240,13 @@ export const FirstSection = () => {
           마하의 오리지널리티를 담은 단 하나의 <span>하이카드</span>
         </HiCardSubTitle>
         <CreateButton>
-          <button>Create New Card</button>
+          <button
+            onClick={() => {
+              navigate("/hiCard");
+            }}
+          >
+            Create New Card
+          </button>
         </CreateButton>
       </HiCardTitleSection>
       <HiCardViewSection>
@@ -219,16 +261,24 @@ export const FirstSection = () => {
 };
 
 export const ThirdSection = () => {
+  const navigate = useNavigate();
   return (
     <ByCardSectionDiv>
       <ByCardSection>
         <img src={byCardGroup} width="300" />
         <ByCardTitle>Best by Ma:ah By:Card</ByCardTitle>
         <ByCardSubTitle>
-          바이카드에 대한 설명<span>By:Card</span>
+          Ma:ah만의 혜택으로 비교해보세요 <span>By:Card</span>
         </ByCardSubTitle>
         <CreateButton>
-          <button style={{ margin: 0 }}>Create New By:Card</button>
+          <button
+            style={{ margin: 0 }}
+            onClick={() => {
+              navigate("/cardCompare");
+            }}
+          >
+            Go to Card Compare
+          </button>
         </CreateButton>
       </ByCardSection>
       <ByCardWrapper>
@@ -246,6 +296,7 @@ export const ThirdSection = () => {
 };
 
 export const FourthSection = () => {
+  const navigate = useNavigate();
   return (
     <WhySection>
       <WhyImage image={whymaah} />
@@ -257,7 +308,13 @@ export const FourthSection = () => {
             Ma:ah에서 Hi:Card를 발급 받고, 커스텀하세요 타 회사 카드를 Ma:ah
             카드와 비교하고 더 좋은 카드가 무엇인지 고민하세요
           </p>
-          <span>Get Started</span>
+          <span
+            onClick={() => {
+              navigate("/hiCard");
+            }}
+          >
+            Get Started
+          </span>
         </WhyBox>
         <WhyBox>
           <img src={share} />
@@ -266,12 +323,24 @@ export const FourthSection = () => {
             Hi:Card 를 당신만의 By:Card로 그룹화하세요 Hi:Card의 결제 이력을
             바탕으로 원하는 카드에 원하는 만큼 혜택을 공유하세요
           </p>
-          <span>Ma:ah Share</span>
+          <span
+            onClick={() => {
+              navigate("/share");
+            }}
+          >
+            Ma:ah Share
+          </span>
         </WhyBox>
         <WhyBox>
           <img src={benefit} />
           Benefit<p>Ma:ah Share를 통해 늘어난 혜택을 만끽하세요</p>
-          <span>My:Data</span>
+          <span
+            onClick={() => {
+              navigate("/myData");
+            }}
+          >
+            My:Data
+          </span>
         </WhyBox>
       </WhyBoxSection>
     </WhySection>
@@ -815,6 +884,7 @@ export const ImageFadeInRight = styled.img`
 export const AboutMaahContent = () => {
   const [visible, setVisible] = useState(false);
   const containerRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleIntersection = (entries) => {
@@ -858,7 +928,14 @@ export const AboutMaahContent = () => {
             디자인 커스텀부터 Share까지, Ma:ah에서 모든건 내 마음대로
           </MaahSubTitle>
           <CreateButton>
-            <button style={{ margin: 0 }}>Ma:ah F&Q</button>
+            <button
+              style={{ margin: 0 }}
+              onClick={() => {
+                navigate("/aboutUs");
+              }}
+            >
+              About Ma:ah
+            </button>
           </CreateButton>
         </MaahSub>
       </MaahSection>

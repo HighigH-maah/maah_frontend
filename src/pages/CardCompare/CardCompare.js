@@ -36,6 +36,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 function CardCompare(props) {
+  const API_SERVER = process.env.REACT_APP_API_SERVER;
   const [selectedCompany, setSelectedCompany] = useState(null);
   const [selectedMaah, setSelectedMaah] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -52,8 +53,9 @@ function CardCompare(props) {
   const handleselectedOtherClick = (otherClicked) => {
     setselectedOther(otherClicked);
     console.log("selectedOther:", otherClicked);
+
     axios
-      .post("/byCardsByOther.do", {
+      .post(API_SERVER + "/byCardsByOther.do", {
         otherName: otherClicked,
       })
       .then(function (res) {
@@ -67,7 +69,7 @@ function CardCompare(props) {
 
   const handleMaahClick = async () => {
     axios
-      .get("/allbycards.do", {})
+      .get(API_SERVER + "/allbycards.do", {})
       .then(function (res) {
         console.log(res.data);
 
@@ -85,7 +87,7 @@ function CardCompare(props) {
     console.log(categoryClicked);
 
     axios
-      .post("/selectByCondition.do", {
+      .post(API_SERVER + "/selectByCondition.do", {
         bankName: selectedCompany,
         category: categoryClicked,
       })

@@ -1,51 +1,71 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
+  ByBottomAdd,
   ByBottomArea,
   ByBottomCardArea,
   ByBottomCardTitle,
 } from "./ShareMainComponent";
-import update from "immutability-helper";
+import { ReactComponent as ShareCardAdd } from "../../assets/images/Svg/ShareCardAdd.svg";
 import ByBottomCard from "./ByBottomCard";
+import { useNavigate } from "react-router";
 
-function ByBottomDragContainer(props) {
-  const [cards, setCards] = useState([
-    {
-      id: 1,
-      text: "11111",
-    },
-    {
-      id: 2,
-      text: "22222",
-    },
-    {
-      id: 3,
-      text: "33333",
-    },
-  ]);
+function ByBottomDragContainer({
+  byCardList,
+  openCardFunc,
+  openModal,
+  isOn,
+  setisOn,
+}) {
+  const [cards, setCards] = useState(byCardList);
+  useEffect(() => {
+    setCards(byCardList);
+  }, [byCardList]);
+  const navigate = useNavigate();
+  // console.log("1차" + isOn);
+  const [newOn, setNewOn] = useState(true);
+  useEffect(() => {
+    setNewOn(!newOn);
+  }, [isOn]);
+  // console.log("바깥 콘솔" + newOn);
+
   const moveCard = useCallback((dragIndex, hoverIndex) => {
-    setCards((prevCards) =>
-      update(prevCards, {
-        $splice: [
-          [dragIndex, 1],
-          [hoverIndex, 0, prevCards[dragIndex]],
-        ],
-      })
-    );
+    setCards((prevCards) => {
+      const newCards = [...prevCards];
+      const draggedCard = newCards[dragIndex];
+
+      newCards.splice(dragIndex, 1);
+      newCards.splice(hoverIndex, 0, draggedCard);
+
+      return newCards;
+    });
   }, []);
-  const renderCard = useCallback((card, index) => {
+  const renderCard = useCallback((card, index, newOn) => {
     return (
       <ByBottomCard
-        key={card.id}
         index={index}
-        id={card.id}
-        text={card.text}
+        key={index}
+        id={card.memberByNumber}
         moveCard={moveCard}
+        openCardFunc={openCardFunc}
+        openModal={openModal}
+        card={card}
+        isOn={newOn}
+        setisOn={setisOn}
       />
     );
   }, []);
+
+  const clickTest = (props) => {
+    navigate("/myCardList");
+  };
   return (
     <ByBottomArea>
-      {cards.map((card, index) => renderCard(card, index))}
+      {cards ? cards.map((card, index) => renderCard(card, index, newOn)) : ""}
+      <ByBottomCardArea>
+        <ByBottomAdd>
+          <ShareCardAdd onClick={clickTest}></ShareCardAdd>
+        </ByBottomAdd>
+      </ByBottomCardArea>
     </ByBottomArea>
   );
 }

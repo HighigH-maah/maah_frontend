@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import styled from 'styled-components';
+import React, { useEffect } from "react";
+import styled from "styled-components";
 import logo from "../../assets/images/maah_logo.png";
 
 const Background = styled.div`
@@ -26,7 +26,7 @@ const CompleteStep = styled.span`
   height: 20px;
   margin: 5px;
   border-radius: 10px;
-  background-color: #5A5A5A;
+  background-color: #5a5a5a;
 `;
 
 const ProcessStep = styled.span`
@@ -35,7 +35,7 @@ const ProcessStep = styled.span`
   height: 20px;
   margin: 5px;
   border-radius: 10px;
-  background-color: #CECDCA;
+  background-color: #cecdca;
 `;
 
 const MainWrap = styled.div`
@@ -45,7 +45,7 @@ const MainWrap = styled.div`
   padding: 50px;
   width: 1100px;
   height: 600px;
-  box-shadow: inset 1px 5px rgba(0,0,0,0.2);
+  box-shadow: inset 1px 5px rgba(0, 0, 0, 0.2);
 `;
 
 const MainTitle = styled.div`
@@ -73,9 +73,7 @@ const Buttons = styled.div`
   }
 `;
 
-
-
-function PersonalCertification({setProcess, setCardApply, cardApply}) {
+function PersonalCertification({ setProcess, setCardApply, cardApply }) {
   useEffect(() => {
     const jquery = document.createElement("script");
     jquery.src = "http://code.jquery.com/jquery-1.12.4.min.js";
@@ -88,7 +86,7 @@ function PersonalCertification({setProcess, setCardApply, cardApply}) {
       document.head.removeChild(iamport);
     };
   }, []);
-  
+
   const gotoPrev = () => {
     setProcess(1);
   };
@@ -107,38 +105,38 @@ function PersonalCertification({setProcess, setCardApply, cardApply}) {
         if (rsp.success) {
           setCardApply({
             ...cardApply,
-            cardApplyIsVerify: true
-          })
+            cardApplyIsVerify: true,
+          });
           setProcess(3);
         }
       }
     );
   };
 
-    return (
-        <Background>
-            <BackLogo src={logo}></BackLogo>
-            <Process>
-                <CompleteStep></CompleteStep>
-                <CompleteStep></CompleteStep>
-                <ProcessStep></ProcessStep>
-                <ProcessStep></ProcessStep>
-                <ProcessStep></ProcessStep>
-            </Process>
-            <MainWrap>
-                <div>
-                    <MainTitle>
-                        한마음 님<br />
-                        본인인증을 진행해주세요
-                    </MainTitle>
-                </div>
-                <Buttons>
-                    <button onClick={handleAuthCheck}>본인인증</button>
-                    <button onClick={gotoPrev}>이전으로</button>
-                </Buttons>
-            </MainWrap>
-        </Background>
-    );
+  return (
+    <Background>
+      <BackLogo src={logo}></BackLogo>
+      <Process>
+        <CompleteStep></CompleteStep>
+        <CompleteStep></CompleteStep>
+        <ProcessStep></ProcessStep>
+        <ProcessStep></ProcessStep>
+        <ProcessStep></ProcessStep>
+      </Process>
+      <MainWrap>
+        <div>
+          <MainTitle>
+            한마음 님<br />
+            본인인증을 진행해주세요
+          </MainTitle>
+        </div>
+        <Buttons>
+          <button onClick={handleAuthCheck}>본인인증</button>
+          <button onClick={gotoPrev}>이전으로</button>
+        </Buttons>
+      </MainWrap>
+    </Background>
+  );
 }
 
 export default PersonalCertification;

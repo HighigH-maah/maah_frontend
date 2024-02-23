@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  BestLevel,
   CardDataList,
   CardInfoDesc,
   CardLimitPic,
@@ -48,13 +49,13 @@ import platinum from "../../assets/icon/platinum.png";
 import Select from "react-select";
 
 import nextBack from "../../assets/images/nextLevelBack.png";
-import {
-  LineChart,
-  MyDoughnutChart,
-} from "../../components/MyDataStyle/MyDataChart";
+import { MyDoughnutChart } from "../../components/MyDataStyle/MyDataChart";
 import HeaderWhiteVer from "../../components/Header/HeaderWhiteVer";
+import MemberLoad from "../../components/Utils/SessionStorage";
+import MyDataLineChart from "../../components/MyDataStyle/MyDataLineChart";
 
 function MyData(props) {
+  const API_SERVER = process.env.REACT_APP_API_SERVER;
   const [myAvg, setmyAvg] = useState("");
   const [myCardForMonth, setmyCardForMonth] = useState([]);
   const [myCategoryView, setmyCategoryView] = useState([]);
@@ -62,6 +63,7 @@ function MyData(props) {
   const [myLimit, setmyLimit] = useState([]);
   const [myNextLevel, setmyNextLevel] = useState([]);
   const [hicard, setHiCard] = useState("");
+  const [leftPrice, setLeftPrice] = useState("");
 
   const options = [
     { value: "Newest", label: "Sort by Newest" },
@@ -69,10 +71,11 @@ function MyData(props) {
   ];
 
   useEffect(() => {
-    axios
-      .post("/getMyData.do", {
-        memberId: "user2",
-      })
+    axios({
+      method: "post",
+      url: API_SERVER + "/getMyData.do",
+      data: { memberId: MemberLoad() },
+    })
       .then((res) => {
         console.log(res.data);
         setHiCard(res.data.myHiCardImage);
@@ -82,6 +85,9 @@ function MyData(props) {
         setmyCompare(res.data.myCompare);
         setmyLimit(res.data.myLimit);
         setmyNextLevel(res.data.myNextLevel);
+        setLeftPrice(
+          res.data.myLimit.limitedAmount - res.data.myLimit.historyAmount
+        );
       })
       .catch(function (error) {});
   }, []);
@@ -107,14 +113,12 @@ function MyData(props) {
       <MyDataTitle>Ma:ah My Data</MyDataTitle>
       <LimitWrapper isFirst>
         <LimitDiv>
-          <DataTitle>한도현황</DataTitle>
+          <DataTitle>남은 금액 </DataTitle>
 
-          <DataView>
-            {new Intl.NumberFormat().format(myLimit.limitedAmount)}
-          </DataView>
+          <DataView>{new Intl.NumberFormat().format(leftPrice)}</DataView>
 
           <DataDesc>
-            남은 금액 {new Intl.NumberFormat().format(myLimit.historyAmount)}
+            한도 현황 {new Intl.NumberFormat().format(myLimit.limitedAmount)}
           </DataDesc>
           <CardLimitPic image={hicard} />
         </LimitDiv>
@@ -157,11 +161,16 @@ function MyData(props) {
             </NextLevelDiv>
 
             <ToNextDiv>
-              <ToNext>
-                {new Intl.NumberFormat().format(myNextLevel.toNextClass)}
-              </ToNext>
-
-              <ToNextSub>{myNextLevel.nextClass}까지 남은 금액</ToNextSub>
+              {myNextLevel.nextClass != null ? (
+                <>
+                  <ToNext>
+                    {new Intl.NumberFormat().format(myNextLevel.toNextClass)}
+                  </ToNext>
+                  <ToNextSub>{myNextLevel.nextClass}까지 남은 금액</ToNextSub>
+                </>
+              ) : (
+                <BestLevel />
+              )}
             </ToNextDiv>
             <ForNow>
               <span>사용한 금액</span>
@@ -185,12 +194,12 @@ function MyData(props) {
         </SaleForMonth>
         <CompareLastMonth>
           <DataDesc>지난 달 VS 이번 달</DataDesc>
-
           <DataView>
             {new Intl.NumberFormat().format(myCompare.moreThanUsed)}{" "}
             사용했습니다
           </DataView>
-          <LineChart compareData={myCompare}></LineChart>
+
+          <MyDataLineChart compareData={myCompare} />
         </CompareLastMonth>
       </LimitWrapper>
       <LimitWrapper isLast>

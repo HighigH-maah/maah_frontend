@@ -6,8 +6,6 @@ import axios from "axios";
 import LostCardModal from "./LostCardModal";
 import close from "../../assets/images/close.png";
 import MemberLoad from "../../components/Utils/SessionStorage";
-import { ModalBackground } from "../ByCard/ByCard";
-import { ModalClose } from "../MyHiCard/HiCard";
 
 const LostCardDiv = styled.div`
   width: 100%;
@@ -174,13 +172,30 @@ const IdentityCheckButton = styled.button`
   cursor: pointer;
 `;
 
-export const LostCardModalSet = styled.div`
+const ModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 투명한 검은색 배경 */
+  z-index: 1000; /* 모달보다 뒤에 위치 */
+`;
+
+const LostCardModalSet = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 0.5rem;
   z-index: 1000;
+`;
+
+const ModalClose = styled.img`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
 `;
 
 function LostCard(props) {
@@ -237,8 +252,8 @@ function LostCard(props) {
               if (certInfo.certName === certInfo.memberName) {
                 // memberCardNumber를 이용하여 성공 시 실행할 로직을 작성합니다.
                 axios({
-                  method: process.env.REACT_APP_API_SERVER + "post",
-                  url: "/reportLost.do",
+                  method: "post",
+                  url: process.env.REACT_APP_API_SERVER + "/reportLost.do",
                   data: {
                     memberId: MemberLoad(),
                     memberCardNumber: selectedCard.memberCardNumber,

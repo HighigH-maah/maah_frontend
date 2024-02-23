@@ -355,7 +355,7 @@ const ModalBackground = styled.div`
   z-index: 1000; /* 모달보다 뒤에 위치 */
 `;
 
-function MyByCard(props) {
+function MyByCard(byCardData) {
   const API_SERVER = process.env.REACT_APP_API_SERVER;
 
   // useLocation 훅을 사용하여 현재 location 정보를 가져옴
@@ -454,6 +454,7 @@ function MyByCard(props) {
       bycardBenefitsInfo={bycardBenefitsInfo}
       isConnectHiOrNot={isConnectHiOrNot}
       updateChange={updateChange}
+      byCardData={byCardData}
       memberByNumber={memberByNumber}
     ></ByCardDetail>
   );
@@ -465,6 +466,7 @@ function ByCardDetail({
   bycardBenefitsInfo,
   isConnectHiOrNot,
   updateChange,
+  byCardData,
   memberByNumber,
 }) {
   const [openAccordions, setOpenAccordions] = useState([]);
@@ -631,6 +633,7 @@ function ByCardDetail({
                           onClick={closeMyAccountChangeModal}
                         ></ModalClose>
                         <MyByCardAccountChange
+                          byCardData={byCardData}
                           memberByNumber={memberByNumber}
                         ></MyByCardAccountChange>
                       </ByCardModal>

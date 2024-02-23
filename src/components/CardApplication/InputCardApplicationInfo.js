@@ -51,7 +51,7 @@ const MainWrap = styled.div`
   margin: auto;
   padding: 50px;
   width: 1100px;
-  height: 1030px;
+  height: 1130px;
   box-shadow: inset 1px 5px rgba(0, 0, 0, 0.2);
 `;
 

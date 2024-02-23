@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { HiCardModal, ModalClose } from "../../pages/MyHiCard/HiCard";
 import MyHiCardAccountChange from "../../pages/MyHiCard/MyHiCardAccountChange";
 import close from "../../assets/images/close.png";
 import bronzeImg from "../../assets/images/Grade/bronze.png";
@@ -11,9 +10,9 @@ import platinumImg from "../../assets/images/Grade/platinum.png";
 import VirtualCardApply from "../../pages/MyHiCard/VirtualCardApply";
 import MyPaymentHistory from "../../pages/MyHiCard/MyPaymentHistory";
 import { Link } from "react-router-dom";
-import { ByCardModal, ModalBackground } from "../../pages/ByCard/ByCard";
 import MemberLoad from "../Utils/SessionStorage";
 import MyByCardAccountChange from "../../pages/MyByCard/MyByCardAccountChange";
+import mainBackground from "../../assets/images/main_bg.png";
 
 export const MyCardListDiv = styled.div`
   width: 100%;
@@ -23,6 +22,14 @@ export const MyCardListDiv = styled.div`
   background: linear-gradient(180deg, #fffdfd -0%, #b2b2b2 100%);
 `;
 
+export const ListBackImage = styled.div`
+  background-image: url(${mainBackground});
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: auto;
+  width: auto;
+`;
+
 export const Main = styled.div`
   width: 100%;
   height: 100%;
@@ -30,7 +37,7 @@ export const Main = styled.div`
   top: 15rem;
 `;
 
-export const HiCardBox = styled.div`
+const HiCardBox = styled.div`
   margin: 0rem 0rem 12rem 5rem;
   box-sizing: border-box;
   padding: 3.9rem 5.5rem 7.5rem 4.8rem;
@@ -47,7 +54,7 @@ export const HiCardBox = styled.div`
   width: 90%;
 `;
 
-export const MyHiCardLeftDiv = styled.div`
+const MyHiCardLeftDiv = styled.div`
   margin-right: 2rem;
   margin-top: 2rem;
   width: 22.8rem;
@@ -55,7 +62,7 @@ export const MyHiCardLeftDiv = styled.div`
   flex-shrink: 0;
 `;
 
-export const MyHiCardShape = styled.div`
+const MyHiCardShape = styled.div`
   box-sizing: border-box;
   padding: 1.3rem 4.9rem 1.2rem 5rem;
   width: 100%;
@@ -76,7 +83,7 @@ export const MyHiCardShape = styled.div`
 //   border-radius: 1.2rem;
 // `;
 
-export const HiCardName = styled.p`
+const HiCardName = styled.p`
   position: relative;
   font-size: 3rem;
   font-weight: 400;
@@ -88,36 +95,36 @@ export const HiCardName = styled.p`
   margin-bottom: 0.7rem;
 `;
 
-export const HiCardDescription = styled.div`
-  width: 12.5rem;
-  height: 2.2rem;
-  position: absolute;
-  left: -0.884rem;
-  top: 15.5423rem;
-  text-align: right;
-  display: flex;
-  font-size: 1.7rem;
-  font-weight: 500;
-  line-height: 1.2775;
-  letter-spacing: -0.068rem;
-  color: #ffffff;
-  /* font-family: Space Grotesk, "Source Sans Pro"; */
-  white-space: nowrap;
-`;
+// const HiCardDescription = styled.div`
+//   width: 12.5rem;
+//   height: 2.2rem;
+//   position: absolute;
+//   left: -0.884rem;
+//   top: 15.5423rem;
+//   text-align: right;
+//   display: flex;
+//   font-size: 1.7rem;
+//   font-weight: 500;
+//   line-height: 1.2775;
+//   letter-spacing: -0.068rem;
+//   color: #ffffff;
+//   /* font-family: Space Grotesk, "Source Sans Pro"; */
+//   white-space: nowrap;
+// `;
 
-export const HiCardNoise = styled.div`
-  opacity: 0.06;
-  width: 12.9rem;
-  height: 19rem;
-  position: absolute;
-  left: 0;
-  top: 0;
-  /* background-image: url("../assets/noise-vow.png"); */
-  background-repeat: repeat;
-  background-size: 100%;
-`;
+// const HiCardNoise = styled.div`
+//   opacity: 0.06;
+//   width: 12.9rem;
+//   height: 19rem;
+//   position: absolute;
+//   left: 0;
+//   top: 0;
+//   /* background-image: url("../assets/noise-vow.png"); */
+//   background-repeat: repeat;
+//   background-size: 100%;
+// `;
 
-export const HiCardNumber = styled.div`
+const HiCardNumber = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
@@ -130,14 +137,14 @@ export const HiCardNumber = styled.div`
   white-space: nowrap;
 `;
 
-export const MyHiCardCenterDiv = styled.div`
+const MyHiCardCenterDiv = styled.div`
   margin: 7rem 2rem 4.8rem 0rem;
   width: 28.5rem;
   flex-shrink: 0;
   border-right: solid 0.1rem #000000;
 `;
 
-export const CardTitle = styled.p`
+const CardTitle = styled.p`
   margin-bottom: 2rem;
   font-size: 3rem;
   font-weight: 400;
@@ -148,14 +155,14 @@ export const CardTitle = styled.p`
   top: -2rem;
   left: -0.3rem;
 `;
-export const HiCardLimit = styled.div`
+const HiCardLimit = styled.div`
   margin-bottom: 2.7rem;
   width: 100%;
   display: flex;
   align-items: center;
 `;
 
-export const HiCardLimitTitle = styled.div`
+const HiCardLimitTitle = styled.div`
   margin-right: 2rem;
   display: flex;
   font-size: 1.8rem;
@@ -167,7 +174,7 @@ export const HiCardLimitTitle = styled.div`
   flex-shrink: 0;
 `;
 
-export const HiCardAmout = styled.div`
+const HiCardAmout = styled.div`
   text-align: right;
   display: flex;
   font-size: 2rem;
@@ -179,25 +186,25 @@ export const HiCardAmout = styled.div`
   flex-shrink: 0;
 `;
 
-export const NotByCardAmout = styled.div`
-  text-align: right;
-  display: flex;
-  font-size: 2rem;
-  font-weight: 600;
-  line-height: 1.2125;
-  color: #000000;
-  /* font-family: Inter, "Source Sans Pro"; */
-  white-space: nowrap;
-  flex-shrink: 0;
-`;
+// const NotByCardAmout = styled.div`
+//   text-align: right;
+//   display: flex;
+//   font-size: 2rem;
+//   font-weight: 600;
+//   line-height: 1.2125;
+//   color: #000000;
+//   /* font-family: Inter, "Source Sans Pro"; */
+//   white-space: nowrap;
+//   flex-shrink: 0;
+// `;
 
-export const HiCardUse = styled.div`
+const HiCardUse = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
 `;
 
-export const HiCardUseTitle = styled.div`
+const HiCardUseTitle = styled.div`
   margin-right: 2rem;
   display: flex;
   font-size: 1.8rem;
@@ -209,19 +216,19 @@ export const HiCardUseTitle = styled.div`
   flex-shrink: 0;
 `;
 
-export const NotByCardUseTitle = styled.div`
-  margin-right: 3rem;
-  display: flex;
-  font-size: 1.8rem;
-  font-weight: 600;
-  line-height: 1.2125;
-  color: black;
-  /* font-family: Inter, "Source Sans Pro"; */
-  white-space: nowrap;
-  flex-shrink: 0;
-`;
+// const NotByCardUseTitle = styled.div`
+//   margin-right: 3rem;
+//   display: flex;
+//   font-size: 1.8rem;
+//   font-weight: 600;
+//   line-height: 1.2125;
+//   color: black;
+//   /* font-family: Inter, "Source Sans Pro"; */
+//   white-space: nowrap;
+//   flex-shrink: 0;
+// `;
 
-export const MyHiCardRightDiv = styled.div`
+const MyHiCardRightDiv = styled.div`
   margin-top: 3.3rem;
   width: 33rem;
   align-items: center;
@@ -230,7 +237,7 @@ export const MyHiCardRightDiv = styled.div`
   flex-shrink: 0;
 `;
 
-export const HiCardInfo = styled.div`
+const HiCardInfo = styled.div`
   box-sizing: border-box;
   padding-bottom: 2rem;
   width: 100%;
@@ -239,7 +246,7 @@ export const HiCardInfo = styled.div`
   flex-shrink: 0;
 `;
 
-export const CardPoint = styled.div`
+const CardPoint = styled.div`
   margin: 0rem 0.1rem 2rem 0rem;
   width: calc(100% - 0.1rem);
   display: flex;
@@ -247,7 +254,7 @@ export const CardPoint = styled.div`
   flex-shrink: 0;
 `;
 
-export const CardPointTitle = styled.div`
+const CardPointTitle = styled.div`
   margin-right: 4rem;
   display: flex;
   font-size: 2.3rem;
@@ -260,7 +267,7 @@ export const CardPointTitle = styled.div`
   flex-shrink: 0;
 `;
 
-export const CardPointScore = styled.div`
+const CardPointScore = styled.div`
   display: flex;
   font-size: 2.5rem;
   font-weight: 400;
@@ -272,7 +279,7 @@ export const CardPointScore = styled.div`
   flex-shrink: 0;
 `;
 
-export const HiCardGrade = styled.div`
+const HiCardGrade = styled.div`
   margin-right: 0.8rem;
   width: calc(100% - 0.8rem);
   display: flex;
@@ -280,7 +287,7 @@ export const HiCardGrade = styled.div`
   flex-shrink: 0;
 `;
 
-export const HiCardGradeTitle = styled.div`
+const HiCardGradeTitle = styled.div`
   margin-right: 3rem;
   display: flex;
   font-size: 2.3rem;
@@ -293,15 +300,15 @@ export const HiCardGradeTitle = styled.div`
   flex-shrink: 0;
 `;
 
-export const HiCardGradeImage = styled.img`
-  width: 9rem;
-  height: 6rem;
-  object-fit: cover;
-  vertical-align: top;
-  flex-shrink: 0;
-`;
+// const HiCardGradeImage = styled.img`
+//   width: 9rem;
+//   height: 6rem;
+//   object-fit: cover;
+//   vertical-align: top;
+//   flex-shrink: 0;
+// `;
 
-export const BottomButtonDiv = styled.div`
+const BottomButtonDiv = styled.div`
   width: 100%;
   align-items: flex-start;
   display: flex;
@@ -309,7 +316,7 @@ export const BottomButtonDiv = styled.div`
   flex-shrink: 0;
 `;
 
-export const LinkButton = styled.button`
+const LinkButton = styled.button`
   margin-bottom: 1rem;
   width: 28rem;
   height: 5rem;
@@ -341,7 +348,7 @@ export const LinkButton = styled.button`
   }
 `;
 
-export const ButtonUnderLine = styled.div`
+const ButtonUnderLine = styled.div`
   margin: 0rem 0rem 0rem 13.5rem;
   width: calc(100% - 13rem);
   display: flex;
@@ -353,7 +360,7 @@ export const ButtonUnderLine = styled.div`
   }
 `;
 
-export const AccountChange = styled.p`
+const AccountChange = styled.p`
   margin-right: 3rem;
   text-align: center;
   font-size: 1.3rem;
@@ -367,7 +374,7 @@ export const AccountChange = styled.p`
   cursor: pointer;
 `;
 
-export const TempCardNumber = styled.p`
+const TempCardNumber = styled.p`
   text-align: center;
   font-size: 1.3rem;
   font-weight: 400;
@@ -381,7 +388,7 @@ export const TempCardNumber = styled.p`
   cursor: pointer;
 `;
 
-export const LostCard = styled.p`
+const LostCard = styled.p`
   text-align: center;
   font-size: 1.3rem;
   font-weight: 400;
@@ -398,7 +405,7 @@ export const LostCard = styled.p`
   }
 `;
 
-export const ByCardGroup = styled.div`
+const ByCardGroup = styled.div`
   margin: 0rem 0rem 95.701rem 0rem;
   width: 100%;
   row-gap: 7.6rem;
@@ -407,7 +414,7 @@ export const ByCardGroup = styled.div`
   flex-direction: column;
 `;
 
-export const ByCardBox = styled.div`
+const ByCardBox = styled.div`
   box-sizing: border-box;
   padding: 3.3rem 9.6rem 5.6rem 5.2rem;
   width: 90%;
@@ -422,17 +429,17 @@ export const ByCardBox = styled.div`
   flex-shrink: 0;
 `;
 
-export const NotByCardBox = styled.div`
-  box-sizing: border-box;
-  padding: 3.3rem 9.6rem 5.6rem 5.2rem;
-  width: 90%;
-  height: 32.4rem;
-  background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 3rem;
-  flex-shrink: 0;
-`;
+// const NotByCardBox = styled.div`
+//   box-sizing: border-box;
+//   padding: 3.3rem 9.6rem 5.6rem 5.2rem;
+//   width: 90%;
+//   height: 32.4rem;
+//   background-color: rgba(255, 255, 255, 0.7);
+//   border-radius: 3rem;
+//   flex-shrink: 0;
+// `;
 
-export const MyByCardLeftDiv = styled.div`
+const MyByCardLeftDiv = styled.div`
   width: 15.4rem;
   height: 100%;
   align-items: center;
@@ -442,7 +449,7 @@ export const MyByCardLeftDiv = styled.div`
   margin-top: 2rem;
 `;
 
-export const MyByCardShape = styled.div`
+const MyByCardShape = styled.div`
   margin-bottom: 1.7rem;
   box-sizing: border-box;
   padding: 0.9rem 3.3rem 0.8rem 3.4rem;
@@ -455,61 +462,61 @@ export const MyByCardShape = styled.div`
   flex-shrink: 0;
 `;
 
-export const ByCard = styled.div`
-  width: 100%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-  box-sizing: border-box;
-  background-color: #000000;
-  border-radius: 1.2rem;
-`;
+// const ByCard = styled.div`
+//   width: 100%;
+//   height: 100%;
+//   position: relative;
+//   overflow: hidden;
+//   box-sizing: border-box;
+//   background-color: #000000;
+//   border-radius: 1.2rem;
+// `;
 
-export const ByCardNoise = styled.div`
-  opacity: 0.06;
-  width: 8.7rem;
-  height: 12.8rem;
-  position: absolute;
-  left: 0;
-  top: 0;
-  /* background-image: url("../assets/noise-Fcy.png"); */
-  background-repeat: repeat;
-  background-size: 100%;
-`;
+// const ByCardNoise = styled.div`
+//   opacity: 0.06;
+//   width: 8.7rem;
+//   height: 12.8rem;
+//   position: absolute;
+//   left: 0;
+//   top: 0;
+//   /* background-image: url("../assets/noise-Fcy.png"); */
+//   background-repeat: repeat;
+//   background-size: 100%;
+// `;
 
-export const ByCardDescription = styled.div`
-  width: 12.5rem;
-  height: 2.2rem;
-  position: absolute;
-  left: -4.6915rem;
-  top: 9.777rem;
-  text-align: right;
-  display: flex;
-  font-size: 1.7rem;
-  font-weight: 500;
-  line-height: 1.2775;
-  letter-spacing: -0.068rem;
-  color: #ffffff;
-  /* font-family: Space Grotesk, "Source Sans Pro"; */
-  white-space: nowrap;
-`;
+// const ByCardDescription = styled.div`
+//   width: 12.5rem;
+//   height: 2.2rem;
+//   position: absolute;
+//   left: -4.6915rem;
+//   top: 9.777rem;
+//   text-align: right;
+//   display: flex;
+//   font-size: 1.7rem;
+//   font-weight: 500;
+//   line-height: 1.2775;
+//   letter-spacing: -0.068rem;
+//   color: #ffffff;
+//   /* font-family: Space Grotesk, "Source Sans Pro"; */
+//   white-space: nowrap;
+// `;
 
-export const ByCardName = styled.div`
-  width: 7.7rem;
-  height: 1.9rem;
-  position: absolute;
-  left: 0.8208rem;
-  top: 0.8205rem;
-  font-size: 1.9rem;
-  font-weight: 400;
-  line-height: 0.97;
-  letter-spacing: -0.076rem;
-  color: #ffffff;
-  /* font-family: Iceland, "Source Sans Pro"; */
-  white-space: nowrap;
-`;
+// const ByCardName = styled.div`
+//   width: 7.7rem;
+//   height: 1.9rem;
+//   position: absolute;
+//   left: 0.8208rem;
+//   top: 0.8205rem;
+//   font-size: 1.9rem;
+//   font-weight: 400;
+//   line-height: 0.97;
+//   letter-spacing: -0.076rem;
+//   color: #ffffff;
+//   /* font-family: Iceland, "Source Sans Pro"; */
+//   white-space: nowrap;
+// `;
 
-export const ByCardNumberPart = styled.div`
+const ByCardNumberPart = styled.div`
   margin: 0 3rem;
   width: calc(100% - 5.5rem);
   align-items: center;
@@ -518,7 +525,7 @@ export const ByCardNumberPart = styled.div`
   flex-shrink: 0;
 `;
 
-export const ByCardNumberName = styled.div`
+const ByCardNumberName = styled.div`
   margin-bottom: 0.7rem;
   text-align: center;
   font-size: 3rem;
@@ -530,7 +537,7 @@ export const ByCardNumberName = styled.div`
   flex-shrink: 0;
 `;
 
-export const ByCardNumber = styled.div`
+const ByCardNumber = styled.div`
   font-size: 2.1rem;
   font-weight: 600;
   line-height: 1.2125;
@@ -540,7 +547,7 @@ export const ByCardNumber = styled.div`
   flex-shrink: 0;
 `;
 
-export const MyByCardInfoSection = styled.div`
+const MyByCardInfoSection = styled.div`
   box-sizing: border-box;
   padding: 3.2rem 0rem 0.2rem 7.5rem;
   height: 100%;
@@ -549,7 +556,7 @@ export const MyByCardInfoSection = styled.div`
   flex-shrink: 0;
 `;
 
-export const MyByCardCenterDiv = styled.div`
+const MyByCardCenterDiv = styled.div`
   margin-right: 3rem;
   width: 29.2rem;
   height: 100%;
@@ -557,7 +564,7 @@ export const MyByCardCenterDiv = styled.div`
   flex-shrink: 0;
 `;
 
-export const ByCardBenefitContents = styled.div`
+const ByCardBenefitContents = styled.div`
   box-sizing: border-box;
   padding-top: 5.5rem;
   width: 29.5rem;
@@ -571,21 +578,21 @@ export const ByCardBenefitContents = styled.div`
   border-right: solid 0.1rem #000000;
 `;
 
-export const NotByCardBenefitContents = styled.div`
-  box-sizing: border-box;
-  padding-top: 4.5rem;
-  width: 29.5rem;
-  height: 19.2rem;
-  position: absolute;
-  left: 0;
-  /* top: 0.9rem; */
-  row-gap: 1rem;
-  display: flex;
-  flex-direction: column;
-  border-right: solid 0.1rem #000000;
-`;
+// const NotByCardBenefitContents = styled.div`
+//   box-sizing: border-box;
+//   padding-top: 4.5rem;
+//   width: 29.5rem;
+//   height: 19.2rem;
+//   position: absolute;
+//   left: 0;
+//   /* top: 0.9rem; */
+//   row-gap: 1rem;
+//   display: flex;
+//   flex-direction: column;
+//   border-right: solid 0.1rem #000000;
+// `;
 
-export const ByCardBenefitDetail = styled.div`
+const ByCardBenefitDetail = styled.div`
   display: flex;
   font-size: 1.8rem;
   font-weight: 600;
@@ -596,7 +603,7 @@ export const ByCardBenefitDetail = styled.div`
   flex-shrink: 0;
 `;
 
-export const ByCardBenefitCondition = styled.p`
+const ByCardBenefitCondition = styled.p`
   font-size: 1.8rem;
   font-weight: 600;
   line-height: 1.2125;
@@ -606,18 +613,53 @@ export const ByCardBenefitCondition = styled.p`
   flex-shrink: 0;
 `;
 
-export const MyByCardRightDiv = styled.div`
+const MyByCardRightDiv = styled.div`
   margin: 5.5rem 0rem 2.2rem 0rem;
   width: 36.5rem;
   height: calc(100% - 7.7rem);
   flex-shrink: 0;
 `;
 
-export const MyByCardAllSection = styled.div`
+const MyByCardAllSection = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
+`;
+
+const ModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 투명한 검은색 배경 */
+  z-index: 1000; /* 모달보다 뒤에 위치 */
+`;
+
+const HiCardModal = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0.5rem;
+  z-index: 1000;
+`;
+
+const ModalClose = styled.img`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+`;
+
+const ByCardModal = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0.5rem;
+  z-index: 1000;
 `;
 
 export const MyCardListHiSection = () => {
@@ -772,28 +814,26 @@ const MyHiCardRightSection = ({ myCardHi }) => {
     useState(false);
   const [isVirtualCardApplyModalOpen, setIsVirtualCardApplyModalOpen] =
     useState(false);
-  const [isMyAccountChangeModalOpen, setIsMyAccountChangeModalOpen] =
+  const [isMyHiAccountChangeModalOpen, setIsMyHiAccountChangeModalOpen] =
     useState(false);
+
   const closeMyPaymentHistoryModal = () => {
     setIsMyPaymentHistoryModalOpen(false);
   };
   const closeVirtualCardApplyModal = () => {
     setIsVirtualCardApplyModalOpen(false);
   };
-  const closeMyAccountChangeModal = () => {
-    setIsMyAccountChangeModalOpen(false);
+  const closeMyHiAccountChangeModal = () => {
+    setIsMyHiAccountChangeModalOpen(false);
   };
-
   const openMyPaymentHistoryModal = () => {
     setIsMyPaymentHistoryModalOpen(true);
   };
-
   const openVirtualCardApplyModal = () => {
     setIsVirtualCardApplyModalOpen(true);
   };
-
-  const openMyAccountChangeModal = () => {
-    setIsMyAccountChangeModalOpen(true);
+  const openMyHiAccountChangeModal = () => {
+    setIsMyHiAccountChangeModalOpen(true);
   };
 
   return (
@@ -872,17 +912,17 @@ const MyHiCardRightSection = ({ myCardHi }) => {
               </HiCardModal>
             </ModalBackground>
           )}
-          <AccountChange onClick={openMyAccountChangeModal}>
+          <AccountChange onClick={openMyHiAccountChangeModal}>
             연결계좌변경
           </AccountChange>
           {/* MyAccountChange 모달 */}
-          {isMyAccountChangeModalOpen && (
+          {isMyHiAccountChangeModalOpen && (
             <ModalBackground>
               <HiCardModal>
                 <ModalClose
                   src={close}
-                  clicked={isMyAccountChangeModalOpen.toString()}
-                  onClick={closeMyAccountChangeModal}
+                  clicked={isMyHiAccountChangeModalOpen.toString()}
+                  onClick={closeMyHiAccountChangeModal}
                 ></ModalClose>
                 <MyHiCardAccountChange></MyHiCardAccountChange>
               </HiCardModal>
@@ -922,6 +962,7 @@ export const MyByCardLeftSection = ({ byCardData }) => {
         <Link
           to="/myByCardDetail"
           state={{ memberByNumber: byCardData.memberByNumber }}
+          byCardData={byCardData}
         >
           <img
             src={byCardData.byImagePath}
@@ -976,13 +1017,13 @@ const ByCardBenefitList = ({ byCardBeneList }) => {
 };
 
 export const MyByCardRightSection = ({ byCardData }) => {
-  const [isMyAccountChangeModalOpen, setIsMyAccountChangeModalOpen] =
+  const [isMyByAccountChangeModalOpen, setIsMyByAccountChangeModalOpen] =
     useState(false);
-  const closeMyAccountChangeModal = () => {
-    setIsMyAccountChangeModalOpen(false);
+  const closeMyByAccountChangeModal = () => {
+    setIsMyByAccountChangeModalOpen(false);
   };
-  const openMyAccountChangeModal = () => {
-    setIsMyAccountChangeModalOpen(true);
+  const openMyByAccountChangeModal = () => {
+    setIsMyByAccountChangeModalOpen(true);
   };
 
   const addHiCard = () => {
@@ -1049,20 +1090,20 @@ export const MyByCardRightSection = ({ byCardData }) => {
           <LinkButton onClick={excludeHiCard}>하이카드 제외</LinkButton>
         )}
         <ButtonUnderLine>
-          <AccountChange onClick={openMyAccountChangeModal}>
+          <AccountChange onClick={openMyByAccountChangeModal}>
             연결계좌변경
           </AccountChange>
           {/* MyAccountChange 모달 */}
-          {isMyAccountChangeModalOpen && (
+          {isMyByAccountChangeModalOpen && (
             <ModalBackground>
               <ByCardModal>
                 <ModalClose
                   src={close}
-                  clicked={isMyAccountChangeModalOpen.toString()}
-                  onClick={closeMyAccountChangeModal}
+                  clicked={isMyByAccountChangeModalOpen.toString()}
+                  onClick={closeMyByAccountChangeModal}
                 ></ModalClose>
                 <MyByCardAccountChange
-                  byCardData={byCardData}
+                  memberByNumber={byCardData.memberByNumber}
                 ></MyByCardAccountChange>
               </ByCardModal>
             </ModalBackground>

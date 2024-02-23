@@ -1,7 +1,8 @@
 import React from "react";
 import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
-import { BackImage, Mainback } from "../../components/MainStyle/MainComponent";
+import { Mainback } from "../../components/MainStyle/MainComponent";
 import {
+  ListBackImage,
   Main,
   MyCardListBySection,
   MyCardListDiv,
@@ -14,14 +15,14 @@ function MyCardList(props) {
   return (
     <MyCardListDiv>
       <Mainback>
-        <BackImage>
+        <ListBackImage>
           <HeaderLogoutBtn></HeaderLogoutBtn>
           <Main>
             <MyCardListHiSection></MyCardListHiSection>
             <MyCardListBySection></MyCardListBySection>
-            <Footer position="relative" top="10rem"></Footer>
           </Main>
-        </BackImage>
+          <Footer></Footer>
+        </ListBackImage>
       </Mainback>
     </MyCardListDiv>
   );
