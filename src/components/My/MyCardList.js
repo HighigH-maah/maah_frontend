@@ -147,7 +147,7 @@ const MyHiCardCenterDiv = styled.div`
 const CardTitle = styled.p`
   margin-bottom: 2rem;
   font-size: 3rem;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 0.97;
   letter-spacing: -0.2rem;
   white-space: nowrap;
@@ -955,6 +955,8 @@ export const MyByCard = ({ byCardData, hideTitle, byCardBeneList }) => {
   );
 };
 
+const ByCardImage = styled.img``;
+
 export const MyByCardLeftSection = ({ byCardData }) => {
   return (
     <MyByCardLeftDiv>
@@ -964,7 +966,7 @@ export const MyByCardLeftSection = ({ byCardData }) => {
           state={{ memberByNumber: byCardData.memberByNumber }}
           byCardData={byCardData}
         >
-          <img
+          <ByCardImage
             src={byCardData.byImagePath}
             alt="바이카드 이미지"
             style={{ width: "100%" }}

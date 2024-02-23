@@ -160,7 +160,7 @@ export const TopSection = () => {
       </Banner>
 
       <div>
-        <NameSection name={"한마음"}></NameSection>
+        <NameSection name={"이신한"}></NameSection>
         <div>
           <SocialLogin>
             <SocialButtonBlock>
@@ -392,7 +392,7 @@ export const LoginTitle = styled.div`
 `;
 
 export const LoginWelcome = styled.div`
-  font-size: 2rem;
+  font-size: 1.5rem;
   background: linear-gradient(180deg, #000000 37.44%, #8c8a83 100%);
   background-clip: text;
   -webkit-background-clip: text;
