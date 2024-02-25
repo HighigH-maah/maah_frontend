@@ -23,11 +23,18 @@ import shopping from "../../assets/images/AboutUs/쇼핑.png";
 import food from "../../assets/images/AboutUs/푸드.png";
 import travel from "../../assets/images/AboutUs/여행.png";
 import study from "../../assets/images/AboutUs/교육육아.png";
+import sharemodal from "../../assets/images/AboutUs/sharemodal.png";
+import sharemodal2 from "../../assets/images/AboutUs/sharemodal2.png";
+import benefit1 from "../../assets/images/AboutUs/benefit1.png";
+import benefit2 from "../../assets/images/AboutUs/benefit2.png";
+import benefit3 from "../../assets/images/AboutUs/benefit3.png";
+import benefit4 from "../../assets/images/AboutUs/benefit4.png";
 import { animateScroll as scroll, Link } from "react-scroll";
 import { useNavigate } from "react-router-dom";
 import { CreateButton } from "../../components/MainStyle/MainComponent";
 import HeaderWhiteVer from "../../components/Header/HeaderWhiteVer";
 import Slider from "react-infinite-logo-slider";
+import Footer from "../../components/Footer/Footer";
 
 const AboutUsDiv = styled.div`
   height: 600rem;
@@ -309,7 +316,7 @@ const Benefits = styled.div`
   background-color: #151515;
   display: flex;
   position: absolute;
-  top: 255rem;
+  top: 390rem;
   align-items: center;
   justify-content: space-around;
 
@@ -381,6 +388,170 @@ const Benefits = styled.div`
     gap: 30px;
   }
 `;
+
+const Share = styled.div`
+  .section1 {
+    display: flex;
+    position: absolute;
+    left: 4.5rem;
+    top: 260rem;
+  }
+
+  .rec1 {
+    width: 580px;
+    height: 700px;
+    flex-shrink: 0;
+    background: #151515;
+  }
+
+  .info {
+    display: flex;
+    position: absolute;
+    top: 5rem;
+    left: 3.5rem;
+    height: 285px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    flex-shrink: 0;
+  }
+
+  .title {
+    color: #ccb88f;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  .subtitle {
+    color: var(--naver-text, #fff);
+    font-family: Poppins;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  .sharemodal {
+    display: flex;
+    position: absolute;
+    top: 25rem;
+    left: 15rem;
+  }
+
+  .section2 {
+    display: flex;
+    position: absolute;
+    left: 50rem;
+    top: 280rem;
+  }
+
+  .rec2 {
+    width: 750px;
+    height: 585px;
+    flex-shrink: 0;
+    background: #151515;
+  }
+
+  .sharemoda2 {
+    display: flex;
+    position: absolute;
+    left: 13rem;
+    top: -5rem;
+    width: 600px;
+  }
+
+  .info2 {
+    display: flex;
+    position: absolute;
+    top: 20rem;
+    left: 13rem;
+    width: 550px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    flex-shrink: 0;
+  }
+
+  .title2 {
+    color: var(--naver-text, #fff);
+    font-family: Poppins;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  .subtitle2 {
+    color: #a0a0a0;
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .section3 {
+    display: flex;
+    position: absolute;
+    left: 10rem;
+    top: 330rem;
+    align-items: center;
+  }
+
+  .rec3 {
+    width: 1200px;
+    height: 700px;
+    display: flex;
+    background: #151515;
+  }
+
+  .info3 {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    left: 10rem;
+  }
+
+  .title3 {
+    color: var(--naver-text, #fff);
+    font-family: Poppins;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  .subtitle3 {
+    color: #a0a0a0;
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .benefitimg {
+    display: flex;
+    position: relative;
+    top: 5rem;
+    right: 30rem;
+    width: 650px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 35px;
+    flex-wrap: wrap;
+  }
+`;
+
+const FAQS = styled.div``;
 
 function AboutUs(props) {
   const navigate = useNavigate();
@@ -516,6 +687,55 @@ function AboutUs(props) {
         </div>
       </Create>
 
+      <Share>
+        <div className="section2">
+          <div className="rec2"></div>
+          <img className="sharemoda2" src={sharemodal2} alt="share modal2" />
+          <div className="info2">
+            <div className="title2">
+              받고 싶은 혜택에 맞춰 <br />
+              자유롭게 실적을 관리하세요.
+            </div>
+            <div className="subtitle2">
+              HI:Card에 쌓인 실적을 <br /> 본인이 원하는 By:Card에 분배하세요.
+            </div>
+          </div>
+        </div>
+
+        <div className="section1">
+          <div className="rec1"></div>
+          <div className="info">
+            <div className="title">SHARE</div>
+            <div className="subtitle">
+              카드에 실적을 <br />
+              얼마나 채워야하는지 <br />
+              고민되신적 있나요?{" "}
+            </div>
+          </div>
+          <img className="sharemodal" src={sharemodal} alt="share modal" />
+        </div>
+
+        <div className="section3">
+          <div className="rec3"></div>
+          <div className="info3">
+            <div className="title3">
+              내가 받을 수 있는 <br />
+              혜택을 한눈에
+            </div>
+            <div className="subtitle3">
+              이번달 사용 할 수 있는 <br />
+              모든 혜텍을 보여주는 직관적인 화면 구성
+            </div>
+          </div>
+          <div className="benefitimg">
+            <img src={benefit1} alt="benefit1" />
+            <img src={benefit2} alt="benefit2" />
+            <img src={benefit3} alt="benefit3" />
+            <img src={benefit4} alt="benefit4" />
+          </div>
+        </div>
+      </Share>
+
       <Benefits>
         <div className="benefits">
           <div className="infoL">
@@ -540,8 +760,8 @@ function AboutUs(props) {
             </div>
             <div className="row">
               <img src={util} alt="공과금" />
-              <img src={phone} alt="대중교통" />
-              <img src={airline} alt="영화/문화" />
+              <img src={subway} alt="대중교통" />
+              <img src={movie} alt="영화/문화" />
             </div>
             <div className="row">
               <img src={hospital} alt="병원/약국" />
@@ -557,33 +777,9 @@ function AboutUs(props) {
         </div>
       </Benefits>
 
-      {/* <Share id="shareSection">
-        <div className="top">
-          <p className="title">Share</p>
-          <p className="subTitle">
-            카드에 실적을
-            <br />
-            얼마나 채워야하는지
-            <br />
-            고민되신적 있나요?
-          </p>
-        </div>
-        <div className="bottom">
-          <img className="shareimg" src={share} alt="share" />
-          <div className="bottom_right">
-            <p class="info1">
-              받고 싶은 헤택에 맞춰
-              <br />
-              자유롭게 실적을 관리하세요.
-            </p>
-            <p class="info2">
-              HI:Card에 쌓인 실적을
-              <br />
-              본인이 원하는 By:Card에 분배하세요.
-            </p>
-          </div>
-        </div>
-      </Share> */}
+      {/* <FAQS></FAQS> */}
+
+      <Footer position="relative" top="485rem" />
     </AboutUsDiv>
   );
 }
