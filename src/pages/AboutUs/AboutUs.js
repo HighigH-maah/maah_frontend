@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import chevronDown from "../../assets/images/AboutUs/chevrondown.png";
 import banner from "../../assets/images/AboutUs/banner2.png";
@@ -29,15 +29,19 @@ import benefit1 from "../../assets/images/AboutUs/benefit1.png";
 import benefit2 from "../../assets/images/AboutUs/benefit2.png";
 import benefit3 from "../../assets/images/AboutUs/benefit3.png";
 import benefit4 from "../../assets/images/AboutUs/benefit4.png";
+import chevronDown1 from "../../assets/icon/chevronDown.png";
+import chevronUp from "../../assets/icon/chevronUp.png";
 import { animateScroll as scroll, Link } from "react-scroll";
 import { useNavigate } from "react-router-dom";
 import { CreateButton } from "../../components/MainStyle/MainComponent";
 import HeaderWhiteVer from "../../components/Header/HeaderWhiteVer";
 import Slider from "react-infinite-logo-slider";
 import Footer from "../../components/Footer/Footer";
+import FAQ from "./FAQ";
+import Accordion from "react-bootstrap/Accordion";
 
 const AboutUsDiv = styled.div`
-  height: 600rem;
+  height: 546rem;
   position: relative;
   overflow: hidden;
   background-color: #000000;
@@ -74,12 +78,32 @@ const AboutUsDiv = styled.div`
     width: 5rem;
     cursor: pointer;
   }
+
+  .faqList {
+    display: flex;
+    position: absolute;
+    top: 460rem;
+    left: 13rem;
+    flex-direction: column;
+  }
+
+  .title {
+    margin: 0;
+    color: #ccb88f;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-bottom: 3rem;
+  }
 `;
 
 const Banner = styled.div`
   box-sizing: border-box;
   position: absolute;
-  left: 29rem;
+  left: 26rem;
   top: 33rem;
   display: flex;
   flex-direction: column;
@@ -551,10 +575,24 @@ const Share = styled.div`
   }
 `;
 
-const FAQS = styled.div``;
-
 function AboutUs(props) {
   const navigate = useNavigate();
+
+  const accordions = [
+    {
+      question: "질문1",
+      answer: "답변1",
+    },
+    {
+      question: "질문2",
+      answer: "답변2",
+    },
+    {
+      question: "질문3",
+      answer: "답변3",
+    },
+  ];
+
   const scrollToShare = () => {
     //scroll.scrollToBottom(); // 화면을 페이지의 맨 아래로 부드럽게 스크롤링합니다.
   };
@@ -777,9 +815,18 @@ function AboutUs(props) {
         </div>
       </Benefits>
 
-      {/* <FAQS></FAQS> */}
+      <div className="faqList">
+        <div className="title">FAQS</div>
+        {accordions.map((accordion, index) => (
+          <FAQ
+            key={index}
+            question={accordion.question}
+            answer={accordion.answer}
+          />
+        ))}
+      </div>
 
-      <Footer position="relative" top="485rem" />
+      <Footer position="relative" top="440rem" />
     </AboutUsDiv>
   );
 }

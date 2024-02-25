@@ -22,6 +22,7 @@ import MemberLoad from "./components/Utils/SessionStorage";
 // import MyHiCardAccountChange from "./components/HiCard/MyHiCardAccountChange";
 import AboutUsTest from "./pages/AboutUs/AboutUsTest";
 import AboutUs from "./pages/AboutUs/AboutUs";
+import Aco from "./pages/AboutUs/Aco";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 //메인화면 진입 시 session 저장
@@ -46,6 +47,7 @@ root.render(
       <Route path="/byCardDetail/:byCardCode" element={<ByCard />}></Route>
       <Route path="/aboutUsTest" element={<AboutUsTest />}></Route>
       <Route path="/aboutUs" element={<AboutUs />}></Route>
+      <Route path="/aco" element={<Aco />}></Route>
     </Routes>
   </BrowserRouter>
 );
