@@ -173,7 +173,7 @@ function MyData(props) {
               )}
             </ToNextDiv>
             <ForNow>
-              <span>사용한 금액</span>
+              <span style={{ width: "100%" }}>최근 3개월 총 사용 금액</span>
               <span>
                 {new Intl.NumberFormat().format(myNextLevel.priceHasUsed)}
               </span>
