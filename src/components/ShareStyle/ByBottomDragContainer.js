@@ -61,7 +61,7 @@ function ByBottomDragContainer({
   return (
     <ByBottomArea>
       {cards ? cards.map((card, index) => renderCard(card, index, newOn)) : ""}
-      <ByBottomCardArea>
+      <ByBottomCardArea style={{ background: "none" }}>
         <ByBottomAdd>
           <ShareCardAdd onClick={clickTest}></ShareCardAdd>
         </ByBottomAdd>

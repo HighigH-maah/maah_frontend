@@ -109,15 +109,24 @@ function ByBottomCard({
         className={`${isOn ? "toggle--checked" : ""}`}
       >
         {card.byCard
-          ? card.byCard.benefitList.map((benefit, bIndex) => (
-              <ByBottomDescBox key={bIndex}>
-                <img
-                  src={selectIcon(JSON.stringify(benefit.benefitCode), "white")}
-                ></img>
-                <p>{benefit.byBenefitDesc}</p>
-              </ByBottomDescBox>
-            ))
-          : ""}
+          ? card.byCard.benefitList.map((benefit, bIndex) => {
+              if (bIndex > 4) {
+                return null;
+              }
+              return (
+                <ByBottomDescBox key={bIndex}>
+                  <img
+                    src={selectIcon(
+                      JSON.stringify(benefit.benefitCode),
+                      "white"
+                    )}
+                    alt=""
+                  />
+                  <p>{benefit.byBenefitDesc}</p>
+                </ByBottomDescBox>
+              );
+            })
+          : null}
       </ByBottomDesc>
       <Link
         to="/myByCardDetail"
