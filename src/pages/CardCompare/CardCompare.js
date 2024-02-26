@@ -153,16 +153,18 @@ function CardCompare(props) {
             </Company>
             <Company>
               <span>Only Ma:ah</span>
-              <Btn
-                image={maahSmall}
-                color={
-                  "linear-gradient(180deg, #C6C6C6 0%, rgba(207, 198, 170, 0.00) 100%)"
-                }
-                title={"Ma:ah 카드 모아보기"}
-                isOnlyMaah={true}
-                onClick={handleMaahClick}
-                isSelected={selectedMaah}
-              />
+              <div style={{ position: "relative", marginLeft: "1.3rem" }}>
+                <Btn
+                  image={maahSmall}
+                  color={
+                    "linear-gradient(180deg, #C6C6C6 0%, rgba(207, 198, 170, 0.00) 100%)"
+                  }
+                  title={"Ma:ah 카드 모아보기"}
+                  isOnlyMaah={true}
+                  onClick={handleMaahClick}
+                  isSelected={selectedMaah}
+                />
+              </div>
             </Company>
             <Company style={{ marginLeft: "1rem" }}>
               <span>Category</span>
