@@ -1,4 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import styled from "styled-components";
 import chevronDown from "../../assets/images/AboutUs/chevrondown.png";
 import banner from "../../assets/images/AboutUs/banner2.png";
@@ -10,7 +12,6 @@ import whitevelvet from "../../assets/images/white_velvet.png";
 import midnightash from "../../assets/images/midnight_ash.png";
 import blueholo from "../../assets/images/blue_holo.png";
 import pinkholo from "../../assets/images/pink_holo.png";
-import benefits12 from "../../assets/images/AboutUs/benefits12.png";
 import traffic from "../../assets/images/AboutUs/교통.png";
 import phone from "../../assets/images/AboutUs/통신.png";
 import airline from "../../assets/images/AboutUs/항공.png";
@@ -38,10 +39,9 @@ import HeaderWhiteVer from "../../components/Header/HeaderWhiteVer";
 import Slider from "react-infinite-logo-slider";
 import Footer from "../../components/Footer/Footer";
 import FAQ from "./FAQ";
-import Accordion from "react-bootstrap/Accordion";
 
 const AboutUsDiv = styled.div`
-  height: 546rem;
+  height: 565rem;
   position: relative;
   overflow: hidden;
   background-color: #000000;
@@ -71,7 +71,7 @@ const AboutUsDiv = styled.div`
     background-position: center;
   }
 
-  .chevronDown {
+  .chevronDown1 {
     position: relative;
     left: 49%;
     top: 58rem;
@@ -79,11 +79,59 @@ const AboutUsDiv = styled.div`
     cursor: pointer;
   }
 
+  .chevronDown2 {
+    position: relative;
+    left: 44.5%;
+    top: 115rem;
+    width: 5rem;
+    cursor: pointer;
+  }
+
+  .chevronDown3 {
+    position: relative;
+    left: 39%;
+    top: 175rem;
+    width: 5rem;
+    cursor: pointer;
+  }
+
+  .chevronDown4 {
+    position: relative;
+    left: 48.5%;
+    top: 188rem;
+    width: 5rem;
+    cursor: pointer;
+  }
+
+  .chevronDown5 {
+    position: relative;
+    left: 48.5%;
+    top: 258rem;
+    width: 5rem;
+    cursor: pointer;
+  }
+
+  .chevronDown6 {
+    position: relative;
+    left: 48.5%;
+    top: 320rem;
+    width: 5rem;
+    cursor: pointer;
+  }
+
+  .chevronDown7 {
+    position: relative;
+    left: 43.5%;
+    top: 380rem;
+    width: 5rem;
+    cursor: pointer;
+  }
+
   .faqList {
     display: flex;
     position: absolute;
-    top: 460rem;
-    left: 13rem;
+    top: 457rem;
+    left: 28rem;
     flex-direction: column;
   }
 
@@ -142,7 +190,7 @@ const Banner2 = styled.div`
     width: 750px;
     display: flex;
     position: absolute;
-    top: 16rem;
+    top: 14rem;
     left: 10rem;
     flex-direction: column;
   }
@@ -239,6 +287,9 @@ const Service = styled.div`
     border-radius: 20px;
     border: 3px solid #ccb88f;
     margin: 0rem 2.5rem;
+
+    transition: transform 0.3s ease; /* Add transition for smooth animation */
+    transform-origin: center; /* Set the transform origin for scaling */
   }
 
   .name {
@@ -324,7 +375,7 @@ const Create = styled.div`
   .card {
     display: flex;
     padding: 20px 0px;
-    align-items: flex-start;
+    align-items: center;
     gap: 50px;
     animation: moveBanner 25s linear infinite;
   }
@@ -462,7 +513,7 @@ const Share = styled.div`
   .sharemodal {
     display: flex;
     position: absolute;
-    top: 25rem;
+    top: 27rem;
     left: 15rem;
   }
 
@@ -580,22 +631,59 @@ function AboutUs(props) {
 
   const accordions = [
     {
-      question: "질문1",
-      answer: "답변1",
+      question: "하이카드 발급 절차는 어떻게 되나요?",
+      answer:
+        "디자인 선정 후 필요 정보를 입력하고 본인인증 후 카드발급이 완료됩니다.",
     },
     {
-      question: "질문2",
-      answer: "답변2",
+      question: "혜택을 받을 수 있는 기준은 무엇인가요?",
+      answer:
+        "개별 바이 카드의 혜택 요건을 맞춰 바이 포인트 실적을 분배하시면 됩니다.. 매월 말일을 기준으로 바이 포인트 적립액을 산정하여 다음 달 혜택을 제공합니다.",
     },
     {
-      question: "질문3",
-      answer: "답변3",
+      question: "하이카드 분실 시 처리 절차는 어떻게 되나요?",
+      answer: "하이카드 분실신고 후 카드를 재발급받으시면 됩니다.",
     },
   ];
 
   const scrollToShare = () => {
     //scroll.scrollToBottom(); // 화면을 페이지의 맨 아래로 부드럽게 스크롤링합니다.
   };
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1200,
+    });
+  }, []);
+
+  const [isCreateHovered, setIsCreateHovered] = useState(false);
+  const [isShareHovered, setIsShareHovered] = useState(false);
+  const [isBenefitsHovered, setIsBenefitsHovered] = useState(false);
+
+  const handleCreateMouseEnter = () => {
+    setIsCreateHovered(true);
+  };
+
+  const handleCreateMouseLeave = () => {
+    setIsCreateHovered(false);
+  };
+
+  const handleShareMouseEnter = () => {
+    setIsShareHovered(true);
+  };
+
+  const handleShareMouseLeave = () => {
+    setIsShareHovered(false);
+  };
+
+  const handleBenefitsMouseEnter = () => {
+    setIsBenefitsHovered(true);
+  };
+
+  const handleBenefitsMouseLeave = () => {
+    setIsBenefitsHovered(false);
+  };
+
   return (
     <AboutUsDiv>
       <HeaderWhiteVer />
@@ -607,7 +695,7 @@ function AboutUs(props) {
         loop
       ></video>
 
-      <Banner>
+      <Banner data-aos="fade-up">
         <p className="title">최고의 가치를 고객과 함께하는</p>
         <p className="subtitle">Master Hi:Card</p>
         <CreateButton>
@@ -622,7 +710,7 @@ function AboutUs(props) {
       </Banner>
       <Link to="banner2" smooth={true} duration={500}>
         <img
-          className="chevronDown"
+          className="chevronDown1"
           src={chevronDown}
           alt="chevronDown"
           onClick={scrollToShare}
@@ -631,49 +719,74 @@ function AboutUs(props) {
 
       <Banner2 id="banner2">
         <img src={banner} alt="사진"></img>
-        <div className="info">
+        <div className="info" data-aos="fade-right">
           <div className="title">
             <span className="title1">WHAT’S </span>
             <span className="title2">Hi:Card</span>
           </div>
 
           <p className="subtitle1">
-            이제껏 경험 못 했던 쉽고 편리한 카드 서비스
+            지금껏 경험하지 못한 <br /> 쉽고 편리한 카드 서비스
+          </p>
+          <p className="subtitle1">
+            단 하나의 카드로
+            <br /> 다채로운 혜택을 경험하세요.
           </p>
           <p className="subtitle1">
             Hi:Card와 함께라면
-            <br /> 당신의 일상이 새로워질 거예요.
-          </p>
-          <p className="subtitle1">
-            당신의 손안에서 펼쳐지는 편리함과 혜택,
             <br />
-            바로 Hi:Card에서 만나보세요.
+            당신의 일상이 새로워질 거예요.
           </p>
         </div>
       </Banner2>
+      <Link to="service" smooth={true} duration={500}>
+        <img
+          className="chevronDown2"
+          src={chevronDown}
+          alt="chevronDown"
+          onClick={scrollToShare}
+        />
+      </Link>
 
-      <Service>
+      <Service id="service">
         <div className="service">
-          <div className="title">
+          <div className="title" data-aos="zoom-in">
             <span className="title1">Hi:Card </span>
             <span className="title2">Service</span>
           </div>
-          <div className="info">
-            <div className="frame">
+          <div className="info" data-aos="zoom-in">
+            <div
+              onMouseEnter={handleCreateMouseEnter}
+              onMouseLeave={handleCreateMouseLeave}
+              style={{ transform: isCreateHovered ? "scale(1.1)" : "scale(1)" }}
+              className="frame"
+            >
               <img src={createimg} alt="create"></img>
               <p className="name">CREATE</p>
               <p className="text">
                 지금 카드를 발급하고, <br /> 더 많은 혜택을 누리세요
               </p>
             </div>
-            <div className="frame">
+            <div
+              onMouseEnter={handleShareMouseEnter}
+              onMouseLeave={handleShareMouseLeave}
+              style={{ transform: isShareHovered ? "scale(1.1)" : "scale(1)" }}
+              className="frame"
+            >
               <img src={shareimg} alt="share"></img>
               <p className="name">SHARE</p>
               <p className="text">
                 하이카드로 실적을 <br /> 효율적으로 분배해 보세요
               </p>
             </div>
-            <div className="frame">
+            <div
+              onMouseEnter={handleBenefitsMouseEnter}
+              onMouseLeave={handleBenefitsMouseLeave}
+              style={{
+                transform: isBenefitsHovered ? "scale(1.1)" : "scale(1)",
+              }}
+              className="frame"
+            >
               <img src={benefitimg} alt="benefits"></img>
               <p className="name"> BENEFITS</p>
               <p className="text">
@@ -683,8 +796,16 @@ function AboutUs(props) {
           </div>
         </div>
       </Service>
+      <Link to="create" smooth={true} duration={500}>
+        <img
+          className="chevronDown3"
+          src={chevronDown}
+          alt="chevronDown"
+          onClick={scrollToShare}
+        />
+      </Link>
 
-      <Create>
+      <Create id="create" data-aos="fade-up">
         <div className="create">
           <p className="title">CREATE</p>
           <div className="info">
@@ -699,37 +820,50 @@ function AboutUs(props) {
         </div>
         <div className="card">
           <Slider
-            width="250px"
-            duration={50}
+            width="100px"
+            duration={30}
             pauseOnHover={true}
             blurBorders={false}
             blurBoderColor={"#fff"}
             style={{ display: "flex" }}
           >
-            <Slider.Slide style={{ marginRight: "30px" }}>
+            {/* <Slider.Slide style={{ marginRight: "50px" }}>
               <img src={blackvelvet} alt="blackvelvet" />
-            </Slider.Slide>
-            <Slider.Slide style={{ marginRight: "30px" }}>
+            </Slider.Slide> */}
+            <Slider.Slide style={{ marginRight: "50px" }}>
               <img src={whitevelvet} alt="whitevelvet" />
             </Slider.Slide>
-            <Slider.Slide style={{ marginRight: "30px" }}>
+            <Slider.Slide style={{ marginRight: "50px" }}>
               <img src={midnightash} alt="midnightash" />
             </Slider.Slide>
-            <Slider.Slide style={{ marginRight: "30px" }}>
+            <Slider.Slide style={{ marginRight: "50px" }}>
               <img src={blueholo} alt="blueholo" />
             </Slider.Slide>
-            <Slider.Slide style={{ marginRight: "30px" }}>
+            <Slider.Slide style={{ marginRight: "50px" }}>
               <img src={pinkholo} alt="pinkholo" />
             </Slider.Slide>
           </Slider>
         </div>
       </Create>
+      {/* <Link to="share1" smooth={true} duration={500}>
+        <img
+          className="chevronDown4"
+          src={chevronDown}
+          alt="chevronDown"
+          onClick={scrollToShare}
+        />
+      </Link> */}
 
       <Share>
-        <div className="section2">
+        <div id="share1" className="section2" data-aos="fade-up">
           <div className="rec2"></div>
-          <img className="sharemoda2" src={sharemodal2} alt="share modal2" />
-          <div className="info2">
+          <img
+            className="sharemoda2"
+            src={sharemodal2}
+            alt="share modal2"
+            data-aos="fade-up"
+          />
+          <div className="info2" data-aos="fade-up">
             <div className="title2">
               받고 싶은 혜택에 맞춰 <br />
               자유롭게 실적을 관리하세요.
@@ -740,9 +874,9 @@ function AboutUs(props) {
           </div>
         </div>
 
-        <div className="section1">
+        <div className="section1" data-aos="fade-up">
           <div className="rec1"></div>
-          <div className="info">
+          <div className="info" data-aos="fade-up">
             <div className="title">SHARE</div>
             <div className="subtitle">
               카드에 실적을 <br />
@@ -750,12 +884,26 @@ function AboutUs(props) {
               고민되신적 있나요?{" "}
             </div>
           </div>
-          <img className="sharemodal" src={sharemodal} alt="share modal" />
+          <img
+            className="sharemodal"
+            src={sharemodal}
+            alt="share modal"
+            data-aos="fade-up"
+          />
         </div>
 
-        <div className="section3">
+        {/* <Link to="share2" smooth={true} duration={500}>
+          <img
+            className="chevronDown5"
+            src={chevronDown}
+            alt="chevronDown"
+            onClick={scrollToShare}
+          />
+        </Link> */}
+
+        <div id="share2" className="section3" data-aos="fade-up">
           <div className="rec3"></div>
-          <div className="info3">
+          <div className="info3" data-aos="fade-up">
             <div className="title3">
               내가 받을 수 있는 <br />
               혜택을 한눈에
@@ -766,17 +914,25 @@ function AboutUs(props) {
             </div>
           </div>
           <div className="benefitimg">
-            <img src={benefit1} alt="benefit1" />
-            <img src={benefit2} alt="benefit2" />
-            <img src={benefit3} alt="benefit3" />
-            <img src={benefit4} alt="benefit4" />
+            <img src={benefit1} alt="benefit1" data-aos="fade-up" />
+            <img src={benefit2} alt="benefit2" data-aos="fade-up" />
+            <img src={benefit3} alt="benefit3" data-aos="fade-up" />
+            <img src={benefit4} alt="benefit4" data-aos="fade-up" />
           </div>
         </div>
       </Share>
+      <Link to="benefits" smooth={true} duration={500}>
+        <img
+          className="chevronDown6"
+          src={chevronDown}
+          alt="chevronDown"
+          onClick={scrollToShare}
+        />
+      </Link>
 
-      <Benefits>
+      <Benefits id="benefits">
         <div className="benefits">
-          <div className="infoL">
+          <div className="infoL" data-aos="fade-right">
             <p className="title">BENEFITS</p>
             <div className="subtitle">
               <p className="text1">
@@ -789,8 +945,7 @@ function AboutUs(props) {
               </p>
             </div>
           </div>
-          {/* <img src={benefits12} alt="12가지 혜택" /> */}
-          <div className="infoR">
+          <div className="infoR" data-aos="zoom-in">
             <div className="row">
               <img src={traffic} alt="교통" />
               <img src={phone} alt="통신" />
@@ -814,19 +969,28 @@ function AboutUs(props) {
           </div>
         </div>
       </Benefits>
-
-      <div className="faqList">
+      {/* <Link to="faq" smooth={true} duration={500}>
+        <img
+          className="chevronDown7"
+          src={chevronDown}
+          alt="chevronDown"
+          onClick={scrollToShare}
+        />
+      </Link> */}
+      <div id="faq" className="faqList" data-aos="fade-up">
         <div className="title">FAQS</div>
         {accordions.map((accordion, index) => (
           <FAQ
             key={index}
             question={accordion.question}
-            answer={accordion.answer}
+            answer={accordion.answer.split(".").map((sentence, idx) => (
+              <p key={idx}>{sentence.trim()}</p>
+            ))}
           />
         ))}
       </div>
 
-      <Footer position="relative" top="440rem" />
+      <Footer position="relative" top="453rem" />
     </AboutUsDiv>
   );
 }
