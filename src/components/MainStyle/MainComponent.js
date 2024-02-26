@@ -355,7 +355,6 @@ export const BackImage = styled.div`
   background-image: url(${mainBackground});
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: 520vh;
 `;
 
 export const MainPage1 = styled.div`

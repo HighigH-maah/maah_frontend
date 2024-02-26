@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import kookmin from "../../assets/images/kookmin.png";
 import shinhan from "../../assets/images/shinhan.png";
 import hyundai from "../../assets/images/hyundai.png";
@@ -310,7 +310,7 @@ function CardCompare(props) {
                     )}
                   </BenefitDiv>
                   <ConditionDiv>
-                    <p>최소한도 {card.byMinLimit}원</p>
+                    <p>최소한도 {card.byMinLimit / 10000}만원</p>
                     <p>교통카드 {card.byIsTransport ? "가능" : "불가능"}</p>
                   </ConditionDiv>
                 </CardDetailDiv>
