@@ -608,7 +608,7 @@ function AboutUs(props) {
       ></video>
 
       <Banner>
-        <p className="title">최고의 가치를 고객과 함께하는</p>
+        <p className="title">하나의 카드, 무한한 혜택</p>
         <p className="subtitle">Master Hi:Card</p>
         <CreateButton>
           <button
