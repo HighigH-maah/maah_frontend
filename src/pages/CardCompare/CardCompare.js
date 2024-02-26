@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import kookmin from "../../assets/images/kookmin.png";
 import shinhan from "../../assets/images/shinhan.png";
 import hyundai from "../../assets/images/hyundai.png";
@@ -153,16 +153,18 @@ function CardCompare(props) {
             </Company>
             <Company>
               <span>Only Ma:ah</span>
-              <Btn
-                image={maahSmall}
-                color={
-                  "linear-gradient(180deg, #C6C6C6 0%, rgba(207, 198, 170, 0.00) 100%)"
-                }
-                title={"Ma:ah 카드 모아보기"}
-                isOnlyMaah={true}
-                onClick={handleMaahClick}
-                isSelected={selectedMaah}
-              />
+              <div style={{ position: "relative", marginLeft: "1.3rem" }}>
+                <Btn
+                  image={maahSmall}
+                  color={
+                    "linear-gradient(180deg, #C6C6C6 0%, rgba(207, 198, 170, 0.00) 100%)"
+                  }
+                  title={"Ma:ah 카드 모아보기"}
+                  isOnlyMaah={true}
+                  onClick={handleMaahClick}
+                  isSelected={selectedMaah}
+                />
+              </div>
             </Company>
             <Company style={{ marginLeft: "1rem" }}>
               <span>Category</span>
@@ -310,7 +312,7 @@ function CardCompare(props) {
                     )}
                   </BenefitDiv>
                   <ConditionDiv>
-                    <p>최소한도 {card.byMinLimit}원</p>
+                    <p>최소한도 {card.byMinLimit / 10000}만원</p>
                     <p>교통카드 {card.byIsTransport ? "가능" : "불가능"}</p>
                   </ConditionDiv>
                 </CardDetailDiv>

@@ -23,7 +23,7 @@ function Main(props) {
         <ThirdSection></ThirdSection>
         <FourthSection></FourthSection>
       </BackImage>
-      <Footer position="relative"></Footer>
+      <Footer position="relative" top="42.8rem"></Footer>
     </Mainback>
   );
 }

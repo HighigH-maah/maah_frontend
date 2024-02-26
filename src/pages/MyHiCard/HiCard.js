@@ -571,7 +571,7 @@ function HiCardDetail({
                 <div className="mileage">
                   {hicardInfo.memberMileage
                     ? hicardInfo.memberMileage.toLocaleString("ko-KR")
-                    : ""}
+                    : "0"}
                   M
                 </div>
               </HiCardMileage>
@@ -708,9 +708,9 @@ function HiCardDetail({
             <div className="cardLimit">
               최대한도{" "}
               {hicardInfo.cardApplyLimitAmount
-                ? hicardInfo.cardApplyLimitAmount.toLocaleString("ko-KR")
-                : ""}
-              원
+                ? hicardInfo.cardApplyLimitAmount / 10000
+                : "0"}
+              만원
             </div>
             <div className="cardType">mastercard</div>
           </HiCardLimit>

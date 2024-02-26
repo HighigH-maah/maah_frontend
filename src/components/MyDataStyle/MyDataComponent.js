@@ -306,7 +306,7 @@ export const LevelDiv = styled.div`
 export const ForNow = styled.div`
   display: flex;
   height: 68px;
-  padding: 5px 120px;
+  padding: 5px 80px;
   justify-content: center;
   align-items: center;
   gap: 10px;
