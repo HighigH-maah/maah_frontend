@@ -113,8 +113,9 @@ const ByBenefit = styled.div`
     font-weight: 400;
     letter-spacing: -0.018rem;
     color: #000000;
-    white-space: nowrap;
+    white-space: pre-wrap;
     flex-shrink: 0;
+    max-width: 650px;
   }
 `;
 
@@ -472,7 +473,7 @@ function ByCardDetail({ bycardInfo, bycardBenefitsInfo }) {
           <ByCardLimit>
             <div className="cardLimit">
               전월실적{" "}
-              {bycardInfo.byBenefitMinCondition ? min(bycardBenefitsInfo) : ""}
+              {bycardInfo.byBenefitMinCondition ? min(bycardBenefitsInfo) / 10000 + "만" : "0"}
               원 이상
             </div>
             <div className="cardType">mastercard</div>

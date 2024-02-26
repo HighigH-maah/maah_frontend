@@ -599,7 +599,7 @@ const ByCardBenefitDetail = styled.div`
   line-height: 1.2125;
   color: #000000;
   /* font-family: Inter, "Source Sans Pro"; */
-  white-space: nowrap;
+  white-space: pre-wrap;
   flex-shrink: 0;
 `;
 
@@ -795,14 +795,14 @@ export const MyHiCardCenterSection = ({ myCardHi }) => {
       <HiCardLimit>
         <HiCardLimitTitle>이번 달 사용한도</HiCardLimitTitle>
         <HiCardAmout>
-          {myCardHi.totalLimit ? myCardHi.totalLimit.toLocaleString() : ""} 원
+          {myCardHi.totalLimit ? myCardHi.totalLimit/10000 : "0"} 만원
         </HiCardAmout>
       </HiCardLimit>
       <HiCardUse>
         <HiCardUseTitle>이번 달 사용금액</HiCardUseTitle>
         <HiCardAmout>
-          {myCardHi.thisMonthSum ? myCardHi.thisMonthSum.toLocaleString() : ""}{" "}
-          원
+          {myCardHi.thisMonthSum ? myCardHi.thisMonthSum/10000 : "0"}{" "}
+          만원
         </HiCardAmout>
       </HiCardUse>
     </MyHiCardCenterDiv>
@@ -1002,7 +1002,7 @@ export const MyByCardCenterSection = ({
         <ByCardBenefitDetail>온라인 간편 결제 5% 적립</ByCardBenefitDetail>
         <ByCardBenefitDetail>해외 가맹점 3% 적립</ByCardBenefitDetail> */}
         <ByCardBenefitCondition>
-          전월실적 {formattedLimit}만원 이상
+          전월실적 {formattedLimit > 0 ? formattedLimit : 0}만원 이상
         </ByCardBenefitCondition>
       </ByCardBenefitContents>
       {!hideTitle && <CardTitle>By:Card</CardTitle>}
