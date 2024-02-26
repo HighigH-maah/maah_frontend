@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import MyHiCardAccountChange from "../../pages/MyHiCard/MyHiCardAccountChange";
 import close from "../../assets/images/close.png";
 import bronzeImg from "../../assets/images/Grade/bronze.png";
@@ -147,7 +147,7 @@ const MyHiCardCenterDiv = styled.div`
 const CardTitle = styled.p`
   margin-bottom: 2rem;
   font-size: 3rem;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 0.97;
   letter-spacing: -0.2rem;
   white-space: nowrap;
@@ -419,12 +419,11 @@ const ByCardBox = styled.div`
   padding: 3.3rem 9.6rem 5.6rem 5.2rem;
   width: 90%;
   height: 32.4rem;
-  background: linear-gradient(
-    280.43deg,
-    #ffffff 18.1%,
-    rgba(219, 219, 219, 0.5180130601) 47.23%,
-    rgba(255, 255, 255, 0) 78.54%
-  );
+  ${({ isNotByCard }) => css`
+    background: ${isNotByCard
+      ? "#c0c0c0"
+      : "linear-gradient(280.43deg, #ffffff 18.1%, rgba(219, 219, 219, 0.5180130601) 47.23%, rgba(255, 255, 255, 0) 78.54%)"};
+  `}
   border-radius: 3rem;
   flex-shrink: 0;
 `;
@@ -599,7 +598,7 @@ const ByCardBenefitDetail = styled.div`
   line-height: 1.2125;
   color: #000000;
   /* font-family: Inter, "Source Sans Pro"; */
-  white-space: nowrap;
+  white-space: pre-wrap;
   flex-shrink: 0;
 `;
 
@@ -795,14 +794,14 @@ export const MyHiCardCenterSection = ({ myCardHi }) => {
       <HiCardLimit>
         <HiCardLimitTitle>이번 달 사용한도</HiCardLimitTitle>
         <HiCardAmout>
-          {myCardHi.totalLimit ? myCardHi.totalLimit.toLocaleString() : ""} 원
+          {myCardHi.totalLimit ? myCardHi.totalLimit/10000 : "0"} 만원
         </HiCardAmout>
       </HiCardLimit>
       <HiCardUse>
         <HiCardUseTitle>이번 달 사용금액</HiCardUseTitle>
         <HiCardAmout>
-          {myCardHi.thisMonthSum ? myCardHi.thisMonthSum.toLocaleString() : ""}{" "}
-          원
+          {myCardHi.thisMonthSum ? myCardHi.thisMonthSum/10000 : "0"}{" "}
+          만원
         </HiCardAmout>
       </HiCardUse>
     </MyHiCardCenterDiv>
@@ -938,8 +937,10 @@ const MyHiCardRightSection = ({ myCardHi }) => {
 };
 
 export const MyByCard = ({ byCardData, hideTitle, byCardBeneList }) => {
+  const isNotByCard = byCardData.memberHiNumber === null;
+
   return (
-    <ByCardBox>
+    <ByCardBox isNotByCard={isNotByCard}>
       <MyByCardAllSection>
         <MyByCardLeftSection byCardData={byCardData}></MyByCardLeftSection>
         <MyByCardInfoSection>
@@ -955,6 +956,8 @@ export const MyByCard = ({ byCardData, hideTitle, byCardBeneList }) => {
   );
 };
 
+const ByCardImage = styled.img``;
+
 export const MyByCardLeftSection = ({ byCardData }) => {
   return (
     <MyByCardLeftDiv>
@@ -964,7 +967,7 @@ export const MyByCardLeftSection = ({ byCardData }) => {
           state={{ memberByNumber: byCardData.memberByNumber }}
           byCardData={byCardData}
         >
-          <img
+          <ByCardImage
             src={byCardData.byImagePath}
             alt="바이카드 이미지"
             style={{ width: "100%" }}
@@ -1002,7 +1005,7 @@ export const MyByCardCenterSection = ({
         <ByCardBenefitDetail>온라인 간편 결제 5% 적립</ByCardBenefitDetail>
         <ByCardBenefitDetail>해외 가맹점 3% 적립</ByCardBenefitDetail> */}
         <ByCardBenefitCondition>
-          전월실적 {formattedLimit}만원 이상
+          전월실적 {formattedLimit > 0 ? formattedLimit : 0}만원 이상
         </ByCardBenefitCondition>
       </ByCardBenefitContents>
       {!hideTitle && <CardTitle>By:Card</CardTitle>}

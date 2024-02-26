@@ -1,5 +1,5 @@
 function MemberSave() {
-  let member = "user2";
+  let member = "user4";
   sessionStorage.setItem("member", member);
 }
 

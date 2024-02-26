@@ -11,7 +11,7 @@ const FooterDiv = styled.div`
 `;
 
 const FooterAllDiv = styled.div`
-margin: 5rem 0rem;
+margin: 1rem 0rem;
 width: 100%;
 height: 100%;
 display: flex;
@@ -28,7 +28,7 @@ const FooterTopMenu = styled.div`
 `;
 
 const LogoBox = styled.div`
-  margin-right: 5rem;
+  margin-right: 13rem;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
@@ -79,7 +79,7 @@ const FooterMenuAboutus = styled.div`
 `;
 
 const FooterMenuProducts = styled.div`
-  margin-right: 10.6rem;
+  margin-right: 3.5rem;
   width: 10.6rem;
   height: 100%;
   flex-shrink: 0;
@@ -101,7 +101,7 @@ const FooterMenuDownP = styled.p`
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #adb2b1;
+  color: #ffffff;
   font-family: M PLUS 1, "Source Sans Pro";
   white-space: nowrap;
   flex-shrink: 0;
@@ -127,30 +127,34 @@ function Footer({ position, top }) {
             <FooterMenuAboutus>
               <FooterMenu>About us</FooterMenu>
               <FooterMenuDown>
-                <FooterMenuDownP>Investors</FooterMenuDownP>
-                <FooterMenuDownP>Features</FooterMenuDownP>
-                <FooterMenuDownP>Book a demo</FooterMenuDownP>
-                <FooterMenuDownP>Security </FooterMenuDownP>
+                <FooterMenuDownP>Kim Hyeonseong</FooterMenuDownP>
+                <FooterMenuDownP>kim Sooin</FooterMenuDownP>
+                <FooterMenuDownP>Kim Taewan</FooterMenuDownP>
+                <FooterMenuDownP>Park Jieun</FooterMenuDownP>
+                <FooterMenuDownP>Han Maeum</FooterMenuDownP>
               </FooterMenuDown>
             </FooterMenuAboutus>
             <FooterMenuProducts>
-              <FooterMenu>Create</FooterMenu>
+              <FooterMenu>MBTI</FooterMenu>
               <FooterMenuDown>
-                <FooterMenuDownP>Credits Cards</FooterMenuDownP>
-                <FooterMenuDownP>Gift Cards</FooterMenuDownP>
-                <FooterMenuDownP>Savings accounts</FooterMenuDownP>
-                <FooterMenuDownP>NFT</FooterMenuDownP>
+                <FooterMenuDownP>ISTJ</FooterMenuDownP>
+                <FooterMenuDownP>ENTJ</FooterMenuDownP>
+                <FooterMenuDownP>ISTP</FooterMenuDownP>
+                <FooterMenuDownP>INFJ</FooterMenuDownP>
+                <FooterMenuDownP>ISTJ</FooterMenuDownP>
               </FooterMenuDown>
             </FooterMenuProducts>
             <FooterMenuUseful>
-              <FooterMenu>Share</FooterMenu>
+              <FooterMenu>Email</FooterMenu>
               <FooterMenuDown>
-                <FooterMenuDownP>Free rewards</FooterMenuDownP>
-                <FooterMenuDownP>Documentation</FooterMenuDownP>
-                <FooterMenuDownP>Affiliate program</FooterMenuDownP>
+                <FooterMenuDownP>liberatjd@gmail.com</FooterMenuDownP>
+                <FooterMenuDownP>sooinee0504@gmail.com</FooterMenuDownP>
+                <FooterMenuDownP>aepid6@gmail.com</FooterMenuDownP>
+                <FooterMenuDownP>jieunjenny00@gmail.com</FooterMenuDownP>
+                <FooterMenuDownP>maeumhan95@gmail.com</FooterMenuDownP>
               </FooterMenuDown>
             </FooterMenuUseful>
-            <FooterMenuSocial>
+            {/* <FooterMenuSocial>
               <FooterMenu>Benefit</FooterMenu>
               <FooterMenuDown>
                 <FooterMenuDownP>Changelog</FooterMenuDownP>
@@ -158,7 +162,7 @@ function Footer({ position, top }) {
                 <FooterMenuDownP>Site Maps</FooterMenuDownP>
                 <FooterMenuDownP>News</FooterMenuDownP>
               </FooterMenuDown>
-            </FooterMenuSocial>
+            </FooterMenuSocial> */}
           </FooterMenuBar>
         </FooterTopMenu>
       </FooterAllDiv>

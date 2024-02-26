@@ -27,6 +27,7 @@ import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
 import MyByCardAccountChange from "./MyByCardAccountChange";
 import { useLocation } from "react-router-dom";
 import MyByCardGoalChange from "./MyByCardGoalChange";
+import MemberLoad from "../../components/Utils/SessionStorage";
 
 const ByCardDiv = styled.div`
   display: flex;
@@ -147,8 +148,9 @@ const ByBenefit = styled.div`
     font-weight: 400;
     letter-spacing: -0.018rem;
     color: #000000;
-    white-space: nowrap;
+    white-space: pre-wrap;
     flex-shrink: 0;
+    max-width: 650px;
   }
 `;
 
@@ -378,7 +380,7 @@ function MyByCard(byCardData) {
     axios({
       method: "post",
       url: API_SERVER + `/getMyBycardCode.do`,
-      data: { memberId: "user2", memberByNumber: memberByNumber },
+      data: { memberId: MemberLoad(), memberByNumber: memberByNumber },
     })
       .then((res) => {
         console.log(res.data);
@@ -395,7 +397,7 @@ function MyByCard(byCardData) {
     axios({
       method: "post",
       url: API_SERVER + `/isConnectHiOrNot.do`,
-      data: { memberId: "user2", memberByNumber: memberByNumber },
+      data: { memberId: MemberLoad(), memberByNumber: memberByNumber },
     })
       .then((res) => {
         console.log(res.data);
@@ -412,7 +414,7 @@ function MyByCard(byCardData) {
     axios({
       method: "post",
       url: API_SERVER + `/getAllByCardInfo.do`,
-      data: { memberId: "user2" },
+      data: { memberId: MemberLoad() },
     })
       .then((res) => {
         console.log(res.data);
@@ -429,7 +431,7 @@ function MyByCard(byCardData) {
     axios({
       method: "post",
       url: API_SERVER + "/getAllByCardBenefits.do",
-      data: { memberId: "user2" },
+      data: { memberId: MemberLoad() },
     })
       .then((res) => {
         //const cardId = 8;
@@ -662,9 +664,9 @@ function ByCardDetail({
                 <div className="cardLimit">
                   전월실적{" "}
                   {bycardInfo.byBenefitMinCondition
-                    ? bycardInfo.byBenefitMinCondition.toLocaleString("ko-KR")
+                    ? bycardInfo.byBenefitMinCondition / 10000
                     : ""}
-                  원 이상
+                  만원 이상
                 </div>
                 <div className="cardType">mastercard</div>
               </ByCardLimit>

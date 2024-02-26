@@ -86,12 +86,14 @@ export const HiBottomWings = styled.div`
 `;
 
 export const HiCardTypeName = styled.div`
+  position: relative;
   text-align: center;
   font-size: 1.5rem;
   font-weight: 400;
   line-height: 0.97;
   letter-spacing: -0.1rem;
   color: #ffffff;
+  bottom: 8px;
 
   white-space: nowrap;
   flex-shrink: 0;
@@ -117,7 +119,7 @@ export const HiCardImg = styled.img`
 export const HiCardDesc = styled.div`
   box-sizing: border-box;
   width: 232px;
-  height: 351px;
+  height: 348px;
   position: absolute;
   top: 0;
   background-color: #fff;
