@@ -64,10 +64,18 @@ function Share(props) {
   const maxBenefitCount = 5; // 최대 출력 개수 설정
   const [openCard, setOpenCard] = useState({});
   const [byCardList, setByCardList] = useState([]);
-
+  const [hiEffect, setHiEffect] = useState(0);
   const [isChange, setIsChange] = useState(false);
   const navigate = useNavigate();
   const API_SERVER = process.env.REACT_APP_API_SERVER;
+
+  useEffect(() => {
+    let hicard = document.getElementsByClassName('hiCard');
+    hicard[0].style.top = hiEffect * 0.02 + "px";
+
+    const timer = setInterval(() => {}, 1);
+    setHiEffect((hiEffect) => hiEffect + Math.floor(timer / 1000) % 2 * 2 - 1);
+  });
 
   useEffect(() => {
     console.log("effect 1번");
@@ -155,7 +163,7 @@ function Share(props) {
               <HiCardTypeName>
                 {card.hicard ? card.hicard.memberHiNickname : ""}
               </HiCardTypeName>
-              <div style={{ position: "relative" }}>
+              <div className="hiCard" style={{ position: "relative" }}>
                 <HiCardImg
                   className="blackVelvet"
                   src={
@@ -167,7 +175,7 @@ function Share(props) {
                   }
                   onClick={openModal}
                 ></HiCardImg>
-                <HiCardDesc>
+                <HiCardDesc className="blackVelvet">
                   <p>이 달의 혜택</p>
                   <HiCardDescBox>
                     {hicardBene ? (
@@ -194,14 +202,6 @@ function Share(props) {
                   </HiCardDescBox>
                 </HiCardDesc>
               </div>
-              <ReverseButton
-                type="button"
-                onClick={() => {
-                  reverseCard("blackVelvet");
-                }}
-              >
-                <ReverseIcon src={reverse}></ReverseIcon>
-              </ReverseButton>
               <Link
                 to="/myHiCardDetail"
                 state={{
