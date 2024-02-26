@@ -633,16 +633,16 @@ function AboutUs(props) {
     {
       question: "하이카드 발급 절차는 어떻게 되나요?",
       answer:
-        "디자인 선정 후 필요 정보를 입력하고 본인인증 후 카드발급이 완료됩니다.",
+        "디자인 선정 후 필수 정보를 입력하고 본인인증 절차를 진행하시면\n 심사 후 카드발급이 완료됩니다.",
     },
     {
       question: "혜택을 받을 수 있는 기준은 무엇인가요?",
       answer:
-        "개별 바이 카드의 혜택 요건을 맞춰 바이 포인트 실적을 분배하시면 됩니다.. 매월 말일을 기준으로 바이 포인트 적립액을 산정하여 다음 달 혜택을 제공합니다.",
+        "개별 바이 카드의 혜택 요건을 맞춰 바이 포인트 실적을 분배하시면 됩니다.\n 매월 말일을 기준으로 바이 포인트 적립액을 산정하여 다음 달 혜택을 제공합니다.",
     },
     {
       question: "하이카드 분실 시 처리 절차는 어떻게 되나요?",
-      answer: "하이카드 분실신고 후 카드를 재발급받으시면 됩니다.",
+      answer: "하이카드 분실신고 후 카드를 재발급받으시면 됩니다.\n",
     },
   ];
 
@@ -983,7 +983,7 @@ function AboutUs(props) {
           <FAQ
             key={index}
             question={accordion.question}
-            answer={accordion.answer.split(".").map((sentence, idx) => (
+            answer={accordion.answer.split("\n").map((sentence, idx) => (
               <p key={idx}>{sentence.trim()}</p>
             ))}
           />
