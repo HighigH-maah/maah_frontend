@@ -151,7 +151,7 @@ const AboutUsDiv = styled.div`
 const Banner = styled.div`
   box-sizing: border-box;
   position: absolute;
-  left: 26rem;
+  left: 31.5rem;
   top: 33rem;
   display: flex;
   flex-direction: column;
@@ -633,7 +633,7 @@ function AboutUs(props) {
     {
       question: "하이카드 발급 절차는 어떻게 되나요?",
       answer:
-        "디자인 선정 후 필수 정보를 입력하고 본인인증 절차를 진행하시면\n 심사 후 카드발급이 완료됩니다.",
+        "디자인 선정 후 필수 정보를 입력하고 본인인증 절차를 진행하시면, \n 심사 후 카드발급이 완료됩니다.",
     },
     {
       question: "혜택을 받을 수 있는 기준은 무엇인가요?",
@@ -642,7 +642,7 @@ function AboutUs(props) {
     },
     {
       question: "하이카드 분실 시 처리 절차는 어떻게 되나요?",
-      answer: "하이카드 분실신고 후 카드를 재발급받으시면 됩니다.\n",
+      answer: "하이카드 분실신고 후 카드를 재발급받으시면 됩니다.",
     },
   ];
 
@@ -695,7 +695,7 @@ function AboutUs(props) {
         loop
       ></video>
 
-      <Banner>
+      <Banner data-aos="fade-up">
         <p className="title">하나의 카드, 무한한 혜택</p>
         <p className="subtitle">Master Hi:Card</p>
         <CreateButton>
@@ -990,7 +990,7 @@ function AboutUs(props) {
         ))}
       </div>
 
-      <Footer position="relative" top="453rem" />
+      <Footer position="relative" top="455rem" />
     </AboutUsDiv>
   );
 }
