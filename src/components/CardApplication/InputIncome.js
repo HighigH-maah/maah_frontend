@@ -187,9 +187,13 @@ function InputIncome({setProcess, setCardApply, cardApply}) {
                     <InputBox>
                         <SubTitle>카드 이용대금 결제일</SubTitle>
                         <IncomeOptions onChange={(event) => {changeHandler(event, setPayDate)}}>
+                            <option value='1'>1일</option>
                             <option value='5'>5일</option>
+                            <option value='25'>10일</option>
                             <option value='15'>15일</option>
+                            <option value='25'>20일</option>
                             <option value='25'>25일</option>
+                            <option value='29'>말일</option>
                         </IncomeOptions>
                         <IncomeComment>전월 말일까지의 실적이 해당월에 청구됩니다</IncomeComment>
                     </InputBox>
@@ -198,12 +202,18 @@ function InputIncome({setProcess, setCardApply, cardApply}) {
                         <IncomeOptions onChange={(event) => {changeHandler(event, setSourceFund)}}>
                             <option value='근로'>근로 소득</option>
                             <option value='사업'>사업 소득</option>
+                            <option value='보조금'>보조금</option>
+                            <option value='후원금'>후원금</option>
+                            <option value='기타'>기타</option>
                         </IncomeOptions>
                     </InputBox>
                     <InputBox>
                         <SubTitle>거래 목적</SubTitle>
                         <IncomeOptions onChange={(event) => {changeHandler(event, setPurpose)}}>
                             <option value='생활'>생활비</option>
+                            <option value='공과금'>공과금</option>
+                            <option value='사업'>사업</option>
+                            <option value='기타'>기타</option>
                         </IncomeOptions>
                     </InputBox>
                 </div>
