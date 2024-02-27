@@ -730,12 +730,13 @@ function AboutUs(props) {
           </p>
           <p className="subtitle1">
             단 하나의 카드로
-            <br /> 다채로운 혜택을 경험하세요.
+            <br /> 다채로운 혜택을 경험하세요
           </p>
           <p className="subtitle1">
-            Hi:Card와 함께라면
+            <span style={{ fontFamily: "youandi" }}> Hi:Card</span>
+            와 함께라면
             <br />
-            당신의 일상이 새로워질 거예요.
+            당신의 일상이 새로워질 거예요
           </p>
         </div>
       </Banner2>
@@ -814,7 +815,7 @@ function AboutUs(props) {
             </p>
             <p className="text2">
               내가 고르는 선택의 즐거움 <br />
-              원하는 디자인과 기능을 선택할 수 있습니다.
+              원하는 디자인과 기능을 선택할 수 있습니다
             </p>
           </div>
         </div>
@@ -869,7 +870,10 @@ function AboutUs(props) {
               자유롭게 실적을 관리하세요.
             </div>
             <div className="subtitle2">
-              HI:Card에 쌓인 실적을 <br /> 본인이 원하는 By:Card에 분배하세요.
+              <span style={{ fontFamily: "youandi" }}>Hi:Card</span>에 쌓인
+              실적을 <br /> 본인이 원하는{" "}
+              <span style={{ fontFamily: "youandi" }}>By:Card</span>에
+              분배하세요
             </div>
           </div>
         </div>
@@ -941,7 +945,7 @@ function AboutUs(props) {
               </p>
               <p className="text2">
                 하나의 카드로 어디서나 간편하게 <br />
-                일상의 유용한 혜택만 모아 사용해보세요.
+                일상의 유용한 혜택만 모아 사용해보세요
               </p>
             </div>
           </div>
