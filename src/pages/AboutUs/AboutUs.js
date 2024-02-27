@@ -39,7 +39,7 @@ import HeaderWhiteVer from "../../components/Header/HeaderWhiteVer";
 import Slider from "react-infinite-logo-slider";
 import Footer from "../../components/Footer/Footer";
 import FAQ from "./FAQ";
-
+import "./aboutus.css";
 const AboutUsDiv = styled.div`
   height: 565rem;
   position: relative;
@@ -139,7 +139,7 @@ const AboutUsDiv = styled.div`
     margin: 0;
     color: #ccb88f;
     text-align: center;
-    font-family: Poppins;
+
     font-size: 50px;
     font-style: normal;
     font-weight: 600;
@@ -221,7 +221,7 @@ const Banner2 = styled.div`
   .subtitle1 {
     color: var(--naver-text, #fff);
     margin: 1rem 0rem;
-    font-family: Poppins;
+    font-family: "Wanted Sans Variable";
     font-size: 36px;
     font-style: normal;
     font-weight: 400;
@@ -295,7 +295,7 @@ const Service = styled.div`
   .name {
     color: #ccb88f;
     text-align: center;
-    font-family: Poppins;
+
     font-size: 40px;
     font-style: normal;
     font-weight: 600;
@@ -306,7 +306,7 @@ const Service = styled.div`
   .text {
     color: #a0a0a0;
     text-align: center;
-    font-family: Poppins;
+    font-family: "Wanted Sans Variable";
     font-size: 24px;
     font-style: normal;
     font-weight: 600;
@@ -336,7 +336,7 @@ const Create = styled.div`
     margin: 0;
     color: #ccb88f;
     text-align: center;
-    font-family: Poppins;
+
     font-size: 50px;
     font-style: normal;
     font-weight: 600;
@@ -354,7 +354,7 @@ const Create = styled.div`
     margin: 0;
     color: var(--naver-text, #fff);
     text-align: center;
-    font-family: Poppins;
+    font-family: "Wanted Sans Variable";
     font-size: 50px;
     font-style: normal;
     font-weight: 600;
@@ -365,7 +365,7 @@ const Create = styled.div`
     margin: 0;
     color: #a0a0a0;
     text-align: center;
-    font-family: Poppins;
+    font-family: "Wanted Sans Variable";
     font-size: 28px;
     font-style: normal;
     font-weight: 400;
@@ -414,7 +414,7 @@ const Benefits = styled.div`
   .title {
     color: #ccb88f;
     text-align: center;
-    font-family: Poppins;
+
     font-size: 50px;
     font-style: normal;
     font-weight: 600;
@@ -432,7 +432,7 @@ const Benefits = styled.div`
 
   .text1 {
     color: var(--naver-text, #fff);
-    font-family: Poppins;
+    font-family: "Wanted Sans Variable";
     font-size: 50px;
     font-style: normal;
     font-weight: 600;
@@ -442,7 +442,7 @@ const Benefits = styled.div`
 
   .text2 {
     color: #a0a0a0;
-    font-family: Poppins;
+    font-family: "Wanted Sans Variable";
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
@@ -494,7 +494,7 @@ const Share = styled.div`
   .title {
     color: #ccb88f;
     text-align: center;
-    font-family: Poppins;
+
     font-size: 50px;
     font-style: normal;
     font-weight: 600;
@@ -503,7 +503,7 @@ const Share = styled.div`
 
   .subtitle {
     color: var(--naver-text, #fff);
-    font-family: Poppins;
+    font-family: "Wanted Sans Variable";
     font-size: 50px;
     font-style: normal;
     font-weight: 600;
@@ -554,7 +554,7 @@ const Share = styled.div`
 
   .title2 {
     color: var(--naver-text, #fff);
-    font-family: Poppins;
+    font-family: "Wanted Sans Variable";
     font-size: 40px;
     font-style: normal;
     font-weight: 600;
@@ -563,7 +563,7 @@ const Share = styled.div`
 
   .subtitle2 {
     color: #a0a0a0;
-    font-family: Poppins;
+    font-family: "Wanted Sans Variable";
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
@@ -596,7 +596,7 @@ const Share = styled.div`
 
   .title3 {
     color: var(--naver-text, #fff);
-    font-family: Poppins;
+    font-family: "Wanted Sans Variable";
     font-size: 40px;
     font-style: normal;
     font-weight: 600;
@@ -605,7 +605,7 @@ const Share = styled.div`
 
   .subtitle3 {
     color: #a0a0a0;
-    font-family: Poppins;
+    font-family: "Wanted Sans Variable";
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
@@ -730,12 +730,13 @@ function AboutUs(props) {
           </p>
           <p className="subtitle1">
             단 하나의 카드로
-            <br /> 다채로운 혜택을 경험하세요.
+            <br /> 다채로운 혜택을 경험하세요
           </p>
           <p className="subtitle1">
-            Hi:Card와 함께라면
+            <span style={{ fontFamily: "youandi" }}> Hi:Card</span>
+            와 함께라면
             <br />
-            당신의 일상이 새로워질 거예요.
+            당신의 일상이 새로워질 거예요
           </p>
         </div>
       </Banner2>
@@ -814,7 +815,7 @@ function AboutUs(props) {
             </p>
             <p className="text2">
               내가 고르는 선택의 즐거움 <br />
-              원하는 디자인과 기능을 선택할 수 있습니다.
+              원하는 디자인과 기능을 선택할 수 있습니다
             </p>
           </div>
         </div>
@@ -869,7 +870,10 @@ function AboutUs(props) {
               자유롭게 실적을 관리하세요.
             </div>
             <div className="subtitle2">
-              HI:Card에 쌓인 실적을 <br /> 본인이 원하는 By:Card에 분배하세요.
+              <span style={{ fontFamily: "youandi" }}>Hi:Card</span>에 쌓인
+              실적을 <br /> 본인이 원하는{" "}
+              <span style={{ fontFamily: "youandi" }}>By:Card</span>에
+              분배하세요
             </div>
           </div>
         </div>
@@ -941,7 +945,7 @@ function AboutUs(props) {
               </p>
               <p className="text2">
                 하나의 카드로 어디서나 간편하게 <br />
-                일상의 유용한 혜택만 모아 사용해보세요.
+                일상의 유용한 혜택만 모아 사용해보세요
               </p>
             </div>
           </div>
