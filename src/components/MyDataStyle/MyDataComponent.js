@@ -67,7 +67,7 @@ export const SaleForMonth = styled.div`
   }
   display: flex;
   width: 564px;
-  height: 477px;
+  height: 400px;
   min-height: 400px;
   padding: 24px;
   flex-direction: column;
@@ -89,7 +89,7 @@ export const SaleForMonth = styled.div`
 export const CompareLastMonth = styled.div`
   display: flex;
   width: 471px;
-  height: 474px;
+  height: 400px;
   padding: 24px;
   flex-direction: column;
   align-items: flex-start;
@@ -142,7 +142,7 @@ export const DataTitle = styled.div`
 `;
 
 export const DataView = styled.div`
-  font-size: 48px;
+  font-size: 40px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -365,6 +365,11 @@ export const PercentZone = styled.div`
   justify-content: center;
   align-content: center;
   margin-left: 4rem;
+`;
+
+export const ContentWrap = styled.div`
+  position: relative;
+  top: 1rem;
 `;
 
 export const PercentBox = styled.div`

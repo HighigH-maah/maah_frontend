@@ -38,16 +38,12 @@ import {
   ToNextImg,
   ToNextSub,
 } from "../../components/MyDataStyle/MyDataComponent";
-import HeaderLogoutBtn from "../../components/Header/HeaderLogoutBtn";
 import Footer from "../../components/Footer/Footer";
 import axios from "axios";
-import blackvelvet from "../../assets/images/black_velvet.png";
 import bronze from "../../assets/icon/bronze.png";
 import silver from "../../assets/icon/silver.png";
 import gold from "../../assets/icon/gold.png";
 import platinum from "../../assets/icon/platinum.png";
-import Select from "react-select";
-
 import nextBack from "../../assets/images/nextLevelBack.png";
 import { MyDoughnutChart } from "../../components/MyDataStyle/MyDataChart";
 import HeaderWhiteVer from "../../components/Header/HeaderWhiteVer";
@@ -185,9 +181,6 @@ function MyData(props) {
         <SaleForMonth>
           <MonthHeading>
             <DataTitle>By 카드 포인트 현황</DataTitle>
-            {/* <Sorting>
-              <Select options={options} />
-            </Sorting> */}
           </MonthHeading>
 
           <CardDataListWrapper myCardForMonth={myCardForMonth} />
@@ -195,8 +188,18 @@ function MyData(props) {
         <CompareLastMonth>
           <DataDesc>지난 달 VS 이번 달</DataDesc>
           <DataView>
-            {new Intl.NumberFormat().format(myCompare.moreThanUsed)}{" "}
-            사용했습니다
+            {myCompare.moreThanUsed > 0 ? (
+              <>
+                {new Intl.NumberFormat().format(myCompare.moreThanUsed)}{" "}
+                사용했습니다
+              </>
+            ) : (
+              <>
+                {" "}
+                {new Intl.NumberFormat().format(myCompare.moreThanUsed)} 덜
+                사용했습니다{" "}
+              </>
+            )}
           </DataView>
           {myCompare.length === 0 ? null : (
             <MyDataLineChart compareData={myCompare}></MyDataLineChart>
