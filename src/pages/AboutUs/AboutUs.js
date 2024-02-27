@@ -39,7 +39,7 @@ import HeaderWhiteVer from "../../components/Header/HeaderWhiteVer";
 import Slider from "react-infinite-logo-slider";
 import Footer from "../../components/Footer/Footer";
 import FAQ from "./FAQ";
-
+import "./aboutus.css";
 const AboutUsDiv = styled.div`
   height: 565rem;
   position: relative;
@@ -139,7 +139,7 @@ const AboutUsDiv = styled.div`
     margin: 0;
     color: #ccb88f;
     text-align: center;
-    font-family: Poppins;
+
     font-size: 50px;
     font-style: normal;
     font-weight: 600;
@@ -221,7 +221,7 @@ const Banner2 = styled.div`
   .subtitle1 {
     color: var(--naver-text, #fff);
     margin: 1rem 0rem;
-    font-family: Poppins;
+    font-family: "Wanted Sans Variable";
     font-size: 36px;
     font-style: normal;
     font-weight: 400;
@@ -295,7 +295,7 @@ const Service = styled.div`
   .name {
     color: #ccb88f;
     text-align: center;
-    font-family: Poppins;
+
     font-size: 40px;
     font-style: normal;
     font-weight: 600;
@@ -306,7 +306,7 @@ const Service = styled.div`
   .text {
     color: #a0a0a0;
     text-align: center;
-    font-family: Poppins;
+    font-family: "Wanted Sans Variable";
     font-size: 24px;
     font-style: normal;
     font-weight: 600;
@@ -336,7 +336,7 @@ const Create = styled.div`
     margin: 0;
     color: #ccb88f;
     text-align: center;
-    font-family: Poppins;
+
     font-size: 50px;
     font-style: normal;
     font-weight: 600;
@@ -354,7 +354,7 @@ const Create = styled.div`
     margin: 0;
     color: var(--naver-text, #fff);
     text-align: center;
-    font-family: Poppins;
+    font-family: "Wanted Sans Variable";
     font-size: 50px;
     font-style: normal;
     font-weight: 600;
@@ -365,7 +365,7 @@ const Create = styled.div`
     margin: 0;
     color: #a0a0a0;
     text-align: center;
-    font-family: Poppins;
+    font-family: "Wanted Sans Variable";
     font-size: 28px;
     font-style: normal;
     font-weight: 400;
@@ -414,7 +414,7 @@ const Benefits = styled.div`
   .title {
     color: #ccb88f;
     text-align: center;
-    font-family: Poppins;
+
     font-size: 50px;
     font-style: normal;
     font-weight: 600;
@@ -432,7 +432,7 @@ const Benefits = styled.div`
 
   .text1 {
     color: var(--naver-text, #fff);
-    font-family: Poppins;
+    font-family: "Wanted Sans Variable";
     font-size: 50px;
     font-style: normal;
     font-weight: 600;
@@ -442,7 +442,7 @@ const Benefits = styled.div`
 
   .text2 {
     color: #a0a0a0;
-    font-family: Poppins;
+    font-family: "Wanted Sans Variable";
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
@@ -494,7 +494,7 @@ const Share = styled.div`
   .title {
     color: #ccb88f;
     text-align: center;
-    font-family: Poppins;
+
     font-size: 50px;
     font-style: normal;
     font-weight: 600;
@@ -503,7 +503,7 @@ const Share = styled.div`
 
   .subtitle {
     color: var(--naver-text, #fff);
-    font-family: Poppins;
+    font-family: "Wanted Sans Variable";
     font-size: 50px;
     font-style: normal;
     font-weight: 600;
@@ -554,7 +554,7 @@ const Share = styled.div`
 
   .title2 {
     color: var(--naver-text, #fff);
-    font-family: Poppins;
+    font-family: "Wanted Sans Variable";
     font-size: 40px;
     font-style: normal;
     font-weight: 600;
@@ -563,7 +563,7 @@ const Share = styled.div`
 
   .subtitle2 {
     color: #a0a0a0;
-    font-family: Poppins;
+    font-family: "Wanted Sans Variable";
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
@@ -596,7 +596,7 @@ const Share = styled.div`
 
   .title3 {
     color: var(--naver-text, #fff);
-    font-family: Poppins;
+    font-family: "Wanted Sans Variable";
     font-size: 40px;
     font-style: normal;
     font-weight: 600;
@@ -605,7 +605,7 @@ const Share = styled.div`
 
   .subtitle3 {
     color: #a0a0a0;
-    font-family: Poppins;
+    font-family: "Wanted Sans Variable";
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
