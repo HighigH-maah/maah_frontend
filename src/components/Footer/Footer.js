@@ -128,7 +128,7 @@ function Footer({ position, top }) {
               <FooterMenu>About us</FooterMenu>
               <FooterMenuDown>
                 <FooterMenuDownP>Kim Hyeonseong</FooterMenuDownP>
-                <FooterMenuDownP>kim Sooin</FooterMenuDownP>
+                <FooterMenuDownP>Kim Sooin</FooterMenuDownP>
                 <FooterMenuDownP>Kim Taewan</FooterMenuDownP>
                 <FooterMenuDownP>Park Jieun</FooterMenuDownP>
                 <FooterMenuDownP>Han Maeum</FooterMenuDownP>

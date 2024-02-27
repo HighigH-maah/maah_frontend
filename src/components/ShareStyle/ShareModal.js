@@ -101,6 +101,7 @@ function ShareModal({ isOpen, closeModal, hiCard, openCard, updateChange }) {
           <img
             src={openCard ? openCard.byCard.byImagePath : blackVelvet}
             name={blackVelvet}
+            alt="바이카드 이미지"
           />
         </HiImageSection>
         <HiPointSection>

@@ -31,7 +31,7 @@ export const HiSection = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  padding: 15rem 0 5rem;
+  padding: 15rem 0 0;
 `;
 export const HiTopper = styled.div`
   width: 100%;

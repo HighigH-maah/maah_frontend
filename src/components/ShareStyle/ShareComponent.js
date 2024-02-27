@@ -4,8 +4,8 @@ export const Modal = styled.div`
   display: ${(props) => (props.isOpen ? "block" : "none")};
   display: block;
   position: absolute;
-  width: 1000px;
-  height: 1769px;
+  width: 850px;
+  border-radius: 20px;
   background: linear-gradient(
     180deg,
     #181048 0%,
@@ -36,13 +36,12 @@ export const ModalCloseButton = styled.button`
     rgba(255, 255, 255, 0.09) 93.5%,
     rgba(239, 239, 237, 0) 100%
   );
-
   border-radius: 54px;
 `;
 
 export const HiCardPoint = styled.div`
   color: #fff;
-  font-size: 80px;
+  font-size: 60px;
   font-style: normal;
   font-weight: bolder;
   line-height: 100%;
@@ -59,11 +58,10 @@ export const HiCardRealPoint = styled.div`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-  font-size: 100px;
+  font-size: 80px;
   font-style: normal;
   font-weight: bolder;
-  line-height: 100%; /* 100px */
+  line-height: 100%;
 `;
 
 export const HiModalTop = styled.div`
@@ -89,6 +87,9 @@ export const ShareBackImage = styled.image`
 
 export const HiModalMid = styled.div`
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 2rem;
 `;
 
 export const HiImageSection = styled.div`
@@ -97,14 +98,19 @@ export const HiImageSection = styled.div`
   display: flex;
   font-weight: bolder;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-size: 50px;
+  font-size: 35px;
   flex-direction: column;
   align-items: center;
+
+  img {
+    height: 400px;
+  }
 `;
 
 export const HiPointSection = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 4rem;
   margin-left: 2rem;
   gap: 2rem;
   justify-content: center;
@@ -114,11 +120,15 @@ export const PointWrapper = styled.div`
   display: flex;
   color: white;
   gap: 4.3rem;
-  font-size: 45px;
+  font-size: 40px;
   font-style: normal;
   font-weight: bolder;
   line-height: 100%; /* 50px */
   align-items: center;
+
+  & > p {
+    margin: 0;
+  }
 
   & > span {
     background: linear-gradient(
@@ -138,6 +148,7 @@ export const InputWrapper = styled.div`
   display: flex;
   color: #02358b;
   gap: 3rem;
+
   & > button {
     border-radius: 50px;
     background: linear-gradient(
@@ -147,17 +158,17 @@ export const InputWrapper = styled.div`
       rgba(219, 233, 255, 0) 103.62%
     );
     color: #02358b;
-    width: 176px;
+    width: 170px;
     font-weight: bolder;
     border-color: lightgray;
-    height: 97px;
+    /* height: 97px; */
     flex-shrink: 0;
     font-size: 1.5rem;
     cursor: pointer;
   }
   > input {
-    width: 289px;
-    height: 101px;
+    width: 250px;
+    height: 80px;
     flex-shrink: 0;
     background: linear-gradient(
       96deg,
@@ -180,6 +191,7 @@ export const ReturnWrapper = styled.div`
   display: flex;
   color: #02358b;
   gap: 3rem;
+
   & > button {
     border-radius: 50px;
     background: linear-gradient(
@@ -189,17 +201,17 @@ export const ReturnWrapper = styled.div`
       rgba(219, 233, 255, 0) 103.62%
     );
     color: #02358b;
-    width: 176px;
+    width: 170px;
     font-weight: bolder;
     border-color: lightgray;
-    height: 97px;
+    /* height: 97px; */
     flex-shrink: 0;
     font-size: 1.5rem;
     cursor: pointer;
   }
   > input {
-    width: 289px;
-    height: 101px;
+    width: 250px;
+    height: 80px;
     flex-shrink: 0;
     background: linear-gradient(
       276deg,
@@ -220,14 +232,17 @@ export const ReturnWrapper = styled.div`
 
 export const BenefitDiv = styled.div`
   border-radius: 20px;
-  width: 900.187px;
-  height: 652px;
+  width: 800px;
+  height: 450px;
   box-shadow: inset 11px 13px 0px 0px lightgrey;
   color: white;
   background: black;
   margin-top: 2rem;
   font-weight: bolder;
   font-size: 2rem;
+  display: block;
+  position: relative;
+  left: 1.5rem;
 `;
 
 export const BenefitList = styled.div`
@@ -235,7 +250,7 @@ export const BenefitList = styled.div`
   flex-direction: column;
   margin-left: 5rem;
   position: relative;
-  top: 4rem;
+  top: 1rem;
 `;
 
 export const Benefit = styled.div`
@@ -277,7 +292,7 @@ export const ShareInput = styled.input`
 `;
 
 const imageStyle = {
-  maxWidth: "100%",
+  maxWidth: "30%",
   height: "auto",
   borderRadius: "8px",
   display: "flex",
