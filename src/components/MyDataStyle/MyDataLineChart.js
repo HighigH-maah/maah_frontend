@@ -10,6 +10,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import { ContentWrap } from "./MyDataComponent";
 
 ChartJS.register(
   CategoryScale,
@@ -75,10 +76,10 @@ export default function MyDataLineChart({ compareData }) {
   };
 
   return (
-    <contentWrap>
+    <ContentWrap>
       <contentInner>
         <Line options={options} data={data} width="470" height="235" />
       </contentInner>
-    </contentWrap>
+    </ContentWrap>
   );
 }
