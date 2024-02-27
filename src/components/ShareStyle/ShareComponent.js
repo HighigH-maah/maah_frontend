@@ -89,7 +89,7 @@ export const HiModalMid = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: 0rem;
 `;
 
 export const HiImageSection = styled.div`
@@ -261,6 +261,14 @@ export const Benefit = styled.div`
   color: #777;
   &.nextMonth {
     color: #fff;
+  }
+
+  p {
+    margin: 1.2rem 0;
+  }
+
+  span {
+    font-size: 1.3rem;
   }
 `;
 

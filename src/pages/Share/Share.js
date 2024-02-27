@@ -70,11 +70,13 @@ function Share(props) {
   const API_SERVER = process.env.REACT_APP_API_SERVER;
 
   useEffect(() => {
-    let hicard = document.getElementsByClassName('hiCard');
+    let hicard = document.getElementsByClassName("hiCard");
     hicard[0].style.top = hiEffect * 0.02 + "px";
 
     const timer = setInterval(() => {}, 1);
-    setHiEffect((hiEffect) => hiEffect + Math.floor(timer / 1000) % 2 * 2 - 1);
+    setHiEffect(
+      (hiEffect) => hiEffect + (Math.floor(timer / 1000) % 2) * 2 - 1
+    );
   });
 
   useEffect(() => {
@@ -127,6 +129,9 @@ function Share(props) {
   const openModal = () => {
     console.log("byCardList", byCardList);
     setIsModalOpen(true);
+    const element = document.getElementById("share_modal");
+    console.log("ele", element);
+    element.scrollIntoView();
     console.log(openCard);
   };
 
@@ -156,7 +161,7 @@ function Share(props) {
       <ShareMain>
         <HiSection>
           <HiTopper>
-            <HiTopTitle>Ma:ah Share</HiTopTitle>
+            <HiTopTitle id={"share_modal"}>Ma:ah Share</HiTopTitle>
           </HiTopper>
           <HiBottom>
             <HiBottomWings>

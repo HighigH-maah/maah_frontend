@@ -145,7 +145,7 @@ function ShareModal({ isOpen, closeModal, hiCard, openCard, updateChange }) {
                     height={50}
                   />
                   <p>{benefit.byBenefitDesc}</p>
-                  <h6>전월 실적: {benefit.byBenefitMinCondition} 이상</h6>
+                  <span>전월 실적: {benefit.byBenefitMinCondition} 이상</span>
                 </Benefit>
               ))
             : ""}

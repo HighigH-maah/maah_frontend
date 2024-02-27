@@ -8,6 +8,7 @@ import bronze from "../../assets/images/Grade/bronze.png";
 import arrow from "../../assets/images/select_arrow.png";
 import CardLimit from "./CardLimit";
 import axios from "axios";
+import MemberLoad from "../Utils/SessionStorage";
 
 const Background = styled.div`
   background: linear-gradient(180deg, #f1f1f1 37.44%, #b2b2b2 100%);
@@ -250,7 +251,7 @@ function InputCardApplicationInfo({ setProcess, setCardApply, cardApply }) {
         method: "post",
         url: process.env.REACT_APP_API_SERVER + "/getAccountName.do",
         data: {
-          memberId: "user2",
+          memberId: MemberLoad(),
           bankCode: bankCode,
           bankName: account,
         },
@@ -264,11 +265,12 @@ function InputCardApplicationInfo({ setProcess, setCardApply, cardApply }) {
           //   alert("본인 명의 계좌 정보를 입력해주세요");
           // }
           // 성공 시 처리, 예를 들어 성공 메시지 표시 또는 사용자를 리디렉션할 수 있습니다.
-          if(res.data.accountChkYn === 'Y') {
+          if (res.data.accountChkYn === "Y") {
             setCardApply({
               ...cardApply,
               cardApplyEngname: englishName,
-              cardApplyIsTransport: document.getElementById("transport").checked,
+              cardApplyIsTransport:
+                document.getElementById("transport").checked,
               cardApplyIsInternational: cardRegion === "visa" ? true : false,
               bankCode: document.getElementById("bank").value,
               accountNumber: document.getElementById("account").value,
