@@ -264,6 +264,12 @@ export const ByBottomCardArea = styled.div`
   align-items: center;
   position: relative;
   justify-content: flex-start;
+  background: linear-gradient(
+    113deg,
+    rgba(255, 255, 255, 0.37) 10.29%,
+    rgba(255, 255, 255, 0) 100.35%
+  );
+  border-radius: 2rem;
 `;
 
 export const ByBottomCardTitle = styled.div`
@@ -275,7 +281,7 @@ export const ByBottomCardTitle = styled.div`
   letter-spacing: -1.2px;
   margin-bottom: 30px;
   position: absolute;
-  top: 0%;
+  top: 1%;
 `;
 
 export const ByBottomAdd = styled.div`

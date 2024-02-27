@@ -199,7 +199,7 @@ const StyledNavLick = styled(NavLink)`
 
 function HeaderLogoutBtn(props) {
   const [buttonText, setButtonText] = useState([]);
-  const [member, setMember] = useState([]);
+  const [member, setMember] = useState("이신한");
 
   const getMember = () => {
     axios({
