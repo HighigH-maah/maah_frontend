@@ -126,7 +126,7 @@ function PersonalCertification({ setProcess, setCardApply, cardApply }) {
       <MainWrap>
         <div>
           <MainTitle>
-            한마음 님<br />
+            이신한 님<br />
             본인인증을 진행해주세요
           </MainTitle>
         </div>
