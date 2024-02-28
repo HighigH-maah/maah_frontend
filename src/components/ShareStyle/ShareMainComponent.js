@@ -85,6 +85,21 @@ export const HiBottomWings = styled.div`
   background-size: cover;
 `;
 
+export const HiCardPoint = styled.div`
+  position: relative;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 0.97;
+  letter-spacing: -0.1rem;
+  color: #ffffff;
+  bottom: 20px;
+
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-bottom: 1rem;
+`;
+
 export const HiCardTypeName = styled.div`
   position: relative;
   text-align: center;
@@ -107,7 +122,8 @@ export const HiCardImg = styled.img`
   transition: all 0.15s linear;
   position: relative;
   border-radius: 12px;
-  border: 1px solid #fff;
+  box-shadow: 1px 2px 20px 1px lightgray;
+  // border: 1px solid #fff;
   transition: visibility 0.5s;
   &:hover {
     ~ div {
@@ -124,7 +140,7 @@ export const HiCardDesc = styled.div`
   top: 0;
   background-color: #fff;
   border-radius: 12px;
-  border: 1px solid #fff;
+  // border: 1px solid #fff;
 
   display: flex;
   flex-direction: column;
@@ -247,6 +263,16 @@ export const ByTitle = styled.div`
   transform: translate(-50%, 0%);
 `;
 
+export const ByDragDesc = styled.div`
+  width: fit-content;
+  position: absolute;
+  color: #cdcdcd;
+  font-size: 1rem;
+  font-weight: 400;
+  right: 682px;
+  top: 85px;
+`;
+
 export const ByBottomArea = styled.div`
   width: 100%;
   display: grid;
@@ -264,11 +290,11 @@ export const ByBottomCardArea = styled.div`
   align-items: center;
   position: relative;
   justify-content: flex-start;
-  background: linear-gradient(
-    113deg,
-    rgba(255, 255, 255, 0.37) 10.29%,
-    rgba(255, 255, 255, 0) 100.35%
-  );
+  // background: linear-gradient(
+  //   113deg,
+  //   rgba(255, 255, 255, 0.37) 10.29%,
+  //   rgba(255, 255, 255, 0) 100.35%
+  // );
   border-radius: 2rem;
 `;
 
@@ -334,7 +360,8 @@ export const ByBottomImg = styled.img`
   width: 230px;
   height: 311px;
   border-radius: 12px;
-  border: 2px solid #fff;
+  box-shadow: 1px 2px 20px 1px lightgray;
+  // border: 2px solid #fff;
   position: absolute;
   top: 12%;
 `;
@@ -343,7 +370,7 @@ export const ByBottomDesc = styled.div`
   width: 230px;
   height: 311px;
   border-radius: 12px;
-  border: 2px solid #fff;
+  // border: 2px solid #fff;
   background: linear-gradient(
     113deg,
     rgba(0, 0, 0, 0.37) 10.29%,

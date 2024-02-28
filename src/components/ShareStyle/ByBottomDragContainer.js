@@ -35,7 +35,10 @@ function ByBottomDragContainer({
 
       newCards.splice(dragIndex, 1);
       newCards.splice(hoverIndex, 0, draggedCard);
+      console.log("카드 움직임");
+      //이 자리에서 백으로 넘기면 되겠다.
 
+      //axios
       return newCards;
     });
   }, []);

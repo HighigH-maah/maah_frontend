@@ -24,6 +24,7 @@ import {
   ByBottomDesc,
   ByBottomDescBox,
   ByBottomImg,
+  ByDragDesc,
   BySection,
   ByTitle,
   ByTopper,
@@ -53,6 +54,7 @@ import HeaderWhiteVer from "../../components/Header/HeaderWhiteVer";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import ByBottomDragContainer from "../../components/ShareStyle/ByBottomDragContainer";
+import { HiCardPoint } from "../../components/ShareStyle/ShareMainComponent";
 
 function Share(props) {
   const [blackVelvet, setBlackVelvet] = useState(true);
@@ -165,6 +167,9 @@ function Share(props) {
           </HiTopper>
           <HiBottom>
             <HiBottomWings>
+              <HiCardPoint>
+                Hi:Point {card.hicard ? card.hicard.memberHiPoint : ""}P
+              </HiCardPoint>
               <HiCardTypeName>
                 {card.hicard ? card.hicard.memberHiNickname : ""}
               </HiCardTypeName>
@@ -192,11 +197,11 @@ function Share(props) {
                           <h3 key={index}>
                             <img
                               src={selectIcon(
-                                JSON.stringify(benefit.benefitCode),
+                                JSON.stringify(benefit.intByBenefitCode),
                                 "white"
                               )}
-                              alt={`benefit-${index}`}
-                            ></img>
+                              alt=""
+                            />
                             <p>{benefit.byBenefitDesc}</p>
                           </h3>
                         );
@@ -231,6 +236,7 @@ function Share(props) {
               toggleHandler={toggleHandler}
               isOn={isOn}
             ></ToggleButton>
+            <ByDragDesc>drag&drop으로 순서를 변경할 수 있습니다</ByDragDesc>
           </ByTopper>
           <DndProvider backend={HTML5Backend}>
             <ByBottomDragContainer

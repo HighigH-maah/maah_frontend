@@ -794,14 +794,13 @@ export const MyHiCardCenterSection = ({ myCardHi }) => {
       <HiCardLimit>
         <HiCardLimitTitle>이번 달 사용한도</HiCardLimitTitle>
         <HiCardAmout>
-          {myCardHi.totalLimit ? myCardHi.totalLimit/10000 : "0"} 만원
+          {myCardHi.totalLimit ? myCardHi.totalLimit / 10000 : "0"} 만원
         </HiCardAmout>
       </HiCardLimit>
       <HiCardUse>
         <HiCardUseTitle>이번 달 사용금액</HiCardUseTitle>
         <HiCardAmout>
-          {myCardHi.thisMonthSum ? myCardHi.thisMonthSum/10000 : "0"}{" "}
-          만원
+          {myCardHi.thisMonthSum ? myCardHi.thisMonthSum / 10000 : "0"} 만원
         </HiCardAmout>
       </HiCardUse>
     </MyHiCardCenterDiv>
@@ -1041,6 +1040,8 @@ export const MyByCardRightSection = ({ byCardData }) => {
       },
     })
       .then((res) => {
+        // window.scrollTop(0, 0);
+        // console.log("상단이동");
         window.location.reload();
         //console.log(res.data);
       })
