@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import React from "react";
 import "../../assets/css/style.css";
-import styled from "styled-components";
 import axios from "axios";
 import blackVelvetImg from "../../assets/images/black_velvet.png";
 import whiteVelvetImg from "../../assets/images/white_velvet.png";
@@ -73,17 +72,22 @@ function Share(props) {
   const API_SERVER = process.env.REACT_APP_API_SERVER;
 
   useEffect(() => {
-    var hicard = document.getElementsByClassName("hiCard");
-    setInterval(() => {
-      if(animation.current) {
-        hiEffect.current -= 1;
+    const hicard = document.getElementsByClassName("hiCard");
+    const timer = setInterval(() => {
+      if(hicard.length === 0) {
+        clearInterval(timer);
       } else {
-        hiEffect.current += 1;
+        if(animation.current) {
+          hiEffect.current -= 1;
+        } else {
+          hiEffect.current += 1;
+        }
+        if(hiEffect.current > 0 || hiEffect.current < -1000) {
+          animation.current = !animation.current;
+        }
+        console.log(hicard.length);
+        hicard[0].style.top = hiEffect.current * 0.02 + "px";
       }
-      if(hiEffect.current > 0 || hiEffect.current < -1000) {
-        animation.current = !animation.current;
-      }
-      hicard[0].style.top = hiEffect.current * 0.02 + "px";
     }, 1);
   },[]);
 
