@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import React from "react";
 import "../../assets/css/style.css";
 import styled from "styled-components";
@@ -66,20 +66,26 @@ function Share(props) {
   const maxBenefitCount = 5; // 최대 출력 개수 설정
   const [openCard, setOpenCard] = useState({});
   const [byCardList, setByCardList] = useState([]);
-  const [hiEffect, setHiEffect] = useState(0);
+  const hiEffect = useRef(0);
+  const animation = useRef(true);
   const [isChange, setIsChange] = useState(false);
   const navigate = useNavigate();
   const API_SERVER = process.env.REACT_APP_API_SERVER;
 
   useEffect(() => {
-    let hicard = document.getElementsByClassName("hiCard");
-    hicard[0].style.top = hiEffect * 0.02 + "px";
-
-    const timer = setInterval(() => {}, 1);
-    setHiEffect(
-      (hiEffect) => hiEffect + (Math.floor(timer / 1000) % 2) * 2 - 1
-    );
-  });
+    var hicard = document.getElementsByClassName("hiCard");
+    setInterval(() => {
+      if(animation.current) {
+        hiEffect.current -= 1;
+      } else {
+        hiEffect.current += 1;
+      }
+      if(hiEffect.current > 0 || hiEffect.current < -1000) {
+        animation.current = !animation.current;
+      }
+      hicard[0].style.top = hiEffect.current * 0.02 + "px";
+    }, 1);
+  },[]);
 
   useEffect(() => {
     console.log("effect 1번");
