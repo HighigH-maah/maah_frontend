@@ -70,7 +70,7 @@ function MyData(props) {
     axios({
       method: "post",
       url: API_SERVER + "/getMyData.do",
-      data: { memberId: MemberLoad() },
+      data: { memberId: "user3" },
     })
       .then((res) => {
         console.log(res.data);
@@ -196,7 +196,7 @@ function MyData(props) {
             ) : (
               <>
                 {" "}
-                {new Intl.NumberFormat().format(myCompare.moreThanUsed)} 덜
+                {new Intl.NumberFormat().format(myCompare.moreThanUsed * -1)} 덜
                 사용했습니다{" "}
               </>
             )}
